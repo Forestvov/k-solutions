@@ -27,15 +27,9 @@
     "baseUrl": "src",
     "paths": {
       "app/*": ["app/*"],
-      "pages/*": ["pages/*"],
+      "layouts/*": ["layouts/*"],
       "components/*": ["components/*"],
-      "services/*": ["services/*"],
-      "helpers/*": ["helpers/*"],
-      "hooks/*": ["hooks/*"],
       "assets/*": ["assets/*"],
-      "models/*": ["models/*"],
-      "context/*": ["context/*"],
-      "styles/*": ["styles/*"]
     }
   },
   "exclude": ["node_modules"],
