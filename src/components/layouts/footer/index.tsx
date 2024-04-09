@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-
-import Container from 'components/shared/container';
+import Container from '@mui/material/Container';
 
 import FooterDescription from './footer-description';
 import FooterNavigation from './footer-navigation';
@@ -13,12 +12,11 @@ const Footer = () => {
         <Box
             component="footer"
             sx={{
-                marginTop: 100,
                 background: '#F6F7F8',
                 padding: '100px 0',
             }}
         >
-            <Container>
+            <Container fixed>
                 <Stack alignItems="flex-start" direction="row" justifyContent="space-between">
                     <FooterDescription />
                     <FooterNavigation />

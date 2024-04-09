@@ -7,6 +7,12 @@ declare module '@mui/material/Button' {
     }
 }
 
+declare module '@mui/material/Typography' {
+    interface TypographyPropsVariantOverrides {
+        'home-h2': true;
+    }
+}
+
 const theme = createTheme({
     typography: {
         fontSize: 16,
@@ -21,6 +27,18 @@ const theme = createTheme({
                     color: '#747474',
                 },
             },
+            variants: [
+                {
+                    props: { variant: 'home-h2' },
+                    style: {
+                        marginBottom: '60px',
+                        color: '#000000',
+                        fontWeight: '600',
+                        fontSize: '3rem',
+                        lineHeight: '58px',
+                    },
+                },
+            ],
         },
         MuiList: {
             styleOverrides: {

@@ -30,6 +30,7 @@
       "layouts/*": ["layouts/*"],
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
+      "helpers/*": ["helpers/*"],
     }
   },
   "exclude": ["node_modules"],

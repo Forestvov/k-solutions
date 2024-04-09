@@ -13,6 +13,7 @@ export default defineConfig({
             layouts: `${path.resolve(__dirname, './src/layouts/')}`,
             components: `${path.resolve(__dirname, './src/components/')}`,
             assets: `${path.resolve(__dirname, './src/assets/')}`,
+            helpers: `${path.resolve(__dirname, './src/helpers/')}`,
             public: `${path.resolve(__dirname, './public/')}`,
             '@mui/material': '@mui/material/legacy',
             '@mui/styled-engine': '@mui/styled-engine/legacy',
