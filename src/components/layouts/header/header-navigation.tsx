@@ -8,13 +8,13 @@ const Link = styled(NavLink)`
     color: #595959;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     &:hover {
-        color: #1e2021;
+        color: #006838;
     }
 `;
 
 const HeaderNavigation = () => {
     return (
-        <Stack spacing="40px" direction="row" component="nav">
+        <Stack spacing={{ lg: '40px', xl: '30px', xs: '15px' }} direction={{ xl: 'row' }} component="nav">
             <Link to="/">Инвесторам</Link>
             <Link to="/">Предпринимателям</Link>
             <Link to="/">О платформе</Link>

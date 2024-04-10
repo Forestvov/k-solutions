@@ -13,11 +13,39 @@ import Item from './item';
 import CarouselButtonArrows from './carousel-button-arrows';
 
 const Inner = styled.div`
+    overflow: hidden;
+
+    .for-client-navigation,
+    .for-client-pagination {
+        display: none;
+    }
+
     &:hover .for-client-navigation,
     &:hover .for-client-pagination {
         opacity: 1;
         pointer-events: auto;
     }
+
+    @media (min-width: 1042px) {
+        .for-client-navigation {
+            display: block;
+        }
+        .for-client-pagination {
+            display: flex;
+        }
+    }
+`;
+
+const SliderWrapper = styled(Swiper)`
+    overflow: visible;
+
+    @media (min-width: 1024px) {
+        overflow: hidden;
+    }
+`;
+
+const Slide = styled(SwiperSlide)`
+    min-width: 288px;
 `;
 
 const PaginationWrapper = styled.div`
@@ -26,9 +54,13 @@ const PaginationWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 45px;
+    margin-top: 20px;
     height: 17px;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    @media (min-width: 1280px) {
+        margin-top: 45px;
+    }
 
     .for-client-pagination-button {
         width: 9px;
@@ -54,8 +86,20 @@ const PaginationWrapper = styled.div`
 const paramsSlider: SwiperOptions = {
     loop: true,
     modules: [Navigation, Pagination],
-    spaceBetween: 40,
-    slidesPerView: 2,
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+            spaceBetween: 15,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        1024: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+        },
+    },
     pagination: {
         el: '.for-client-pagination',
         bulletClass: 'for-client-pagination-button',
@@ -82,13 +126,13 @@ const Slider = () => {
         <Inner>
             <Container fixed sx={{ position: 'relative' }}>
                 {swiperInstance && <CarouselButtonArrows instance={swiperInstance} />}
-                <Swiper {...paramsSlider} onSwiper={(swiper) => setSwiperInstance(swiper)}>
+                <SliderWrapper {...paramsSlider} onSwiper={(swiper) => setSwiperInstance(swiper)}>
                     {slides.map((slide, idx) => (
-                        <SwiperSlide key={idx}>
+                        <Slide key={idx}>
                             <Item {...slide} />
-                        </SwiperSlide>
+                        </Slide>
                     ))}
-                </Swiper>
+                </SliderWrapper>
                 <PaginationWrapper className="for-client-pagination" />
             </Container>
         </Inner>

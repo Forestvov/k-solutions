@@ -31,6 +31,7 @@
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
       "helpers/*": ["helpers/*"],
+      "hooks/*": ["hooks/*"],
     }
   },
   "exclude": ["node_modules"],

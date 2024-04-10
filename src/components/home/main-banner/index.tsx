@@ -8,39 +8,88 @@ import Schedule from 'assets/pages/home/banner-schedule.svg?react';
 
 import Form from './form';
 import Image from './image';
+import { useMediaQuery } from '@mui/material';
 
 const Inner = styled(Container)`
     position: relative;
     height: 100%;
 `;
 
+const Content = styled.div`
+    @media (min-width: 1280px) {
+        padding-right: 450px;
+    }
+`;
+
 const Paragraph = styled.p`
-    margin: 40px 0 88px;
+    margin: 30px 0 45px;
     font-weight: 300;
-    font-size: 1.25rem;
-    line-height: 8px;
+    font-size: 1rem;
+    line-height: 26px;
+
+    @media (min-width: 768px) {
+        font-size: 1.125rem;
+        line-height: 30px;
+        margin: 30px 0 76px;
+    }
+
+    @media (min-width: 1024px) {
+        font-size: 1.25rem;
+    }
+`;
+
+const LogoIcon = styled(Logo)`
+    height: auto;
+    width: 280px;
+
+    @media (min-width: 768px) {
+        width: 600px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 767px;
+        height: 94px;
+    }
+`;
+
+const ScheduleIcon = styled(Schedule)`
+    height: auto;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        width: 600px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 712px;
+        height: 227px;
+    }
 `;
 
 const MainBanner: FC = () => {
+    const isDesktop = useMediaQuery('(min-width:1280px)');
+
     return (
         <Box
             sx={{
-                height: 950,
+                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
                 background: '#F6F7F8',
-                paddingTop: '229px',
+                paddingTop: { lg: '229px', xl: '200px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
-                marginBottom: '150px',
+                marginBottom: { xs: '100px', sm: '130px', md: '150px' },
             }}
         >
-            <Inner>
-                <Logo />
-                <Paragraph>
-                    Интернет-сервис, на котором можно инвестировать деньги в бизнес или получить финансирование для
-                    компании !
-                </Paragraph>
-                <Form />
-                <Schedule />
-                <Image />
+            <Inner fixed>
+                <Content>
+                    <LogoIcon />
+                    <Paragraph>
+                        Интернет-сервис, на котором можно инвестировать деньги в бизнес или получить финансирование для
+                        компании !
+                    </Paragraph>
+                    <Form />
+                    <ScheduleIcon />
+                </Content>
+                {isDesktop && <Image />}
             </Inner>
         </Box>
     );

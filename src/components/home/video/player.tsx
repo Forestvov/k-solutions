@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import Box from '@mui/material/Box';
 
 import Video from 'assets/background.mp4';
 
@@ -37,11 +36,7 @@ const Player = () => {
         };
     }, [videoRef]);
 
-    return (
-        <Box sx={{ background: '#F6F7F8' }}>
-            <video ref={videoRef} src={Video} playsInline height={912} width="100%" preload="auto" loop muted />
-        </Box>
-    );
+    return <video ref={videoRef} src={Video} playsInline height="auto" width="100%" preload="auto" loop muted />;
 };
 
 export default Player;

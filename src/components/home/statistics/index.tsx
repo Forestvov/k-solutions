@@ -6,12 +6,15 @@ import StatItem from './stat-item';
 
 const Statistics = () => {
     return (
-        <Box sx={{ marginBottom: '130px' }}>
+        <Box sx={{ marginBottom: { xs: '100px', md: '130px' } }}>
             <Container fixed>
                 <Typography variant="home-h2" component="h2">
                     Цифры говорят за нас лучше всего
                 </Typography>
-                <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }} gap="40px 45px">
+                <Box
+                    sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' } }}
+                    gap={{ xs: '30px', md: '40px 45px' }}
+                >
                     <StatItem value="25,2 %" label="Средневзвешенная ставка за 30 дней" />
                     <StatItem value="18,7" sub="МЛРД $" label="Выдано займов бизнесу" />
                     <StatItem value="148 704" label="Инвесторов на платформе" />

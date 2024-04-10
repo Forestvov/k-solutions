@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { Outlet } from 'react-router';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 import Header from 'components/layouts/header';
 import Footer from 'components/layouts/footer';
-import Stack from '@mui/material/Stack';
 
 const MainLayout: FC = () => {
     return (

@@ -18,6 +18,18 @@ const paramsSlider: SwiperOptions = {
     speed: 9000,
     touchMoveStopPropagation: false,
     grabCursor: false,
+
+    breakpoints: {
+        320: {
+            spaceBetween: 40,
+        },
+        768: {
+            spaceBetween: 50,
+        },
+        1024: {
+            spaceBetween: 73,
+        },
+    },
 };
 
 const SliderWrapper = styled(Swiper)`

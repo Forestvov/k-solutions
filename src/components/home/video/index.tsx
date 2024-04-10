@@ -6,7 +6,7 @@ import Player from './player';
 
 const Video = () => {
     return (
-        <Box sx={{ marginBottom: '150px' }}>
+        <Box sx={{ marginBottom: { xs: '100px', sm: '130px', md: '150px' } }}>
             <Container fixed>
                 <Typography variant="home-h2" component="h2">
                     Как это работает

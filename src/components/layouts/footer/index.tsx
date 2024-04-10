@@ -13,11 +13,21 @@ const Footer = () => {
             component="footer"
             sx={{
                 background: '#F6F7F8',
-                padding: '100px 0',
+                padding: {
+                    xs: '60px 0',
+                    xl: '70px 0',
+                    lg: '100px 0',
+                },
             }}
         >
             <Container fixed>
-                <Stack alignItems="flex-start" direction="row" justifyContent="space-between">
+                <Stack
+                    alignItems="flex-start"
+                    direction={{ xs: 'column', xl: 'row' }}
+                    spacing={{ xs: '40px', xl: '0' }}
+                    justifyContent="space-between"
+                    flexWrap="wrap"
+                >
                     <FooterDescription />
                     <FooterNavigation />
                     <FooterAddress />

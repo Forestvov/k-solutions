@@ -16,10 +16,8 @@ const rootElement = document.getElementById('k-solutions');
 const root = ReactDOM.createRoot(rootElement!);
 
 root.render(
-    <React.StrictMode>
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <App />
-        </ThemeProvider>
-    </React.StrictMode>
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+    </ThemeProvider>
 );

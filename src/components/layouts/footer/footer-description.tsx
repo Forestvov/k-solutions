@@ -17,12 +17,30 @@ const SocialLink = styled.a`
     }
 `;
 
+const Link = styled(NavLink)`
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    svg {
+        width: 200px;
+        height: auto;
+
+        @media (min-width: 768px) {
+            width: 318px;
+            height: 39px;
+        }
+    }
+`;
+
 const FooterDescription = () => {
     return (
         <Box sx={{ maxWidth: '413px' }}>
-            <NavLink to="/">
+            <Link to="/">
                 <Logo />
-            </NavLink>
+            </Link>
             <Typography sx={{ margin: '20px 0 45px', color: '#444444' }}>
                 The activities of are conducted within the obtained permits and are in full compliance with the obtained
                 certificates.

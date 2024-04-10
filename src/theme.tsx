@@ -22,20 +22,34 @@ const theme = createTheme({
         MuiTypography: {
             styleOverrides: {
                 body1: {
-                    fontSize: '1.125rem',
+                    fontSize: '1rem',
                     lineHeight: '22px',
                     color: '#747474',
+
+                    '@media (min-width: 768px)': {
+                        fontSize: '1.125rem',
+                    },
                 },
             },
             variants: [
                 {
                     props: { variant: 'home-h2' },
                     style: {
-                        marginBottom: '60px',
+                        marginBottom: '40px',
                         color: '#000000',
-                        fontWeight: '600',
-                        fontSize: '3rem',
-                        lineHeight: '58px',
+                        fontSize: '2rem',
+                        lineHeight: '40px',
+
+                        '@media (min-width: 768px)': {
+                            marginBottom: '50px',
+                            lineHeight: '58px',
+                            fontSize: '2.5rem',
+                        },
+
+                        '@media (min-width: 1668px)': {
+                            marginBottom: '60px',
+                            fontSize: '3rem',
+                        },
                     },
                 },
             ],
@@ -74,12 +88,12 @@ const theme = createTheme({
                         background: '#1E2021',
                         color: '#FFFFFF',
                         '&:hover': {
-                            backgroundColor: '#363A3C',
-                            borderColor: '#363A3C',
+                            backgroundColor: '#006838',
+                            borderColor: '#006838',
                         },
                         '&:active': {
-                            backgroundColor: '#363A3C',
-                            borderColor: '#363A3C',
+                            backgroundColor: '#006838',
+                            borderColor: '#006838',
                         },
                     },
                 },
@@ -103,7 +117,7 @@ const theme = createTheme({
     },
     breakpoints: {
         values: {
-            xs: 375,
+            xs: 320,
             sm: 768,
             md: 1024,
             xl: 1280,

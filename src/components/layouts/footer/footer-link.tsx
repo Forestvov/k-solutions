@@ -7,8 +7,13 @@ const FooterLink = styled(NavLink)`
     text-decoration: none;
     color: #444444;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
     &:hover {
         color: #1e2021;
+    }
+
+    @media (min-width: 1668px) {
+        font-size: 1.25rem;
     }
 `;
 

@@ -13,11 +13,27 @@ interface Props {
 }
 
 const ButtonPrev = styled(DefaultButtonNav)`
-    left: -67px;
+    left: 0px;
+
+    @media (min-width: 1750px) {
+        left: -30px;
+    }
+
+    @media (min-width: 1850px) {
+        left: -67px;
+    }
 `;
 
 const ButtonNext = styled(DefaultButtonNav)`
-    right: -67px;
+    right: 0px;
+
+    @media (min-width: 1750px) {
+        right: -30px;
+    }
+
+    @media (min-width: 1850px) {
+        right: -67px;
+    }
 `;
 
 const CarouselButtonArrows: FC<Props> = ({ instance }) => {

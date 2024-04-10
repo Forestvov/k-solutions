@@ -14,12 +14,12 @@ const FooterAddress = () => {
     return (
         <Stack spacing="44px" maxWidth={354} flexGrow={1}>
             <Box>
-                <Typography sx={{ color: '#444444', fontSize: '1.25rem' }}>
+                <Typography sx={{ color: '#444444', fontSize: { lg: '1.25rem', xl: '1.125rem' } }}>
                     Адрес: <Value>45 Daws Lane, London, England, NW7 4SD</Value>
                 </Typography>
             </Box>
             <Box>
-                <Typography sx={{ color: '#444444', fontSize: '1.25rem' }}>
+                <Typography sx={{ color: '#444444', fontSize: { lg: '1.25rem', xl: '1.125rem' } }}>
                     Регистрационный номер компании: <Value>08051408</Value>
                 </Typography>
             </Box>

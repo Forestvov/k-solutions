@@ -20,6 +20,11 @@ const Input = styled(InputMask)`
     background: transparent;
     font-size: 1rem;
     outline: none;
+    height: 43px;
+
+    @media (min-width: 768px) {
+        height: 59px;
+    }
 
     &::placeholder {
         color: rgba(89, 89, 89, 0.4);
@@ -43,18 +48,18 @@ const Form = () => {
     return (
         <Stack
             component="form"
-            spacing="50px"
-            direction="row"
-            sx={{ marginBottom: '175px' }}
+            spacing={{ sm: '50px', xs: '25px' }}
+            direction={{ sm: 'row', xs: 'column' }}
+            sx={{ marginBottom: { lg: '175px', md: '100px', sm: '140px', xs: '80px' } }}
             onSubmit={handleSubmit(onSubmit)}
         >
             <Controller
                 name="phone"
                 control={control}
                 rules={{ required: true }}
-                render={({ field: { ref: fieldRef, onChange, value } }) => (
+                render={({ field: { ref, onChange, value } }) => (
                     <Input
-                        ref={fieldRef}
+                        ref={ref}
                         mask="+9 (999) 999-99-99"
                         value={value}
                         onChange={onChange}
@@ -62,7 +67,7 @@ const Form = () => {
                     />
                 )}
             />
-            <Button sx={{ background: '#20836D', padding: '20px 45px' }} type="submit">
+            <Button sx={{ background: '#20836D', padding: { sm: '20px 45px', xs: '12px 40px' } }} type="submit">
                 Заказать Звонок
             </Button>
         </Stack>
