@@ -26,7 +26,7 @@
 FROM node:19-alpine AS deps
 RUN #apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package*.json  ./
 RUN #yarn install --frozen-lockfile
 RUN npm   install
 
