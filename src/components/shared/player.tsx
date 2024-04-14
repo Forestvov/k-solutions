@@ -1,6 +1,17 @@
 import { useEffect, useRef } from 'react';
 
 import Video from 'assets/background.mp4';
+import styled from '@emotion/styled';
+
+const VideoBlock = styled.video`
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+
+    @media (min-width: 768px) {
+        border-radius: 35px;
+    }
+`;
 
 const Player = () => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -36,7 +47,7 @@ const Player = () => {
         };
     }, [videoRef]);
 
-    return <video ref={videoRef} src={Video} playsInline height="auto" width="100%" preload="auto" loop muted />;
+    return <VideoBlock ref={videoRef} src={Video} playsInline preload="auto" loop muted />;
 };
 
 export default Player;

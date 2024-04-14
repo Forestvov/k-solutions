@@ -75,6 +75,10 @@ const PaginationWrapper = styled.div`
         transition:
             background 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
             transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        &:hover {
+            background: #006838;
+        }
     }
 
     .for-client-pagination-button-active {

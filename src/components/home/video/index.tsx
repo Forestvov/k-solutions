@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import Player from './player';
+import Player from 'components/shared/player';
 
 const Video = () => {
     return (

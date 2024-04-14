@@ -8,7 +8,7 @@ import Schedule from 'assets/pages/home/banner-schedule.svg?react';
 
 import Form from './form';
 import Image from './image';
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Inner = styled(Container)`
     position: relative;

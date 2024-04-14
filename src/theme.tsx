@@ -1,18 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-declare module '@mui/material/Button' {
-    interface ButtonPropsVariantOverrides {
-        black: true;
-        gray: true;
-    }
-}
-
-declare module '@mui/material/Typography' {
-    interface TypographyPropsVariantOverrides {
-        'home-h2': true;
-    }
-}
-
 const theme = createTheme({
     typography: {
         fontSize: 16,
@@ -29,6 +16,11 @@ const theme = createTheme({
                     '@media (min-width: 768px)': {
                         fontSize: '1.125rem',
                     },
+                },
+                body2: {
+                    fontSize: '1rem',
+                    lineHeight: '22px',
+                    color: '#747474',
                 },
             },
             variants: [
@@ -82,6 +74,37 @@ const theme = createTheme({
                 },
             },
             variants: [
+                {
+                    props: { variant: 'clear' },
+                    style: {
+                        background: 'transparent',
+                        color: '#000',
+                        padding: 0,
+                    },
+                },
+                {
+                    props: { variant: 'green' },
+                    style: {
+                        background: '#20836D',
+                        color: '#FFFFFF',
+                        padding: '15px 45px',
+                        fontSize: '.99rem',
+
+                        '@media (min-width: 768px)': {
+                            padding: '20px 45px',
+                            fontSize: '1rem',
+                        },
+
+                        '&:hover': {
+                            backgroundColor: '#006838',
+                            borderColor: '#006838',
+                        },
+                        '&:active': {
+                            backgroundColor: '#006838',
+                            borderColor: '#006838',
+                        },
+                    },
+                },
                 {
                     props: { variant: 'black' },
                     style: {

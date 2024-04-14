@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';

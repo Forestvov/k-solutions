@@ -35,5 +35,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "src/**/*"]
+  "include": ["./src/global.d.ts", "**/*.ts", "**/*.tsx", "src/**/*"]
 }

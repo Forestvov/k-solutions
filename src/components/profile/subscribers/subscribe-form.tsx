@@ -2,8 +2,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputMask from 'react-input-mask';
 import styled from '@emotion/styled';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 import validateSubscribe from 'helpers/validation/validateSubscribe';
 
@@ -15,25 +15,26 @@ const Input = styled(InputMask)`
     border-radius: 10px;
     padding: 0 15px;
     border: 1px solid rgba(32, 131, 109, 0.5);
-    max-width: 440px;
+    width: 100%;
     flex-grow: 1;
     background: transparent;
     font-size: 1rem;
+    line-height: 49px;
     outline: none;
-    height: 43px;
-    line-height: 43px;
-
-    @media (min-width: 768px) {
-        height: 59px;
-        line-height: 59px;
-    }
+    height: 49px;
 
     &::placeholder {
         color: rgba(89, 89, 89, 0.4);
     }
+
+    @media (min-width: 768px) {
+        height: 59px;
+        line-height: 59px;
+        max-width: 477px;
+    }
 `;
 
-const Form = () => {
+const SubscribeForm = () => {
     const resolver = yupResolver(validateSubscribe);
 
     const { control, handleSubmit } = useForm<Inputs>({
@@ -49,10 +50,10 @@ const Form = () => {
 
     return (
         <Stack
+            direction={{ sm: 'row' }}
+            spacing={{ sm: '30px', xs: '20px' }}
+            alignItems={{ sm: 'center' }}
             component="form"
-            spacing={{ sm: '50px', xs: '25px' }}
-            direction={{ sm: 'row', xs: 'column' }}
-            sx={{ marginBottom: { lg: '175px', md: '100px', sm: '140px', xs: '80px' } }}
             onSubmit={handleSubmit(onSubmit)}
         >
             <Controller
@@ -69,11 +70,11 @@ const Form = () => {
                     />
                 )}
             />
-            <Button variant="green" type="submit" sx={{ padding: { xs: '12px 40px' } }}>
-                Заказать Звонок
+            <Button variant="green" sx={{ width: { sm: '278px' }, flex: '0 0 auto' }}>
+                Заказать Консультацию
             </Button>
         </Stack>
     );
 };
 
-export default Form;
+export default SubscribeForm;
