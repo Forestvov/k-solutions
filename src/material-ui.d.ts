@@ -4,6 +4,7 @@ import '@mui/material/Typography';
 declare module '@mui/material/Button' {
     interface ButtonPropsVariantOverrides {
         green: true;
+        'dark-green': true;
         black: true;
         gray: true;
         clear: true;

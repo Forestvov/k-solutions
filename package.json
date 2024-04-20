@@ -19,6 +19,9 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/material": "^5.15.15",
     "classnames": "^2.5.1",
+    "i": "^0.3.7",
+    "intl-tel-input": "^21.2.4",
+    "npm": "^10.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
@@ -29,6 +32,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/intl-tel-input": "^18.1.4",
     "@types/node": "^20.12.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

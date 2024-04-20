@@ -83,6 +83,29 @@ const theme = createTheme({
                     },
                 },
                 {
+                    props: { variant: 'dark-green' },
+                    style: {
+                        background: '#20836D',
+                        color: '#FFFFFF',
+                        padding: '15px 45px',
+                        fontSize: '.99rem',
+
+                        '@media (min-width: 768px)': {
+                            padding: '20px 45px',
+                            fontSize: '1rem',
+                        },
+
+                        '&:hover': {
+                            backgroundColor: '#20836D',
+                            borderColor: '#20836D',
+                        },
+                        '&:active': {
+                            backgroundColor: '#20836D',
+                            borderColor: '#20836D',
+                        },
+                    },
+                },
+                {
                     props: { variant: 'green' },
                     style: {
                         background: '#20836D',
