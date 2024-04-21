@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import type { SxProps } from '@mui/system';
+import type { FC } from 'react';
 
 const Value = styled.span`
     color: #373737;
@@ -48,17 +50,31 @@ const Progress = styled(LinearProgress)`
     }
 `;
 
-const InvestProgress = () => {
+interface Prop {
+    sx?: SxProps;
+    close?: boolean;
+    stoped?: boolean;
+}
+
+const InvestProgress: FC<Prop> = ({ sx, stoped = false, close }) => {
+    if (close) {
+        return (
+            <Box sx={{ width: '100%', ...sx }}>
+                <Value>Инвестиции </Value>
+            </Box>
+        );
+    }
+
     return (
-        <Box sx={{ width: '100%' }}>
-            <Stack marginBottom="8px" alignItems="baseline" direction="row" spacing="12px">
+        <Box sx={{ width: '100%', ...sx }}>
+            <Stack marginBottom={!stoped ? '8px' : '12px'} alignItems="baseline" direction="row" spacing="12px">
                 <Value>$367,612.00</Value>
-                <Label>Собрано</Label>
+                <Label>{stoped ? 'Проинвестировано' : 'Собрано'}</Label>
             </Stack>
-            <Progress valueBuffer={100} variant="buffer" value={100} />
+            {!stoped && <Progress valueBuffer={100} variant="buffer" value={100} />}
             <Stack marginTop="6px" direction="row" justifyContent="space-between">
                 <InvestInfo>142 инвестора</InvestInfo>
-                <InvestInfo>132% от цели</InvestInfo>
+                {!stoped && <InvestInfo>132% от цели</InvestInfo>}
             </Stack>
         </Box>
     );

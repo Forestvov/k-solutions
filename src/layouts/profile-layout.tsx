@@ -13,7 +13,7 @@ const ProfileLayout = () => {
                 background: '#F6F7F8',
             }}
         >
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, maxWidth: '1920px' }}>
                 <PersonalHeader />
                 <Stack direction="row" spacing={{ lg: '30px', xl: '20px', xs: '0' }}>
                     <PersonalAside />

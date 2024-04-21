@@ -6,6 +6,20 @@ import Title from 'components/profile/title';
 const Name = styled(Title)`
     margin: 0 0 10px;
     letter-spacing: 0;
+    display: flex;
+    align-items: center;
+`;
+
+const StatusTag = styled.span`
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 17px;
+    color: #ffffff;
+    padding: 2px 16px 3px 17px;
+    border-radius: 4px;
+    background: #00b227;
+    margin-left: 10px;
 `;
 
 const Text = styled.p`
@@ -29,7 +43,10 @@ const Text = styled.p`
 const Description = () => {
     return (
         <Box>
-            <Name>Qlower</Name>
+            <Name>
+                Qlower
+                <StatusTag>Активный</StatusTag>
+            </Name>
             <Text>
                 Устали от налоговых деклараций? И мы тоже. В Qlower мы решили, что это больше не должно быть обузой.
                 Благодаря нашей технологии, сочетающей в себе открытый банкинг и искусственный интеллект, Qlower на
