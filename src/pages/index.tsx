@@ -8,6 +8,7 @@ import HomePage from './ui/home-page';
 import PersonalPage from './ui/personal-page';
 import LoginPage from './ui/login-page';
 import RegisterPage from './ui/register-page';
+import ShowcasesPage from './ui/showcases-page';
 
 export const appRouter = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/personal',
                 element: <PersonalPage />,
+            },
+            {
+                path: '/showcases',
+                element: <ShowcasesPage />,
             },
         ],
     },

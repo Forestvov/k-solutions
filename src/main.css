@@ -4,6 +4,10 @@ body {
     scroll-behavior: smooth;
 }
 
+main {
+    min-height: 100%;
+}
+
 #k-solutions {
     height: 100%;
 }
