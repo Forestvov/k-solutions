@@ -124,7 +124,7 @@ const Slider = () => {
                 swiperInstance.destroy();
             }
         };
-    }, []);
+    }, [swiperInstance]);
 
     return (
         <Inner>

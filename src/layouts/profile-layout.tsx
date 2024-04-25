@@ -13,11 +13,14 @@ const ProfileLayout = () => {
                 background: '#F6F7F8',
             }}
         >
-            <Box sx={{ flex: 1, maxWidth: '1920px' }}>
+            <Box sx={{ flex: 1, maxWidth: '1920px', overflow: 'hidden' }}>
                 <PersonalHeader />
                 <Stack direction="row" spacing={{ lg: '30px', xl: '20px', xs: '0' }}>
                     <PersonalAside />
-                    <Stack spacing="30px" sx={{ flex: 1, padding: { xl: '0 30px 0 0', xs: '0 20px 80px' } }}>
+                    <Stack
+                        spacing="30px"
+                        sx={{ flex: 1, overflow: 'hidden', padding: { xl: '0 30px 0 0', xs: '0 20px 80px' } }}
+                    >
                         <Outlet />
                     </Stack>
                 </Stack>

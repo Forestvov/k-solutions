@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import PaginatorPage from 'components/shared/paginator-page';
 
 import Title from '../title';
+import Counter from '../counter-title';
 
 import Filters from './filters';
 import List from './list';
@@ -16,14 +17,6 @@ const Wrapper = styled.div`
 
 const TitleStyled = styled(Title)`
     margin: 0 0 30px;
-`;
-
-const Counter = styled.span`
-    font-weight: 800;
-    color: #006838;
-    font-size: inherit;
-    line-height: inherit;
-    margin-left: 15px;
 `;
 
 const Showcases = () => {
