@@ -11,6 +11,7 @@ import RegisterPage from './ui/register-page';
 import ShowcasesPage from './ui/showcases-page';
 import ShowcasesItemPage from './ui/showcases-item-page';
 import FinancePage from './ui/finance-page';
+import BalancePage from './ui/balance-page';
 
 export const appRouter = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/showcases/:id',
                 element: <ShowcasesItemPage />,
+            },
+            {
+                path: '/balance',
+                element: <BalancePage />,
             },
         ],
     },
