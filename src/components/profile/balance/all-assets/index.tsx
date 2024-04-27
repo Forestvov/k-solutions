@@ -9,6 +9,7 @@ import GrayWrapper from '../gray-wrapper';
 import type { CurrencyType } from './types';
 import CurrencyButtons from './currency-buttons';
 import ItemInfo from './item-info';
+import Replenish from './replenish';
 
 const AllAssets = () => {
     const [currency, setCurrency] = useState<CurrencyType>('dollar');
@@ -82,15 +83,7 @@ const AllAssets = () => {
                                 }}
                                 sx={{ marginTop: { md: 'auto !important', xs: '30px !important' } }}
                             >
-                                <Button
-                                    sx={{
-                                        width: { md: 'auto', xs: '100%' },
-                                        background: '#373737',
-                                        padding: '16px 55px 15px',
-                                    }}
-                                >
-                                    Пополнить
-                                </Button>
+                                <Replenish />
                                 <Button
                                     sx={{
                                         width: { md: 'auto', xs: '100%' },
