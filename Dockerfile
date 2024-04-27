@@ -1,26 +1,22 @@
+FROM node:lts-alpine
 
-####################################################
-# Install dependencies only when needed
-FROM node:19-alpine AS deps
-RUN #apk add --no-cache libc6-compat
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN #yarn install --frozen-lockfile
-RUN npm   install
+# install simple http server for serving static content
+RUN npm install -g http-server
 
-# Rebuild the source code only when needed
-FROM node:19-alpine AS builder
-
+# make the 'app' folder the current working directory
 WORKDIR /app
 
-COPY --from=deps /app/node_modules ./node_modules
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
 
+# install project dependencies
+RUN npm install
+
+# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
-RUN npm run  build
+# build app for production with minification
+RUN npm run build
 
-EXPOSE 5173
-
-ENV PORT 5173
-
-CMD ["npm", "run","dev:host"]
+EXPOSE 8080
+CMD [ "http-server", "dist" ]
