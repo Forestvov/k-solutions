@@ -11,7 +11,7 @@ import Step3 from './step-3';
 interface Props {
     step: number;
     setStep: (step: number) => void;
-    onClose: Function;
+    onClose: VoidFunction;
 }
 
 const Step: FC<Props> = ({ step, setStep, onClose }) => {

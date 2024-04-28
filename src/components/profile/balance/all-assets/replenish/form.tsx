@@ -54,7 +54,7 @@ const TitleContent = styled.div`
 const steps = ['ШАГ 1', 'ШАГ 2', 'ШАГ 3'];
 
 interface Props {
-    onClose: Function;
+    onClose: VoidFunction;
 }
 
 export const Form = ({ onClose }: Props) => {

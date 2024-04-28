@@ -3,7 +3,7 @@ import type { FormState } from 'components/profile/balance/all-assets/replenish/
 import Vaiting from 'components/profile/balance/all-assets/replenish/step/vaiting';
 
 interface Props {
-    onClose: Function;
+    onClose: VoidFunction;
 }
 
 const Step3 = ({ onClose }: Props) => {
