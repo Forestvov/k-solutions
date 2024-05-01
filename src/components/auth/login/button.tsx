@@ -15,6 +15,10 @@ const ButtonStyle = styled(Button)<Pick<ButtonProp, 'variation'>>`
     cursor: pointer;
     border-radius: 9px;
 
+    &:disabled {
+        opacity: 0.6;
+    }
+
     ${({ variation }) =>
         variation === 'outline' &&
         `
@@ -41,9 +45,9 @@ const ButtonStyle = styled(Button)<Pick<ButtonProp, 'variation'>>`
     `};
 `;
 
-const ButtonForm: FC<ButtonProp> = ({ children, onClick, variation, type }) => {
+const ButtonForm: FC<ButtonProp> = ({ children, onClick, variation, type, disabled }) => {
     return (
-        <ButtonStyle onClick={onClick} type={type} variation={variation}>
+        <ButtonStyle onClick={onClick} type={type} variation={variation} disabled={disabled}>
             {children}
         </ButtonStyle>
     );

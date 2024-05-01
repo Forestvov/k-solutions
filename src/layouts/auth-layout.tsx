@@ -4,8 +4,11 @@ import Box from '@mui/material/Box';
 import BgImage from 'assets/pages/auth/bg-image.jpg';
 
 import AuthHeader from 'components/layouts/auth-header';
+import { useScrollToTop } from 'helpers/useScrollToTop';
 
 const AuthLayout = () => {
+    useScrollToTop();
+
     return (
         <Box
             component="main"

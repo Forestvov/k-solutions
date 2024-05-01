@@ -16,4 +16,5 @@ export interface ButtonProp extends PropsWithChildren {
     onClick?: VoidFunction;
     variation: ButtonVariations;
     type: ButtonTypes;
+    disabled?: boolean;
 }

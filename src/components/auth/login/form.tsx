@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 import validateAuth from 'helpers/validation/validateAuth';
 
 import type { Inputs } from './types';
@@ -17,10 +19,19 @@ const FormStyles = styled.form`
     margin: 0 auto;
 `;
 
+const ErrorMessage = styled.div`
+    text-align: center;
+    color: #ff5630;
+`;
+
 const Form = () => {
+    const { login } = useAuthContext();
+
+    const [showError, setShowError] = useState<boolean | string>(false);
     const resolver = yupResolver(validateAuth);
 
     const methods = useForm<Inputs>({
+        mode: 'onChange',
         resolver,
         defaultValues: {
             email: '',
@@ -28,13 +39,33 @@ const Form = () => {
         },
     });
 
-    const onSubmit = (data: Inputs) => {
-        alert(JSON.stringify(data));
+    const {
+        handleSubmit,
+        reset,
+        formState: { isSubmitting },
+    } = methods;
+
+    const onSubmit = async (data: Inputs) => {
+        setShowError(false);
+
+        try {
+            await login(data.email, data.password);
+        } catch (e) {
+            // @ts-ignore
+            if (e?.message === 'Not verified') {
+                setShowError('Аккаунт не подтвержден');
+            }
+            // @ts-ignore
+            if (e?.message === 'Access Denied') {
+                setShowError('Почта или пароль введены неверно');
+            }
+            reset();
+        }
     };
 
     return (
         <FormProvider {...methods}>
-            <FormStyles onSubmit={methods.handleSubmit(onSubmit)}>
+            <FormStyles onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing="30px">
                     <Stack spacing="60px">
                         <Stack spacing="30px">
@@ -43,10 +74,11 @@ const Form = () => {
                         </Stack>
                         <Stack direction="row" spacing="30px">
                             <ToRegister />
-                            <Button variation="fill" type="submit">
+                            <Button variation="fill" type="submit" disabled={isSubmitting}>
                                 Войти
                             </Button>
                         </Stack>
+                        {showError && <ErrorMessage>{showError}</ErrorMessage>}
                     </Stack>
                     <ToRestorePassword />
                 </Stack>

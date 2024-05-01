@@ -11,6 +11,7 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src/'),
             app: `${path.resolve(__dirname, './src/app/')}`,
             layouts: `${path.resolve(__dirname, './src/layouts/')}`,
+            context: `${path.resolve(__dirname, './src/context/')}`,
             components: `${path.resolve(__dirname, './src/components/')}`,
             assets: `${path.resolve(__dirname, './src/assets/')}`,
             helpers: `${path.resolve(__dirname, './src/helpers/')}`,

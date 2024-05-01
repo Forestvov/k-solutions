@@ -4,6 +4,8 @@ import AuthLayout from 'layouts/auth-layout';
 import MainLayout from 'layouts/main-layout';
 import ProfileLayout from 'layouts/profile-layout';
 
+import AuthGuard from 'context/auth/guard/auth-guard';
+
 import HomePage from './ui/home-page';
 import PersonalPage from './ui/personal-page';
 import LoginPage from './ui/login-page';
@@ -13,10 +15,17 @@ import ShowcasesItemPage from './ui/showcases-item-page';
 import FinancePage from './ui/finance-page';
 import BalancePage from './ui/balance-page';
 import SettingsPage from './ui/settings-page';
+import GuestGuard from 'context/auth/guard/guest-guard';
+import VerifyPage from './ui/verify-page';
+import VerifyByIdPage from './ui/verify-by-id-page';
 
 export const appRouter = createBrowserRouter([
     {
-        element: <AuthLayout />,
+        element: (
+            <GuestGuard>
+                <AuthLayout />
+            </GuestGuard>
+        ),
         errorElement: <div>error</div>,
         children: [
             {
@@ -26,6 +35,14 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/register',
                 element: <RegisterPage />,
+            },
+            {
+                path: '/verify',
+                element: <VerifyPage />,
+            },
+            {
+                path: '/verify/:id',
+                element: <VerifyByIdPage />,
             },
         ],
     },
@@ -41,7 +58,11 @@ export const appRouter = createBrowserRouter([
     },
     {
         // todo add protected routes
-        element: <ProfileLayout />,
+        element: (
+            <AuthGuard>
+                <ProfileLayout />
+            </AuthGuard>
+        ),
         errorElement: <div>error</div>,
         children: [
             {

@@ -5,8 +5,11 @@ import Stack from '@mui/material/Stack';
 
 import Header from 'components/layouts/header';
 import Footer from 'components/layouts/footer';
+import { useScrollToTop } from 'helpers/useScrollToTop';
 
 const MainLayout: FC = () => {
+    useScrollToTop();
+
     return (
         <Stack
             component="main"

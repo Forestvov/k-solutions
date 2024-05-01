@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
+import Container from '@mui/material/Container';
+
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 import WhiteBox from '../white-box';
 import Title from '../title';
@@ -10,7 +14,6 @@ import type { FormState } from './types';
 import Steep from './steep';
 import { validateStep3Company, validateStep3Investor } from './validation-schema';
 import { errorCatcher } from './error-catcher';
-import Container from '@mui/material/Container';
 
 const Wrapper = styled(WhiteBox)`
     max-width: 1059px;
@@ -54,13 +57,23 @@ const Step = styled.div`
     }
 `;
 
+const Confirm = styled.div`
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 58px;
+    color: #373737;
+`;
+
 const steps = ['ШАГ 1', 'ШАГ 2', 'ШАГ 3'];
 
 const Register = () => {
+    const { register } = useAuthContext();
+
+    const [isAllReady, setIsAllReady] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
+    const [success, setSuccess] = useState(false);
 
     const methods = useForm<FormState>({
-        mode: 'onChange',
         defaultValues: {
             email: '',
             password: '',
@@ -78,7 +91,7 @@ const Register = () => {
     });
 
     const onSubmit = async (data: FormState) => {
-        const formData = new FormData();
+        const formData = {};
 
         if (data.accountType === 'Investor') {
             try {
@@ -96,39 +109,67 @@ const Register = () => {
             }
         }
 
-        formData.append('accountType', data.accountType);
-        formData.append('email', data.email);
-        formData.append('userName', data.userName);
-        formData.append('phoneNumber', data.phoneNumber);
-        formData.append('password', data.password);
-        formData.append('country', data.country);
+        // @ts-ignore
+        formData.accountType = data.accountType;
+        // @ts-ignore
+        formData.email = data.email;
+        // @ts-ignore
+        formData.userName = data.userName;
+        // @ts-ignore
+        formData.phoneNumber = data.phoneNumber;
+        // @ts-ignore
+        formData.password = data.password;
+        // @ts-ignore
+        formData.country = data.country;
 
         if (data.accountType === 'Investor') {
-            formData.append('fam', data.fam);
-            formData.append('im', data.im);
-            formData.append('accountType', data.accountType);
+            // @ts-ignore
+            formData.fam = data.fam;
+            // @ts-ignore
+            formData.im = data.im;
         } else {
-            formData.append('companyName', data.companyName);
-            formData.append('numberCompany', data.numberCompany);
-            formData.append('famCeo', data.famCeo);
+            // @ts-ignore
+            formData.companyName = data.companyName;
+            // @ts-ignore
+            formData.numberCompany = data.numberCompany;
+            // @ts-ignore
+            formData.famCeo = data.famCeo;
         }
 
-        console.log(data);
+        try {
+            // @ts-ignore
+            await register(formData);
+            await setSuccess(true);
+        } catch (e) {
+            // @ts-ignore
+            if (e.message === 'Email or username are already existed') {
+                setIsAllReady(true);
+            }
+        }
     };
 
     return (
         <Container sx={{ padding: '0 24px 0' }}>
-            <FormProvider {...methods}>
+            {success ? (
                 <Wrapper>
-                    <Stack direction={{ md: 'row' }} justifyContent="space-between" alignItems={{ md: 'center' }}>
-                        <FormTitle>Присоединяйтесь к KSOLUTIONS !</FormTitle>
-                        <Step>{steps[activeStep]}</Step>
+                    <Stack spacing="40px" justifyContent="center">
+                        <Title>Присоединяйтесь к KSOLUTIONS !</Title>
+                        <Confirm>Вам на почту отправлена ссылка с подтверждением </Confirm>
                     </Stack>
-                    <form onSubmit={methods.handleSubmit(onSubmit)}>
-                        <Steep step={activeStep} setStep={setActiveStep} />
-                    </form>
                 </Wrapper>
-            </FormProvider>
+            ) : (
+                <FormProvider {...methods}>
+                    <Wrapper>
+                        <Stack direction={{ md: 'row' }} justifyContent="space-between" alignItems={{ md: 'center' }}>
+                            <FormTitle>Присоединяйтесь к KSOLUTIONS !</FormTitle>
+                            <Step>{steps[activeStep]}</Step>
+                        </Stack>
+                        <form onSubmit={methods.handleSubmit(onSubmit)}>
+                            <Steep step={activeStep} setStep={setActiveStep} isAllReady={isAllReady} />
+                        </form>
+                    </Wrapper>
+                </FormProvider>
+            )}
         </Container>
     );
 };

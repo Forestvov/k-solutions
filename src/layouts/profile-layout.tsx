@@ -4,8 +4,11 @@ import Box from '@mui/material/Box';
 
 import PersonalHeader from 'components/layouts/personal-header';
 import PersonalAside from 'components/layouts/personal-aside';
+import { useScrollToTop } from 'helpers/useScrollToTop';
 
 const ProfileLayout = () => {
+    useScrollToTop();
+
     return (
         <Stack
             component="main"

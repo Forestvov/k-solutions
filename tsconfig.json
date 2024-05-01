@@ -28,6 +28,7 @@
     "paths": {
       "app/*": ["app/*"],
       "layouts/*": ["layouts/*"],
+      "context/*": ["context/*"],
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
       "helpers/*": ["helpers/*"],

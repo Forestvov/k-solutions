@@ -12,10 +12,11 @@ import Step3 from './step-3';
 
 interface Props {
     step: number;
+    isAllReady: boolean;
     setStep: (step: number) => void;
 }
 
-const Steep: FC<Props> = ({ step, setStep }) => {
+const Steep: FC<Props> = ({ step, setStep, isAllReady }) => {
     const { trigger, getValues, setError } = useFormContext<FormState>();
 
     const handleNext = async (step: number) => {
@@ -49,7 +50,7 @@ const Steep: FC<Props> = ({ step, setStep }) => {
         case 1:
             return <Step2 onPrev={() => setStep(0)} onNext={() => handleNext(2)} />;
         case 2:
-            return <Step3 onPrev={() => setStep(1)} />;
+            return <Step3 onPrev={() => setStep(1)} isAllReady={isAllReady} />;
         default:
             return 'Unknown step';
     }
