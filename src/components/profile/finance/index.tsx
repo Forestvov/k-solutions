@@ -4,9 +4,6 @@ import Stack from '@mui/material/Stack';
 import WhiteWrapper from '../white-wrapper';
 import Title from '../title';
 import Counter from '../counter-title';
-import PaginatorPage from '../../shared/paginator-page';
-
-import List from './list';
 import AssetsAndAnalytics from './assets-and-analytics';
 import FinanceIncome from './finance-income';
 import ProfilechartDynamicsArea from './profilechart-dynamics-area';
@@ -31,7 +28,7 @@ const Finance = () => {
                         Активы
                         <Counter>(9)</Counter>
                     </TitleStyled>
-                    <List />
+                    {/* <List /> */}
                 </div>
                 <AssetsAndAnalytics />
                 <div>
@@ -45,7 +42,7 @@ const Finance = () => {
                             { id: 'rank', label: 'Сумма дохода' },
                         ]}
                     />
-                    <PaginatorPage />
+                    {/* <PaginatorPage /> */}
                 </div>
                 <div>
                     <TitleStyled>Аналитика KSOLUITONS</TitleStyled>

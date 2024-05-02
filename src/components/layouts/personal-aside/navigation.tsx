@@ -44,10 +44,10 @@ const Navigation = () => {
             <Link to="/showcases">
                 <ResearchIcon />
             </Link>
-            <Link to="/personal3">
+            <Link to="/balance">
                 <TeamsIcon />
             </Link>
-            <Link to="/personal4">
+            <Link to="/finance">
                 <TextIcon />
             </Link>
             <Link to="/settings">
