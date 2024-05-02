@@ -3,8 +3,6 @@ import styled from '@emotion/styled';
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
 
-import InvestStats from 'components/profile/invest-stats';
-
 import Title from '../../title';
 import Wrapper from '../gray-wrapper';
 import InvestFranchiseForm from './invest-franchise-form';
@@ -70,11 +68,11 @@ const InvestCloseDialog = () => {
                         <TitleContent>Запрос на закрытие кредитования</TitleContent>
                         <Box>
                             <Label>Инвестиции</Label>
-                            <InvestStats
-                                sx={{
-                                    marginBottom: '45px',
-                                }}
-                            />
+                            {/* <InvestStats */}
+                            {/*     sx={{ */}
+                            {/*         marginBottom: '45px', */}
+                            {/*     }} */}
+                            {/* /> */}
                             <InvestFranchiseForm />
                             <Description>Ваш запрос будет рассмотрен в течении 5 дней.</Description>
                         </Box>

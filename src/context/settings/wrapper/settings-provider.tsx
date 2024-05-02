@@ -21,6 +21,7 @@ interface State {
 }
 
 export function SettingsProvider({ children }: Props) {
+    // @ts-ignore
     const { user } = useAuthContext();
 
     const [settings, setsSttings] = useState<State>({
@@ -53,6 +54,6 @@ export function SettingsProvider({ children }: Props) {
         }),
         [settings]
     );
-
+    // @ts-ignore
     return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>;
 }

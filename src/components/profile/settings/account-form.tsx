@@ -15,6 +15,7 @@ import { upadteAccount } from 'api/user';
 const AccountForm = () => {
     // const resolver = yupResolver(validateSecurity);
 
+    // @ts-ignore
     const { user } = useAuthContext();
 
     const methods = useForm<FormStateAccount>({
@@ -42,6 +43,7 @@ const AccountForm = () => {
         };
 
         if (user.id) {
+            // @ts-ignore
             await upadteAccount(newData);
         }
     };

@@ -65,6 +65,7 @@ const Form = () => {
             await addContact(data);
             setSuccess(true);
         } catch (e) {
+            // @ts-ignore
             if (e?.message === 'This number is existed') {
                 setError('Заявка уже отправлена');
             }

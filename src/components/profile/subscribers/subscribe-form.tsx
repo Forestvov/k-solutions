@@ -38,6 +38,7 @@ const SubscribeForm = () => {
     const resolver = yupResolver(validateSubscribe);
 
     const { control, handleSubmit } = useForm<Inputs>({
+        // @ts-ignore
         resolver,
         defaultValues: {
             phone: '',

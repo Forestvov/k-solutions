@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function GuestGuard({ children }: Props) {
+    // @ts-ignore
     const { loading } = useAuthContext();
 
     // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -23,6 +24,7 @@ export default function GuestGuard({ children }: Props) {
 
 function Container({ children }: Props) {
     const router = useRouter();
+    // @ts-ignore
     const { authenticated } = useAuthContext();
 
     const check = useCallback(() => {

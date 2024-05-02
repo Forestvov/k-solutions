@@ -24,7 +24,7 @@ const Info = ({ list }: Props) => {
         <Stack spacing="30px">
             {list.map((item) => (
                 <React.Fragment key={item.id}>
-                    <Item title={item.companyInvestDetailTypeId} description={item.descriptions} />
+                    <Item title="" description={item.descriptions} />
                     <Divider />
                 </React.Fragment>
             ))}

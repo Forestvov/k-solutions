@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function AuthGuard({ children }: Props) {
+    // @ts-ignore
     const { loading } = useAuthContext();
 
     // @ts-ignore

@@ -5,7 +5,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 
 import Scrollbar from 'components/shared/scrollbar/scrollbar';
-import PaginatorPage from 'components/shared/paginator-page';
 
 import ListRow from './list-row';
 
@@ -46,7 +45,7 @@ const List = () => {
                     </Scrollbar>
                 </TableContainer>
             </Box>
-            <PaginatorPage />
+            {/* <PaginatorPage /> */}
         </>
     );
 };

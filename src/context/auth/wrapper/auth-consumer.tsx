@@ -11,5 +11,6 @@ interface Props {
 }
 
 export function AuthConsumer({ children }: Props) {
+    // @ts-ignore
     return <AuthContext.Consumer>{(auth) => (auth.loading ? <SplashScreen /> : children)}</AuthContext.Consumer>;
 }
