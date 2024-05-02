@@ -4,6 +4,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import styled from '@emotion/styled';
 
+import { useRouter } from 'context/auth/hooks/useRouter';
+
 import HeaderLocalization from './header-localization';
 
 interface Prop {
@@ -15,6 +17,8 @@ const MyButton = styled(Button)`
 `;
 
 const HeaderButtons: FC<Prop> = ({ hideLocalization }) => {
+    const router = useRouter();
+
     return (
         <Stack
             spacing={{ lg: '30px', xs: '20px' }}
@@ -24,10 +28,12 @@ const HeaderButtons: FC<Prop> = ({ hideLocalization }) => {
             sx={{ marginBottom: { xs: '30px', xl: '0' } }}
         >
             {!hideLocalization && <HeaderLocalization />}
-            <MyButton sx={{ width: { xs: '100%', xl: 'auto' } }} variant="gray">
+            <MyButton sx={{ width: { xs: '100%', xl: 'auto' } }} variant="gray" onClick={() => router.push('/login')}>
                 Войти
             </MyButton>
-            <MyButton sx={{ width: { xs: '100%', xl: 'auto' } }}>Начать</MyButton>
+            <MyButton sx={{ width: { xs: '100%', xl: 'auto' } }} onClick={() => router.push('/register')}>
+                Начать
+            </MyButton>
         </Stack>
     );
 };

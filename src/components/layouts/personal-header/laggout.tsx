@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+import { useRouter } from 'context/auth/hooks/useRouter';
+
 import Icon from 'assets/header/laggout.svg?react';
 
 const Button = styled.button`
@@ -22,8 +25,17 @@ const Button = styled.button`
 `;
 
 const Laggout = () => {
+    // @ts-ignore
+    const { logout } = useAuthContext();
+    const router = useRouter();
+
+    const logoutHandler = async () => {
+        await logout();
+        await router.push('/login');
+    };
+
     return (
-        <Button>
+        <Button onClick={logoutHandler}>
             <Icon />
         </Button>
     );

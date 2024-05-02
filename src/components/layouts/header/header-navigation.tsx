@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
@@ -13,12 +15,16 @@ const Link = styled(NavLink)`
 `;
 
 const HeaderNavigation = () => {
+    const { t } = useTranslation('main-navigation');
+
+    console.log();
+
     return (
         <Stack spacing={{ lg: '40px', xl: '30px', xs: '15px' }} direction={{ xl: 'row' }} component="nav">
-            <Link to="/">Инвесторам</Link>
-            <Link to="/">Предпринимателям</Link>
-            <Link to="/">О платформе</Link>
-            <Link to="/">Медиа</Link>
+            <Link to="/">{t('investoram')}</Link>
+            <Link to="/">{t('entrepreneurs')}</Link>
+            <Link to="/">{t('about')}</Link>
+            <Link to="/">{t('media')}</Link>
         </Stack>
     );
 };

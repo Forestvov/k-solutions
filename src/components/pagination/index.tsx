@@ -40,14 +40,24 @@ const PaginationWrapper = styled.div`
     }
 `;
 
-const Pagination = () => {
+interface Props {
+    currentPage: number;
+    countPage: number;
+    onChangePage: (page: number) => void;
+}
+
+const Pagination = ({ countPage, currentPage, onChangePage }: Props) => {
+    if (countPage < 2) {
+        return null;
+    }
+    // @ts-ignore
+    const list = [...new Array(countPage).keys()];
+
     return (
         <PaginationWrapper>
-            <button />
-            <button className="active" />
-            <button />
-            <button />
-            <button />
+            {list.map((_, idx) => (
+                <button className={currentPage === idx ? 'active' : ''} onClick={() => onChangePage(idx)} key={idx} />
+            ))}
         </PaginationWrapper>
     );
 };

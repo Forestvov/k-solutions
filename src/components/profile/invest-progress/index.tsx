@@ -1,10 +1,13 @@
-import styled from '@emotion/styled';
+import type { FC } from 'react';
 
+import styled from '@emotion/styled';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import type { SxProps } from '@mui/system';
-import type { FC } from 'react';
+
+import { fCurrency, fPercent } from 'helpers/number-format';
+import { declensionNum } from 'helpers/declension-num';
 
 const Value = styled.span`
     color: #373737;
@@ -54,9 +57,12 @@ interface Prop {
     sx?: SxProps;
     close?: boolean;
     stoped?: boolean;
+    amountFinish: number;
+    amount: number;
+    accountCount: number;
 }
 
-const InvestProgress: FC<Prop> = ({ sx, stoped = false, close }) => {
+const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFinish, accountCount }) => {
     if (close) {
         return (
             <Box sx={{ width: '100%', ...sx }}>
@@ -65,16 +71,20 @@ const InvestProgress: FC<Prop> = ({ sx, stoped = false, close }) => {
         );
     }
 
+    const percent = (amount / amountFinish) * 100;
+
     return (
         <Box sx={{ width: '100%', ...sx }}>
             <Stack marginBottom={!stoped ? '8px' : '12px'} alignItems="baseline" direction="row" spacing="12px">
-                <Value>$367,612.00</Value>
+                <Value>{fCurrency(amount)}</Value>
                 <Label>{stoped ? 'Проинвестировано' : 'Собрано'}</Label>
             </Stack>
-            {!stoped && <Progress valueBuffer={100} variant="buffer" value={100} />}
+            {!stoped && <Progress valueBuffer={100} variant="buffer" value={percent} />}
             <Stack marginTop="6px" direction="row" justifyContent="space-between">
-                <InvestInfo>142 инвестора</InvestInfo>
-                {!stoped && <InvestInfo>132% от цели</InvestInfo>}
+                <InvestInfo>
+                    {accountCount} {declensionNum(accountCount, ['инвестор', 'инвестора', 'инвесторов'])}
+                </InvestInfo>
+                {!stoped && <InvestInfo>{fPercent(percent)} от цели</InvestInfo>}
             </Stack>
         </Box>
     );

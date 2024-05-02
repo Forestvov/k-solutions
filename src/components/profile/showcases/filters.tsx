@@ -3,8 +3,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 import IconHot from 'assets/pages/personal/hot-filter.svg?react';
+import { useSettingsContext } from 'context/settings/hooks/useSettingsContext';
 
-const ButtonStyled = styled(Button)<{ active?: string }>`
+const ButtonStyled = styled(Button)<{ active?: boolean }>`
     display: flex;
     align-items: center;
     color: #494949;
@@ -37,18 +38,46 @@ const ButtonStyled = styled(Button)<{ active?: string }>`
     `}
 `;
 
-const Filters = () => {
+interface Props {
+    current: Record<string, string>;
+    onChange: (status: { key: string; operation?: string; value: string }) => void;
+}
+
+const Filters = ({ current, onChange }: Props) => {
+    const { settings } = useSettingsContext();
+
+    const BUTTONS = [
+        { label: 'Все', value: '', type: '' },
+        { label: 'Горячие предложения', value: settings.briefcaseHot ?? '70', operation: '>', type: 'percentFinish' },
+        { label: 'Франшизы', value: 'Franchise', type: 'companyType' },
+        { label: 'Идет сбор займа', value: 'In progress', type: 'briefcaseStatus' },
+        { label: 'Сбор завершен', value: 'Collection completed', type: 'briefcaseStatus' },
+        { label: 'Займ погашен', value: 'Loan payed', type: 'briefcaseStatus' },
+    ];
+
     return (
         <Stack direction="row" flexWrap="wrap" marginBottom={{ xs: '20px', md: '40px' }}>
-            <ButtonStyled active="active">Все</ButtonStyled>
-            <ButtonStyled>
-                <IconHot />
-                Горячие предложения
-            </ButtonStyled>
-            <ButtonStyled>Франшизы</ButtonStyled>
-            <ButtonStyled>Идет сбор займа</ButtonStyled>
-            <ButtonStyled>Сбор завершен</ButtonStyled>
-            <ButtonStyled>Займ погашен</ButtonStyled>
+            {BUTTONS.map((btn, idx) => (
+                <ButtonStyled
+                    key={idx}
+                    active={current.value === btn.value}
+                    onClick={() =>
+                        btn.operation
+                            ? onChange({
+                                  key: btn.type,
+                                  value: btn.value,
+                                  operation: btn.operation,
+                              })
+                            : onChange({
+                                  key: btn.type,
+                                  value: btn.value,
+                              })
+                    }
+                >
+                    {btn.type === 'percentFinish' && <IconHot />}
+                    {btn.label}
+                </ButtonStyled>
+            ))}
         </Stack>
     );
 };

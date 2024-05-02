@@ -14,6 +14,14 @@ const Button = styled.button`
     cursor: pointer;
     color: #667085;
 
+    &:disabled {
+        opacity: 0.2;
+
+        &:hover {
+            color: #667085;
+        }
+    }
+
     &:hover {
         color: #20836d;
     }
@@ -30,16 +38,26 @@ const Counter = styled.span`
     }
 `;
 
-const PaginatorPage = () => {
+interface Props {
+    isFirst: boolean;
+    isLast: boolean;
+    currentPage: number;
+    countPages: number;
+    onChange: (page: number) => void;
+}
+
+const PaginatorPage = ({ countPages, currentPage, isFirst, isLast, onChange }: Props) => {
+    if (countPages < 2) return null;
+
     return (
         <Stack direction="row" alignItems="center" justifyContent="center" spacing={{ xs: '20px', md: '60px' }}>
-            <Button>
+            <Button disabled={isFirst} onClick={() => onChange(currentPage - 1)}>
                 <LeftArrowIcon />
             </Button>
             <Counter>
-                Страница <span>1</span> из <span>10</span>
+                Страница <span>{currentPage + 1}</span> из <span>{countPages}</span>
             </Counter>
-            <Button>
+            <Button disabled={isLast} onClick={() => onChange(currentPage + 1)}>
                 <RightArrowIcon />
             </Button>
         </Stack>

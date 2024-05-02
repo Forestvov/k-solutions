@@ -1,17 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
 import InvestStats from 'components/profile/invest-stats';
+import type { IBrief } from 'types/brief';
 
 import Image from './image';
 import Investing from './investing';
 import Description from './description';
 
-const Item = styled.div`
+const Item = styled(Stack)`
     background: #f6f7f8;
     border-radius: 15px;
+    height: 100%;
     flex: 1;
 
     @media (min-width: 768px) {
@@ -25,25 +28,49 @@ const Link = styled(NavLink).bind(Button)`
     margin-top: 30px;
 `;
 
-const InvestCard = () => {
+interface Prop {
+    card: IBrief;
+}
+
+const InvestCard = ({ card }: Prop) => {
+    const {
+        descriptions,
+        logo,
+        companyName,
+        amount,
+        image,
+        amountFinish,
+        accountCount,
+        finishDay,
+        percents,
+        isActive,
+        briefcaseId,
+        companyInvestId,
+    } = card;
+
+    if (!card) return null;
+
     return (
         <Item>
-            <Image />
-            <Box
+            <Image image={image} />
+            <Stack
                 sx={{
                     padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },
                     position: 'relative',
+                    flex: '1',
                 }}
             >
-                <Investing />
-                <Description />
-                <InvestStats />
-                <Link to="/">
+                <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
+                <Description name={companyName} status={isActive} text={descriptions} />
+                <Box sx={{ marginBottom: 'auto' }}>
+                    <InvestStats amountFinish={amountFinish} finishDay={finishDay} percents={percents} />
+                </Box>
+                <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
                     <Button variant="green" fullWidth>
                         Подробнее
                     </Button>
                 </Link>
-            </Box>
+            </Stack>
         </Item>
     );
 };

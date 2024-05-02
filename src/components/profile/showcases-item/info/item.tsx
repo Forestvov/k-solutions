@@ -15,18 +15,19 @@ const Text = styled.p`
     }
 `;
 
-const Item = () => {
+interface Props {
+    title: string;
+    description: string;
+}
+
+const Item = ({ title, description }: Props) => {
     return (
         <Stack
             spacing={{ lg: '20px', xs: '10px' }}
             sx={{ paddingLeft: '25px', borderLeft: '4px solid #006838', borderRadius: '4px 0 0 4px' }}
         >
-            <Title>Проблема</Title>
-            <Text>
-                Как арендодатель, вы должны каждый год заполнять налоговые декларации. Заплатите дипломированному
-                бухгалтеру ~1000 евро или больше, отсканируйте каждую квитанцию и загрузите в облако. Затем вы ждете 2
-                месяца, чтобы узнать сумму налога, которую вы должны заплатить.
-            </Text>
+            <Title>{title}</Title>
+            <Text>{description}</Text>
         </Stack>
     );
 };

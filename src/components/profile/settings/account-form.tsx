@@ -9,25 +9,41 @@ import Title from '../title';
 // import { validateSecurity } from './validations';
 import type { FormStateAccount } from './types';
 import Input from './input';
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+import { upadteAccount } from 'api/user';
 
 const AccountForm = () => {
     // const resolver = yupResolver(validateSecurity);
+
+    const { user } = useAuthContext();
 
     const methods = useForm<FormStateAccount>({
         mode: 'onChange',
         // resolver,
         defaultValues: {
-            fio: '',
-            name: '',
-            email: '',
-            username: '',
-            phoneNumber: '',
-            country: '',
+            fio: user.fio.split(' ')[0] ?? '',
+            name: user.fio.split(' ')[1] ?? '',
+            email: user.email ?? '',
+            username: user.userName ?? '',
+            phoneNumber: user.numberPhone ?? '',
+            country: user.country ?? '',
         },
     });
 
-    const onSubmit = (data: FormStateAccount) => {
-        console.log(data);
+    const onSubmit = async (data: FormStateAccount) => {
+        const newData = {
+            id: user.id,
+            fam: data.fio,
+            im: data.name,
+            email: data.email,
+            username: data.username,
+            phoneNumber: data.phoneNumber,
+            country: data.country,
+        };
+
+        if (user.id) {
+            await upadteAccount(newData);
+        }
     };
 
     return (
@@ -38,7 +54,7 @@ const AccountForm = () => {
                 }}
             >
                 <Stack spacing="60px" component="form" onSubmit={methods.handleSubmit(onSubmit)}>
-                    <Title>Смена пароля</Title>
+                    <Title>Личная информация</Title>
                     <Stack spacing="30px">
                         <Stack direction="row" spacing="100px" justifyContent="space-between">
                             <Input name="name" placeholder="Имя" />

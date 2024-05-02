@@ -41,7 +41,7 @@ const Navigation = () => {
             <Link to="/personal">
                 <OverviewIcon />
             </Link>
-            <Link to="/personal2">
+            <Link to="/showcases">
                 <ResearchIcon />
             </Link>
             <Link to="/personal3">
@@ -50,7 +50,7 @@ const Navigation = () => {
             <Link to="/personal4">
                 <TextIcon />
             </Link>
-            <Link to="/personal5">
+            <Link to="/settings">
                 <UserIcon />
             </Link>
         </Stack>

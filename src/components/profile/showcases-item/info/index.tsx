@@ -1,7 +1,11 @@
+import React from 'react';
+
+import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
+import type { IDescription } from 'types/company';
+
 import Item from './item';
-import styled from '@emotion/styled';
 
 const Divider = styled.div`
     width: 100%;
@@ -11,15 +15,19 @@ const Divider = styled.div`
     margin: 0 30px;
 `;
 
-const Info = () => {
+interface Props {
+    list: IDescription[];
+}
+
+const Info = ({ list }: Props) => {
     return (
         <Stack spacing="30px">
-            <Item />
-            <Divider />
-            <Item />
-            <Divider />
-            <Item />
-            <Divider />
+            {list.map((item) => (
+                <React.Fragment key={item.id}>
+                    <Item title={item.companyInvestDetailTypeId} description={item.descriptions} />
+                    <Divider />
+                </React.Fragment>
+            ))}
         </Stack>
     );
 };

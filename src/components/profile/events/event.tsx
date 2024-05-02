@@ -1,8 +1,8 @@
-import { NavLink } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
-import ImageSrc from 'assets/moc-event.png';
+import { fDate } from 'helpers/format-time';
+import type { INewPost } from 'types/news';
 
 const Image = styled.img`
     display: block;
@@ -11,6 +11,7 @@ const Image = styled.img`
     object-fit: cover;
     border-radius: 20px 20px 0 0;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex: 0 0 auto;
 
     &:hover {
         opacity: 0.9;
@@ -26,6 +27,7 @@ const Content = styled(Stack)`
     background: #f6f7f8;
     border-radius: 0 0 20px 20px;
     padding: 20px;
+    width: 100%;
 
     @media (min-width: 768px) {
         border-radius: 0 20px 20px 0;
@@ -33,7 +35,7 @@ const Content = styled(Stack)`
     }
 `;
 
-const Title = styled(NavLink)`
+const Title = styled.div`
     font-size: 1rem;
     line-height: 22px;
     letter-spacing: 0.015em;
@@ -94,23 +96,18 @@ const Dot = styled.div`
     background: #006838;
 `;
 
-const Event = () => {
+const Event = ({ createdDate, descriptions, newsType, photo, title }: INewPost) => {
     return (
         <Stack direction={{ sm: 'row' }}>
-            <NavLink to="/">
-                <Image src={ImageSrc} />
-            </NavLink>
+            <Image src={photo} />
             <Content>
-                <Title to="/">На платформе открылась возможность инвестировать в гос.компании</Title>
-                <Text>
-                    Большое событие для нашей платформы : Теперь вы можете инвестировать в госкомпании из своего личного
-                    кабинета !
-                </Text>
+                <Title>{title}</Title>
+                <Text>{descriptions}</Text>
                 <Divider />
                 <Stack direction="row" spacing="10px" alignItems="center">
-                    <Tag>Инвестиции </Tag>
+                    <Tag>{newsType} </Tag>
                     <Dot />
-                    <Tag>Апрель 12, 2024</Tag>
+                    <Tag>{fDate(createdDate, 'dd MMMM, yyyy')}</Tag>
                 </Stack>
             </Content>
         </Stack>

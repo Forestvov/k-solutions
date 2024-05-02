@@ -4,11 +4,15 @@ import InputMask from 'react-input-mask';
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
+import { addContact } from 'api/order-contact';
 
 import validateSubscribe from 'helpers/validation/validateSubscribe';
+import { useState } from 'react';
 
 interface Inputs {
-    phone: string;
+    phoneNumber: string;
 }
 
 const Input = styled(InputMask)`
@@ -22,6 +26,7 @@ const Input = styled(InputMask)`
     outline: none;
     height: 43px;
     line-height: 43px;
+    transition: opacity 400ms;
 
     @media (min-width: 768px) {
         height: 59px;
@@ -31,47 +36,72 @@ const Input = styled(InputMask)`
     &::placeholder {
         color: rgba(89, 89, 89, 0.4);
     }
+
+    &:disabled {
+        opacity: 0.7;
+    }
 `;
 
 const Form = () => {
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<boolean | string>(false);
+    const [load, setLoad] = useState(false);
     const resolver = yupResolver(validateSubscribe);
 
-    const { control, handleSubmit } = useForm<Inputs>({
+    const { control, handleSubmit, reset } = useForm<Inputs>({
+        mode: 'onChange',
         resolver,
         defaultValues: {
-            phone: '',
+            phoneNumber: '',
         },
     });
 
-    const onSubmit = (data: Inputs) => {
-        alert(JSON.stringify(data));
+    const onSubmit = async (data: Inputs) => {
+        setSuccess(false);
+        setError(false);
+        setLoad(true);
+
+        try {
+            await addContact(data);
+            setSuccess(true);
+        } catch (e) {
+            if (e?.message === 'This number is existed') {
+                setError('Заявка уже отправлена');
+            }
+        }
+
+        await setLoad(false);
+        await reset();
     };
 
     return (
-        <Stack
-            component="form"
-            spacing={{ sm: '50px', xs: '25px' }}
-            direction={{ sm: 'row', xs: 'column' }}
-            sx={{ marginBottom: { lg: '175px', md: '100px', sm: '140px', xs: '80px' } }}
-            onSubmit={handleSubmit(onSubmit)}
-        >
-            <Controller
-                name="phone"
-                control={control}
-                rules={{ required: true }}
-                render={({ field: { ref, onChange, value } }) => (
-                    <Input
-                        ref={ref}
-                        mask="+9 (999) 999-99-99"
-                        value={value}
-                        onChange={onChange}
-                        placeholder="Введите номер телефона"
-                    />
-                )}
-            />
-            <Button variant="green" type="submit" sx={{ padding: { xs: '12px 40px' } }}>
-                Заказать Звонок
-            </Button>
+        <Stack spacing="25px" sx={{ marginBottom: { lg: '175px', md: '100px', sm: '140px', xs: '80px' } }}>
+            <Stack
+                component="form"
+                spacing={{ sm: '50px', xs: '25px' }}
+                direction={{ sm: 'row', xs: 'column' }}
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <Controller
+                    name="phoneNumber"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { ref, onChange, value } }) => (
+                        <Input
+                            ref={ref}
+                            mask="+9 (999) 999-99-99"
+                            value={value}
+                            onChange={onChange}
+                            placeholder="Введите номер телефона"
+                        />
+                    )}
+                />
+                <Button variant="green" type="submit" disabled={load} sx={{ padding: { xs: '12px 40px' } }}>
+                    Заказать Звонок
+                </Button>
+            </Stack>
+            {success && <Typography variant="body1">Заявка успешно отправлена</Typography>}
+            {error && <Typography variant="body1">{error}</Typography>}
         </Stack>
     );
 };

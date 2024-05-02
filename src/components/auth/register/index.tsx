@@ -4,8 +4,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+import { useRouter } from 'context/auth/hooks/useRouter';
 
 import WhiteBox from '../white-box';
 import Title from '../title';
@@ -67,6 +69,9 @@ const Confirm = styled.div`
 const steps = ['ШАГ 1', 'ШАГ 2', 'ШАГ 3'];
 
 const Register = () => {
+    const router = useRouter();
+
+    // @ts-ignore
     const { register } = useAuthContext();
 
     const [isAllReady, setIsAllReady] = useState(false);
@@ -154,7 +159,12 @@ const Register = () => {
                 <Wrapper>
                     <Stack spacing="40px" justifyContent="center">
                         <Title>Присоединяйтесь к KSOLUTIONS !</Title>
-                        <Confirm>Вам на почту отправлена ссылка с подтверждением </Confirm>
+                        <>
+                            <Confirm>Вы успешно зарегистрировались</Confirm>
+                            <Button onClick={() => router.push('/login')} variant="dark-green">
+                                Авторизировиться
+                            </Button>
+                        </>
                     </Stack>
                 </Wrapper>
             ) : (

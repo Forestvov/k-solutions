@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 
 import InvestProgress from 'components/profile/invest-progress';
 
-import ImageSrc from 'assets/pages/personal/photo-moc.jpg';
-
 const Wrapper = styled(Stack)`
     background: #fff;
     border-radius: 15px;
@@ -48,6 +46,8 @@ const LogoBox = styled.div`
 const Image = styled.img`
     display: block;
     margin-bottom: 5px;
+    width: auto;
+    height: 85px;
 
     @media (min-width: 768px) {
         margin-bottom: 2px;
@@ -65,17 +65,23 @@ const Name = styled.div`
     align-items: center;
 `;
 
-const Investing = () => {
+interface Props {
+    logo: string;
+    amountFinish: number;
+    amount: number;
+    accountCount: number;
+}
+
+const Investing = ({ logo, amount, amountFinish, accountCount }: Props) => {
     return (
         <Wrapper direction={{ sm: 'row' }} spacing="30px">
             <LogoBox>
                 <Name>
-                    <Image src={ImageSrc} alt="Energia" />
-                    <span>Energia</span>
+                    <Image src={logo} alt="Energia" />
                 </Name>
             </LogoBox>
             <Box sx={{ width: '100%', padding: { sm: '23px 30px 0 0', xs: '20px' } }}>
-                <InvestProgress />
+                <InvestProgress accountCount={accountCount} amountFinish={amountFinish} amount={amount} />
             </Box>
         </Wrapper>
     );

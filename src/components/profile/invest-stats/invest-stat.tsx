@@ -37,10 +37,12 @@ const TooltipButton = styled.button`
 `;
 
 interface Props {
+    title: string;
+    value: string;
     tooltip?: string;
 }
 
-const InvestStat: FC<Props> = ({ tooltip }) => {
+const InvestStat: FC<Props> = ({ title, value, tooltip }) => {
     return (
         <Stack
             direction={{
@@ -67,7 +69,7 @@ const InvestStat: FC<Props> = ({ tooltip }) => {
             >
                 <Icon />
                 <Label>
-                    Сумма займа:
+                    {title}
                     {tooltip && (
                         <Tooltip title={tooltip} placement="bottom">
                             <TooltipButton>
@@ -89,7 +91,7 @@ const InvestStat: FC<Props> = ({ tooltip }) => {
                     )}
                 </Label>
             </Stack>
-            <Value>$50,000.00</Value>
+            <Value>{value}</Value>
         </Stack>
     );
 };

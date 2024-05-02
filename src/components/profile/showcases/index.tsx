@@ -7,6 +7,8 @@ import Counter from '../counter-title';
 
 import Filters from './filters';
 import List from './list';
+import { useGetListBrief } from 'api/brief';
+import { useState } from 'react';
 
 const Wrapper = styled.div`
     padding: 30px 30px 60px;
@@ -20,15 +22,37 @@ const TitleStyled = styled(Title)`
 `;
 
 const Showcases = () => {
+    const [page, setPage] = useState(0);
+    const [filter, setFilter] = useState({
+        key: '',
+        value: '',
+    });
+
+    const {
+        briefs,
+        pageInfo: { totalElements, currentPage, pages, isFirst, isLast },
+        briefsLoading,
+    } = useGetListBrief({
+        page: page,
+        pageSize: 6,
+        filter,
+    });
+
     return (
         <Wrapper>
             <TitleStyled>
                 Витрина
-                <Counter>(17)</Counter>
+                {!briefsLoading && <Counter>({totalElements})</Counter>}
             </TitleStyled>
-            <Filters />
-            <List />
-            <PaginatorPage />
+            <Filters current={filter} onChange={setFilter} />
+            <List loading={briefsLoading} list={briefs} />
+            <PaginatorPage
+                countPages={pages}
+                currentPage={currentPage}
+                isFirst={isFirst}
+                isLast={isLast}
+                onChange={setPage}
+            />
         </Wrapper>
     );
 };

@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
+import { useRouter } from 'context/auth/hooks/useRouter';
+
 import Logo from 'assets/pages/auth/logo.svg?react';
 import Exit from 'assets/pages/auth/exit.svg?react';
 
@@ -26,13 +28,19 @@ const ExitButton = styled.button`
 `;
 
 const AuthHeader = () => {
+    const router = useRouter();
+
+    const logoutHandler = async () => {
+        await router.push('/');
+    };
+
     return (
         <Container sx={{ padding: '35px 24px 0' }}>
             <Stack component="header" direction="row" alignItems="center" justifyContent="space-between">
                 <LogoLink to="/">
                     <Logo />
                 </LogoLink>
-                <ExitButton>
+                <ExitButton onClick={logoutHandler}>
                     <Exit />
                 </ExitButton>
             </Stack>

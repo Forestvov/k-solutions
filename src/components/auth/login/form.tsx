@@ -25,6 +25,7 @@ const ErrorMessage = styled.div`
 `;
 
 const Form = () => {
+    // @ts-ignore
     const { login } = useAuthContext();
 
     const [showError, setShowError] = useState<boolean | string>(false);
@@ -67,12 +68,24 @@ const Form = () => {
         <FormProvider {...methods}>
             <FormStyles onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing="30px">
-                    <Stack spacing="60px">
+                    <Stack
+                        spacing={{
+                            md: '60px',
+                            xs: '30px',
+                        }}
+                    >
                         <Stack spacing="30px">
                             <Input name="email" type="email" placeholder="E-mail" />
                             <Input name="password" type="password" placeholder="Пароль" />
                         </Stack>
-                        <Stack direction="row" spacing="30px">
+                        <Stack
+                            direction={{
+                                md: 'row',
+                            }}
+                            spacing={{
+                                xs: '30px',
+                            }}
+                        >
                             <ToRegister />
                             <Button variation="fill" type="submit" disabled={isSubmitting}>
                                 Войти

@@ -7,7 +7,7 @@ import type { InputProp } from './types';
 const InputStyle = styled.input`
     display: block;
     width: 100%;
-    height: 80px;
+    height: 60px;
     border: 1px solid #d2d2d2;
     border-radius: 9px;
     padding: 0 25px;
@@ -16,6 +16,10 @@ const InputStyle = styled.input`
     line-height: 80px;
     letter-spacing: -0.02em;
     outline-color: #006838;
+
+    @media (min-width: 1024px) {
+        height: 80px;
+    }
 `;
 
 const Input: FC<InputProp> = ({ type, placeholder, name }) => {

@@ -6,7 +6,7 @@ import type { ButtonProp } from './types';
 
 const ButtonStyle = styled(Button)<Pick<ButtonProp, 'variation'>>`
     flex: 1;
-    line-height: 80px;
+    line-height: 60px;
     padding: 0 10px;
     font-weight: 300;
     font-size: 1.25rem;
@@ -17,6 +17,10 @@ const ButtonStyle = styled(Button)<Pick<ButtonProp, 'variation'>>`
 
     &:disabled {
         opacity: 0.6;
+    }
+
+    @media (min-width: 1024px) {
+        line-height: 80px;
     }
 
     ${({ variation }) =>

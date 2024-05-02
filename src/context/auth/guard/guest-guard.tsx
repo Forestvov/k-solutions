@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 import { useCallback, useEffect } from 'react';
 
-import { useRouter } from '../hooks/useRouter';
+import SplashScreen from 'components/shared/splash-screen';
 
+import { useRouter } from '../hooks/useRouter';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 // ----------------------------------------------------------------------
@@ -15,7 +16,7 @@ export default function GuestGuard({ children }: Props) {
     const { loading } = useAuthContext();
 
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    return <>{loading ? <div>загрузка</div> : <Container>{children}</Container>}</>;
+    return <>{loading ? <SplashScreen /> : <Container>{children}</Container>}</>;
 }
 
 // ----------------------------------------------------------------------

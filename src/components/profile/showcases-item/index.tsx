@@ -1,8 +1,16 @@
+import { useParams } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { useGetBrief } from 'api/brief';
+import { useGetCompany } from 'api/company';
+import { useSearchParams } from 'hooks/use-search-params';
+
+import SplashScreen from 'components/shared/splash-screen';
 
 import Banner from './banner';
 import Slider from './slider';
@@ -30,47 +38,70 @@ const ShowcasesItem = () => {
     const matchesDesktop = useMediaQuery(theme.breakpoints.up('xl'));
     const matchesMobile = useMediaQuery(theme.breakpoints.down('xl'));
 
+    const { id } = useParams();
+    const searchParams = useSearchParams();
+
+    const { brief, briefsLoading } = useGetBrief(String(id));
+    const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')));
+
+    console.log('brief', brief);
+    console.log('company', company);
+
     return (
         <Wrapper>
-            <Banner />
-            <Stack
-                direction="row"
-                spacing={{
-                    lg: '60px',
-                    xs: '30px',
-                }}
-                sx={{
-                    marginTop: {
-                        sm: '-140px',
-                        xs: '-50px',
-                    },
-                }}
-            >
-                <Stack
-                    spacing={{
-                        lg: '60px',
-                        xs: '30px',
-                    }}
-                >
-                    <Slider />
-                    {matchesMobile && <ActionBlock />}
-                    <KeyInformation />
-                    <Info />
-                    <Awards />
-                </Stack>
-                {matchesDesktop && (
-                    <Box
-                        maxWidth={{
-                            lg: '510px',
-                            xs: '400px',
-                        }}
-                        flex="0 0 auto"
-                        width="100%"
-                    >
-                        <ActionBlock />
-                    </Box>
-                )}
-            </Stack>
+            {briefsLoading && companyLoading ? (
+                <SplashScreen />
+            ) : (
+                company &&
+                brief && (
+                    <>
+                        <Banner
+                            description={company.descriptions}
+                            logo={company.logo}
+                            name={company.companyName}
+                            showClose={company.companyType === 'Franchise' && brief.isActive}
+                        />
+                        <Stack
+                            direction="row"
+                            spacing={{
+                                lg: '60px',
+                                xs: '30px',
+                            }}
+                            sx={{
+                                marginTop: {
+                                    sm: '-140px',
+                                    xs: '-50px',
+                                },
+                            }}
+                        >
+                            <Stack
+                                spacing={{
+                                    lg: '60px',
+                                    xs: '30px',
+                                }}
+                            >
+                                <Slider />
+                                {matchesMobile && <ActionBlock />}
+                                <KeyInformation companyType={company.companyType} />
+                                <Info list={company.companyInvestDetailDtoList} />
+                                <Awards />
+                            </Stack>
+                            {matchesDesktop && (
+                                <Box
+                                    maxWidth={{
+                                        lg: '510px',
+                                        xs: '400px',
+                                    }}
+                                    flex="0 0 auto"
+                                    width="100%"
+                                >
+                                    <ActionBlock />
+                                </Box>
+                            )}
+                        </Stack>
+                    </>
+                )
+            )}
         </Wrapper>
     );
 };

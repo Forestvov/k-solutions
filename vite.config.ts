@@ -11,6 +11,8 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src/'),
             app: `${path.resolve(__dirname, './src/app/')}`,
             layouts: `${path.resolve(__dirname, './src/layouts/')}`,
+            api: `${path.resolve(__dirname, './src/api/')}`,
+            types: `${path.resolve(__dirname, './src/types/')}`,
             context: `${path.resolve(__dirname, './src/context/')}`,
             components: `${path.resolve(__dirname, './src/components/')}`,
             assets: `${path.resolve(__dirname, './src/assets/')}`,
@@ -23,8 +25,6 @@ export default defineConfig({
             '@mui/base': '@mui/base/legacy',
             '@mui/utils': '@mui/utils/legacy',
             '@mui/lab': '@mui/lab/legacy',
-            // pages: path.resolve(__dirname, './src/pages'),
-            // types: `${path.resolve(__dirname, './src/@types')}`,
         },
     },
 });

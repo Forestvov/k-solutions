@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { fCurrency } from 'helpers/number-format';
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const Wrapper = styled.div`
     margin-left: 30px;
@@ -24,10 +26,10 @@ const Price = styled.span`
 `;
 
 const Balance = () => {
-    return (
-        <Wrapper>
-            Баланс: <Price>$ 50,558</Price>
-        </Wrapper>
-    );
+    // @ts-ignore
+    const { user } = useAuthContext();
+
+    return <Wrapper>Баланс: {user.balance.balance ? <Price>{fCurrency(user.balance.balance)}</Price> : '$0'}</Wrapper>;
 };
+
 export default Balance;

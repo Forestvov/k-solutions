@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const Circle = styled.div`
     background: #006838;
@@ -15,7 +16,16 @@ const Circle = styled.div`
 `;
 
 const UserNameCircle = () => {
-    return <Circle>NG</Circle>;
+    // @ts-ignore
+    const { user } = useAuthContext();
+
+    const splitName = user.fio.split(' ');
+
+    return (
+        <Circle>
+            {splitName[0].slice(0, 1)} {splitName[1].slice(0, 1)}
+        </Circle>
+    );
 };
 
 export default UserNameCircle;

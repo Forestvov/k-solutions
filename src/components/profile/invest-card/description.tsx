@@ -40,19 +40,20 @@ const Text = styled.p`
     }
 `;
 
-const Description = () => {
+interface Props {
+    text: string;
+    name: string;
+    status: boolean;
+}
+
+const Description = ({ name, status, text }: Props) => {
     return (
         <Box>
             <Name>
-                Qlower
-                <StatusTag>Активный</StatusTag>
+                {name}
+                {status && <StatusTag>Активный</StatusTag>}
             </Name>
-            <Text>
-                Устали от налоговых деклараций? И мы тоже. В Qlower мы решили, что это больше не должно быть обузой.
-                Благодаря нашей технологии, сочетающей в себе открытый банкинг и искусственный интеллект, Qlower на
-                данный момент автоматизирует налоговые декларации для арендодателей. Мы создаем новую эволюцию,
-                демонстрируя экономию и эффективность.
-            </Text>
+            <Text>{text}</Text>
         </Box>
     );
 };

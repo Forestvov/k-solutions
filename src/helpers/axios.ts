@@ -32,10 +32,31 @@ export const fetcher = async (args: string) => {
 
 export const endpoints = {
     auth: {
-        me: '/account/me',
-        login: '/auth/authenticate',
-        register: '/auth/register',
-        send_verify: '/auth/send-verify',
-        verify: '/auth/verify',
+        me: 'account/me',
+        balance: 'account/balance',
+        login: 'auth/authenticate',
+        register: 'auth/register',
+        send_verify: 'auth/send-verify',
+        verify: 'auth/verify',
+    },
+    account: {
+        update: 'account/me',
+    },
+    order: {
+        root: 'order-contact',
+    },
+    news: {
+        list: 'news/page',
+    },
+    settings: {
+        root: 'setting/code',
+    },
+    briefs: {
+        page: 'briefcase/language',
+        list: 'briefcase/page',
+        hot: 'briefcase-account/page/common',
+    },
+    company: {
+        page: 'company-invest',
     },
 };

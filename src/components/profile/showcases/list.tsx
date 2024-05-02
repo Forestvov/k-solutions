@@ -1,10 +1,17 @@
-import React from 'react';
-
 import Grid from '@mui/material/Unstable_Grid2';
+import type { IBrief } from 'types/brief';
 
 import InvestCard from '../invest-card';
+import InvestSkeletonCard from '../invest-skeleton-card';
 
-const List = () => {
+interface Props {
+    list: IBrief[];
+    loading: boolean;
+}
+
+const mockArr = [1, 2, 3, 4, 5, 6];
+
+const List = ({ list, loading }: Props) => {
     return (
         <Grid
             container
@@ -13,12 +20,19 @@ const List = () => {
             columns={{ xs: 12 }}
             marginBottom={{ lg: '60px', xs: '30px' }}
         >
-            {Array.from(Array(6)).map((_, index) => (
-                // @ts-ignore
-                <Grid item="item" xs={12} md={6} xl={6} lg={4} key={index}>
-                    <InvestCard />
-                </Grid>
-            ))}
+            {loading
+                ? mockArr.map((_, index) => (
+                      // @ts-ignore
+                      <Grid item="item" xs={12} md={6} xl={6} lg={4} key={index}>
+                          <InvestSkeletonCard />
+                      </Grid>
+                  ))
+                : list.map((brief, index) => (
+                      // @ts-ignore
+                      <Grid item="item" xs={12} md={6} xl={6} lg={4} key={index}>
+                          <InvestCard card={brief} />
+                      </Grid>
+                  ))}
         </Grid>
     );
 };

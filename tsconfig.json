@@ -28,6 +28,8 @@
     "paths": {
       "app/*": ["app/*"],
       "layouts/*": ["layouts/*"],
+      "api/*": ["api/*"],
+      "types/*": ["types/*"],
       "context/*": ["context/*"],
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],

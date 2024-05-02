@@ -29,7 +29,12 @@ const Label = styled.div`
     }
 `;
 
-const Item = () => {
+interface Prop {
+    value: string;
+    label: string;
+}
+
+const Item = ({ label, value }: Prop) => {
     return (
         <Stack
             spacing={{
@@ -37,8 +42,8 @@ const Item = () => {
                 xs: '2px',
             }}
         >
-            <Value>$560,000</Value>
-            <Label>Сумма займа</Label>
+            <Value>{value}</Value>
+            <Label>{label}</Label>
         </Stack>
     );
 };

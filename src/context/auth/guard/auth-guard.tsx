@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
+import SplashScreen from 'components/shared/splash-screen';
+
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useRouter } from '../hooks/useRouter';
 
@@ -15,7 +17,7 @@ export default function AuthGuard({ children }: Props) {
 
     // @ts-ignore
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    return <>{loading ? <div>loading</div> : <Container>{children}</Container>}</>;
+    return <>{loading ? <SplashScreen /> : <Container>{children}</Container>}</>;
 }
 
 // ----------------------------------------------------------------------
@@ -23,7 +25,8 @@ export default function AuthGuard({ children }: Props) {
 function Container({ children }: Props) {
     const router = useRouter();
 
-    const { authenticated, method } = useAuthContext();
+    // @ts-ignore
+    const { authenticated } = useAuthContext();
 
     const [checked, setChecked] = useState(false);
 
@@ -33,7 +36,7 @@ function Container({ children }: Props) {
         } else {
             setChecked(true);
         }
-    }, [authenticated, method, router]);
+    }, [authenticated, router]);
 
     useEffect(() => {
         check();

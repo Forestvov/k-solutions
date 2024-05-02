@@ -81,14 +81,18 @@ export function AuthProvider({ children }: Props) {
             if (acceptToken && isValidToken(acceptToken)) {
                 setSession(acceptToken);
 
-                const res = await axios.get(endpoints.auth.me);
-                const user = res.data;
+                const resUser = await axios.get(endpoints.auth.me);
+                const resBalance = await axios.get(endpoints.auth.balance);
 
-                dispatch({
+                const user = resUser.data;
+                const balance = resBalance.data;
+
+                await dispatch({
                     type: Types.INITIAL,
                     payload: {
                         user: {
                             ...user,
+                            balance: balance,
                             acceptToken,
                         },
                     },
@@ -116,6 +120,8 @@ export function AuthProvider({ children }: Props) {
         initialize();
     }, [initialize]);
 
+    console.log('AUTH CONTEXT:', state);
+
     // LOGIN
     const login = useCallback(async (email: string, password: string) => {
         const data = {
@@ -129,13 +135,17 @@ export function AuthProvider({ children }: Props) {
         setSession(acceptToken);
 
         const resUser = await axios.get(endpoints.auth.me);
+        const resBalance = await axios.get(endpoints.auth.balance);
+
         const user = resUser.data;
+        const balance = resBalance.data;
 
         dispatch({
             type: Types.LOGIN,
             payload: {
                 user: {
                     ...user,
+                    balance: balance,
                     acceptToken,
                 },
             },

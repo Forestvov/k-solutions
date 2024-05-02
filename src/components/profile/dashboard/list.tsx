@@ -1,29 +1,61 @@
-import Stack from '@mui/material/Stack';
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+
+import { useGetHotBrief } from 'api/brief';
+
+import { useSettingsContext } from 'context/settings/hooks/useSettingsContext';
+
+import useDeviceSize from 'hooks/useDeviceSize';
 
 import InvestCard from 'components/profile/invest-card';
 import Pagination from 'components/pagination';
-import useDeviceSize from 'hooks/useDeviceSize';
 
-// todo size зависит от размера девайса
-// desktop 3
-// laptop 2
-// mob 1
+import InvestSkeletonCard from '../invest-skeleton-card';
 
 const List = () => {
+    const {
+        settings: { briefcaseHot },
+    } = useSettingsContext();
+
     const { lg, md } = useDeviceSize();
+
+    const [page, setPage] = useState(0);
+
+    const {
+        hotBriefs,
+        hotBriefsLoading,
+        pageInfo: { currentPage, pages },
+    } = useGetHotBrief({
+        page: page,
+        pageSize: lg ? 3 : md ? 2 : 1,
+        percentFinish: briefcaseHot,
+    });
 
     return (
         <>
-            <Stack
-                spacing={{ lg: '30px', xs: '20px' }}
-                direction="row"
-                sx={{ marginBottom: { lg: '60px', xs: '20px' } }}
+            <Box
+                sx={{
+                    display: 'grid',
+                    gridGap: '35px',
+                    gridTemplateColumns: {
+                        xs: '1fr',
+                        md: 'repeat(2, 1fr)',
+                        lg: 'repeat(3, 1fr)',
+                        marginBottom: { lg: '60px', xs: '20px' },
+                    },
+                }}
             >
-                <InvestCard />
-                {md && <InvestCard />}
-                {lg && <InvestCard />}
-            </Stack>
-            <Pagination />
+                {hotBriefsLoading ? (
+                    <>
+                        <InvestSkeletonCard />
+                        {md && <InvestSkeletonCard />}
+                        {lg && <InvestSkeletonCard />}
+                    </>
+                ) : (
+                    hotBriefs.map((brief) => <InvestCard key={brief.briefcaseid} card={brief} />)
+                )}
+            </Box>
+            <Pagination countPage={pages} currentPage={currentPage} onChangePage={setPage} />
         </>
     );
 };

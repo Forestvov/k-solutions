@@ -41,6 +41,7 @@ const ImageBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 auto;
 
     @media (min-width: 1668px) {
         width: 130px;
@@ -75,7 +76,7 @@ const CompanyName = styled.div`
     flex-direction: column;
     font-weight: 600;
     font-size: 3rem;
-    line-height: 77px;
+    line-height: 60px;
     color: #ffffff;
 
     @media (min-width: 320px) {
@@ -93,6 +94,7 @@ const CompanyName = styled.div`
 
     @media (min-width: 1668px) {
         font-size: 4rem;
+        line-height: 77px;
     }
 `;
 
@@ -147,7 +149,14 @@ const WrapperClose = styled.div`
     width: 100%;
 `;
 
-const Banner = () => {
+interface Props {
+    name: string;
+    logo: string;
+    description: string;
+    showClose: boolean;
+}
+
+const Banner = ({ name, logo, description, showClose }: Props) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('xl'));
 
@@ -155,7 +164,7 @@ const Banner = () => {
         <Wrapper>
             <Stack direction="row" spacing="60px">
                 <Content>
-                    <BackLink to="#">
+                    <BackLink to="/showcases">
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 1L1 6L6 11" stroke="white" strokeLinecap="round" />
                         </svg>
@@ -178,21 +187,16 @@ const Banner = () => {
                         }}
                     >
                         <ImageBox>
-                            <Image src="" />
+                            <Image src={logo} />
                         </ImageBox>
                         <CompanyName>
-                            FarmTech
-                            <StatusTag>Активный</StatusTag>
+                            {name}
+                            {showClose && <StatusTag>Активный</StatusTag>}
                         </CompanyName>
                     </Stack>
-                    <Description>
-                        The mission of Archipelago Expedition Yachts is sustainable and accessible adventure. Their
-                        luxury ocean-capable catamarans are hybrid powered, yielding a lower carbon footprint for a
-                        greener voyage. Their first zero emission boat is designed and they have 4 confirmed design
-                        contracts.
-                    </Description>
+                    <Description>{description}</Description>
                 </Content>
-                {matches && (
+                {matches && showClose && (
                     <WrapperClose>
                         <ActionBlockFranchiseInvestClose />
                     </WrapperClose>

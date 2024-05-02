@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import Navigation from '../navigation';
-import Expander from '../expander';
 import Profile from '../profile';
 import Laggout from '../laggout';
+import { Box } from '@mui/material';
 
 interface Prop {
     slide: boolean;
@@ -52,12 +52,13 @@ const Overlay = styled.div<Prop>`
 `;
 
 const Desktop = () => {
-    const [slide, setSlide] = useState(false);
+    const [slide] = useState(false);
     return (
         <>
             <Aside slide={slide}>
                 <Navigation />
-                <Expander onClick={() => setSlide(!slide)} />
+                <Box sx={{ marginTop: 'auto' }} />
+                {/* <Expander onClick={() => setSlide(!slide)} /> */}
                 <Profile />
                 <Laggout />
             </Aside>
