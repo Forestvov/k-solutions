@@ -11,6 +11,9 @@ import CnyIcon from 'assets/pages/personal/currency/cny.png';
 import Title from '../../title';
 
 import GrayWrapper from '../gray-wrapper';
+import { getCurrency } from 'api/balance';
+import { useEffect, useState } from 'react';
+import { fCurrency } from 'helpers/number-format';
 
 const TitleStyled = styled(Title)`
     margin: 0 0 37px;
@@ -46,10 +49,13 @@ const Type = styled.div`
 `;
 
 interface ItemProp {
+    label: string;
+    type: string;
     image: string;
+    value: string;
 }
 
-const Item = ({ image }: ItemProp) => {
+const Item = ({ label, type, image, value }: ItemProp) => {
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Stack
@@ -66,19 +72,74 @@ const Item = ({ image }: ItemProp) => {
             >
                 <Image src={image} alt="" />
                 <Stack spacing="10px">
-                    <Label>Доллар США</Label>
-                    <Type>USD</Type>
+                    <Label>{label}</Label>
+                    <Type>{type}</Type>
                 </Stack>
             </Stack>
-            <Stack spacing="10px">
+            <Stack
+                spacing="10px"
+                sx={{
+                    width: '70px',
+                    flex: '0 0 auto',
+                }}
+            >
                 <Type>Курс</Type>
-                <Label>94,32 ₽</Label>
+                <Label>{fCurrency(parseFloat(value.replace(',', '.')), 'ru-RU', 'RUB')}</Label>
             </Stack>
         </Stack>
     );
 };
 
+const getValue = (data: any): number => data.elements[0].elements[0].elements[1].elements[0].text;
+
 const Well = () => {
+    const [list, setList] = useState({
+        usd: 0,
+        euro: 0,
+        funt: 0,
+        yup: 0,
+        chine: 0,
+    });
+
+    // R01235 - сша
+    // R01239 - евро
+    // R01035 - фунты
+    // R01820 - яп
+    // R01375 - кит
+
+    useEffect(() => {
+        getCurrency('R01235').then((data) => {
+            setList((prevState) => ({
+                ...prevState,
+                usd: getValue(data),
+            }));
+        });
+        getCurrency('R01239').then((data) => {
+            setList((prevState) => ({
+                ...prevState,
+                euro: getValue(data),
+            }));
+        });
+        getCurrency('R01035').then((data) => {
+            setList((prevState) => ({
+                ...prevState,
+                funt: getValue(data),
+            }));
+        });
+        getCurrency('R01820').then((data) => {
+            setList((prevState) => ({
+                ...prevState,
+                yup: getValue(data),
+            }));
+        });
+        getCurrency('R01375').then((data) => {
+            setList((prevState) => ({
+                ...prevState,
+                chine: getValue(data),
+            }));
+        });
+    }, []);
+
     return (
         <Box
             sx={{
@@ -89,11 +150,11 @@ const Well = () => {
             <GrayWrapper>
                 <TitleStyled>Курс валют</TitleStyled>
                 <Stack spacing="26px">
-                    <Item image={UsdIcon} />
-                    <Item image={EurIcon} />
-                    <Item image={GbrIcon} />
-                    <Item image={JpyIcon} />
-                    <Item image={CnyIcon} />
+                    <Item label="Доллар США" type="USD" value={String(list.usd)} image={UsdIcon} />
+                    <Item label="Евро" type="EUR" value={String(list.euro)} image={EurIcon} />
+                    <Item label="Фунт Стерлингов" type="GBP" value={String(list.funt)} image={GbrIcon} />
+                    <Item label="Японская Иена" type="JPY" value={String(list.yup)} image={JpyIcon} />
+                    <Item label="Китайский Юань" type="CNY" value={String(list.chine)} image={CnyIcon} />
                 </Stack>
             </GrayWrapper>
         </Box>

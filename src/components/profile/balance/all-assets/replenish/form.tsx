@@ -63,8 +63,12 @@ export const Form = ({ onClose }: Props) => {
     const methods = useForm<FormState>({
         mode: 'onChange',
         defaultValues: {
+            currencyToken: '',
+            contact: '',
+            qrCode: '',
+            transactionLinkType: '',
+
             method: 'Tether TRC 20',
-            price: '',
             bank: 'СБЕР БАНК',
             priceTotal: '',
             nameCart: '',
@@ -73,6 +77,18 @@ export const Form = ({ onClose }: Props) => {
             cvvCart: '',
         },
     });
+
+    // {
+    //     "currencyToken":"Сбер Банк",
+    //     "contact":"123123",
+    //     "amountIn":"10",
+    //     "transactionType":"In",
+    //     "transactionStatus":"Wait requisites",
+    //     "amountOut":"1000",
+    //     "qrCode":"asdasd",
+    //     "contactFrom":"123:123:123:123",
+    //     "transactionLinkType":"p2p"
+    // }
 
     console.log('watcher:', methods.watch());
 

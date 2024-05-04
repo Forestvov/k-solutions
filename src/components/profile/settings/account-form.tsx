@@ -52,10 +52,20 @@ const AccountForm = () => {
         <FormProvider {...methods}>
             <Box
                 sx={{
-                    padding: '30px',
+                    padding: {
+                        xl: '30px',
+                        xs: '15px',
+                    },
                 }}
             >
-                <Stack spacing="60px" component="form" onSubmit={methods.handleSubmit(onSubmit)}>
+                <Stack
+                    spacing={{
+                        xl: '60px',
+                        xs: '30px',
+                    }}
+                    component="form"
+                    onSubmit={methods.handleSubmit(onSubmit)}
+                >
                     <Title>Личная информация</Title>
                     <Stack spacing="30px">
                         <Stack
@@ -71,11 +81,29 @@ const AccountForm = () => {
                             <Input name="name" placeholder="Имя" />
                             <Input name="fio" placeholder="Фамилия" />
                         </Stack>
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="username" placeholder="Логин" />
                             <Input name="email" placeholder="E-mail" />
                         </Stack>
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="country" placeholder="Страна" />
                             <Input name="phoneNumber" placeholder="Номер телефона" />
                         </Stack>
@@ -84,7 +112,8 @@ const AccountForm = () => {
                         type="submit"
                         variant="green"
                         sx={{
-                            width: '400px',
+                            width: '100%',
+                            maxWidth: '400px',
                         }}
                     >
                         Сохранить изменения

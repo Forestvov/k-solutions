@@ -11,6 +11,12 @@ export function fDate(date: string, newFormat?: string) {
         : '';
 }
 
+export function fDateCurrent() {
+    const fm = 'dd/MM/yyyy';
+
+    return format(new Date(), fm, {});
+}
+
 export function isAfter(startDate: Date | null, endDate: Date | null) {
     const results = startDate && endDate ? new Date(startDate).getTime() > new Date(endDate).getTime() : false;
 

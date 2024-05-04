@@ -1,16 +1,22 @@
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
+import { updatePasswordAccount } from 'api/user';
+
 import Title from '../title';
 
 import type { FormStateSecurity } from './types';
 import { validateSecurity } from './validations';
 import Input from './input';
+import Typography from '@mui/material/Typography';
 
 const SecurityForm = () => {
+    const [error, setError] = useState<boolean | string>(false);
+    const [success, setSuccess] = useState(false);
     const resolver = yupResolver(validateSecurity);
 
     const methods = useForm<FormStateSecurity>({
@@ -24,39 +30,101 @@ const SecurityForm = () => {
         },
     });
 
-    const onSubmit = (data: FormStateSecurity) => {
+    const onSubmit = async (data: FormStateSecurity) => {
+        setSuccess(false);
+        setError(false);
+
         const formData = {
             oldPassword: data.oldPassword,
             newPassword: data.newPassword,
         };
 
-        console.log(formData);
+        try {
+            await updatePasswordAccount(formData);
+            methods.reset();
+            setSuccess(true);
+        } catch (e) {
+            console.log(e);
+            // @ts-ignore
+            if (e?.message === 'Old password not equal') {
+                setError('Старый пароль введен неверно');
+            }
+        }
     };
 
     return (
         <FormProvider {...methods}>
             <Box
                 sx={{
-                    padding: '30px',
+                    padding: {
+                        xl: '30px',
+                        xs: '15px',
+                    },
                 }}
             >
-                <Stack spacing="60px" component="form" onSubmit={methods.handleSubmit(onSubmit)}>
+                <Stack
+                    spacing={{
+                        xl: '60px',
+                        xs: '30px',
+                    }}
+                    component="form"
+                    onSubmit={methods.handleSubmit(onSubmit)}
+                >
                     <Title>Смена пароля</Title>
                     <Stack spacing="30px">
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="oldPassword" type="password" placeholder="Введите старый пароль" />
                             <Input name="repeatOldPassword" type="password" placeholder="Подвердите старый пароль" />
                         </Stack>
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="newPassword" type="password" placeholder="Введите новый пароль" />
                             <Input name="repeatNewPassword" type="password" placeholder="Подвердите новый пароль" />
                         </Stack>
                     </Stack>
+                    {error && (
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                color: '#FF5630',
+                            }}
+                        >
+                            {error}
+                        </Typography>
+                    )}
+                    {success && (
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                color: '#118D57',
+                            }}
+                        >
+                            Пароль изменен
+                        </Typography>
+                    )}
                     <Button
                         type="submit"
                         variant="green"
                         sx={{
-                            width: '400px',
+                            width: '100%',
+                            maxWidth: '400px',
                         }}
                     >
                         Сохранить изменения

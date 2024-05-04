@@ -8,7 +8,7 @@ interface Props {
 const DefaultForm = ({ onNext }: Props) => {
     return (
         <>
-            <Input placeholder="Укажите сумму пополнения" name="price" prefix="$" />
+            <Input placeholder="Укажите сумму пополнения" name="amount" prefix="$" />
             <Button onClick={onNext} variant="dark-green">
                 Подтвердить
             </Button>

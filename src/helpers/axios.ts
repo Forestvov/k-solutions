@@ -41,6 +41,7 @@ export const endpoints = {
     },
     account: {
         update: 'account/me',
+        changePassword: 'auth/change-password',
     },
     order: {
         root: 'order-contact',
@@ -65,5 +66,8 @@ export const endpoints = {
     company: {
         page: 'company-invest',
         slider: 'company-invest/file/list',
+    },
+    transaction: {
+        tokens: 'transaction/get-token-list',
     },
 };

@@ -19,25 +19,44 @@ const FileWraper = styled(Stack)`
 `;
 
 const FileInput = styled(Stack)`
-    height: 376px;
     border: 3px dashed #006838;
     border-radius: 35px;
     background: #f6f7f8;
-    padding: 30px;
+    padding: 20px 10px;
     text-align: center;
+
+    @media (min-width: 768px) {
+        height: 376px;
+
+        padding: 30px;
+    }
+
+    svg {
+        flex: 0 0 auto;
+    }
 `;
 
 const TitleFile = styled.div`
     font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 18px;
+    line-height: 24px;
     color: #006838;
+
+    @media (min-width: 768px) {
+        font-size: 24px;
+        line-height: 29px;
+    }
 `;
 
 const Text = styled.div`
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 17px;
+    line-height: 28px;
     color: #7d7d7d;
+
+    @media (min-width: 768px) {
+        font-size: 20px;
+        line-height: 24px;
+    }
 
     span {
         border-radius: 5px;
@@ -91,10 +110,18 @@ const DocumentForm = () => {
     return (
         <Box
             sx={{
-                padding: '30px',
+                padding: {
+                    xl: '30px',
+                    xs: '15px',
+                },
             }}
         >
-            <Stack spacing="120px">
+            <Stack
+                spacing={{
+                    xl: '120px',
+                    xs: '60px',
+                }}
+            >
                 <Stack spacing="30px">
                     <Stack spacing="60px">
                         <Stack
@@ -111,7 +138,14 @@ const DocumentForm = () => {
                             </Typography>
                         </Stack>
                     </Stack>
-                    <FileWraper direction="row" spacing="30px">
+                    <FileWraper
+                        direction={{
+                            lg: 'row',
+                        }}
+                        spacing={{
+                            xs: '30px',
+                        }}
+                    >
                         {fileMain ? (
                             <FileLoaded>
                                 <span>
@@ -215,7 +249,18 @@ const DocumentForm = () => {
                         </Button>
                     )}
                 </Stack>
-                <Stack direction="row" spacing="110px" alignItems="center">
+                <Stack
+                    direction={{
+                        lg: 'row',
+                    }}
+                    spacing={{
+                        lg: '110px',
+                        xs: '30px',
+                    }}
+                    alignItems={{
+                        lg: 'center',
+                    }}
+                >
                     <Stack
                         spacing="23px"
                         sx={{
@@ -228,7 +273,15 @@ const DocumentForm = () => {
                             загрузите на платформу.
                         </Typography>
                     </Stack>
-                    <Stack direction="row" spacing="30px">
+                    <Stack
+                        direction={{
+                            sm: 'row',
+                        }}
+                        spacing={{
+                            xs: '20px',
+                            sm: '30px',
+                        }}
+                    >
                         <GreenButton>
                             <svg
                                 width="25"

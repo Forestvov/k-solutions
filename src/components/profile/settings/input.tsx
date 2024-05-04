@@ -8,7 +8,7 @@ const InputStyled = styled.input<{ error: boolean }>`
     border: 1px solid #d2d2d2;
     padding: 0 29px;
     font-weight: 200;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
     height: 60px;
     border-radius: 9px;
@@ -25,6 +25,7 @@ const InputStyled = styled.input<{ error: boolean }>`
 
     @media (min-width: 768px) {
         height: 59px;
+        font-size: 20px;
     }
 `;
 

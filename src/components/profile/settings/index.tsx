@@ -62,9 +62,22 @@ const Settings = () => {
         <div>
             <Stack
                 direction="row"
-                spacing="60px"
+                spacing={{
+                    md: '60px',
+                    xs: '30px',
+                }}
                 sx={{
-                    padding: '0 0 30px 90px',
+                    padding: {
+                        md: '0 0 30px 90px',
+                        xs: '0 0 10px 10px',
+                    },
+                    overflowX: 'auto',
+                    '-webkit-overflow-scrolling': 'touch',
+                    '-webkit-box-pack': 'start',
+                    '::-webkit-scrollbar': {
+                        width: '0',
+                        opacity: '0',
+                    },
                 }}
             >
                 <Button active={page === 'account'} onClick={() => setPage('account')}>

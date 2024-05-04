@@ -11,14 +11,14 @@ export function fNumber(inputValue: number | string) {
     return fm;
 }
 
-export function fCurrency(inputValue: number | string) {
+export function fCurrency(inputValue: number | string, locale = 'en-US', currency = 'USD') {
     if (!inputValue) return '';
 
     const number = Number(inputValue);
 
-    const fm = new Intl.NumberFormat('en-US', {
+    const fm = new Intl.NumberFormat(locale, {
         style: 'currency',
-        currency: 'USD',
+        currency,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
     }).format(number);

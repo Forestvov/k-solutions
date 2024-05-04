@@ -32,21 +32,58 @@ const EntrepreneursForm = () => {
         <FormProvider {...methods}>
             <Box
                 sx={{
-                    padding: '30px',
+                    padding: {
+                        xl: '30px',
+                        xs: '15px',
+                    },
                 }}
             >
-                <Stack spacing="60px" component="form" onSubmit={methods.handleSubmit(onSubmit)}>
+                <Stack
+                    spacing={{
+                        xl: '60px',
+                        xs: '30px',
+                    }}
+                    component="form"
+                    onSubmit={methods.handleSubmit(onSubmit)}
+                >
                     <Title>Смена пароля</Title>
                     <Stack spacing="30px">
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="name" placeholder="Индивидуальный предприниматель" />
                             <Input name="fio" placeholder="Наименование компании " />
                         </Stack>
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="username" placeholder="Номер компании" />
                             <Input name="email" placeholder="ФИО директора" />
                         </Stack>
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="email" placeholder="Почта компании" />
                             <Input name="phoneNumber" placeholder="Номер телефона" />
                         </Stack>
@@ -55,7 +92,8 @@ const EntrepreneursForm = () => {
                         type="submit"
                         variant="green"
                         sx={{
-                            width: '400px',
+                            width: '100%',
+                            maxWidth: '400px',
                         }}
                     >
                         Сохранить изменения

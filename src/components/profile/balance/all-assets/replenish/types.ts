@@ -1,5 +1,5 @@
 export interface FormState {
-    price: string | number;
+    amount: string | number;
     priceTotal: string | number;
     method: string;
     bank: string;
@@ -7,6 +7,11 @@ export interface FormState {
     numberCart: string;
     dateCart: string;
     cvvCart: string;
+
+    currencyToken: string;
+    contact: string;
+    qrCode: string;
+    transactionLinkType: string;
 }
 
 export interface SelectorItem {

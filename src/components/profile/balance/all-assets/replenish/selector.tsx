@@ -4,8 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import styled from '@emotion/styled';
-
-import type { SelectorItem } from './types';
+import { IToken } from 'types/transaction';
 
 const Item = styled(MenuItem)`
     display: flex;
@@ -20,6 +19,7 @@ const BoxImage = styled.div`
     width: 30px;
     height: 30px;
     margin-right: 10px;
+    flex: 0 0 auto;
 
     img {
         width: 100%;
@@ -36,12 +36,88 @@ const Label = styled.div`
 
 interface Props {
     name: string;
+    isFirstStep?: boolean;
     label?: string;
-    items: SelectorItem[];
+    items: IToken[];
 }
 
-const Selector = ({ items = [], name, label }: Props) => {
-    const { control } = useFormContext();
+const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
+    const { control, setValue } = useFormContext();
+
+    if (isFirstStep) {
+        return (
+            <div>
+                {label && <Label>{label}</Label>}
+                <Controller
+                    render={({ field: { value, onChange }, fieldState: { error } }) => (
+                        <Select
+                            variant="outlined"
+                            sx={{
+                                width: '100%',
+                                height: {
+                                    sm: '66px',
+                                    xs: '60px',
+                                },
+                                outline: 'none',
+                                border: error ? '1px solid #FF5630 ' : '1px solid #20836D',
+                                borderRadius: '10px',
+                                fontSize: '16px',
+                                paddingLeft: '22px',
+                                paddingRight: '22px',
+                                color: '#838383',
+                                '.MuiSelect-select': {
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    paddingLeft: 0,
+                                },
+                                '.MuiSelect-icon': {
+                                    color: '#838383 !important',
+                                },
+                                '.MuiOutlinedInput-notchedOutline': {
+                                    border: 'none',
+                                },
+                                '& .MuiSvgIcon-root': {
+                                    color: 'white',
+                                },
+                            }}
+                            IconComponent={() => (
+                                <svg
+                                    width="20"
+                                    height="11"
+                                    viewBox="0 0 20 11"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M1 1L10 10L19 1" stroke="#838383" strokeLinecap="round" />
+                                </svg>
+                            )}
+                            value={value}
+                            onChange={(e) => onChange(e.target.value)}
+                        >
+                            {items.map((item, key) => (
+                                <Item
+                                    value={item.currentName}
+                                    key={key}
+                                    onClick={() => {
+                                        setValue('qrCode', item.qrCode);
+                                        setValue('transactionLinkType', item.transactionLinkType);
+                                        setValue('contact', item.value);
+                                    }}
+                                >
+                                    <BoxImage>
+                                        <img src={item.image} alt={item.value} />
+                                    </BoxImage>
+                                    {item.currentName}
+                                </Item>
+                            ))}
+                        </Select>
+                    )}
+                    name={name}
+                    control={control}
+                />
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -94,11 +170,11 @@ const Selector = ({ items = [], name, label }: Props) => {
                         onChange={(e) => onChange(e.target.value)}
                     >
                         {items.map((item, key) => (
-                            <Item value={item.value} key={key}>
+                            <Item value={item.currentName} key={key}>
                                 <BoxImage>
-                                    <img src={item.logo} alt={item.value} />
+                                    <img src={item.image} alt={item.value} />
                                 </BoxImage>
-                                {item.value}
+                                {item.currentName}
                             </Item>
                         ))}
                     </Select>
