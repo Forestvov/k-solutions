@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
+import Title from 'components/profile/title';
+
 import WhiteWrapper from '../white-wrapper';
-import Title from '../title';
-import Counter from '../counter-title';
 import AssetsAndAnalytics from './assets-and-analytics';
 import FinanceIncome from './finance-income';
 import ProfilechartDynamicsArea from './profilechart-dynamics-area';
 import ProfilechartAnalytics from './profilechart-analytics';
+import List from './list';
 
 const TitleStyled = styled(Title)`
     margin: 0 0 30px;
@@ -23,26 +24,10 @@ const Finance = () => {
                     xs: '30px',
                 }}
             >
-                <div>
-                    <TitleStyled>
-                        Активы
-                        <Counter>(9)</Counter>
-                    </TitleStyled>
-                    {/* <List /> */}
-                </div>
+                <List />
                 <AssetsAndAnalytics />
                 <div>
-                    <FinanceIncome
-                        tableData={[]}
-                        tableLabels={[
-                            { id: 'name', label: 'Название компании' },
-                            { id: 'category', label: 'Дата дохода' },
-                            { id: 'country', label: 'Сумма инвестиций' },
-                            { id: 'totalAmount', label: 'Ставка, %' },
-                            { id: 'rank', label: 'Сумма дохода' },
-                        ]}
-                    />
-                    {/* <PaginatorPage /> */}
+                    <FinanceIncome />
                 </div>
                 <div>
                     <TitleStyled>Аналитика KSOLUITONS</TitleStyled>

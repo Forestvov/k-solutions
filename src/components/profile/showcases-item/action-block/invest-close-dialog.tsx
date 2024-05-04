@@ -5,7 +5,9 @@ import Button from '@mui/material/Button';
 
 import Title from '../../title';
 import Wrapper from '../gray-wrapper';
-import InvestFranchiseForm from './invest-franchise-form';
+import InvestForm from './invest-form';
+import InvestStats from 'components/profile/invest-stats';
+import type { CompanyType } from 'types/company';
 
 const Content = styled.div`
     padding: 15px;
@@ -46,7 +48,36 @@ const Description = styled.div`
     color: #868686;
 `;
 
-const InvestCloseDialog = () => {
+const DialogStyled = styled(Dialog)`
+    .css-kmnvkl-MuiPaper-root-MuiDialog-paper {
+        max-width: 100%;
+        border-radius: 18px;
+        box-shadow: none;
+        background: transparent;
+        margin: 20px;
+        ::-webkit-scrollbar {
+            width: 0px;
+            opacity: 0;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    }
+`;
+
+interface Props {
+    myTotal: number;
+    countTransaction: number;
+    companyType: CompanyType;
+}
+
+const InvestCloseDialog = ({ myTotal, countTransaction, companyType }: Props) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -62,23 +93,26 @@ const InvestCloseDialog = () => {
             <Button variant="dark-green" fullWidth onClick={handleClickOpen}>
                 Подать запрос на закрытие
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <DialogStyled open={open} onClose={handleClose}>
                 <Wrapper>
                     <Content>
                         <TitleContent>Запрос на закрытие кредитования</TitleContent>
                         <Box>
                             <Label>Инвестиции</Label>
-                            {/* <InvestStats */}
-                            {/*     sx={{ */}
-                            {/*         marginBottom: '45px', */}
-                            {/*     }} */}
-                            {/* /> */}
-                            <InvestFranchiseForm />
+                            <InvestStats
+                                myTotal={myTotal}
+                                countTransaction={countTransaction}
+                                companyType={companyType}
+                                sx={{
+                                    marginBottom: '45px',
+                                }}
+                            />
+                            <InvestForm companyType={companyType} closeInvest />
                             <Description>Ваш запрос будет рассмотрен в течении 5 дней.</Description>
                         </Box>
                     </Content>
                 </Wrapper>
-            </Dialog>
+            </DialogStyled>
         </>
     );
 };

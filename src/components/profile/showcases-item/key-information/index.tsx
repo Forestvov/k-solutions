@@ -1,18 +1,22 @@
 import Stack from '@mui/material/Stack';
 
-import type { CompanyType } from 'types/company';
-
 import KeyIcon from 'assets/pages/personal/key-info.svg?react';
 
 import Title from '../../title';
 import Wrapper from '../gray-wrapper';
 import List from './list';
 
-interface Props {
-    companyType: CompanyType;
+interface Row {
+    label: string;
+    value: string | number;
 }
 
-const KeyInformation = ({ companyType }: Props) => {
+interface Props {
+    firstRow: Row[];
+    secondRow: Row[];
+}
+
+const KeyInformation = ({ secondRow, firstRow }: Props) => {
     return (
         <Wrapper>
             <Stack spacing={{ lg: '45px', xs: '30px' }}>
@@ -20,7 +24,7 @@ const KeyInformation = ({ companyType }: Props) => {
                     <KeyIcon />
                     <Title>Ключевая информация</Title>
                 </Stack>
-                <List companyType={companyType} />
+                <List firstRow={firstRow} secondRow={secondRow} />
             </Stack>
         </Wrapper>
     );

@@ -16,3 +16,10 @@ export interface IDescription {
     companyInvestDetailTypeDescriptions: string;
     descriptions: string;
 }
+
+export interface ISlide {
+    id: number;
+    companyInvestId: number;
+    file: string;
+    fileType: string;
+}

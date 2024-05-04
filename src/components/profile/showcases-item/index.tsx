@@ -18,6 +18,9 @@ import KeyInformation from './key-information';
 import Info from './info';
 import Awards from './awards';
 import ActionBlock from './action-block';
+import { declensionNum } from 'helpers/declension-num';
+import { fCurrency, fPercent } from 'helpers/number-format';
+import { getRemainDays } from 'helpers/format-time';
 
 const Wrapper = styled.div`
     padding: 0 15px 20px;
@@ -41,66 +44,142 @@ const ShowcasesItem = () => {
     const { id } = useParams();
     const searchParams = useSearchParams();
 
-    const { brief, briefsLoading } = useGetBrief(String(id));
+    const { brief, briefsLoading, mutate } = useGetBrief(String(id));
     const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')));
 
-    console.log('brief', brief);
-    console.log('company', company);
+    const getFinishDay = () => {
+        if (brief && brief.finishDay) {
+            const days = getRemainDays(brief.finishDay);
+            return `${days} ${declensionNum(days, ['день', 'дня', 'дней'])}`;
+        }
+        return '';
+    };
 
-    return (
+    return briefsLoading && companyLoading ? (
+        <SplashScreen />
+    ) : (
         <Wrapper>
-            {briefsLoading && companyLoading ? (
-                <SplashScreen />
-            ) : (
-                company &&
-                brief && (
-                    <>
-                        <Banner
-                            description={company.descriptions}
-                            logo={company.logo}
-                            name={company.companyName}
-                            showClose={company.companyType === 'Franchise' && brief.isActive}
-                        />
+            {company && brief && (
+                <>
+                    <Banner
+                        countTransaction={brief.myCountTransaction}
+                        myTotal={brief.myInvestAmount}
+                        description={company.descriptions}
+                        logo={company.logo}
+                        name={company.companyName}
+                        companyType={company.companyType}
+                        showClose={brief.isActive}
+                    />
+                    <Stack
+                        direction="row"
+                        spacing={{
+                            lg: '60px',
+                            xs: '30px',
+                        }}
+                        sx={{
+                            marginTop: {
+                                sm: '-140px',
+                                xs: '-50px',
+                            },
+                        }}
+                    >
                         <Stack
-                            direction="row"
                             spacing={{
                                 lg: '60px',
                                 xs: '30px',
                             }}
-                            sx={{
-                                marginTop: {
-                                    sm: '-140px',
-                                    xs: '-50px',
-                                },
-                            }}
                         >
-                            <Stack
-                                spacing={{
-                                    lg: '60px',
-                                    xs: '30px',
-                                }}
-                            >
-                                <Slider />
-                                {matchesMobile && <ActionBlock />}
-                                <KeyInformation companyType={company.companyType} />
-                                <Info list={company.companyInvestDetailDtoList} />
-                                <Awards />
-                            </Stack>
-                            {matchesDesktop && (
-                                <Box
-                                    maxWidth={{
-                                        lg: '510px',
-                                        xs: '400px',
-                                    }}
-                                    flex="0 0 auto"
-                                    width="100%"
-                                >
-                                    <ActionBlock />
-                                </Box>
+                            <Slider />
+                            {matchesMobile && (
+                                <ActionBlock
+                                    isActive={brief.isActive}
+                                    countTransaction={brief.myCountTransaction}
+                                    myTotal={brief.myInvestAmount}
+                                    percents={brief.percents}
+                                    finishDay={brief.finishDay}
+                                    amountFinish={brief.amountFinish}
+                                    companyType={company.companyType}
+                                    ranges={brief.ranges}
+                                    amountMin={brief.amountMin}
+                                    amount={brief.pampAmount + brief.myInvestAmount}
+                                    accountCount={brief.accountCount ?? 0}
+                                    updateBrief={mutate}
+                                />
                             )}
+                            <KeyInformation
+                                firstRow={
+                                    brief.companyType === 'Company'
+                                        ? [
+                                              { label: 'Сумма займа', value: fPercent(brief.amountFinish) },
+                                              { label: 'Ставка, % ежемясчный', value: fPercent(brief.percents) },
+                                              { label: 'Минимальная сумма', value: fCurrency(brief.amountMin) },
+                                              {
+                                                  label: 'Срок займа',
+                                                  value: `${brief.ranges} ${declensionNum(brief.ranges, ['месяц', 'месяца', 'месяцев'])}`,
+                                              },
+                                          ]
+                                        : [
+                                              {
+                                                  label: 'Проинвестировано',
+                                                  value: fCurrency(brief.pampAmount + brief.totalInvestedAmount),
+                                              },
+                                              { label: 'Ставка, % ежедневный', value: fPercent(brief.percents) },
+                                              { label: 'Минимальная сумма', value: fCurrency(brief.amountMin) },
+                                              {
+                                                  label: 'Срок займа',
+                                                  value: 9999,
+                                              },
+                                          ]
+                                }
+                                secondRow={
+                                    brief.companyType === 'Company'
+                                        ? [
+                                              { label: 'Собрано', value: fCurrency(brief.pampAmount ?? 0) },
+                                              { label: 'До конца сбора:', value: getFinishDay() },
+                                              { label: 'Количество инвесторов', value: brief.pampInvestors },
+                                              { label: '', value: '' },
+                                          ]
+                                        : [
+                                              {
+                                                  label: 'Количество инвесторов',
+                                                  value: brief.accountCount ?? 0,
+                                              },
+                                              { label: '', value: '' },
+                                              { label: '', value: '' },
+                                              { label: '', value: '' },
+                                          ]
+                                }
+                            />
+                            <Info list={company.companyInvestDetailDtoList} />
+                            <Awards />
                         </Stack>
-                    </>
-                )
+                        {matchesDesktop && (
+                            <Box
+                                maxWidth={{
+                                    lg: '510px',
+                                    xs: '400px',
+                                }}
+                                flex="0 0 auto"
+                                width="100%"
+                            >
+                                <ActionBlock
+                                    isActive={brief.isActive}
+                                    countTransaction={brief.myCountTransaction}
+                                    myTotal={brief.myInvestAmount}
+                                    percents={brief.percents}
+                                    finishDay={brief.finishDay}
+                                    amountFinish={brief.amountFinish}
+                                    companyType={company.companyType}
+                                    ranges={brief.ranges}
+                                    amountMin={brief.amountMin}
+                                    amount={brief.pampAmount + brief.myInvestAmount}
+                                    accountCount={brief.accountCount ?? 0}
+                                    updateBrief={mutate}
+                                />
+                            </Box>
+                        )}
+                    </Stack>
+                </>
             )}
         </Wrapper>
     );

@@ -1,37 +1,26 @@
+import { useState } from 'react';
+
+import styled from '@emotion/styled';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-
-import styled from '@emotion/styled';
-import Title from 'components/profile/title';
-import type { FC } from 'react';
-import { TableHeadCustom } from 'components/shared/table';
-import LogoSrc from 'assets/moc-icon.png';
 import Stack from '@mui/material/Stack';
 
+import { useGetAnaliticHistoryGain } from 'api/brief';
+import type { IHistoryRow } from 'types/brief';
+
+import Title from 'components/profile/title';
+import { TableHeadCustom } from 'components/shared/table';
+
 import Scrollbar from '../../shared/scrollbar';
+import PaginatorPage from 'components/shared/paginator-page';
+import Box from '@mui/material/Box';
 
 const TitleStyled = styled(Title)`
     margin: 0 0 30px;
 `;
-
-interface RowProps {
-    id: string;
-    name: string;
-    flag: string;
-    rank: string;
-    email: string;
-    category: string;
-    avatarUrl: string;
-    totalAmount: number;
-}
-
-interface Props {
-    tableData: RowProps[];
-    tableLabels: any;
-}
 
 const TableStyled = styled.div`
     margin-bottom: 60px;
@@ -50,35 +39,67 @@ const TableStyled = styled.div`
     }
 `;
 
-const FinanceIncome: FC<Props> = ({ tableLabels }) => {
+const TableLabels = [
+    { id: 'name', label: 'Название компании' },
+    { id: 'category', label: 'Дата дохода' },
+    { id: 'country', label: 'Сумма инвестиций' },
+    { id: 'totalAmount', label: 'Ставка, %' },
+    { id: 'rank', label: 'Сумма дохода' },
+];
+
+const FinanceIncome = () => {
+    const [page, setPage] = useState(0);
+    const {
+        data,
+        dataLoading,
+        pageInfo: { pages, currentPage, isLast, isFirst },
+    } = useGetAnaliticHistoryGain({
+        page,
+        pageSize: 4,
+    });
+
     return (
         <div>
             <TitleStyled>Доходы</TitleStyled>
-
-            <TableStyled>
-                <TableContainer
-                    sx={{
-                        overflow: 'unset',
-                        margin: {
-                            xs: '0 -20px',
-                            sm: '0 -30px',
-                        },
-                        width: 'auto',
-                    }}
-                >
-                    <Scrollbar>
-                        <Table sx={{ minWidth: 1100 }}>
-                            <TableHeadCustom headLabel={tableLabels} />
-                            <TableBody>
-                                <EcommerceBestSalesmanRow />
-                                <EcommerceBestSalesmanRow />
-                                <EcommerceBestSalesmanRow />
-                                <EcommerceBestSalesmanRow />
-                            </TableBody>
-                        </Table>
-                    </Scrollbar>
-                </TableContainer>
-            </TableStyled>
+            {!dataLoading && (
+                <TableStyled>
+                    <TableContainer
+                        sx={{
+                            overflow: 'unset',
+                            margin: {
+                                xs: '0 -20px',
+                                sm: '0 -30px',
+                            },
+                            width: 'auto',
+                        }}
+                    >
+                        <Scrollbar>
+                            <Table sx={{ minWidth: 1100 }}>
+                                <TableHeadCustom headLabel={TableLabels} />
+                                <TableBody>
+                                    {data &&
+                                        data.map((row) => (
+                                            <EcommerceBestSalesmanRow {...row} key={row.briefcaseAccountGainId} />
+                                        ))}
+                                </TableBody>
+                            </Table>
+                        </Scrollbar>
+                    </TableContainer>
+                    <Box
+                        sx={{
+                            marginTop: '20px',
+                        }}
+                    >
+                        <PaginatorPage
+                            isFirst={isFirst}
+                            isLast={isLast}
+                            currentPage={currentPage}
+                            countPages={pages}
+                            onChange={setPage}
+                        />
+                    </Box>
+                </TableStyled>
+            )}
         </div>
     );
 };
@@ -91,13 +112,13 @@ export default FinanceIncome;
 //     row: RowProps;
 // }
 
-function EcommerceBestSalesmanRow() {
+function EcommerceBestSalesmanRow({ companyName, logo }: IHistoryRow) {
     return (
         <TableRow>
             <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
                 <Stack direction="row" alignItems="center" spacing="15px">
-                    <img src={LogoSrc} alt="" />
-                    <span>FarmTech</span>
+                    <img src={logo} alt="" />
+                    <span>{companyName}</span>
                 </Stack>
             </TableCell>
 

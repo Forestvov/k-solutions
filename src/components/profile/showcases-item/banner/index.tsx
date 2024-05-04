@@ -4,6 +4,8 @@ import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import type { CompanyType } from 'types/company';
+
 import ActionBlockFranchiseInvestClose from '../../showcases-item/action-block/view/action-block-franchise-invest-close';
 
 import BgSrc from 'assets/pages/personal/bg-single-page.png';
@@ -79,17 +81,8 @@ const CompanyName = styled.div`
     line-height: 60px;
     color: #ffffff;
 
-    @media (min-width: 320px) {
-    }
-
     @media (min-width: 768px) {
         flex-direction: row;
-    }
-
-    @media (min-width: 1024px) {
-    }
-
-    @media (min-width: 1280px) {
     }
 
     @media (min-width: 1668px) {
@@ -133,12 +126,6 @@ const Description = styled.p`
         text-align: left;
     }
 
-    @media (min-width: 1024px) {
-    }
-
-    @media (min-width: 1280px) {
-    }
-
     @media (min-width: 1668px) {
         font-size: 1.625rem;
     }
@@ -154,9 +141,12 @@ interface Props {
     logo: string;
     description: string;
     showClose: boolean;
+    companyType: CompanyType;
+    myTotal: number;
+    countTransaction: number;
 }
 
-const Banner = ({ name, logo, description, showClose }: Props) => {
+const Banner = ({ name, logo, description, showClose, companyType, countTransaction, myTotal }: Props) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('xl'));
 
@@ -191,14 +181,18 @@ const Banner = ({ name, logo, description, showClose }: Props) => {
                         </ImageBox>
                         <CompanyName>
                             {name}
-                            {showClose && <StatusTag>Активный</StatusTag>}
+                            {showClose && companyType === 'Franchise' && <StatusTag>Активный</StatusTag>}
                         </CompanyName>
                     </Stack>
                     <Description>{description}</Description>
                 </Content>
                 {matches && showClose && (
                     <WrapperClose>
-                        <ActionBlockFranchiseInvestClose />
+                        <ActionBlockFranchiseInvestClose
+                            companyType={companyType}
+                            myTotal={myTotal}
+                            countTransaction={countTransaction}
+                        />
                     </WrapperClose>
                 )}
             </Stack>

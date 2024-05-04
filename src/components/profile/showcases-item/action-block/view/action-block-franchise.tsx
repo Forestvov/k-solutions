@@ -1,17 +1,37 @@
-import Button from '@mui/material/Button';
+import InvestProgress from 'components/profile/invest-progress';
+import InvestStats from 'components/profile/invest-stats';
+
 import Wrapper from '../../gray-wrapper';
+import InvestForm from '../invest-form';
 
-import LastInvest from '../last-invest';
+interface Props {
+    amountFinish: number;
+    percents: number;
+    amountMin: number;
+    amount: number;
+    accountCount: number;
+    updateBrief: VoidFunction;
+}
 
-const ActionBlockFranchise = () => {
+const ActionBlockFranchise = ({ percents, amountFinish, amount, accountCount, amountMin, updateBrief }: Props) => {
     return (
         <Wrapper>
-            {/* <InvestProgress stoped sx={{ marginBottom: '30px' }} /> */}
-            {/* <InvestStats sx={{ marginBottom: '110px' }} /> */}
-            <Button variant="dark-green" fullWidth sx={{ marginBottom: '20px' }}>
-                Кредитовать
-            </Button>
-            <LastInvest />
+            <InvestProgress
+                stoped
+                amountFinish={amountFinish}
+                amount={amount}
+                accountCount={accountCount}
+                sx={{ marginBottom: '30px' }}
+            />
+            <InvestStats
+                companyType="Franchise"
+                percents={percents}
+                amountMin={amountMin}
+                ranges={9999}
+                sx={{ marginBottom: '110px' }}
+            />
+
+            <InvestForm updateBrief={updateBrief} companyType="Franchise" />
         </Wrapper>
     );
 };

@@ -38,7 +38,7 @@ const TooltipButton = styled.button`
 
 interface Props {
     title: string;
-    value: string;
+    value: any;
     tooltip?: string;
 }
 

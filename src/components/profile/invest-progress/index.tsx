@@ -76,10 +76,10 @@ const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFin
     return (
         <Box sx={{ width: '100%', ...sx }}>
             <Stack marginBottom={!stoped ? '8px' : '12px'} alignItems="baseline" direction="row" spacing="12px">
-                <Value>{fCurrency(amount)}</Value>
+                <Value>{amount ? fCurrency(amount) : '$0'}</Value>
                 <Label>{stoped ? 'Проинвестировано' : 'Собрано'}</Label>
             </Stack>
-            {!stoped && <Progress valueBuffer={100} variant="buffer" value={percent} />}
+            {!stoped && <Progress valueBuffer={100} variant="buffer" value={amount > amountFinish ? 100 : percent} />}
             <Stack marginTop="6px" direction="row" justifyContent="space-between">
                 <InvestInfo>
                     {accountCount} {declensionNum(accountCount, ['инвестор', 'инвестора', 'инвесторов'])}

@@ -6,14 +6,12 @@ import type { Swiper as SwiperInstance } from 'swiper';
 import { Navigation, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import img1 from 'assets/moc/slide-1.jpg';
-import img2 from 'assets/moc/slide-2.jpg';
-import img3 from 'assets/moc/3.jpg';
-
 import IconArrowLeft from 'assets/arrows/big-arrow-left.svg?react';
 import IconArrowRight from 'assets/arrows/big-arrow-right.svg?react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useGetCompanySlider } from 'api/company';
+import { useSearchParams } from 'hooks/use-search-params';
 
 const paramsSlider: SwiperOptions = {
     slidesPerView: 1,
@@ -32,8 +30,6 @@ const paramsThumbSlider: SwiperOptions = {
         },
     },
 };
-
-const items = [img1, img2, img3];
 
 const Wrapper = styled.div`
     display: grid;
@@ -143,14 +139,17 @@ const Button = styled.button<{ navigate: ButtonProp }>`
     }
 `;
 
-const isImage = (file: string) => file.split('.').pop() === 'jpg';
-
 const Slider = () => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
+    const searchParams = useSearchParams();
+
+    const { slides, slidesEmpty } = useGetCompanySlider(String(searchParams.get('companyId')));
 
     const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(null);
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInstance | null>(null);
+
+    if ((!slides && slidesEmpty) || slides.length === 0) return null;
 
     return (
         <Wrapper>
@@ -163,9 +162,9 @@ const Slider = () => {
                     onSwiper={(swiper) => setSwiperInstance(swiper)}
                     {...paramsSlider}
                 >
-                    {items.map((img, key) => (
+                    {slides.map((img, key) => (
                         <MainSlide key={key}>
-                            <MainImage src={img} alt="" />
+                            <MainImage src={img.file} alt="" />
                         </MainSlide>
                     ))}
                 </Swiper>
@@ -176,8 +175,10 @@ const Slider = () => {
             {!matches && (
                 <Background>
                     <Swiper modules={[Thumbs]} {...paramsThumbSlider} watchSlidesProgress onSwiper={setThumbsSwiper}>
-                        {items.map((file, key) => (
-                            <ThumbSlide key={key}>{isImage(file) ? <ThumbImage src={file} alt="" /> : null}</ThumbSlide>
+                        {slides.map((file, key) => (
+                            <ThumbSlide key={key}>
+                                <ThumbImage src={file.file} alt="" />
+                            </ThumbSlide>
                         ))}
                     </Swiper>
                 </Background>

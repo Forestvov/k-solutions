@@ -1,14 +1,17 @@
 import { useCallback, useState } from 'react';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 import type { CardProps } from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
-import ButtonBase from '@mui/material/ButtonBase';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
-import Iconify from '../../shared/iconify';
 import Chart, { useChart } from '../../shared/chart';
 import CustomPopover, { usePopover } from '../../shared/custom-popover';
+import type { Dayjs } from 'dayjs';
 
 const Title = styled.div`
     font-weight: 700;
@@ -17,15 +20,33 @@ const Title = styled.div`
     color: #212b36;
 `;
 
+const DatePickerStyled = styled(DatePicker)`
+    background: #919eab14;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+
+    fieldset {
+        border: none;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 200px;
+    }
+`;
+
 // ----------------------------------------------------------------------
 
 interface Props extends CardProps {
     title?: string;
+    fromDate: Dayjs | null;
+    toDate: Dayjs | null;
+    setFromDate: (fromDate: Dayjs | null) => void;
+    setToDate: (toDate: Dayjs | null) => void;
     chart: {
         categories?: string[];
         colors?: string[][];
         series: {
-            year: string;
             data: {
                 name: string;
                 data: number[];
@@ -35,7 +56,7 @@ interface Props extends CardProps {
     };
 }
 
-export default function ProfilechartArea({ title, chart, ...other }: Props) {
+export default function ProfilechartArea({ title, chart, toDate, setFromDate, fromDate, setToDate, ...other }: Props) {
     const {
         colors = [
             ['#5BE49B', '#00A76F'],
@@ -78,41 +99,50 @@ export default function ProfilechartArea({ title, chart, ...other }: Props) {
     return (
         <>
             <Box {...other}>
-                <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <Stack
+                    direction={{
+                        sm: 'row',
+                    }}
+                    alignItems={{
+                        sm: 'center',
+                    }}
+                    spacing={{
+                        xs: '16px',
+                        sm: 0,
+                    }}
+                    justifyContent="space-between"
+                >
                     <Title>{title}</Title>
-                    <ButtonBase
-                        onClick={popover.onOpen}
-                        sx={{
-                            pl: 1,
-                            py: 0.5,
-                            pr: 0.5,
-                            borderRadius: 1,
-                            typography: 'subtitle2',
-                            bgcolor: 'background.neutral',
-                        }}
-                    >
-                        {seriesData}
-
-                        <Iconify
-                            width={16}
-                            icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
-                            sx={{ ml: 0.5 }}
-                        />
-                    </ButtonBase>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <Stack
+                            direction={{
+                                sm: 'row',
+                            }}
+                            spacing={{
+                                xs: '16px',
+                            }}
+                        >
+                            <DatePickerStyled
+                                label="Дата от"
+                                value={fromDate}
+                                onChange={setFromDate}
+                                format="DD-MM-YYYY"
+                            />
+                            <DatePickerStyled label="Дата до" value={toDate} onChange={setToDate} format="DD-MM-YYYY" />
+                        </Stack>
+                    </LocalizationProvider>
                 </Stack>
 
                 {series.map((item) => (
                     <Box key={item.year} sx={{ mt: 3, mx: 3 }}>
-                        {item.year === seriesData && (
-                            <Chart
-                                dir="ltr"
-                                type="line"
-                                series={item.data}
-                                options={chartOptions}
-                                width="100%"
-                                height={356}
-                            />
-                        )}
+                        <Chart
+                            dir="ltr"
+                            type="line"
+                            series={item.data}
+                            options={chartOptions}
+                            width="100%"
+                            height={356}
+                        />
                     </Box>
                 ))}
             </Box>

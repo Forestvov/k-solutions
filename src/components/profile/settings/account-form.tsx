@@ -58,7 +58,16 @@ const AccountForm = () => {
                 <Stack spacing="60px" component="form" onSubmit={methods.handleSubmit(onSubmit)}>
                     <Title>Личная информация</Title>
                     <Stack spacing="30px">
-                        <Stack direction="row" spacing="100px" justifyContent="space-between">
+                        <Stack
+                            direction={{
+                                xl: 'row',
+                            }}
+                            spacing={{
+                                xl: '100px',
+                                xs: '30px',
+                            }}
+                            justifyContent="space-between"
+                        >
                             <Input name="name" placeholder="Имя" />
                             <Input name="fio" placeholder="Фамилия" />
                         </Stack>

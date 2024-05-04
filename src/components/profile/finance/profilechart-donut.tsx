@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Chart, { useChart } from 'components/shared/chart';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { fCurrency } from 'helpers/number-format';
 
 // ----------------------------------------------------------------------
 
@@ -68,8 +69,9 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
         },
         tooltip: {
             fillSeriesColor: false,
+            background: '#fff',
             y: {
-                formatter: (value: number) => value,
+                formatter: (value: number) => fCurrency(value),
                 title: {
                     formatter: (seriesName: string) => `${seriesName}`,
                 },
@@ -81,12 +83,12 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
                     size: '88%',
                     labels: {
                         value: {
-                            formatter: (value: number | string) => `$${value}`,
+                            formatter: (value: number | string) => fCurrency(value),
                         },
                         total: {
                             formatter: (w: { globals: { seriesTotals: number[] } }) => {
                                 const sum = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                                return `$${sum}`;
+                                return fCurrency(sum);
                             },
                         },
                     },

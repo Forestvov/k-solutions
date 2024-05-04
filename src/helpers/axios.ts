@@ -55,8 +55,15 @@ export const endpoints = {
         page: 'briefcase/language',
         list: 'briefcase/page',
         hot: 'briefcase-account/page/common',
+        invest: 'briefcase-account/invest',
+        close: 'briefcase-account/send-order-close',
+        myInvest: 'briefcase-account/page/my',
+        analiticActiveByUser: 'briefcase-account/analitic-active-by-user',
+        analiticGainByUser: 'briefcase-account/analitic-gain-by-date',
+        gainHistory: 'briefcase-account/gain-history',
     },
     company: {
         page: 'company-invest',
+        slider: 'company-invest/file/list',
     },
 };

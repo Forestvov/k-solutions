@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import styled from '@emotion/styled';
 import Chart, { useChart } from 'components/shared/chart';
 import Box from '@mui/material/Box';
+import { fCurrency } from 'helpers/number-format';
 
 // ----------------------------------------------------------------------
 
@@ -97,7 +98,7 @@ const ProfilechartRadial: FC<Props> = ({ title, chart, total }) => {
                         show: true,
                         label: 'Всего',
                         formatter: function () {
-                            return total;
+                            return fCurrency(total);
                         },
                     },
                 },

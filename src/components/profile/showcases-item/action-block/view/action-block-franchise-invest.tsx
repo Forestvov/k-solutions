@@ -1,15 +1,12 @@
 import Wrapper from '../../gray-wrapper';
-
-import LastInvest from '../last-invest';
-import InvestFranchiseForm from '../invest-franchise-form';
+import InvestForm from '../invest-form';
 
 const ActionBlockFranchiseInvest = () => {
     return (
         <Wrapper>
             {/* <InvestProgress stoped sx={{ marginBottom: '30px' }} /> */}
             {/* <InvestStats sx={{ marginBottom: '34px' }} /> */}
-            <InvestFranchiseForm />
-            <LastInvest />
+            <InvestForm />
         </Wrapper>
     );
 };
