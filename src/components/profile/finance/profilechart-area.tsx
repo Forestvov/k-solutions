@@ -1,16 +1,13 @@
-import { useCallback, useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import type { CardProps } from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
 import Chart, { useChart } from '../../shared/chart';
-import CustomPopover, { usePopover } from '../../shared/custom-popover';
 import type { Dayjs } from 'dayjs';
 
 const Title = styled.div`
@@ -67,10 +64,6 @@ export default function ProfilechartArea({ title, chart, toDate, setFromDate, fr
         options,
     } = chart;
 
-    const popover = usePopover();
-
-    const [seriesData, setSeriesData] = useState('2019');
-
     const chartOptions = useChart({
         colors: colors.map((colr) => colr[1]),
         fill: {
@@ -88,76 +81,42 @@ export default function ProfilechartArea({ title, chart, toDate, setFromDate, fr
         ...options,
     });
 
-    const handleChangeSeries = useCallback(
-        (newValue: string) => {
-            popover.onClose();
-            setSeriesData(newValue);
-        },
-        [popover]
-    );
-
     return (
-        <>
-            <Box {...other}>
-                <Stack
-                    direction={{
-                        sm: 'row',
-                    }}
-                    alignItems={{
-                        sm: 'center',
-                    }}
-                    spacing={{
-                        xs: '16px',
-                        sm: 0,
-                    }}
-                    justifyContent="space-between"
-                >
-                    <Title>{title}</Title>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <Stack
-                            direction={{
-                                sm: 'row',
-                            }}
-                            spacing={{
-                                xs: '16px',
-                            }}
-                        >
-                            <DatePickerStyled
-                                label="Дата от"
-                                value={fromDate}
-                                onChange={setFromDate}
-                                format="DD-MM-YYYY"
-                            />
-                            <DatePickerStyled label="Дата до" value={toDate} onChange={setToDate} format="DD-MM-YYYY" />
-                        </Stack>
-                    </LocalizationProvider>
-                </Stack>
-
-                {series.map((item) => (
-                    <Box key={item.year} sx={{ mt: 3, mx: 3 }}>
-                        <Chart
-                            dir="ltr"
-                            type="line"
-                            series={item.data}
-                            options={chartOptions}
-                            width="100%"
-                            height={356}
-                        />
-                    </Box>
-                ))}
-            </Box>
-
-            <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 140 }}>
-                {series.map((option) => (
-                    <MenuItem
-                        key={option.year}
-                        selected={option.year === seriesData}
-                        onClick={() => handleChangeSeries(option.year)}
+        <Box {...other}>
+            <Stack
+                direction={{
+                    sm: 'row',
+                }}
+                alignItems={{
+                    sm: 'center',
+                }}
+                spacing={{
+                    xs: '16px',
+                    sm: 0,
+                }}
+                justifyContent="space-between"
+            >
+                <Title>{title}</Title>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <Stack
+                        direction={{
+                            sm: 'row',
+                        }}
+                        spacing={{
+                            xs: '16px',
+                        }}
                     >
-                        {option.year}
-                    </MenuItem>
-                ))}
-            </CustomPopover>
-        </>
+                        <DatePickerStyled label="Дата от" value={fromDate} onChange={setFromDate} format="DD-MM-YYYY" />
+                        <DatePickerStyled label="Дата до" value={toDate} onChange={setToDate} format="DD-MM-YYYY" />
+                    </Stack>
+                </LocalizationProvider>
+            </Stack>
+
+            {series.map((item, idx) => (
+                <Box key={idx} sx={{ mt: 3, mx: 3 }}>
+                    <Chart dir="ltr" type="line" series={item.data} options={chartOptions} width="100%" height={356} />
+                </Box>
+            ))}
+        </Box>
     );
 }

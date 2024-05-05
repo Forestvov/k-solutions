@@ -4,6 +4,7 @@ import InvestProgress from 'components/profile/invest-progress';
 import Wrapper from '../../gray-wrapper';
 import Notification from '../notification';
 import CompanyCreditForm from '../company-credit-form';
+import type { CompanyType } from 'types/company';
 
 interface Props {
     amountFinish: number;
@@ -14,6 +15,7 @@ interface Props {
     amount: number;
     accountCount: number;
     updateBrief: VoidFunction;
+    companyType: CompanyType;
 }
 
 const ActionBlockCompany = ({
@@ -25,6 +27,7 @@ const ActionBlockCompany = ({
     amount,
     accountCount,
     updateBrief,
+    companyType,
 }: Props) => {
     return (
         <Wrapper>
@@ -40,6 +43,7 @@ const ActionBlockCompany = ({
                 percents={percents}
                 amountMin={amountMin}
                 ranges={ranges}
+                companyType={companyType}
                 sx={{ marginBottom: '20px' }}
             />
             <Notification sx={{ marginBottom: '110px' }} />

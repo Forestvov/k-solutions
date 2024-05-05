@@ -50,6 +50,7 @@ const ActionBlock = ({
             )}
             {companyType === 'Company' && (
                 <ActionBlockCompany
+                    companyType="Company"
                     amount={amount}
                     accountCount={accountCount}
                     amountFinish={amountFinish}
