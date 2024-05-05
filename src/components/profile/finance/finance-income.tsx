@@ -52,11 +52,14 @@ const FinanceIncome = () => {
     const {
         data,
         dataLoading,
+        dataEmpty,
         pageInfo: { pages, currentPage, isLast, isFirst },
     } = useGetAnaliticHistoryGain({
         page,
         pageSize: 4,
     });
+
+    if (dataEmpty && !dataLoading) return null;
 
     return (
         <div>

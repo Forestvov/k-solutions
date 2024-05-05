@@ -19,6 +19,9 @@ const Assets = () => {
         }
     };
 
+    // @ts-ignore
+    if (!dataLoading && !data.analiticActiveView.length && !data.analiticActiveGainView.length) return null;
+
     return (
         <Stack
             direction={{
@@ -37,25 +40,29 @@ const Assets = () => {
             ) : (
                 data && (
                     <>
-                        <ProfilechartDonut
-                            title="Активы"
-                            chart={{
-                                series: data.analiticActiveView.map((item) => ({
-                                    label: item.companyName,
-                                    value: item.amount,
-                                })),
-                            }}
-                        />
-                        <ProfilechartRadial
-                            title="Доходы"
-                            total={getSum()}
-                            chart={{
-                                series: data.analiticActiveGainView.map((item) => ({
-                                    label: item.companyType === 'Company' ? 'Компания' : 'Франшиза',
-                                    value: item.amount,
-                                })),
-                            }}
-                        />
+                        {data.analiticActiveView.length > 0 && (
+                            <ProfilechartDonut
+                                title="Активы"
+                                chart={{
+                                    series: data.analiticActiveView.map((item) => ({
+                                        label: item.companyName,
+                                        value: item.amount,
+                                    })),
+                                }}
+                            />
+                        )}
+                        {data.analiticActiveGainView.length > 0 && (
+                            <ProfilechartRadial
+                                title="Доходы"
+                                total={getSum()}
+                                chart={{
+                                    series: data.analiticActiveGainView.map((item) => ({
+                                        label: item.companyType === 'Company' ? 'Компания' : 'Франшиза',
+                                        value: item.amount,
+                                    })),
+                                }}
+                            />
+                        )}
                     </>
                 )
             )}

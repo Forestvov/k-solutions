@@ -23,11 +23,14 @@ const List = () => {
     const {
         briefs,
         briefsLoading,
+        briefsEmpty,
         pageInfo: { currentPage, pages, totalElements, isLast, isFirst },
     } = useGetMyBriefs({
         page,
         pageSize: lg ? 3 : md ? 2 : 1,
     });
+
+    if (!briefsLoading && briefsEmpty) return null;
 
     return (
         <div>
