@@ -5,6 +5,7 @@ import SplashScreen from 'components/shared/splash-screen';
 
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useRouter } from '../hooks/useRouter';
+import { useLocation } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -25,9 +26,9 @@ export default function AuthGuard({ children }: Props) {
 
 function Container({ children }: Props) {
     const router = useRouter();
-
     // @ts-ignore
-    const { authenticated } = useAuthContext();
+    const { authenticated, user } = useAuthContext();
+    const location = useLocation();
 
     const [checked, setChecked] = useState(false);
 
@@ -37,7 +38,15 @@ function Container({ children }: Props) {
         } else {
             setChecked(true);
         }
-    }, [authenticated, router]);
+    }, [authenticated, user, router]);
+
+    useEffect(() => {
+        if (user?.status === 'Not verified YC' && location.pathname !== '/settings') {
+            router.push('/settings?tab=documents');
+        } else if (user?.status === 'Canceled' && location.pathname !== '/settings') {
+            router.push('/settings?tab=documents');
+        }
+    }, [location, user]);
 
     useEffect(() => {
         check();

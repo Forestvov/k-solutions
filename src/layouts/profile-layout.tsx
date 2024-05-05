@@ -8,7 +8,6 @@ import { useScrollToTop } from 'helpers/useScrollToTop';
 
 const ProfileLayout = () => {
     useScrollToTop();
-
     return (
         <Stack
             component="main"

@@ -64,8 +64,6 @@ interface Props {
 export const Form = ({ onClose, content, transactionType }: Props) => {
     const [activeStep, setActiveStep] = useState(0);
 
-    console.log('popup', content);
-
     const methods = useForm<FormState>({
         mode: 'onChange',
         defaultValues: {
@@ -88,8 +86,6 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
     });
 
     useEffect(() => {
-        console.log(content);
-
         if (content) {
             if (content.transactionLinkType === 'Token' && content.transactionStatus === 'Process') {
                 methods.setValue('transactionDate', content.transactionDate);
@@ -130,8 +126,6 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
             }
         }
     }, [content]);
-
-    console.log('watcher:', methods.watch());
 
     const onSubmit = async (data: FormState) => {
         if (data.transactionLinkType === 'Token') {

@@ -17,8 +17,6 @@ const Link = styled(NavLink)`
 const HeaderNavigation = () => {
     const { t } = useTranslation('main-navigation');
 
-    console.log();
-
     return (
         <Stack spacing={{ lg: '40px', xl: '30px', xs: '15px' }} direction={{ xl: 'row' }} component="nav">
             <Link to="/">{t('investoram')}</Link>

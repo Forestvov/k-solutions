@@ -7,3 +7,12 @@ export const upadteAccount = async (data: any) => {
 export const updatePasswordAccount = async (data: any) => {
     await axios.put(endpoints.account.changePassword, data);
 };
+
+interface RequestFile {
+    file: string;
+    typeFile: string;
+}
+
+export const addPhotoForAccount = async (data: RequestFile) => {
+    await axios.put(endpoints.account.addFile, data);
+};

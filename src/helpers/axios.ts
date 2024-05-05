@@ -42,6 +42,7 @@ export const endpoints = {
     account: {
         update: 'account/me',
         changePassword: 'auth/change-password',
+        addFile: 'account/file?file',
     },
     order: {
         root: 'order-contact',

@@ -1,9 +1,13 @@
 import type { FC } from 'react';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
 import WhiteWrapper from '../white-wrapper';
+import Title from '../title';
+
 import AccountForm from './account-form';
 import SecurityForm from './security-form';
 import EntrepreneursForm from './entrepreneurs-form';
@@ -13,8 +17,15 @@ import AccountIcon from 'assets/pages/personal/settings/account.svg?react';
 import DocumentsIcon from 'assets/pages/personal/settings/doccuments.svg?react';
 import UsersIcon from 'assets/pages/personal/settings/users.svg?react';
 import LockIcon from 'assets/pages/personal/settings/lock.svg?react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 type SettingPage = 'account' | 'document' | 'entrepreneurs' | 'security';
+
+const TitleMessage = styled(Title)`
+    margin: 0 0 20px;
+`;
 
 const RenderPage: FC<{ type: SettingPage }> = ({ type }) => {
     switch (type) {
@@ -56,7 +67,9 @@ const Button = styled.button<{ active: boolean }>`
 `;
 
 const Settings = () => {
-    const [page, setPage] = useState<SettingPage>('account');
+    const { user } = useAuthContext();
+    const [searchParams] = useSearchParams();
+    const [page, setPage] = useState<SettingPage>(searchParams.get('tab') ? 'document' : 'account');
 
     return (
         <div>
@@ -98,6 +111,19 @@ const Settings = () => {
                 </Button>
             </Stack>
             <WhiteWrapper>
+                {user?.status === 'Not verified YC' && searchParams.get('tab') && (
+                    <Box
+                        sx={{
+                            padding: {
+                                xl: '30px',
+                                xs: '15px',
+                            },
+                        }}
+                    >
+                        <TitleMessage>Вы не верифицировали свой профиль!</TitleMessage>
+                        <Typography>Пожалуйста, пройдите верификацию!</Typography>
+                    </Box>
+                )}
                 <RenderPage type={page} />
             </WhiteWrapper>
         </div>

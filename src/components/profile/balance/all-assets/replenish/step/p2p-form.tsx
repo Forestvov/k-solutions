@@ -37,7 +37,6 @@ const P2PForm = () => {
     useEffect(() => {
         if (curse && curse.length > 0) {
             const item = curse[0];
-            console.log('item', item);
             setValue('commission', item.commission);
             setValue('staticCurse', item.staticCurse);
         }

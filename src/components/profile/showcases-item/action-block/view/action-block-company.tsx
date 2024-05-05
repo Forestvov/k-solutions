@@ -26,7 +26,6 @@ const ActionBlockCompany = ({
     accountCount,
     updateBrief,
 }: Props) => {
-    console.log(amount);
     return (
         <Wrapper>
             <InvestProgress
