@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
 import TableContainer from '@mui/material/TableContainer';
@@ -34,12 +34,19 @@ const List = () => {
         data,
         dataLoading,
         pageInfo: { pages, currentPage, isLast, isFirst },
+        mutate,
     } = useGetHistoryTransaction({
         page,
         pageSize: 6,
         transactionLinkType: filters.transactionLinkType,
         transactionType: filters.transactionType,
     });
+
+    useEffect(() => {
+        const interval = setInterval(() => mutate(), 5000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const onChangeFilter = (value: Record<string, string>) => {
         setFilters(value);
