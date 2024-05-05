@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputMask from 'react-input-mask';
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 import validateSubscribe from 'helpers/validation/validateSubscribe';
 
+import { addContact } from 'api/order-contact';
+
 interface Inputs {
-    phone: string;
+    phoneNumber: string;
 }
 
 const Input = styled(InputMask)`
@@ -35,45 +39,67 @@ const Input = styled(InputMask)`
 `;
 
 const SubscribeForm = () => {
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<boolean | string>(false);
+    const [load, setLoad] = useState(false);
+
     const resolver = yupResolver(validateSubscribe);
 
-    const { control, handleSubmit } = useForm<Inputs>({
-        // @ts-ignore
+    const { control, handleSubmit, reset } = useForm<Inputs>({
+        mode: 'onChange',
         resolver,
         defaultValues: {
-            phone: '',
+            phoneNumber: '',
         },
     });
 
-    const onSubmit = (data: Inputs) => {
-        alert(JSON.stringify(data));
-    };
+    const onSubmit = async (data: Inputs) => {
+        setSuccess(false);
+        setError(false);
+        setLoad(true);
 
+        try {
+            await addContact(data);
+            setSuccess(true);
+        } catch (e) {
+            // @ts-ignore
+            if (e?.message === 'This number is existed') {
+                setError('Заявка уже отправлена');
+            }
+        }
+
+        await setLoad(false);
+        await reset();
+    };
     return (
-        <Stack
-            direction={{ sm: 'row' }}
-            spacing={{ sm: '30px', xs: '20px' }}
-            alignItems={{ sm: 'center' }}
-            component="form"
-            onSubmit={handleSubmit(onSubmit)}
-        >
-            <Controller
-                name="phone"
-                control={control}
-                rules={{ required: true }}
-                render={({ field: { ref, onChange, value } }) => (
-                    <Input
-                        ref={ref}
-                        mask="+9 (999) 999-99-99"
-                        value={value}
-                        onChange={onChange}
-                        placeholder="Введите номер телефона"
-                    />
-                )}
-            />
-            <Button variant="green" sx={{ width: { sm: '278px' }, flex: '0 0 auto' }}>
-                Заказать Консультацию
-            </Button>
+        <Stack spacing="20px">
+            <Stack
+                direction={{ sm: 'row' }}
+                spacing={{ sm: '30px', xs: '20px' }}
+                alignItems={{ sm: 'center' }}
+                component="form"
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <Controller
+                    name="phoneNumber"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { ref, onChange, value } }) => (
+                        <Input
+                            ref={ref}
+                            mask="+9 (999) 999-99-99"
+                            value={value}
+                            onChange={onChange}
+                            placeholder="Введите номер телефона"
+                        />
+                    )}
+                />
+                <Button variant="green" type="submit" disabled={load} sx={{ width: { sm: '278px' }, flex: '0 0 auto' }}>
+                    Заказать Консультацию
+                </Button>
+            </Stack>
+            {success && <Typography variant="body1">Заявка успешно отправлена</Typography>}
+            {error && <Typography variant="body1">{error}</Typography>}
         </Stack>
     );
 };
