@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 
-const ButtonStyled = styled(Button)<{ active?: string }>`
+const ButtonStyled = styled(Button)<{ active?: boolean }>`
     display: flex;
     align-items: center;
     color: #494949;
@@ -40,13 +40,58 @@ const Wrapper = styled.div`
     margin-bottom: 34px;
 `;
 
-const Filters = () => {
+interface IProps {
+    filters: Record<string, string>;
+    onChangeFilter: (value: Record<string, string>) => void;
+}
+
+const Filters = ({ filters, onChangeFilter }: IProps) => {
     return (
         <Wrapper>
-            <ButtonStyled active="active">Все</ButtonStyled>
-            <ButtonStyled>Вывод</ButtonStyled>
-            <ButtonStyled>Пополнение</ButtonStyled>
-            <ButtonStyled>Активные P2P</ButtonStyled>
+            <ButtonStyled
+                active={!filters.transactionType && !filters.transactionLinkType}
+                onClick={() =>
+                    onChangeFilter({
+                        transactionType: '',
+                        transactionLinkType: '',
+                    })
+                }
+            >
+                Все
+            </ButtonStyled>
+            <ButtonStyled
+                active={filters.transactionType === 'Out'}
+                onClick={() =>
+                    onChangeFilter({
+                        transactionType: 'Out',
+                        transactionLinkType: '',
+                    })
+                }
+            >
+                Вывод
+            </ButtonStyled>
+            <ButtonStyled
+                active={filters.transactionType === 'In'}
+                onClick={() =>
+                    onChangeFilter({
+                        transactionType: 'In',
+                        transactionLinkType: '',
+                    })
+                }
+            >
+                Пополнение
+            </ButtonStyled>
+            <ButtonStyled
+                active={filters.transactionLinkType === 'p2p'}
+                onClick={() =>
+                    onChangeFilter({
+                        transactionLinkType: 'p2p',
+                        transactionType: '',
+                    })
+                }
+            >
+                Активные P2P
+            </ButtonStyled>
         </Wrapper>
     );
 };

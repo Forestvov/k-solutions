@@ -1,26 +1,23 @@
 import { useFormContext } from 'react-hook-form';
 import type { FormState } from '../types';
-import CurrencyForm from './currency-form';
-import P2PStep2 from './p2p-step2';
-import BankCardForm from './bank-card-form';
+import Step2Token from './step-2-token';
+import BankCardForm from 'components/profile/balance/all-assets/replenish/step/bank-card-form';
 
 interface Props {
-    onNext?: VoidFunction;
     onPrev?: VoidFunction;
+    transactionType?: 'In' | 'Out';
 }
 
-const Step2 = ({ onNext, onPrev }: Props) => {
+const Step2 = ({ onPrev, transactionType }: Props) => {
     const { getValues } = useFormContext<FormState>();
 
-    switch (getValues().method) {
-        case 'Tether TRC 20':
-            return <CurrencyForm />;
-        case 'p2p':
-            return <P2PStep2 onNext={onNext} />;
-        case 'Visa/Mastercard':
-            return <BankCardForm onNext={onNext} onPrev={onPrev} />;
+    switch (getValues('transactionLinkType')) {
+        case 'Token':
+            return <Step2Token transactionType={transactionType} />;
+        case 'Visa':
+            return <BankCardForm onPrev={onPrev} />;
         default:
-            return 'Unknown method';
+            return 'Unknown transaction type';
     }
 };
 

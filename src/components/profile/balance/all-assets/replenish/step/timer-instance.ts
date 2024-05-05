@@ -1,5 +1,16 @@
 // @ts-nocheck
 /* eslint-disable */
+function convertDateToUTC(date) {
+    return new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes(),
+        date.getUTCSeconds()
+    );
+}
+
 class CountdownTimer {
     constructor(deadline, cbChange, cbComplete) {
         this._deadline = deadline;
@@ -26,7 +37,8 @@ class CountdownTimer {
         this._timerId = setInterval(this._calc.bind(this), 1000);
     }
     _calc() {
-        const diff = this._deadline - new Date();
+        const date = new Date();
+        const diff = this._deadline - convertDateToUTC(date);
         const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
         const hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0;
         const minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;

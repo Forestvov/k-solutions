@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import Input from '../input';
 
 interface Props {
     onNext?: VoidFunction;
@@ -7,12 +6,9 @@ interface Props {
 
 const DefaultForm = ({ onNext }: Props) => {
     return (
-        <>
-            <Input placeholder="Укажите сумму пополнения" name="amount" prefix="$" />
-            <Button onClick={onNext} variant="dark-green">
-                Подтвердить
-            </Button>
-        </>
+        <Button onClick={onNext} variant="dark-green">
+            Подтвердить
+        </Button>
     );
 };
 

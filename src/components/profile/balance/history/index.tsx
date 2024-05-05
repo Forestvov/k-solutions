@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 import GrayWrapper from '../gray-wrapper';
 import Title from '../../title';
-import Filters from './filters';
 import List from './list';
 
 const TitleStyled = styled(Title)`
@@ -13,7 +12,6 @@ const History = () => {
     return (
         <GrayWrapper>
             <TitleStyled>История Транзакций</TitleStyled>
-            <Filters />
             <List />
         </GrayWrapper>
     );

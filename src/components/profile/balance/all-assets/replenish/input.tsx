@@ -101,6 +101,8 @@ const Prefix = styled.span`
     left: 22px;
     top: 50%;
     transform: translateY(-50%);
+    height: 100%;
+    align-content: center;
 `;
 
 const Label = styled.div`
@@ -111,16 +113,17 @@ const Label = styled.div`
 `;
 
 interface Prop {
-    prefix?: string;
+    prefix?: any;
     name: keyof FormState;
     placeholder: string;
     label?: string;
     mask?: string;
     isBankCard?: boolean;
     type?: HTMLInputTypeAttribute;
+    handleChange?: (value: string) => void;
 }
 
-const Input = ({ placeholder, name, prefix, label, mask, isBankCard, type = 'text' }: Prop) => {
+const Input = ({ placeholder, name, prefix, label, mask, isBankCard, type = 'text', handleChange }: Prop) => {
     const { control } = useFormContext<FormState>();
 
     if (mask) {
@@ -138,7 +141,10 @@ const Input = ({ placeholder, name, prefix, label, mask, isBankCard, type = 'tex
                             mask={mask}
                             value={value}
                             pl={Boolean(value && prefix)}
-                            onChange={onChange}
+                            onChange={(e) => {
+                                onChange(e);
+                                handleChange && handleChange(e.target.value);
+                            }}
                             placeholder={placeholder}
                             error={Boolean(error)}
                             type={type}
@@ -155,17 +161,25 @@ const Input = ({ placeholder, name, prefix, label, mask, isBankCard, type = 'tex
             <Controller
                 render={({ field: { ref, onChange, value }, fieldState: { error } }) => (
                     <Wrapper>
+                        {prefix && Boolean(value) && <Prefix>{prefix}</Prefix>}
                         <InputStyle
                             ref={ref}
-                            value={value}
                             bankCard={!!isBankCard}
                             pl={Boolean(value && prefix)}
-                            onChange={onChange}
                             placeholder={placeholder}
                             error={Boolean(error)}
                             type={type}
+                            value={type === 'number' && value === 0 ? '' : value}
+                            onChange={(event) => {
+                                if (type === 'number') {
+                                    onChange(Number(event.target.value));
+                                    handleChange && handleChange(event.target.value);
+                                } else {
+                                    onChange(event.target.value);
+                                    handleChange && handleChange(event.target.value);
+                                }
+                            }}
                         />
-                        {prefix && value && <Prefix>{prefix}</Prefix>}
                     </Wrapper>
                 )}
                 name={name}

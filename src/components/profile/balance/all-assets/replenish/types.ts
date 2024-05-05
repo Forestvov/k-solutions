@@ -1,6 +1,13 @@
 export interface FormState {
-    amount: string | number;
+    amountIn: string | number;
+    amountOut: string | number;
     priceTotal: string | number;
+    commission: string | number;
+    staticCurse: string | number;
+    transactionId: string | number;
+    transactionDate: string;
+    transactionStatus: string;
+
     method: string;
     bank: string;
     nameCart: string;

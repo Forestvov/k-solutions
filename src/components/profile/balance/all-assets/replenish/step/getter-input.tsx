@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
+import { useFormContext } from 'react-hook-form';
+import { fCurrency } from 'helpers/number-format';
 
 const Label = styled.div`
     font-size: 16px;
@@ -41,6 +43,8 @@ const Value = styled.div`
 `;
 
 const GetterInput = () => {
+    const { watch } = useFormContext();
+
     return (
         <div>
             <Label>Получаете </Label>
@@ -71,7 +75,7 @@ const GetterInput = () => {
             </Item>
             <Stack direction="row" alignItems="baseline" spacing="10px">
                 <Notification>Курс :</Notification>
-                <Value>$1 = 105.98₽</Value>
+                <Value>$1 = {fCurrency(watch().staticCurse, 'ru-RU', 'RUB')}</Value>
             </Stack>
         </div>
     );

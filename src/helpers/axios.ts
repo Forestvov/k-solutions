@@ -69,5 +69,8 @@ export const endpoints = {
     },
     transaction: {
         tokens: 'transaction/get-token-list',
+        add: 'transaction',
+        setMarkAs: 'transaction/set-mark-as-paid',
+        history: 'transaction/history',
     },
 };

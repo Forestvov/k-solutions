@@ -11,6 +11,12 @@ export function fDate(date: string, newFormat?: string) {
         : '';
 }
 
+export function fTime(date: string, newFormat?: string) {
+    const fm = newFormat || 'p';
+
+    return date ? format(new Date(date), fm) : '';
+}
+
 export function fDateCurrent() {
     const fm = 'dd/MM/yyyy';
 

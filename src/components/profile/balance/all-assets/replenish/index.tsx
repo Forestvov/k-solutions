@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import { Form } from './form';
 import StatusPopup from './status-popup';
+import type { IHistory } from 'types/transaction';
+import type { PropsWitchChildren } from '../../../../../global';
 
 const DialogStyled = styled(Dialog)`
     .css-kmnvkl-MuiPaper-root-MuiDialog-paper {
@@ -28,9 +30,12 @@ const DialogStyled = styled(Dialog)`
     }
 `;
 
-const status = false;
+interface IProps {
+    content?: IHistory;
+    transactionType?: 'In' | 'Out';
+}
 
-const Replenish = () => {
+const Replenish = ({ children, content, transactionType }: PropsWitchChildren<IProps>) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -46,15 +51,22 @@ const Replenish = () => {
             <Button
                 onClick={handleClickOpen}
                 sx={{
-                    width: { md: 'auto', xs: '100%' },
-                    background: '#373737',
-                    padding: '16px 55px 15px',
+                    width: {
+                        md: 'auto',
+                        xs: '100%',
+                    },
+                    background: content ? 'transparent !important' : '#373737',
+                    padding: content ? '5px' : '16px 55px 15px',
                 }}
             >
-                Пополнить
+                {children}
             </Button>
             <DialogStyled open={open} onClose={handleClose}>
-                {status ? <StatusPopup onClose={handleClose} /> : <Form onClose={handleClose} />}
+                {content?.transactionStatus === 'Canceled' || content?.transactionStatus === 'Success' ? (
+                    <StatusPopup onClose={handleClose} content={content} />
+                ) : (
+                    <Form content={content} transactionType={transactionType} onClose={handleClose} />
+                )}
             </DialogStyled>
         </>
     );

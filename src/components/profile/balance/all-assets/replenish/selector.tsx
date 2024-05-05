@@ -4,7 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import styled from '@emotion/styled';
-import { IToken } from 'types/transaction';
+import { getCoinPrice } from 'api/coin';
 
 const Item = styled(MenuItem)`
     display: flex;
@@ -38,11 +38,23 @@ interface Props {
     name: string;
     isFirstStep?: boolean;
     label?: string;
-    items: IToken[];
+    items: any[];
 }
 
 const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
-    const { control, setValue } = useFormContext();
+    const { control, setValue, getValues } = useFormContext();
+
+    const setCurrencyCoin = (currentName: string) => {
+        const currentAmount = getValues('amountIn');
+        const coin = currentName === 'TRC20' ? 'TUSD' : currentName;
+        setValue('amountIn', 0);
+        // @ts-ignore
+        getCoinPrice(coin)
+            .then(({ data }) => setValue('amountIn', data.price))
+            .catch(() => {
+                setValue('amountIn', 1);
+            });
+    };
 
     if (isFirstStep) {
         return (
@@ -102,6 +114,7 @@ const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
                                         setValue('qrCode', item.qrCode);
                                         setValue('transactionLinkType', item.transactionLinkType);
                                         setValue('contact', item.value);
+                                        setCurrencyCoin(item.currentName);
                                     }}
                                 >
                                     <BoxImage>
@@ -170,7 +183,15 @@ const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
                         onChange={(e) => onChange(e.target.value)}
                     >
                         {items.map((item, key) => (
-                            <Item value={item.currentName} key={key}>
+                            <Item
+                                value={item.currentName}
+                                key={key}
+                                onClick={() => {
+                                    setValue('qrCode', item.qrCode);
+                                    setValue('transactionLinkType', item.transactionLinkType);
+                                    setValue('contact', item.value);
+                                }}
+                            >
                                 <BoxImage>
                                     <img src={item.image} alt={item.value} />
                                 </BoxImage>

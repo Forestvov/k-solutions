@@ -1,19 +1,24 @@
 import { useFormContext } from 'react-hook-form';
-import type { FormState } from 'components/profile/balance/all-assets/replenish/types';
-import Vaiting from 'components/profile/balance/all-assets/replenish/step/vaiting';
+import type { FormState } from '../types';
+import CurrencyForm from './currency-form';
+import P2PStep2 from './p2p-step2';
+import BankCardForm from './bank-card-form';
 
 interface Props {
-    onClose: VoidFunction;
+    onPrev?: VoidFunction;
+    onSetMarkAsPaid: VoidFunction;
 }
 
-const Step3 = ({ onClose }: Props) => {
+const Step3 = ({ onPrev, onSetMarkAsPaid }: Props) => {
     const { getValues } = useFormContext<FormState>();
 
-    switch (getValues().method) {
+    switch (getValues().transactionLinkType) {
+        case 'Tether TRC 20':
+            return <CurrencyForm />;
         case 'p2p':
-            return <Vaiting onClose={onClose} />;
-        case 'Visa/Mastercard':
-            return <Vaiting onClose={onClose} />;
+            return <P2PStep2 onSetMarkAsPaid={onSetMarkAsPaid} />;
+        case 'Visa':
+            return <BankCardForm onPrev={onPrev} />;
         default:
             return 'Unknown method';
     }

@@ -90,7 +90,13 @@ const Item = ({ label, type, image, value }: ItemProp) => {
     );
 };
 
-const getValue = (data: any): number => data.elements[0].elements[0].elements[1].elements[0].text;
+const getValue = (data: any): number => {
+    try {
+        return data.elements[0].elements[0].elements[1].elements[0].text;
+    } catch {
+        return 0;
+    }
+};
 
 const Well = () => {
     const [list, setList] = useState({

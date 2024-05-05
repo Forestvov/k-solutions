@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { SettingsContext } from './settings-context';
 import axios, { endpoints } from 'helpers/axios';
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+import { SettingsContext } from './settings-context';
+
+import { getCookie, setCookie } from '../cookie';
 
 // ----------------------------------------------------------------------
 
@@ -39,6 +41,15 @@ export function SettingsProvider({ children }: Props) {
             });
         } catch (error) {
             console.error(error);
+        }
+    }, []);
+
+    useEffect(() => {
+        const randomPercent = getCookie('rd');
+
+        if (!randomPercent) {
+            const rd = Math.random() * (40 - 20) + 20;
+            setCookie('rd', String(rd));
         }
     }, []);
 

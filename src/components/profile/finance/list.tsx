@@ -33,7 +33,7 @@ const List = () => {
         <div>
             <TitleStyled>
                 Активы
-                {totalElements > 0 && <Counter>({totalElements})</Counter>}
+                {totalElements > 0 ? <Counter>({totalElements})</Counter> : ' (0)'}
             </TitleStyled>
             <Box
                 sx={{

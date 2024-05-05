@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import type { IHistory } from 'types/transaction';
+import { fCurrency } from 'helpers/number-format';
 
 const Wrapper = styled.div`
     padding: 50px 30px;
@@ -20,10 +22,9 @@ const Wrapper = styled.div`
 `;
 
 interface Props {
+    content: IHistory;
     onClose: VoidFunction;
 }
-
-const success = false;
 
 const Title = styled.div<{ status: 'success' | 'cancel' }>`
     font-weight: 500;
@@ -159,7 +160,7 @@ const Cancel = () => {
     );
 };
 
-const StatusPopup = ({ onClose }: Props) => {
+const StatusPopup = ({ onClose, content }: Props) => {
     return (
         <Wrapper>
             <Stack
@@ -171,7 +172,7 @@ const StatusPopup = ({ onClose }: Props) => {
                     },
                 }}
             >
-                {success ? <Success /> : <Cancel />}
+                {content.transactionStatus !== 'Canceled' ? <Success /> : <Cancel />}
                 <Stack spacing="30px">
                     <Stack
                         direction={{
@@ -185,7 +186,9 @@ const StatusPopup = ({ onClose }: Props) => {
                         justifyContent="space-between"
                     >
                         <Label>Платежная система</Label>
-                        <Value>Visa/Mastercard</Value>
+                        <Value>
+                            {content.transactionLinkType}/{content.currentName}
+                        </Value>
                     </Stack>
                     <Stack
                         direction={{
@@ -199,7 +202,7 @@ const StatusPopup = ({ onClose }: Props) => {
                         justifyContent="space-between"
                     >
                         <Label>Пользователь</Label>
-                        <Value>Евгения Васнецова</Value>
+                        <Value>{content.fio}</Value>
                     </Stack>
                     <Stack
                         direction={{
@@ -213,12 +216,14 @@ const StatusPopup = ({ onClose }: Props) => {
                         justifyContent="space-between"
                     >
                         <Label>ID Транзакции</Label>
-                        <Value>8948fd1510fdA00fG</Value>
+                        <Value>{content.transactionId}</Value>
                     </Stack>
                 </Stack>
                 <Stack direction="row" alignItems="baseline" justifyContent="space-between">
                     <TotalLabel>Сумма</TotalLabel>
-                    <TotalValue status="success">$890</TotalValue>
+                    <TotalValue status={content.transactionStatus === 'Success' ? 'success' : 'cancel'}>
+                        {fCurrency(Number(content.amountOut))}
+                    </TotalValue>
                 </Stack>
                 <Button
                     onClick={onClose}

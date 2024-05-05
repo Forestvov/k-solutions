@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
 
 import Steep from './step';
 import type { FormState } from './types';
+import { addTransaction, setMarkAsTransaction } from 'api/transaction';
+import type { IHistory } from 'types/transaction';
 
 const Wrapper = styled.div`
     padding: 40px 20px;
@@ -55,22 +57,27 @@ const steps = ['ШАГ 1', 'ШАГ 2', 'ШАГ 3'];
 
 interface Props {
     onClose: VoidFunction;
+    content?: IHistory;
+    transactionType?: 'In' | 'Out';
 }
 
-export const Form = ({ onClose }: Props) => {
+export const Form = ({ onClose, content, transactionType }: Props) => {
     const [activeStep, setActiveStep] = useState(0);
 
     const methods = useForm<FormState>({
         mode: 'onChange',
         defaultValues: {
+            transactionLinkType: 'Token',
             currencyToken: '',
             contact: '',
             qrCode: '',
-            transactionLinkType: '',
-
-            method: 'Tether TRC 20',
-            bank: 'СБЕР БАНК',
-            priceTotal: '',
+            amountIn: '',
+            amountOut: '',
+            transactionDate: '',
+            commission: '',
+            staticCurse: '',
+            transactionStatus: '',
+            transactionId: '',
             nameCart: '',
             numberCart: '',
             dateCart: '',
@@ -78,33 +85,129 @@ export const Form = ({ onClose }: Props) => {
         },
     });
 
-    // {
-    //     "currencyToken":"Сбер Банк",
-    //     "contact":"123123",
-    //     "amountIn":"10",
-    //     "transactionType":"In",
-    //     "transactionStatus":"Wait requisites",
-    //     "amountOut":"1000",
-    //     "qrCode":"asdasd",
-    //     "contactFrom":"123:123:123:123",
-    //     "transactionLinkType":"p2p"
-    // }
+    useEffect(() => {
+        console.log(content);
+
+        if (content) {
+            if (content.transactionLinkType === 'Token' && content.transactionStatus === 'Process') {
+                methods.setValue('transactionDate', content.transactionDate);
+                methods.setValue('transactionStatus', content.transactionStatus);
+                methods.setValue('transactionId', content.transactionId);
+                methods.setValue('qrCode', content.qrCode);
+                methods.setValue('contact', content.contact);
+                methods.setValue('currencyToken', content.currentName);
+                methods.setValue('amountOut', content.amountIn);
+                setActiveStep(3);
+            }
+
+            if (content.transactionLinkType === 'Visa' && content.transactionStatus === 'Process') {
+                methods.setValue('transactionLinkType', 'Visa');
+                setActiveStep(3);
+            }
+
+            if (content.transactionLinkType === 'p2p') {
+                methods.setValue('transactionLinkType', 'p2p');
+                if (content.transactionStatus === 'Wait requisites') {
+                    methods.setValue('transactionDate', content.transactionDate);
+                    methods.setValue('transactionStatus', content.transactionStatus);
+                    methods.setValue('transactionId', content.transactionId);
+                    setActiveStep(2);
+                }
+
+                if (content.transactionStatus === 'Marked as paid') {
+                    setActiveStep(3);
+                }
+            }
+        }
+    }, [content]);
 
     console.log('watcher:', methods.watch());
 
     const onSubmit = async (data: FormState) => {
-        console.log(data);
+        if (data.transactionLinkType === 'Token') {
+            try {
+                const newData = {
+                    currencyToken: data.currencyToken,
+                    contact: data.contact,
+                    amountIn: data.amountOut,
+                    amountOut: String(Number(data.amountOut) * Number(data.amountIn)),
+                    qrCode: data.qrCode,
+                    transactionType: transactionType,
+                    transactionLinkType: data.transactionLinkType,
+                };
+
+                await addTransaction(newData).then(({ data }) => {
+                    methods.setValue('transactionDate', data.transactionDate);
+                    methods.setValue('transactionStatus', data.transactionStatus);
+                    methods.setValue('transactionId', data.transactionId);
+                });
+                setActiveStep(3);
+            } catch (e) {
+                console.log(e);
+            }
+        } else if (data.transactionLinkType === 'p2p') {
+            try {
+                const newData = {
+                    currencyToken: data.currencyToken,
+                    amountIn: data.amountIn,
+                    amountOut: data.amountOut,
+                    qrCode: data.qrCode,
+                    transactionType: transactionType,
+                    transactionLinkType: data.transactionLinkType,
+                    contactFrom: `${data.nameCart}::${data.numberCart}`,
+                };
+
+                await addTransaction(newData).then(({ data }) => {
+                    methods.setValue('transactionDate', data.transactionDate);
+                    methods.setValue('transactionStatus', data.transactionStatus);
+                    methods.setValue('transactionId', data.transactionId);
+                });
+                setActiveStep(2);
+            } catch (e) {
+                console.log(e);
+            }
+        } else {
+            try {
+                const newData = {
+                    currencyToken: 'Visa',
+                    amountIn: data.amountIn,
+                    amountOut: data.amountIn,
+                    transactionType: transactionType,
+                    transactionLinkType: data.transactionLinkType,
+                    contactFrom: `${data.nameCart}:${data.dateCart}:${data.numberCart}:${data.cvvCart}`,
+                };
+                await addTransaction(newData);
+                setActiveStep(3);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    };
+
+    const onSetMarkAsPaid = async () => {
+        try {
+            await setMarkAsTransaction(String(methods.getValues('transactionId')));
+            setActiveStep(3);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (
         <Wrapper>
             <TitleContent>
-                <span>Пополнить баланс</span>
+                <span>{transactionType === 'Out' ? 'Вывод баланса' : 'Пополнить баланс'}</span>
                 <div>{steps[activeStep]}</div>
             </TitleContent>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)}>
-                    <Steep step={activeStep} setStep={setActiveStep} onClose={onClose} />
+                    <Steep
+                        transactionType={transactionType}
+                        step={activeStep}
+                        setStep={setActiveStep}
+                        onSetMarkAsPaid={onSetMarkAsPaid}
+                        onClose={onClose}
+                    />
                 </form>
             </FormProvider>
         </Wrapper>

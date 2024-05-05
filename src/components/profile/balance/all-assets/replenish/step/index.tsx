@@ -5,16 +5,19 @@ import errorCatcher from '../error-catcher';
 import { validationSchemaStep1 } from '../validation-schema';
 
 import Step1 from './step-1';
-import Step2 from './step-2';
 import Step3 from './step-3';
+import Step4 from './step-4';
+import Step2 from 'components/profile/balance/all-assets/replenish/step/step-2';
 
 interface Props {
     step: number;
     setStep: (step: number) => void;
     onClose: VoidFunction;
+    onSetMarkAsPaid: VoidFunction;
+    transactionType?: 'In' | 'Out';
 }
 
-const Step: FC<Props> = ({ step, setStep, onClose }) => {
+const Step: FC<Props> = ({ step, setStep, onClose, onSetMarkAsPaid, transactionType }) => {
     const { trigger, getValues, setError } = useFormContext();
 
     const handleNext = async (step: number) => {
@@ -36,9 +39,11 @@ const Step: FC<Props> = ({ step, setStep, onClose }) => {
         case 0:
             return <Step1 onNext={() => handleNext(1)} />;
         case 1:
-            return <Step2 onNext={() => handleNext(2)} onPrev={() => setStep(0)} />;
+            return <Step2 onPrev={() => setStep(0)} transactionType={transactionType} />;
         case 2:
-            return <Step3 onClose={onClose} />;
+            return <Step3 onSetMarkAsPaid={onSetMarkAsPaid} onPrev={() => setStep(0)} />;
+        case 3:
+            return <Step4 onClose={onClose} />;
         default:
             return 'Unknown step';
     }
