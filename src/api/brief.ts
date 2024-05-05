@@ -316,7 +316,7 @@ export function useGetAnaliticHistoryGain({ page, pageSize }: IPagination) {
             },
             dataError: error,
             dataValidating: isValidating,
-            dataEmpty: !isLoading && !data.length,
+            dataEmpty: !isLoading && !data?.page?.content?.length,
             mutate,
         }),
         [error, isLoading, isValidating, mutate, data]
