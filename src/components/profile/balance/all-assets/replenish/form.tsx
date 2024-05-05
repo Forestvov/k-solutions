@@ -64,6 +64,8 @@ interface Props {
 export const Form = ({ onClose, content, transactionType }: Props) => {
     const [activeStep, setActiveStep] = useState(0);
 
+    console.log('popup', content);
+
     const methods = useForm<FormState>({
         mode: 'onChange',
         defaultValues: {
@@ -114,6 +116,14 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     setActiveStep(2);
                 }
 
+                if (content.transactionStatus === 'Process') {
+                    methods.setValue('transactionDate', content.transactionDate);
+                    methods.setValue('transactionStatus', content.transactionStatus);
+                    methods.setValue('transactionId', content.transactionId);
+                    methods.setValue('contact', content.contact);
+                    setActiveStep(2);
+                }
+
                 if (content.transactionStatus === 'Marked as paid') {
                     setActiveStep(3);
                 }
@@ -136,6 +146,7 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     transactionLinkType: data.transactionLinkType,
                 };
 
+                // @ts-ignore
                 await addTransaction(newData).then(({ data }) => {
                     methods.setValue('transactionDate', data.transactionDate);
                     methods.setValue('transactionStatus', data.transactionStatus);

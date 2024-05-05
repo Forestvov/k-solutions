@@ -177,11 +177,16 @@ const AllAssets = () => {
                                 md: '50px',
                                 xs: '20px',
                             }}
+                            sx={{
+                                '> div': {
+                                    alignItems: 'flex-end',
+                                },
+                            }}
                             textAlign={{
                                 md: 'right',
                             }}
                             alignItems={{
-                                md: 'flex-end',
+                                md: 'end !important',
                             }}
                         >
                             <ItemInfo

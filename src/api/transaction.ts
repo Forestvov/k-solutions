@@ -35,7 +35,7 @@ export function useGetHistoryTransaction({ page, pageSize, transactionType, tran
             {
                 page,
                 size: pageSize,
-                sortDir: 'ASC',
+                sortDir: 'DESC',
                 criteria,
             },
             'POST',
