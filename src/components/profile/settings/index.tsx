@@ -67,6 +67,7 @@ const Button = styled.button<{ active: boolean }>`
 `;
 
 const Settings = () => {
+    // @ts-ignore
     const { user } = useAuthContext();
     const [searchParams] = useSearchParams();
     const [page, setPage] = useState<SettingPage>(searchParams.get('tab') ? 'document' : 'account');

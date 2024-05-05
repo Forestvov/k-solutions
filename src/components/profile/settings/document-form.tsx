@@ -104,6 +104,8 @@ const DocumentForm = () => {
     const [fileMain, setFileMain] = useState<File | null>(null);
     const [fileBack, setFileBack] = useState<File | null>(null);
 
+    const [success, setSetSuccess] = useState(false);
+
     const onChangeFile = (event: File | null, type: 'MAIN' | 'BACK') => {
         // 10mb > bite = 10 * 1024 * 1024 = 10485760
         if (type === 'MAIN' && event && event.size <= 10485760) {
@@ -117,16 +119,21 @@ const DocumentForm = () => {
 
     const onSubmitPhotos = async () => {
         if (fileBack && fileMain) {
-            const fileMainBase64 = await toBase64(fileMain);
-            const fileBackBase64 = await toBase64(fileBack);
-            await addPhotoForAccount({
-                file: fileMainBase64,
-                typeFile: 'PHOTO.MAIN',
-            });
-            await addPhotoForAccount({
-                file: fileBackBase64,
-                typeFile: 'PHOTO.MAIN',
-            });
+            try {
+                const fileMainBase64 = await toBase64(fileMain);
+                const fileBackBase64 = await toBase64(fileBack);
+                await addPhotoForAccount({
+                    file: fileMainBase64,
+                    typeFile: 'PHOTO.MAIN',
+                });
+                await addPhotoForAccount({
+                    file: fileBackBase64,
+                    typeFile: 'PHOTO.BACK',
+                });
+                setSetSuccess(true);
+            } catch (e) {
+                console.log(e);
+            }
         }
     };
 
@@ -276,7 +283,22 @@ const DocumentForm = () => {
                     </Stack>
                 )}
 
-                {user?.status === 'Canceled' && (
+                {(user?.status === 'Process' || success) && (
+                    <Stack spacing="30px">
+                        <Stack spacing="60px">
+                            <Stack
+                                spacing="23px"
+                                sx={{
+                                    maxWidth: '1200px',
+                                }}
+                            >
+                                <Title>Пожалуйста, ожидайте верификации</Title>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                )}
+
+                {user?.status === 'Canceled' && !success && (
                     <Stack spacing="30px">
                         <Stack spacing="60px">
                             <Stack
@@ -289,7 +311,8 @@ const DocumentForm = () => {
                                     Вы не прошли верификацию!
                                     <br />
                                     <br />
-                                    Для прохождения идентификации, пожалуйста, загрузите фото паспорта повторно.
+                                    Пожалуйста загрузите фото повтороно, чтобы получить доступ ко всем возможностям
+                                    платформы, на данный момент Ваш запрос отклонен !
                                 </Title>
                                 <Typography variant="body1">
                                     На фотографии (скане) паспорта обязательно должны присутствовать первый разворот

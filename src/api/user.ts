@@ -14,5 +14,5 @@ interface RequestFile {
 }
 
 export const addPhotoForAccount = async (data: RequestFile) => {
-    await axios.put(endpoints.account.addFile, data);
+    await axios.post(endpoints.account.addFile, data);
 };
