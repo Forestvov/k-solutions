@@ -83,7 +83,8 @@ const Form = () => {
                                 md: 'row',
                             }}
                             spacing={{
-                                xs: '30px',
+                                xs: '20px',
+                                md: '30px',
                             }}
                         >
                             <ToRegister />
