@@ -18,6 +18,7 @@ import SettingsPage from './ui/settings-page';
 import GuestGuard from 'context/auth/guard/guest-guard';
 import VerifyPage from './ui/verify-page';
 import VerifyByIdPage from './ui/verify-by-id-page';
+import GraphicsPage from './ui/graphics-page';
 
 export const appRouter = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/settings',
                 element: <SettingsPage />,
+            },
+            {
+                path: '/graphics',
+                element: <GraphicsPage />,
             },
         ],
     },

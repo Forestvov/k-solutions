@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
+import { HelmetProvider } from 'react-helmet-async';
 
 import '@fontsource/inter/200.css';
 import '@fontsource/inter/300.css';
@@ -20,8 +21,10 @@ const rootElement = document.getElementById('k-solutions');
 const root = ReactDOM.createRoot(rootElement!);
 
 root.render(
-    <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-    </ThemeProvider>
+    <HelmetProvider>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <App />
+        </ThemeProvider>
+    </HelmetProvider>
 );
