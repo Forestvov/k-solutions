@@ -15,14 +15,6 @@ import { fCurrency, fPercent } from 'helpers/number-format';
 import { getCurrency } from 'api/balance';
 import { getCookie } from 'context/settings/cookie';
 
-const getValue = (data: any): number => {
-    try {
-        return data.elements[0].elements[0].elements[1].elements[0].text;
-    } catch {
-        return 0;
-    }
-};
-
 const generateLocale = (locale: CurrencyType) => {
     switch (locale) {
         case 'dollar':
@@ -77,10 +69,10 @@ const AllAssets = () => {
         setDemoCurrency(demo ?? '0');
 
         getCurrency('R01235').then((data) => {
-            setCurrencyRubValue(getValue(data));
+            setCurrencyRubValue(data.replace(',', '.'));
         });
         getCurrency('R01239').then((data) => {
-            setCurrencyEuroValue(getValue(data));
+            setCurrencyEuroValue(data.replace(',', '.'));
         });
     }, []);
 

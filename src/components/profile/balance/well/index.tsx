@@ -90,14 +90,6 @@ const Item = ({ label, type, image, value }: ItemProp) => {
     );
 };
 
-const getValue = (data: any): number => {
-    try {
-        return data.elements[0].elements[0].elements[1].elements[0].text;
-    } catch {
-        return 0;
-    }
-};
-
 const Well = () => {
     const [list, setList] = useState({
         usd: 0,
@@ -117,31 +109,31 @@ const Well = () => {
         getCurrency('R01235').then((data) => {
             setList((prevState) => ({
                 ...prevState,
-                usd: getValue(data),
+                usd: data,
             }));
         });
         getCurrency('R01239').then((data) => {
             setList((prevState) => ({
                 ...prevState,
-                euro: getValue(data),
+                euro: data,
             }));
         });
         getCurrency('R01035').then((data) => {
             setList((prevState) => ({
                 ...prevState,
-                funt: getValue(data),
+                funt: data,
             }));
         });
         getCurrency('R01820').then((data) => {
             setList((prevState) => ({
                 ...prevState,
-                yup: getValue(data),
+                yup: data,
             }));
         });
         getCurrency('R01375').then((data) => {
             setList((prevState) => ({
                 ...prevState,
-                chine: getValue(data),
+                chine: data,
             }));
         });
     }, []);
