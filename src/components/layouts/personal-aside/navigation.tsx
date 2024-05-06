@@ -7,7 +7,7 @@ import ResearchIcon from 'assets/pages/personal/navigation/research.svg?react';
 import TeamsIcon from 'assets/pages/personal/navigation/teams.svg?react';
 import TextIcon from 'assets/pages/personal/navigation/text.svg?react';
 import UserIcon from 'assets/pages/personal/navigation/user.svg?react';
-import GraphicsIcon from 'assets/pages/personal/navigation/graphics.svg?react';
+// import GraphicsIcon from 'assets/pages/personal/navigation/graphics.svg?react';
 
 const Link = styled(NavLink)`
     width: 36px;
@@ -54,9 +54,9 @@ const Navigation = () => {
             <Link to="/settings">
                 <UserIcon />
             </Link>
-            <Link to="/graphics">
-                <GraphicsIcon />
-            </Link>
+            {/* <Link to="/graphics"> */}
+            {/*     <GraphicsIcon /> */}
+            {/* </Link> */}
         </Stack>
     );
 };

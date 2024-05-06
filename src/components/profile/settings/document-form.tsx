@@ -152,7 +152,7 @@ const DocumentForm = () => {
                     xs: '60px',
                 }}
             >
-                {user?.status === 'Not verified YC' && (
+                {user?.status === 'Not verified YC' && !success && (
                     <Stack spacing="30px">
                         <Stack spacing="60px">
                             <Stack
@@ -292,7 +292,7 @@ const DocumentForm = () => {
                                     maxWidth: '1200px',
                                 }}
                             >
-                                <Title>Пожалуйста, ожидайте верификации</Title>
+                                <Title>Пожалуйста, ожидайте верификации, ваша заявка в обработке.</Title>
                             </Stack>
                         </Stack>
                     </Stack>
