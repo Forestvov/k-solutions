@@ -7,6 +7,7 @@ import ProfileLayout from 'layouts/profile-layout';
 import AuthGuard from 'context/auth/guard/auth-guard';
 
 import HomePage from './ui/home-page';
+import InvestorsPage from './ui/investors-page';
 import PersonalPage from './ui/personal-page';
 import LoginPage from './ui/login-page';
 import RegisterPage from './ui/register-page';
@@ -54,6 +55,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage />,
+            },
+            {
+                path: '/investors',
+                element: <InvestorsPage />,
             },
         ],
     },
