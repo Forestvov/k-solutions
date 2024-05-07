@@ -65,8 +65,11 @@ const Step2Token = ({ transactionType }: Props) => {
         if (data && data.length > 0) {
             const item = data[0];
             setValue('qrCode', item.qrCode);
-            setValue('contact', item.value);
             setValue('currencyToken', item.currentName);
+
+            if (transactionType === 'In') {
+                setValue('contact', item.value);
+            }
 
             if (PAYMENT_BANK[item.currentName]) {
                 setValue('amountIn', watch().amountOut);
@@ -96,8 +99,9 @@ const Step2Token = ({ transactionType }: Props) => {
             >
                 <Stack spacing="30px">
                     <Selector name="currencyToken" isFirstStep items={data} />
+                    {transactionType === 'Out' && <Input placeholder="Укажите адрес кошелька" name="contact" />}
                     <Input
-                        placeholder="Укажите сумму пополнения"
+                        placeholder={transactionType === 'In' ? 'Укажите сумму пополнения' : 'Укажите сумму вывода'}
                         name="amountOut"
                         type="number"
                         prefix={watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH' ? '$' : ''}

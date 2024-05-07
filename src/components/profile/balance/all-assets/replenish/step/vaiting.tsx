@@ -6,6 +6,7 @@ import TitleStep from './title-step';
 
 interface Props {
     onClose: VoidFunction;
+    transactionType?: 'In' | 'Out';
 }
 
 const SvgBox = styled.div`
@@ -25,7 +26,7 @@ const SvgBox = styled.div`
     }
 `;
 
-const Vaiting = ({ onClose }: Props) => {
+const Vaiting = ({ onClose, transactionType }: Props) => {
     return (
         <Stack
             spacing="60px"
@@ -34,7 +35,11 @@ const Vaiting = ({ onClose }: Props) => {
                 maxWidth: '586px',
             }}
         >
-            <TitleStep>Проводится проверка оплаты, пожалуйста подождите</TitleStep>
+            <TitleStep>
+                {transactionType === 'Out'
+                    ? 'Проводится вывод средств, пожалуйста подождите'
+                    : 'Проводится проверка оплаты, пожалуйста подождите'}
+            </TitleStep>
             <SvgBox>
                 <svg width="132" height="131" viewBox="0 0 132 131" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_345_16626)">

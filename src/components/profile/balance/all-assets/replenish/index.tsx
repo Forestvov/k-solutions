@@ -63,7 +63,7 @@ const Replenish = ({ children, content, transactionType }: PropsWitchChildren<IP
             </Button>
             <DialogStyled open={open} onClose={handleClose}>
                 {content?.transactionStatus === 'Canceled' || content?.transactionStatus === 'Success' ? (
-                    <StatusPopup onClose={handleClose} content={content} />
+                    <StatusPopup onClose={handleClose} transactionType={transactionType} content={content} />
                 ) : (
                     <Form content={content} transactionType={transactionType} onClose={handleClose} />
                 )}

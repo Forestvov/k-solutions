@@ -105,6 +105,7 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
 
             if (content.transactionLinkType === 'p2p') {
                 methods.setValue('transactionLinkType', 'p2p');
+
                 if (content.transactionStatus === 'Wait requisites') {
                     methods.setValue('transactionDate', content.transactionDate);
                     methods.setValue('transactionStatus', content.transactionStatus);
@@ -117,7 +118,12 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     methods.setValue('transactionStatus', content.transactionStatus);
                     methods.setValue('transactionId', content.transactionId);
                     methods.setValue('contact', content.contact);
-                    setActiveStep(2);
+
+                    if (transactionType === 'Out') {
+                        setActiveStep(3);
+                    } else {
+                        setActiveStep(2);
+                    }
                 }
 
                 if (content.transactionStatus === 'Marked as paid') {
@@ -146,6 +152,7 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     methods.setValue('transactionStatus', data.transactionStatus);
                     methods.setValue('transactionId', data.transactionId);
                 });
+
                 setActiveStep(3);
             } catch (e) {
                 console.log(e);
@@ -154,8 +161,8 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
             try {
                 const newData = {
                     currencyToken: data.currencyToken,
-                    amountIn: data.amountIn,
-                    amountOut: data.amountOut,
+                    amountIn: transactionType === 'Out' ? data.amountOut : data.amountIn,
+                    amountOut: transactionType === 'Out' ? data.amountIn : data.amountOut,
                     qrCode: data.qrCode,
                     transactionType: transactionType,
                     transactionLinkType: data.transactionLinkType,
@@ -167,7 +174,11 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     methods.setValue('transactionStatus', data.transactionStatus);
                     methods.setValue('transactionId', data.transactionId);
                 });
-                setActiveStep(2);
+                if (transactionType === 'Out') {
+                    setActiveStep(3);
+                } else {
+                    setActiveStep(2);
+                }
             } catch (e) {
                 console.log(e);
             }
@@ -197,6 +208,8 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
             console.log(e);
         }
     };
+
+    console.log(methods.watch());
 
     return (
         <Wrapper>

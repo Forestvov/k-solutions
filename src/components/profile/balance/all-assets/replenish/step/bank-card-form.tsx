@@ -1,33 +1,18 @@
-// import { useFormContext } from 'react-hook-form';
-// import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 import TotalIcon from 'assets/payer/card-total.svg?react';
 
-// import type { FormState } from '../types';
 import Description from './description';
 import Input from 'components/profile/balance/all-assets/replenish/input';
 
 interface Props {
     onPrev?: VoidFunction;
+    transactionType?: 'In' | 'Out';
 }
 
-// const Label = styled.div`
-//     font-size: 14px;
-//     line-height: 20px;
-//     color: #667085;
-// `;
-//
-// const Total = styled.div`
-//     font-weight: 500;
-//     font-size: 18px;
-//     line-height: 28px;
-//     color: #101828;
-// `;
-
-const BankCardForm = ({ onPrev }: Props) => {
+const BankCardForm = ({ onPrev, transactionType }: Props) => {
     return (
         <Box
             sx={{
@@ -46,7 +31,7 @@ const BankCardForm = ({ onPrev }: Props) => {
                         <Input
                             isBankCard
                             placeholder="00.00"
-                            label="Сумма пополнения"
+                            label={transactionType === 'Out' ? 'Сумма вывода' : 'Сумма пополнения'}
                             prefix="$"
                             type="number"
                             name="amountIn"
@@ -127,7 +112,7 @@ const BankCardForm = ({ onPrev }: Props) => {
                         fullWidth
                         type="submit"
                     >
-                        Оплатить
+                        {transactionType === 'Out' ? 'Вывести' : 'Оплатить'}
                     </Button>
                 </Stack>
                 <Description>

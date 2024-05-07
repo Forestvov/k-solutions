@@ -16,6 +16,7 @@ import P2PForm from 'components/profile/balance/all-assets/replenish/step/p2p-fo
 
 interface Props {
     onNext?: VoidFunction;
+    transactionType?: 'In' | 'Out';
 }
 
 const Item = styled(MenuItem)`
@@ -55,7 +56,7 @@ const TypeTransaction = [
     },
 ];
 
-const Step1: FC<Props> = ({ onNext }) => {
+const Step1: FC<Props> = ({ onNext, transactionType }) => {
     const { watch, control } = useFormContext<FormState>();
 
     const values = watch();
@@ -135,7 +136,11 @@ const Step1: FC<Props> = ({ onNext }) => {
                         name="transactionLinkType"
                         control={control}
                     />
-                    {values.transactionLinkType === 'p2p' ? <P2PForm /> : <DefaultForm onNext={onNext} />}
+                    {values.transactionLinkType === 'p2p' ? (
+                        <P2PForm transactionType={transactionType} />
+                    ) : (
+                        <DefaultForm onNext={onNext} />
+                    )}
                 </Stack>
             </Box>
         </Box>

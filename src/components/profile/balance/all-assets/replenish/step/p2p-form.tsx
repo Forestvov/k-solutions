@@ -11,7 +11,11 @@ import GetterInput from './getter-input';
 import { PAYMENT_BANK } from './data';
 import { useFormContext } from 'react-hook-form';
 
-const P2PForm = () => {
+interface Props {
+    transactionType?: 'In' | 'Out';
+}
+
+const P2PForm = ({ transactionType }: Props) => {
     const { setValue, watch } = useFormContext();
 
     const { data } = useGetTransactions('p2p');
@@ -55,7 +59,7 @@ const P2PForm = () => {
                 name="amountIn"
                 handleChange={(e) => setValue('amountOut', Number(e) / watch().staticCurse)}
             />
-            <GetterInput />
+            {transactionType !== 'Out' && <GetterInput />}
             <Input
                 placeholder="00.00"
                 label="Сумма $"
@@ -66,7 +70,7 @@ const P2PForm = () => {
             />
             <div>
                 <Button variant="dark-green" type="submit" fullWidth>
-                    Перейти к оплате
+                    {transactionType === 'Out' ? 'Перейти к выводу' : 'Перейти к оплате'}
                 </Button>
                 <Description>
                     Выплата производится в автоматическом режиме по регламенту пользовательского соглашения.

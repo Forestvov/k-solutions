@@ -201,7 +201,7 @@ const AllAssets = () => {
                                 sx={{ marginTop: { md: 'auto !important', xs: '30px !important' } }}
                             >
                                 <Replenish transactionType="In">Пополнить</Replenish>
-                                {/* <Replenish transactionType="Out">Вывести</Replenish> */}
+                                <Replenish transactionType="Out">Вывести</Replenish>
                             </Stack>
                         </Stack>
                     </Stack>

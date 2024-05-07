@@ -15,7 +15,7 @@ const Step2 = ({ onPrev, transactionType }: Props) => {
         case 'Token':
             return <Step2Token transactionType={transactionType} />;
         case 'Visa':
-            return <BankCardForm onPrev={onPrev} />;
+            return <BankCardForm onPrev={onPrev} transactionType={transactionType} />;
         default:
             return 'Unknown transaction type';
     }

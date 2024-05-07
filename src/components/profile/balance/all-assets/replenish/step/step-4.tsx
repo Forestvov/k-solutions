@@ -5,18 +5,23 @@ import CurrencyForm from 'components/profile/balance/all-assets/replenish/step/c
 
 interface Props {
     onClose: VoidFunction;
+    transactionType?: 'In' | 'Out';
 }
 
-const Step4 = ({ onClose }: Props) => {
+const Step4 = ({ onClose, transactionType }: Props) => {
     const { getValues } = useFormContext<FormState>();
 
     switch (getValues().transactionLinkType) {
         case 'Token':
-            return <CurrencyForm />;
+            return transactionType === 'Out' ? (
+                <Vaiting transactionType={transactionType} onClose={onClose} />
+            ) : (
+                <CurrencyForm />
+            );
         case 'p2p':
-            return <Vaiting onClose={onClose} />;
+            return <Vaiting transactionType={transactionType} onClose={onClose} />;
         case 'Visa':
-            return <Vaiting onClose={onClose} />;
+            return <Vaiting transactionType={transactionType} onClose={onClose} />;
         default:
             return 'Unknown method';
     }

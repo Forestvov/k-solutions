@@ -21,9 +21,12 @@ const Wrapper = styled.div`
     }
 `;
 
+export type TransactionType = 'In' | 'Out';
+
 interface Props {
     content: IHistory;
     onClose: VoidFunction;
+    transactionType?: TransactionType;
 }
 
 const Title = styled.div<{ status: 'success' | 'cancel' }>`
@@ -112,7 +115,7 @@ const TotalValue = styled.div<{ status: 'success' | 'cancel' }>`
     `};
 `;
 
-const Success = () => {
+const Success = ({ type }: { type?: TransactionType }) => {
     return (
         <Stack spacing="15px" alignItems="center">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,12 +136,12 @@ const Success = () => {
                     fill="white"
                 />
             </svg>
-            <Title status="success">Оплата прошла успешно</Title>
+            <Title status="success">{type === 'Out' ? 'Вывод прошел успешно' : 'Оплата прошла успешно'}</Title>
         </Stack>
     );
 };
 
-const Cancel = () => {
+const Cancel = ({ type }: { type?: TransactionType }) => {
     return (
         <Stack spacing="15px" alignItems="center">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,12 +158,12 @@ const Cancel = () => {
                     fill="white"
                 />
             </svg>
-            <Title status="cancel">Оплата не прошла</Title>
+            <Title status="cancel">{type === 'Out' ? 'Вывод не прошел' : 'Оплата не прошла'}</Title>
         </Stack>
     );
 };
 
-const StatusPopup = ({ onClose, content }: Props) => {
+const StatusPopup = ({ onClose, content, transactionType }: Props) => {
     return (
         <Wrapper>
             <Stack
@@ -172,7 +175,11 @@ const StatusPopup = ({ onClose, content }: Props) => {
                     },
                 }}
             >
-                {content.transactionStatus !== 'Canceled' ? <Success /> : <Cancel />}
+                {content.transactionStatus !== 'Canceled' ? (
+                    <Success type={transactionType} />
+                ) : (
+                    <Cancel type={transactionType} />
+                )}
                 <Stack spacing="30px">
                     <Stack
                         direction={{
@@ -222,7 +229,9 @@ const StatusPopup = ({ onClose, content }: Props) => {
                 <Stack direction="row" alignItems="baseline" justifyContent="space-between">
                     <TotalLabel>Сумма</TotalLabel>
                     <TotalValue status={content.transactionStatus === 'Success' ? 'success' : 'cancel'}>
-                        {fCurrency(Number(content.amountOut))}
+                        {content.transactionType === 'In'
+                            ? fCurrency(Number(content.amountOut))
+                            : fCurrency(Number(content.amountIn))}
                     </TotalValue>
                 </Stack>
                 <Button

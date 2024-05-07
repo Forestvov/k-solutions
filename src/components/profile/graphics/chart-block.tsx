@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import Chart, { useChart } from '../../shared/chart';
 import type { ApexOptions } from 'apexcharts';
+import Scrollbar from 'components/shared/scrollbar';
 
 const Title = styled.div`
     font-weight: 700;
@@ -37,7 +38,7 @@ export default function ChartBlock({ title, chart, ...other }: Props) {
         colors,
         plotOptions: {
             bar: {
-                columnWidth: '16%',
+                columnWidth: '20%',
             },
         },
         fill: {
@@ -63,7 +64,15 @@ export default function ChartBlock({ title, chart, ...other }: Props) {
     });
 
     return (
-        <Box {...other}>
+        <Box
+            {...other}
+            sx={{
+                margin: {
+                    xs: '0 -10px',
+                    md: '0',
+                },
+            }}
+        >
             <Box
                 sx={{
                     paddingLeft: '15px',
@@ -76,7 +85,19 @@ export default function ChartBlock({ title, chart, ...other }: Props) {
                 <Title>{title}</Title>
             </Box>
 
-            <Chart dir="ltr" type="line" series={series} options={chartOptions} width="100%" height={364} />
+            <Scrollbar
+                sx={{
+                    overflowY: 'hidden',
+                }}
+            >
+                <Box
+                    sx={{
+                        minWidth: '500px',
+                    }}
+                >
+                    <Chart dir="ltr" type="line" series={series} options={chartOptions} width="100%" height={364} />
+                </Box>
+            </Scrollbar>
         </Box>
     );
 }
