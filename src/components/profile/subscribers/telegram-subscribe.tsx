@@ -6,7 +6,7 @@ import Wrapper from './wrapper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-const LINK = 'https://t.me/figma2html';
+const LINK = 'https://t.me/ksolutions';
 
 const TitleComponent = styled(Title)`
     margin: 0 0 12px 0;
