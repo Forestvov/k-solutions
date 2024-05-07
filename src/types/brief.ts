@@ -19,6 +19,7 @@ export interface IBrief {
     briefcaseId: number;
     company_invest_id: number;
     image: string;
+    briefcaseImage: string;
     lang: string;
     descriptions: string;
     logo: string;

@@ -30,9 +30,10 @@ const Link = styled(NavLink).bind(Button)`
 
 interface Prop {
     card: IBrief;
+    hideStats?: boolean;
 }
 
-const InvestCard = ({ card }: Prop) => {
+const InvestCard = ({ card, hideStats }: Prop) => {
     if (!card) return null;
 
     const {
@@ -40,7 +41,6 @@ const InvestCard = ({ card }: Prop) => {
         logo,
         companyName,
         amount,
-        image,
         amountFinish,
         accountCount,
         finishDay,
@@ -49,11 +49,12 @@ const InvestCard = ({ card }: Prop) => {
         briefcaseId,
         companyInvestId,
         companyType,
+        briefcaseImage,
     } = card;
 
     return (
         <Item>
-            <Image image={image} />
+            <Image image={briefcaseImage} />
             <Stack
                 sx={{
                     padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },
@@ -63,13 +64,15 @@ const InvestCard = ({ card }: Prop) => {
             >
                 <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
                 <Description name={companyName} status={isActive} text={descriptions} />
-                <Box sx={{ marginBottom: 'auto' }}>
-                    <InvestStats
-                        amountFinish={amountFinish}
-                        finishDay={finishDay}
-                        companyType={companyType}
-                        percents={percents}
-                    />
+                <Box sx={{ marginBottom: hideStats ? '50px' : 'auto' }}>
+                    {!hideStats && (
+                        <InvestStats
+                            amountFinish={amountFinish}
+                            finishDay={finishDay}
+                            companyType={companyType}
+                            percents={percents}
+                        />
+                    )}
                 </Box>
                 <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
                     <Button variant="green" fullWidth>

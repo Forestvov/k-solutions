@@ -28,7 +28,8 @@ export function useGetHotBrief({ page, pageSize, percentFinish }: PropList) {
             {
                 page,
                 size: pageSize,
-                sortDir: 'ASC',
+                sortDir: 'DESC',
+                sortField: 'createdDate',
                 criteria: [{ key: 'percentFinish', operation: '>', value: percentFinish }],
             },
             'post',
@@ -74,7 +75,8 @@ export function useGetListBrief({ page, pageSize, filter }: GetListProp) {
             {
                 page,
                 size: pageSize,
-                sortDir: 'ASC',
+                sortDir: 'DESC',
+                sortField: 'createdDate',
                 criteria: filter.value ? [filter] : [],
             },
             'post',
