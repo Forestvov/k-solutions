@@ -64,7 +64,7 @@ const InvestCard = ({ card, hideStats }: Prop) => {
             >
                 <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
                 <Description name={companyName} status={isActive} text={descriptions} />
-                <Box sx={{ marginBottom: hideStats ? '50px' : 'auto' }}>
+                <Box sx={{ marginBottom: 'auto' }}>
                     {!hideStats && (
                         <InvestStats
                             amountFinish={amountFinish}
