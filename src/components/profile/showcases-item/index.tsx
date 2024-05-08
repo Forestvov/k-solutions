@@ -104,6 +104,7 @@ const ShowcasesItem = () => {
                                     amount={brief.pampAmount + brief.myInvestAmount}
                                     accountCount={brief.accountCount ?? 0}
                                     updateBrief={mutate}
+                                    briefcaseStatus={brief.briefcaseStatus}
                                 />
                             )}
                             <KeyInformation
@@ -175,6 +176,7 @@ const ShowcasesItem = () => {
                                     amount={brief.pampAmount + brief.myInvestAmount}
                                     accountCount={brief.accountCount ?? 0}
                                     updateBrief={mutate}
+                                    briefcaseStatus={brief.briefcaseStatus}
                                 />
                             </Box>
                         )}

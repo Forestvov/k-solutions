@@ -10,6 +10,7 @@ interface Props {
     amountFinish: number;
     percents: number;
     finishDay: string;
+    briefcaseStatus: string;
     amountMin: number;
     ranges: number;
     amount: number;
@@ -28,7 +29,9 @@ const ActionBlockCompany = ({
     accountCount,
     updateBrief,
     companyType,
+    briefcaseStatus,
 }: Props) => {
+    console.log(briefcaseStatus);
     return (
         <Wrapper>
             <InvestProgress
@@ -47,7 +50,9 @@ const ActionBlockCompany = ({
                 sx={{ marginBottom: '20px' }}
             />
             <Notification sx={{ marginBottom: '110px' }} />
-            <CompanyCreditForm updateBrief={updateBrief} />
+            {briefcaseStatus !== 'Collection completed' && briefcaseStatus !== 'Loan payed' && (
+                <CompanyCreditForm updateBrief={updateBrief} />
+            )}
         </Wrapper>
     );
 };

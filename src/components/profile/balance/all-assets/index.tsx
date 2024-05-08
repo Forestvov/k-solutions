@@ -116,7 +116,7 @@ const AllAssets = () => {
                             xs: '5px',
                         }}
                     >
-                        <Title>Все активы</Title>
+                        <Title>Финансы</Title>
                         <CurrencyButtons currency={currency} onClick={setCurrency} />
                     </Stack>
                     <Stack

@@ -48,7 +48,7 @@ const P2PForm = ({ transactionType }: Props) => {
 
     return (
         <>
-            <Selector name="currencyToken" label="Отдаете" items={data} />
+            <Selector name="currencyToken" label={transactionType === 'Out' ? 'Получаете' : 'Отдаете'} items={data} />
             <Input placeholder="0000 0000 0000 0000" mask="9999 9999 9999 9999" label="Номер карты" name="numberCart" />
             <Input placeholder="Name Surname" label="Имя владельца карты" name="nameCart" />
             <Input

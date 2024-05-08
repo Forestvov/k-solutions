@@ -11,6 +11,7 @@ interface Props {
     amountFinish: number;
     percents: number;
     finishDay: string;
+    briefcaseStatus: string;
     companyType: CompanyType;
     amountMin: number;
     ranges: number;
@@ -35,6 +36,7 @@ const ActionBlock = ({
     updateBrief,
     myTotal,
     countTransaction,
+    briefcaseStatus,
 }: Props) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('xl'));
@@ -59,6 +61,7 @@ const ActionBlock = ({
                     amountMin={amountMin}
                     ranges={ranges}
                     updateBrief={updateBrief}
+                    briefcaseStatus={briefcaseStatus}
                 />
             )}
             {companyType === 'Franchise' && (

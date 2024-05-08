@@ -1,4 +1,5 @@
 import 'swiper/css';
+import { Helmet } from 'react-helmet-async';
 
 import MainBanner from 'components/investors/main-banner';
 import InflationRate from 'components/investors/inflation-rate';
@@ -10,6 +11,9 @@ import ShowcasesSection from 'components/investors/showcase';
 const InvestorsPage = () => {
     return (
         <>
+            <Helmet>
+                <title>Инвесторам</title>
+            </Helmet>
             <MainBanner />
             <ShowcasesSection />
             <InflationRate />

@@ -6,8 +6,10 @@ import Stack from '@mui/material/Stack';
 
 import Logo from 'assets/footer/logo.svg?react';
 import Telegram from 'assets/socials/telegram.svg?react';
+import Dzen from 'assets/socials/dzen.svg?react';
 import Insta from 'assets/socials/insta.svg?react';
 import Facebook from 'assets/socials/facebook.svg?react';
+import LinkenIn from 'assets/socials/linkenIn.svg?react';
 
 const SocialLink = styled.a`
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -46,13 +48,19 @@ const FooterDescription = () => {
                 certificates.
             </Typography>
             <Stack spacing="30px" direction="row">
-                <SocialLink href="#">
+                <SocialLink href="#" target="_blank">
+                    <LinkenIn />
+                </SocialLink>
+                <SocialLink href="https://dzen.ru/profile/editor/id/661e622f6c9d113c98e73e70" target="_blank">
+                    <Dzen />
+                </SocialLink>
+                <SocialLink href="https://t.me/ksolutions" target="_blank">
                     <Telegram />
                 </SocialLink>
-                <SocialLink href="#">
+                <SocialLink href="https://www.instagram.com/ksolutions_/?next=%2F" target="_blank">
                     <Insta />
                 </SocialLink>
-                <SocialLink href="#">
+                <SocialLink href="https://www.facebook.com/profile.php?id=61558982035120" target="_blank">
                     <Facebook />
                 </SocialLink>
             </Stack>
