@@ -9,13 +9,36 @@ import ChartBlock from './chart-block';
 import Stack from '@mui/material/Stack';
 
 const TitleStyled = styled(Title)`
-    margin: 20px 0 73px;
+    margin: 20px 0;
+`;
+
+const SubTitleStyled = styled(Title)`
+    margin: 0 0 73px;
+    font-size: 19px;
+    line-height: 26px;
+
+    @media (min-width: 768px) {
+        font-size: 20px;
+    }
+
+    @media (min-width: 1024px) {
+        font-size: 22px;
+    }
+
+    @media (min-width: 1280px) {
+        font-size: 26px;
+    }
+
+    @media (min-width: 1668px) {
+        font-size: 28px;
+    }
 `;
 
 const Graphics = () => {
     return (
         <WhiteWrapper>
             <TitleStyled>Рынки</TitleStyled>
+            <SubTitleStyled>Объёмы венчурных инвестиций по отраслям</SubTitleStyled>
             <List />
             <Carousel />
             <Stack spacing="60px">
