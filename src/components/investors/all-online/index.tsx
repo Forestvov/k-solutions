@@ -57,8 +57,13 @@ const BottomPart = styled.div`
     align-items: center;
     gap: 10px;
 
+    padding: 20px 30px;
+    background: white;
+    border-radius: 30px;
+
     @media (max-width: 766px) {
-        display: none;
+        flex-direction: column;
+        background: transparent;
     }
 `;
 
@@ -71,13 +76,17 @@ const Manager = styled.div`
     background: #006838;
     border-radius: 10px;
     padding: 15px;
+
+    @media (max-width: 766px) {
+        display: none;
+    }
 `;
 
 const OnlineSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
+                height: { lg: '850px', xl: '850px', sm: '900px', xs: '1100px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
                 overflow: 'hidden',

@@ -4,8 +4,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 // img
 import ShowCasesImg from 'assets/pages/investors/showcaseImg.png';
-import ShowCasesImg2 from 'assets/pages/investors/ShowCasesImg2.png';
-import ShowCasesImg3 from 'assets/pages/investors/ShowCasesImg3.png';
+import ShowCasesImg2 from 'assets/pages/investors/ShowCasesImg22.png';
+import ShowCasesImg3 from 'assets/pages/investors/ShowCasesImg33.png';
+import ShowCasesImg4 from 'assets/pages/investors/ShowCasesImg44.png';
 
 import ShowCasesCard from 'components/investors/showcase/card';
 
@@ -41,27 +42,43 @@ const Title = styled.h2`
 const cardsItems = [
     {
         id: '1',
-        sum2: '$84.000.00',
+        sum2: '35 500 000$',
+        invSum: '1.70$',
         sum: '642,440.00',
+        sum3: '748',
         title: 'Gravitricity',
         img: ShowCasesImg,
         label: 'Новаторский разработчик инновационных, долговечных подземных накопителей энергии, которые помогут поддержать переход на 100% возобновляемую энергию. Они разрабатывают технологии для надежного хранения энергии и водорода и сейчас занимаются строительством двух демонстрационных проектов.',
     },
     {
         id: '2',
-        sum2: '$68.000.00',
-        sum: '743,440.00',
+        sum2: '20 000 000$',
+        invSum: '12.37$',
+        sum: '1 234 188$',
+        sum3: '667',
         title: 'QPT',
         img: ShowCasesImg2,
         label: 'Электродвигатели потребляют до 45% мировой энергии. Решение QPT призвано снизить этот показатель на 10%, а также снизить потребление энергии и выбросы CO2. Использование транзисторов из нитрида галлия (GaN) является ключевым моментом. В QPT считают, что они первыми решили проблемы.\n',
     },
     {
         id: '3',
-        sum2: '$90.000.00',
-        sum: '452,440.00',
+        sum2: '84 000 000$',
+        invSum: '4,35$',
+        sum: '6 402 908$',
+        sum3: '905',
         title: 'Metaview',
         img: ShowCasesImg3,
         label: 'ИИ-помощник, который помогает командам избавиться от администрирования и тяжкой работы в процессе найма Финансирование использовано для ускорения разработки продукта и роста команды, включая утроение команды инженеров в течение следующих 18 месяцев.',
+    },
+    {
+        id: '4',
+        sum2: '10 566 200$',
+        invSum: '1,59$',
+        sum: '238 070$',
+        sum3: '311',
+        title: 'CELL',
+        img: ShowCasesImg4,
+        label: 'Белковые препараты хорошо действуют при некоторых видах рака. Но они большие и могут с трудом прорвать защиту рака и достичь опасных опухолевых углублений. Мы тестируем проникающие в опухоль иммунные клетки, чтобы активно доставлять лекарства глубоко в опухоли, стремясь радикально улучшить прогноз для большего числа онкологических больных.',
     },
 ];
 
@@ -69,8 +86,8 @@ const ShowcasesSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '1050px', md: '1830px', xl: '1950px', sm: '2243px', xs: '2243px' },
-                background: '#F6F7F8',
+                height: { lg: '1865px', md: '1830px', xl: '1950px', sm: '2243px', xs: '2243px' },
+                background: 'transparent',
                 paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
                 overflow: 'hidden',
             }}

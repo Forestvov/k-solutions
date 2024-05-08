@@ -10,16 +10,7 @@ const Card = styled.div`
     flex-direction: column;
     align-items: center;
     width: 450px;
-    height: 870px;
-
-    @media (max-width: 1024px) {
-        width: 400px;
-        height: 710px;
-    }
-    @media (max-width: 420px) {
-        width: 320px;
-        height: 710px;
-    }
+    margin-bottom: 50px;
 `;
 
 const CardItem = styled.div`
@@ -142,6 +133,8 @@ interface TCardProps {
     label: string;
     sum: string;
     sum2: string;
+    sum3: string;
+    invSum: string;
     img?: string;
 }
 
@@ -149,7 +142,7 @@ interface Props {
     row: TCardProps;
 }
 const ShowCasesCard = ({ row }: Props) => {
-    const { title, sum2, sum, img, label } = row;
+    const { title, sum3, invSum, sum2, sum, img, label } = row;
     const [showDropdown, setShowDropdown] = useState(false);
 
     const toggleDropdown = () => {
@@ -204,7 +197,9 @@ const ShowCasesCard = ({ row }: Props) => {
                         </svg>
                         Предварительная оценка:
                     </p>
-                    <p style={{ fontSize: '18px', fontWeight: '500', color: 'green', margin: '0' }}>{sum2}</p>
+                    <p style={{ textAlign: 'end', fontSize: '16px', fontWeight: '500', color: 'green', margin: '0' }}>
+                        {sum2}
+                    </p>
                 </DropDownItem>
                 <DropDownItem>
                     <p
@@ -234,7 +229,7 @@ const ShowCasesCard = ({ row }: Props) => {
                         </svg>
                         Инвесторов:
                     </p>
-                    <p style={{ fontSize: '18px', fontWeight: '500', color: 'green', margin: '0' }}>904</p>
+                    <p style={{ fontSize: '18px', fontWeight: '500', color: 'green', margin: '0' }}>{sum3}</p>
                 </DropDownItem>
                 <DropDownItem>
                     <p
@@ -264,6 +259,7 @@ const ShowCasesCard = ({ row }: Props) => {
                         </svg>
                         Цена акций компании:
                     </p>
+                    <p style={{ fontSize: '18px', fontWeight: '500', color: 'green', margin: '0' }}>{invSum}</p>
                 </DropDownItem>
             </DropdownContent>
             <Button style={{ marginTop: '15px' }} variant="green" fullWidth onClick={toggleDropdown}>

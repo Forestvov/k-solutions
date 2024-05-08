@@ -52,10 +52,9 @@ const InvestInFranchise: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '850px', sm: '1200px', xs: '1145px' },
-                background: '#F6F7F8',
+                height: { lg: '750px', xl: '800px', md: '900px', sm: '1000px', xs: '1700px' },
+                background: 'transparent',
                 overflow: 'hidden',
-                marginBottom: { xs: '200px', sm: '130px', md: '150px' },
             }}
         >
             <Inner fixed>

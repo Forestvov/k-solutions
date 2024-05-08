@@ -18,7 +18,9 @@ export default function FranchisesTableRow({ row }: Props) {
 
     return (
         <TableRow hover>
-            <TableCell sx={{ whiteSpace: 'wrap' }}>{title}</TableCell>
+            <TableCell style={{ fontWeight: '600' }} sx={{ whiteSpace: 'wrap' }}>
+                {title}
+            </TableCell>
             <TableCell sx={{ whiteSpace: 'wrap' }}>{arg_1}</TableCell>
             <TableCell sx={{ whiteSpace: 'wrap' }}>{arg_2}</TableCell>
         </TableRow>

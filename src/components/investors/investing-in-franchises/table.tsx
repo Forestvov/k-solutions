@@ -9,15 +9,14 @@ import TableBody from '@mui/material/TableBody';
 import FranchisesTableRow from 'components/investors/investing-in-franchises/table-row';
 
 const TableResponsive = styled.div`
-    width: 90%;
-    margin-top: 55px;
-    margin-left: 5%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
 
     @media (max-width: 766px) {
-        width: 110%;
+        width: 100%;
     }
 
     @media (max-width: 420px) {
@@ -54,8 +53,8 @@ const list = [
 ];
 const FranchiseTable: FC = () => {
     const columns = [
-        { name: 'Критерии', width: 50 },
-        { name: 'Инвестиции во франшизы', width: 50 },
+        { name: 'Критерии', width: 20 },
+        { name: 'Инвестиции во франшизы', width: 20 },
         { name: 'Покупка франшизы', width: 20 },
     ];
 

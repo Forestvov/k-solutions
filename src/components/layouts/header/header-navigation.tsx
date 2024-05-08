@@ -20,7 +20,7 @@ const HeaderNavigation = () => {
     return (
         <Stack spacing={{ lg: '40px', xl: '30px', xs: '15px' }} direction={{ xl: 'row' }} component="nav">
             <Link to="/investors">{t('investoram')}</Link>
-            <Link to="/">{t('entrepreneurs')}</Link>
+            <Link to="/business">{t('entrepreneurs')}</Link>
             <Link to="/">{t('about')}</Link>
             <Link to="/">{t('media')}</Link>
         </Stack>
