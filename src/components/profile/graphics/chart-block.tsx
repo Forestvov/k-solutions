@@ -1,8 +1,11 @@
+import 'swiper/css';
 import type { CardProps } from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
-import Chart, { useChart } from '../../shared/chart';
 import type { ApexOptions } from 'apexcharts';
+
+import Chart, { useChart } from '../../shared/chart';
+
 import Scrollbar from 'components/shared/scrollbar';
 
 const Title = styled.div`
@@ -17,6 +20,8 @@ const Title = styled.div`
 
 interface Props extends CardProps {
     title?: string;
+    prefixAfter?: string;
+    prefixBefore?: string;
     chart: {
         labels: string[];
         colors?: string[];
@@ -31,7 +36,7 @@ interface Props extends CardProps {
     };
 }
 
-export default function ChartBlock({ title, chart, ...other }: Props) {
+export default function ChartBlock({ title, chart, prefixAfter = '$', prefixBefore = '', ...other }: Props) {
     const { labels, colors, series, options } = chart;
 
     const chartOptions = useChart({
@@ -45,16 +50,23 @@ export default function ChartBlock({ title, chart, ...other }: Props) {
             type: series.map((i) => i.fill) as string[],
         },
         labels,
-        xaxis: {
-            type: 'datetime',
+
+        yaxis: {
+            labels: {
+                // @ts-ignore
+                formatter: function (val) {
+                    return `${prefixAfter}${val}${prefixBefore}`;
+                },
+            },
         },
+
         tooltip: {
             shared: true,
             intersect: false,
             y: {
                 formatter: (value: number) => {
                     if (typeof value !== 'undefined') {
-                        return `${value.toFixed(0)}`;
+                        return `${prefixAfter}${value.toFixed(0)}${prefixBefore}`;
                     }
                     return value;
                 },
@@ -73,17 +85,19 @@ export default function ChartBlock({ title, chart, ...other }: Props) {
                 },
             }}
         >
-            <Box
-                sx={{
-                    paddingLeft: '15px',
-                    marginBottom: {
-                        xs: '30px',
-                        sm: '0',
-                    },
-                }}
-            >
-                <Title>{title}</Title>
-            </Box>
+            {title && (
+                <Box
+                    sx={{
+                        paddingLeft: '15px',
+                        marginBottom: {
+                            xs: '30px',
+                            sm: '0',
+                        },
+                    }}
+                >
+                    <Title>{title}</Title>
+                </Box>
+            )}
 
             <Scrollbar
                 sx={{
