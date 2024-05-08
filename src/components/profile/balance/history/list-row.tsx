@@ -140,7 +140,10 @@ const ListRow = ({ row }: { row: IHistory }) => {
                 <Item value={transactionType === 'In' ? 'Пополнение' : 'Вывод'} label="Тип транзакции" />
             </Cell>
             <Cell>
-                <Item value={transactionLinkType} label="Платежная система" />
+                <Item
+                    value={transactionLinkType === 'Token' ? 'Crypto' : transactionLinkType}
+                    label="Платежная система"
+                />
             </Cell>
             <Cell>
                 {transactionType === 'Out' && transactionLinkType === 'p2p' ? (

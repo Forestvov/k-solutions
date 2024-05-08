@@ -209,8 +209,6 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
         }
     };
 
-    console.log(methods.watch());
-
     return (
         <Wrapper>
             <TitleContent>

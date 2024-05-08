@@ -128,7 +128,7 @@ const Step1: FC<Props> = ({ onNext, transactionType }) => {
                                         <BoxImage>
                                             <img src={item.image} alt={item.value} />
                                         </BoxImage>
-                                        {item.value}
+                                        {item.value === 'Token' ? 'Crypto' : item.value}
                                     </Item>
                                 ))}
                             </Select>
