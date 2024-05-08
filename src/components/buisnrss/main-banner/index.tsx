@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import Form from './form';
 import Image from './image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -14,7 +13,7 @@ const Inner = styled(Container)`
 
 const Content = styled.div`
     @media (min-width: 1280px) {
-        padding-right: 450px;
+        padding-right: 250px;
         width: 75%;
     }
 `;
@@ -39,10 +38,10 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 96px;
-    color: #373737;
+    font-size: 64px;
+    color: #006838;
     user-select: none;
-    font-weight: 500;
+    font-weight: 400;
 
     @media (max-width: 770px) {
         font-size: 47px;
@@ -50,25 +49,25 @@ const Span = styled.span`
 `;
 
 const Title = styled.h2`
-    font-size: 96px;
-    color: #006838;
+    font-size: 64px;
+    color: #373737;
     line-height: 90px;
     user-select: none;
-    font-weight: 500;
+    font-weight: 400;
+    margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 47px;
-        line-height: 50px;
+        display: none;
     }
 `;
 
-const MainBanner: FC = () => {
+const BusinessMainBanner: FC = () => {
     const isDesktop = useMediaQuery('(min-width:1280px)');
 
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
+                height: { lg: '900px', xl: '900px', sm: '600px', xs: '500px' },
                 background: 'transparent',
                 paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
@@ -77,16 +76,11 @@ const MainBanner: FC = () => {
         >
             <Inner fixed>
                 <Content>
-                    <Title>
-                        Инвестиции
-                        <br />
-                        <Span>в бизнес</Span>
-                    </Title>
+                    <Title>Финансирование для развития вашего бизнеса</Title>
+                    <Span>Займы компаниям и ИП</Span>
                     <Paragraph>
-                        Начните инвестировать деньги в компании малого и среднего бизнеса. Получайте доходность
-                        инвестиций значительно выше депозита в банке, акций и облигаций.
+                        Решение за 3 минуты по 2-м документам онлайн. На счет в любом банке. Проверьте лимит сегодня.
                     </Paragraph>
-                    <Form />
                 </Content>
                 {isDesktop && <Image />}
             </Inner>
@@ -94,4 +88,4 @@ const MainBanner: FC = () => {
     );
 };
 
-export default MainBanner;
+export default BusinessMainBanner;

@@ -20,6 +20,7 @@ import GuestGuard from 'context/auth/guard/guest-guard';
 import VerifyPage from './ui/verify-page';
 import VerifyByIdPage from './ui/verify-by-id-page';
 import GraphicsPage from './ui/graphics-page';
+import BusinessPage from './ui/business-page';
 
 export const appRouter = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/investors',
                 element: <InvestorsPage />,
+            },
+            {
+                path: '/business',
+                element: <BusinessPage />,
             },
         ],
     },

@@ -94,9 +94,8 @@ const InflationRate: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
-                background: '#F6F7F8',
-                paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
+                height: { lg: '1100px', xl: '915px', sm: '800px', xs: '650px' },
+                background: 'transparent',
                 overflow: 'hidden',
                 marginBottom: { xs: '100px', sm: '130px', md: '150px' },
             }}
