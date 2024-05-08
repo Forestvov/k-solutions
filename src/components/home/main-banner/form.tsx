@@ -13,6 +13,7 @@ import { useState } from 'react';
 
 interface Inputs {
     phoneNumber: string;
+    module: string;
 }
 
 const Input = styled(InputMask)`
@@ -53,6 +54,7 @@ const Form = () => {
         resolver,
         defaultValues: {
             phoneNumber: '',
+            module: 'home-page',
         },
     });
 

@@ -34,7 +34,7 @@ const HeaderButtons: FC<Prop> = ({ hideLocalization }) => {
             {!hideLocalization && <HeaderLocalization />}
             {authenticated ? (
                 <Button
-                    sx={{ width: { xs: '100%', xl: 'auto' }, padding: '0', background: 'transparent !important' }}
+                    sx={{ width: 'auto', padding: '0', background: 'transparent !important' }}
                     variant="gray"
                     onClick={() => router.push('/personal')}
                 >

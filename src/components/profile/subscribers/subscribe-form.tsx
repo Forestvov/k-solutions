@@ -13,6 +13,7 @@ import { addContact } from 'api/order-contact';
 
 interface Inputs {
     phoneNumber: string;
+    module: string;
 }
 
 const Input = styled(InputMask)`
@@ -50,6 +51,7 @@ const SubscribeForm = () => {
         resolver,
         defaultValues: {
             phoneNumber: '',
+            module: 'personal-page',
         },
     });
 
