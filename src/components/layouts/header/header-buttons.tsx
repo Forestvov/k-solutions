@@ -31,7 +31,10 @@ const HeaderButtons: FC<Prop> = ({ hideLocalization }) => {
             spacing={{ lg: '30px', xs: '20px' }}
             justifyContent={{ xs: 'space-between', xl: 'flex-start' }}
             direction={{ sm: 'row' }}
-            alignItems="center"
+            alignItems={{
+                sm: 'center',
+                xs: authenticated ? 'flex-start' : 'center',
+            }}
             sx={{ marginBottom: { xs: '30px', xl: '0' } }}
         >
             {!hideLocalization && <HeaderLocalization />}

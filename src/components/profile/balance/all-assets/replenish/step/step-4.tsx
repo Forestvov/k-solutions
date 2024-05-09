@@ -12,18 +12,16 @@ const Step4 = ({ onClose, transactionType }: Props) => {
     const { getValues } = useFormContext<FormState>();
 
     switch (getValues().transactionLinkType) {
-        case 'Token':
-            return transactionType === 'Out' ? (
-                <Vaiting transactionType={transactionType} onClose={onClose} />
-            ) : (
-                <CurrencyForm />
-            );
         case 'p2p':
             return <Vaiting transactionType={transactionType} onClose={onClose} />;
         case 'Visa':
             return <Vaiting transactionType={transactionType} onClose={onClose} />;
         default:
-            return 'Unknown method';
+            return transactionType === 'Out' ? (
+                <Vaiting transactionType={transactionType} onClose={onClose} />
+            ) : (
+                <CurrencyForm />
+            );
     }
 };
 

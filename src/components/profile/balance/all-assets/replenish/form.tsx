@@ -88,7 +88,11 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
 
     useEffect(() => {
         if (content) {
-            if (content.transactionLinkType === 'Token' && content.transactionStatus === 'Process') {
+            if (
+                content.transactionLinkType === 'Token' ||
+                content.transactionLinkType === 'Wallet' ||
+                (content.transactionLinkType === 'Bank' && content.transactionStatus === 'Process')
+            ) {
                 methods.setValue('transactionDate', content.transactionDate);
                 methods.setValue('transactionStatus', content.transactionStatus);
                 methods.setValue('transactionId', content.transactionId);
@@ -135,7 +139,11 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
     }, [content]);
 
     const onSubmit = async (data: FormState) => {
-        if (data.transactionLinkType === 'Token') {
+        if (
+            data.transactionLinkType === 'Token' ||
+            data.transactionLinkType === 'Bank' ||
+            data.transactionLinkType === 'Wallet'
+        ) {
             try {
                 const newData = {
                     currencyToken: data.currencyToken,
@@ -209,6 +217,8 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
             console.log(e);
         }
     };
+
+    console.log(methods.watch());
 
     return (
         <Wrapper>

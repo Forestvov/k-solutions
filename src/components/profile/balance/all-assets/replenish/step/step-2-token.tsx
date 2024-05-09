@@ -57,9 +57,10 @@ interface Props {
 }
 
 const Step2Token = ({ transactionType }: Props) => {
-    const { watch, setValue } = useFormContext<FormState>();
+    const { watch, setValue, getValues } = useFormContext<FormState>();
+    const token = getValues('transactionLinkType');
 
-    const { data } = useGetTransactions('Token');
+    const { data } = useGetTransactions(token);
 
     useEffect(() => {
         if (data && data.length > 0) {

@@ -11,12 +11,10 @@ const Step2 = ({ transactionType }: Props) => {
     const { getValues } = useFormContext<FormState>();
 
     switch (getValues('transactionLinkType')) {
-        case 'Token':
-            return <Step2Token transactionType={transactionType} />;
         case 'Visa':
             return <BankCardForm transactionType={transactionType} />;
         default:
-            return 'Unknown transaction type';
+            return <Step2Token transactionType={transactionType} />;
     }
 };
 

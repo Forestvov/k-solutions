@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Container from '@mui/material/Container';
 
@@ -6,6 +6,7 @@ import useLockBodyScroll from 'hooks/useLockBodyScroll';
 
 import HeaderNavigation from './header-navigation';
 import HeaderButtons from './header-buttons';
+import { useLocation } from 'react-router-dom';
 
 interface Prop {
     active: boolean;
@@ -75,6 +76,13 @@ const BurgerMenu = styled.div<Prop>`
 
 export const HeaderBurger = () => {
     const [isActive, setIsActive] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (isActive) {
+            setIsActive(false);
+        }
+    }, [location]);
 
     useLockBodyScroll(isActive);
 
