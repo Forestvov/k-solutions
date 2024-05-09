@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
@@ -40,6 +41,8 @@ const ButtonStyled = styled.button`
 `;
 
 const ButtonNavigation: FC<Props> = ({ onNext, onPrev, lastStep }) => {
+    const { t } = useTranslation('auth');
+
     return (
         <Stack
             direction={{ xs: lastStep ? 'column' : 'row', md: 'row' }}
@@ -53,12 +56,12 @@ const ButtonNavigation: FC<Props> = ({ onNext, onPrev, lastStep }) => {
                     <svg width="10" height="19" viewBox="0 0 10 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.5 1L1 9.5L9.5 18" stroke="black" strokeLinecap="round" />
                     </svg>
-                    Назад
+                    {t('Назад')}
                 </ButtonStyled>
             )}
             {onNext && (
                 <ButtonStyled onClick={onNext} type="button">
-                    Далее
+                    {t('Далее')}
                     <svg width="10" height="19" viewBox="0 0 10 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.5 1L9 9.5L0.5 18" stroke="black" strokeLinecap="round" />
                     </svg>
@@ -66,7 +69,7 @@ const ButtonNavigation: FC<Props> = ({ onNext, onPrev, lastStep }) => {
             )}
             {lastStep && (
                 <Button variant="dark-green" type="submit">
-                    Подтвердить регистрацию
+                    {t('Подтвердить регистрацию')}
                 </Button>
             )}
         </Stack>

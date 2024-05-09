@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 
 const Link = styled(NavLink)`
@@ -12,7 +14,8 @@ const Link = styled(NavLink)`
 `;
 
 const ToRestorePassword = () => {
-    return <Link to="/">Восстановить пароль</Link>;
+    const { t } = useTranslation('auth');
+    return <Link to="/">{t('Восстановить пароль')}</Link>;
 };
 
 export default ToRestorePassword;

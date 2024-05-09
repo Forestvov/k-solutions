@@ -16,6 +16,7 @@ import type { FormState } from './types';
 import Steep from './steep';
 import { validateStep3Company, validateStep3Investor } from './validation-schema';
 import { errorCatcher } from './error-catcher';
+import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled(WhiteBox)`
     max-width: 1059px;
@@ -66,13 +67,13 @@ const Confirm = styled.div`
     color: #373737;
 `;
 
-const steps = ['ШАГ 1', 'ШАГ 2', 'ШАГ 3'];
-
 const Register = () => {
     const router = useRouter();
-
+    const { t } = useTranslation('auth');
     // @ts-ignore
     const { register } = useAuthContext();
+
+    const steps = [`${t('ШАГ')} 1`, `${t('ШАГ')} 2`, `${t('ШАГ')} 3`];
 
     const [isAllReady, setIsAllReady] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
@@ -158,11 +159,11 @@ const Register = () => {
             {success ? (
                 <Wrapper>
                     <Stack spacing="40px" justifyContent="center">
-                        <Title>Присоединяйтесь к KSOLUTIONS !</Title>
+                        <Title>{t('Присоединяйтесь')} KSOLUTIONS !</Title>
                         <>
-                            <Confirm>Вы успешно зарегистрировались</Confirm>
+                            <Confirm>{t('Вы успешно зарегистрировались')}</Confirm>
                             <Button onClick={() => router.push('/login')} variant="dark-green">
-                                Авторизировиться
+                                {t('Авторизировиться')}
                             </Button>
                         </>
                     </Stack>
@@ -171,7 +172,7 @@ const Register = () => {
                 <FormProvider {...methods}>
                     <Wrapper>
                         <Stack direction={{ md: 'row' }} justifyContent="space-between" alignItems={{ md: 'center' }}>
-                            <FormTitle>Присоединяйтесь к KSOLUTIONS !</FormTitle>
+                            <FormTitle>{t('Присоединяйтесь')} KSOLUTIONS !</FormTitle>
                             <Step>{steps[activeStep]}</Step>
                         </Stack>
                         <form onSubmit={methods.handleSubmit(onSubmit)}>

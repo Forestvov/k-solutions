@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
@@ -27,6 +29,7 @@ const ErrorMessage = styled.div`
 const Form = () => {
     // @ts-ignore
     const { login } = useAuthContext();
+    const { t } = useTranslation('auth');
 
     const [showError, setShowError] = useState<boolean | string>(false);
     const resolver = yupResolver(validateAuth);
@@ -54,11 +57,11 @@ const Form = () => {
         } catch (e) {
             // @ts-ignore
             if (e?.message === 'Not verified') {
-                setShowError('Аккаунт не подтвержден');
+                setShowError(t('Аккаунт не подтвержден'));
             }
             // @ts-ignore
             if (e?.message === 'Access Denied') {
-                setShowError('Почта или пароль введены неверно');
+                setShowError(t('Почта или пароль введены неверно'));
             }
             reset();
         }
@@ -76,7 +79,7 @@ const Form = () => {
                     >
                         <Stack spacing="30px">
                             <Input name="email" type="email" placeholder="E-mail" />
-                            <Input name="password" type="password" placeholder="Пароль" />
+                            <Input name="password" type="password" placeholder={t('Пароль')} />
                         </Stack>
                         <Stack
                             direction={{
@@ -89,7 +92,7 @@ const Form = () => {
                         >
                             <ToRegister />
                             <Button variation="fill" type="submit" disabled={isSubmitting}>
-                                Войти
+                                {t('Войти')}
                             </Button>
                         </Stack>
                         {showError && <ErrorMessage>{showError}</ErrorMessage>}

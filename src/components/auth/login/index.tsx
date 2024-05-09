@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import WhiteBox from '../white-box';
 import Title from '../title';
@@ -19,9 +21,10 @@ const TitleComponent = styled(Title)`
 `;
 
 const Login = () => {
+    const { t } = useTranslation('auth');
     return (
         <Wrapper>
-            <TitleComponent>Личный кабинет </TitleComponent>
+            <TitleComponent>{t('Личный кабинет')}</TitleComponent>
             <Form />
         </Wrapper>
     );

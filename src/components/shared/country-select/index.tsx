@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext } from 'react-hook-form';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -57,6 +58,8 @@ const CountrySelect: FC<Props> = ({ name }) => {
     const [code, setCode] = useState(countries[189].code);
     const { control } = useFormContext();
 
+    const { t } = useTranslation('auth');
+
     return (
         <Controller
             name={name}
@@ -96,7 +99,7 @@ const CountrySelect: FC<Props> = ({ name }) => {
                             />
                             <TextField
                                 {...params}
-                                placeholder="Страна"
+                                placeholder={t('Страна')}
                                 inputProps={{
                                     ...params.inputProps,
                                     autoComplete: 'new-password',
