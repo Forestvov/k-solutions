@@ -105,42 +105,15 @@ const Well = () => {
         chine: 0,
     });
 
-    // R01235 - сша
-    // R01239 - евро
-    // R01035 - фунты
-    // R01820 - яп
-    // R01375 - кит
-
     useEffect(() => {
-        getCurrency('R01235').then((data) => {
-            setList((prevState) => ({
-                ...prevState,
-                usd: data,
-            }));
-        });
-        getCurrency('R01239').then((data) => {
-            setList((prevState) => ({
-                ...prevState,
-                euro: data,
-            }));
-        });
-        getCurrency('R01035').then((data) => {
-            setList((prevState) => ({
-                ...prevState,
-                funt: data,
-            }));
-        });
-        getCurrency('R01820').then((data) => {
-            setList((prevState) => ({
-                ...prevState,
-                yup: data,
-            }));
-        });
-        getCurrency('R01375').then((data) => {
-            setList((prevState) => ({
-                ...prevState,
-                chine: data,
-            }));
+        getCurrency().then(({ data }) => {
+            setList({
+                usd: data.USDRUB,
+                euro: data.EURRUB,
+                funt: data.GBPRUB,
+                yup: data.JPYRUB,
+                chine: data.CNYRUB,
+            });
         });
     }, []);
 

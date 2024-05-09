@@ -71,11 +71,9 @@ const AllAssets = () => {
 
         setDemoCurrency(demo ?? '0');
 
-        getCurrency('R01235').then((data) => {
-            setCurrencyRubValue(data.replace(',', '.'));
-        });
-        getCurrency('R01239').then((data) => {
-            setCurrencyEuroValue(data.replace(',', '.'));
+        getCurrency().then(({ data }) => {
+            setCurrencyRubValue(data.USDRUB);
+            setCurrencyEuroValue(data.EURRUB);
         });
     }, []);
 
