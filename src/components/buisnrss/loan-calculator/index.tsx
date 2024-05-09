@@ -37,7 +37,7 @@ const CalculatorSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '1400px', xl: '1400px', sm: '2000px', xs: '1550px' },
+                height: { lg: '1400px', xl: '1300px', sm: '1300px', xs: '1300px' },
                 background: 'transparent',
                 paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',

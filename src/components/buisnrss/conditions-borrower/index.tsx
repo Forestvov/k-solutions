@@ -16,7 +16,7 @@ const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 25px;
     margin-top: 70px;
 `;
 
@@ -140,7 +140,7 @@ const BorrowerBusiness: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '900px', xl: '900px', sm: '900px', xs: '1500px' },
+                height: { lg: '900px', xl: '900px', sm: '1000px', xs: '1500px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',

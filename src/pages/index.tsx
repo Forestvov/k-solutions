@@ -21,6 +21,7 @@ import VerifyPage from './ui/verify-page';
 import VerifyByIdPage from './ui/verify-by-id-page';
 import GraphicsPage from './ui/graphics-page';
 import BusinessPage from './ui/business-page';
+import AboutPlatformPage from './ui/about-platfom-page';
 
 export const appRouter = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/business',
                 element: <BusinessPage />,
+            },
+            {
+                path: '/aboutPlatform',
+                element: <AboutPlatformPage />,
             },
         ],
     },

@@ -16,7 +16,7 @@ const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 10px;
     margin-top: 70px;
 `;
 
@@ -29,7 +29,7 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        display: none;
+        font-size: 34px;
     }
 `;
 
@@ -68,7 +68,7 @@ const ConditionsBusiness: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '1400px', xl: '1400px', sm: '1600px', xs: '1550px' },
+                height: { lg: '1450px', xl: '1400px', sm: '1400px', xs: '2200px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',

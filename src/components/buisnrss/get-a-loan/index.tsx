@@ -13,7 +13,7 @@ const Inner = styled(Container)`
 const Content = styled.div`
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
