@@ -70,9 +70,9 @@ const CheckBoxContainer = styled.div`
     border-radius: 20px;
     margin-top: 10px;
 
-    @media (max-width: 1670px) {
-        width: 60%;
-    }
+    //@media (max-width: 1670px) {
+    //    width: 60%;
+    //}
 
     @media (max-width: 1280px) {
         width: 100%;
@@ -83,12 +83,34 @@ const CheckBoxContainer = styled.div`
     }
 `;
 
+const CheckBoxPart = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+`;
+
+const CheckBoxDiv = styled.div`
+    @media (max-width: 1024px) {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        min-width: 110px;
+        min-height: 165px;
+    }
+`;
+
 const Label = styled.p`
     max-width: 350px;
     font-weight: 400;
     font-size: 18px;
     color: #747474;
     margin: 25px 0 0 0;
+
+    @media (max-width: 1280px) {
+        font-size: 14px;
+    }
 
     @media (max-width: 766px) {
         font-size: 12px;
@@ -316,41 +338,50 @@ export const Calculator = () => {
                     />
                 </InputContainer>
                 <CheckBoxContainer>
-                    <div>
-                        <Label>Компания зарегистрирована более 12 месяцев назад</Label>
-                        <CheckBox onChange={handleCheckBoxChange} type="checkbox" id="checkbox" className="checkbox" />
-                        <CheckboxLabel htmlFor="checkbox" className="checkbox-label" />
-                    </div>
-                    <div>
-                        <Label>Кредитная история бизнеса и бенефициаров положительная или нейтральная</Label>
-                        <CheckBox
-                            onChange={handleCheckBoxChange1}
-                            type="checkbox"
-                            id="checkbox1"
-                            className="checkbox1"
-                        />
-                        <CheckboxLabel htmlFor="checkbox1" className="checkbox-label1" />
-                    </div>
-                    <div>
-                        <Label>Компания зарегистрирована более 12 месяцев назад</Label>
-                        <CheckBox
-                            onChange={handleCheckBoxChange2}
-                            type="checkbox"
-                            id="checkbox2"
-                            className="checkbox2"
-                        />
-                        <CheckboxLabel htmlFor="checkbox2" className="checkbox-label2" />
-                    </div>
-                    <div>
-                        <Label>Кредитная история бизнеса и бенефициаров положительная или нейтральная</Label>
-                        <CheckBox
-                            onChange={handleCheckBoxChange3}
-                            type="checkbox"
-                            id="checkbox3"
-                            className="checkbox3"
-                        />
-                        <CheckboxLabel htmlFor="checkbox3" className="checkbox-label3" />
-                    </div>
+                    <CheckBoxPart>
+                        <CheckBoxDiv>
+                            <Label>Компания зарегистрирована более 12 месяцев назад</Label>
+                            <CheckBox
+                                onChange={handleCheckBoxChange}
+                                type="checkbox"
+                                id="checkbox"
+                                className="checkbox"
+                            />
+                            <CheckboxLabel htmlFor="checkbox" className="checkbox-label" />
+                        </CheckBoxDiv>
+                        <CheckBoxDiv>
+                            <Label>Кредитная история положительная или нейтральная</Label>
+                            <CheckBox
+                                onChange={handleCheckBoxChange1}
+                                type="checkbox"
+                                id="checkbox1"
+                                className="checkbox1"
+                            />
+                            <CheckboxLabel htmlFor="checkbox1" className="checkbox-label1" />
+                        </CheckBoxDiv>
+                    </CheckBoxPart>
+                    <CheckBoxPart>
+                        <CheckBoxDiv>
+                            <Label>В компании работает более 10 персон</Label>
+                            <CheckBox
+                                onChange={handleCheckBoxChange2}
+                                type="checkbox"
+                                id="checkbox2"
+                                className="checkbox2"
+                            />
+                            <CheckboxLabel htmlFor="checkbox2" className="checkbox-label2" />
+                        </CheckBoxDiv>
+                        <CheckBoxDiv>
+                            <Label>Стабильное поступление выручки каждый месяц</Label>
+                            <CheckBox
+                                onChange={handleCheckBoxChange3}
+                                type="checkbox"
+                                id="checkbox3"
+                                className="checkbox3"
+                            />
+                            <CheckboxLabel htmlFor="checkbox3" className="checkbox-label3" />
+                        </CheckBoxDiv>
+                    </CheckBoxPart>
                 </CheckBoxContainer>
             </InputWrapper>
             <GraphContainer>

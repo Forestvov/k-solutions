@@ -11,6 +11,11 @@ const Card = styled.div`
     align-items: center;
     width: 450px;
     margin-bottom: 50px;
+    user-select: none;
+
+    @media (max-width: 779px) {
+        width: 320px;
+    }
 `;
 
 const CardItem = styled.div`
@@ -48,9 +53,9 @@ const CardInput = styled.div`
         top: 7rem;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 779px) {
         top: 5rem;
-        padding: 0 10px;
+        padding: 0 7px;
     }
 `;
 
@@ -61,7 +66,7 @@ const DropDownItem = styled.div`
 `;
 
 const Title = styled.h3`
-    max-width: 334px;
+    max-width: 330px;
     font-size: 32px;
     font-weight: 500;
     color: #373737;
@@ -81,7 +86,7 @@ const Label = styled.p`
 
     @media (max-width: 1024px) {
         font-size: 14px;
-        min-width: 345px;
+        min-width: 330px;
     }
     @media (max-width: 420px) {
         font-size: 12px;
@@ -99,11 +104,8 @@ const SumT = styled.p`
 `;
 
 const Img = styled.img`
-    @media (max-width: 1024px) {
-        width: 400px;
-    }
-    @media (max-width: 420px) {
-        width: 320px;
+    @media (max-width: 779px) {
+        width: 330px;
     }
 `;
 

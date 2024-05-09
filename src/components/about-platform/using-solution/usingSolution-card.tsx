@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const CondCard = styled.div`
-    width: 49%;
+    width: 48%;
     min-height: 325px;
     display: flex;
     flex-direction: column;
@@ -22,6 +22,7 @@ const Line = styled.div`
     height: 3px;
     background: #006838;
     border-radius: 10px;
+    margin-bottom: 10px;
 `;
 
 const Paragraph = styled.p`
@@ -34,7 +35,7 @@ const Paragraph = styled.p`
 
 const Label = styled.p`
     font-weight: 400;
-    font-size: 34px;
+    font-size: 18px;
     color: #006838;
     margin: 0;
 `;
@@ -47,6 +48,7 @@ const Title = styled.h2`
     font-weight: 500;
     margin: 0;
     max-width: 250px;
+    margin-bottom: 10px;
 
     @media (max-width: 1280px) {
         font-size: 28px;
@@ -63,18 +65,16 @@ interface Props {
     row: TReqCard;
 }
 
-export const RequirementsCard = ({ row }: Props) => {
+export const UsingSolutionCard = ({ row }: Props) => {
     const { title, text, label } = row;
     return (
         <CondCard>
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap' }}>
-                <Title>{title}</Title>
-                <Label>{label}</Label>
-            </div>
-            <Line />
             <div>
+                <Title>{title}</Title>
+                <Line />
                 <Paragraph>{text}</Paragraph>
             </div>
+            <Label>{label}</Label>
         </CondCard>
     );
 };

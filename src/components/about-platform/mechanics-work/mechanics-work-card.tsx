@@ -1,27 +1,24 @@
 import styled from '@emotion/styled';
 
 const CondCard = styled.div`
-    width: 49%;
-    min-height: 325px;
+    width: 510px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     padding: 25px 30px;
-    border-radius: 20px;
+    border-radius: 30px;
     background: white;
     gap: 10px;
 
-    @media (max-width: 1280px) {
+    @media (max-width: 1670px) {
+        width: 400px;
+    }
+
+    @media (max-width: 770px) {
         width: 100%;
     }
-`;
-
-const Line = styled.div`
-    width: 70px;
-    height: 3px;
-    background: #006838;
-    border-radius: 10px;
 `;
 
 const Paragraph = styled.p`
@@ -32,21 +29,14 @@ const Paragraph = styled.p`
     margin: 7px 0 0 0;
 `;
 
-const Label = styled.p`
-    font-weight: 400;
-    font-size: 34px;
-    color: #006838;
-    margin: 0;
-`;
-
 const Title = styled.h2`
     font-size: 38px;
     color: #373737;
     line-height: 50px;
     user-select: none;
     font-weight: 500;
-    margin: 0;
     max-width: 250px;
+    margin-bottom: 10px;
 
     @media (max-width: 1280px) {
         font-size: 28px;
@@ -56,25 +46,18 @@ const Title = styled.h2`
 export interface TReqCard {
     title: string;
     text: string;
-    label: string;
 }
 
 interface Props {
     row: TReqCard;
 }
 
-export const RequirementsCard = ({ row }: Props) => {
-    const { title, text, label } = row;
+export const MechanicsWorkCard = ({ row }: Props) => {
+    const { title, text } = row;
     return (
         <CondCard>
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap' }}>
-                <Title>{title}</Title>
-                <Label>{label}</Label>
-            </div>
-            <Line />
-            <div>
-                <Paragraph>{text}</Paragraph>
-            </div>
+            <Title>{title}</Title>
+            <Paragraph>{text}</Paragraph>
         </CondCard>
     );
 };

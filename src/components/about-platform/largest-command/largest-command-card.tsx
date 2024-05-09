@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const CondCard = styled.div`
-    width: 49%;
+    width: 48%;
     min-height: 325px;
     display: flex;
     flex-direction: column;
@@ -9,8 +9,9 @@ const CondCard = styled.div`
     align-items: flex-start;
     padding: 25px 30px;
     border-radius: 20px;
-    background: white;
+    background: #f6f7f8;
     gap: 10px;
+    margin-bottom: 15px;
 
     @media (max-width: 1280px) {
         width: 100%;
@@ -63,7 +64,7 @@ interface Props {
     row: TReqCard;
 }
 
-export const RequirementsCard = ({ row }: Props) => {
+export const LargestCommandCard = ({ row }: Props) => {
     const { title, text, label } = row;
     return (
         <CondCard>

@@ -8,18 +8,39 @@ import ShowCasesImg2 from 'assets/pages/investors/ShowCasesImg22.png';
 import ShowCasesImg3 from 'assets/pages/investors/ShowCasesImg33.png';
 import ShowCasesImg4 from 'assets/pages/investors/ShowCasesImg44.png';
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 import ShowCasesCard from 'components/investors/showcase/card';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper';
 
 const Inner = styled(Container)`
     height: 100%;
 `;
 
+const SliderContainer = styled(Swiper)`
+    width: 100%;
+    padding-left: 20%;
+
+    @media (max-width: 500px) {
+        padding-left: 10%;
+    }
+
+    @media (max-width: 420px) {
+        padding-left: 5%;
+    }
+
+    @media (max-width: 380px) {
+        padding-left: 2%;
+    }
+`;
+
 const ShowcaseList = styled.div`
     margin-top: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 
     @media (max-width: 1024px) {
         justify-content: center;
@@ -86,19 +107,34 @@ const ShowcasesSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '1865px', md: '1830px', xl: '1950px', sm: '2243px', xs: '2243px' },
+                height: { lg: '1065px', md: '965px', xl: '1065px', sm: '965px', xs: '905px' },
                 background: 'transparent',
                 paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
                 overflow: 'hidden',
             }}
         >
-            <Inner fixed>
+            <Inner>
                 <Title>Витрина</Title>
                 <ShowcaseList>
-                    {cardsItems.map((row: any) => (
-                        <ShowCasesCard key={row.id} row={row} />
-                    ))}
-                    {/* <ShowCasesCard sum2={"$84.000.00"} title="Gravitricity" sum="642,440.00" img={ShowCasesImg} label="Новаторский разработчик инновационных, долговечных подземных накопителей энергии, которые помогут поддержать переход на 100% возобновляемую энергию. Они разрабатывают технологии для надежного хранения энергии и водорода и сейчас занимаются строительством двух демонстрационных проектов." /> */}
+                    <SliderContainer
+                        spaceBetween={50}
+                        centeredSlides={true}
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        }}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        navigation={true}
+                        modules={[Autoplay, Pagination]}
+                    >
+                        {cardsItems.map((row: any) => (
+                            <SwiperSlide key={row.id}>
+                                <ShowCasesCard row={row} />
+                            </SwiperSlide>
+                        ))}
+                    </SliderContainer>
                 </ShowcaseList>
             </Inner>
         </Box>

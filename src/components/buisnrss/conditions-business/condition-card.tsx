@@ -1,16 +1,23 @@
 import styled from '@emotion/styled';
 
 const CondCard = styled.div`
-    width: 550px;
+    width: 48%;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 75px;
     margin-bottom: 50px;
 
-    @media (max-width: 1280px) {
-        width: 350px;
-        gap: 50px;
+    padding: 25px 25px;
+    border-radius: 30px;
+    background: white;
+
+    @media (max-width: 770px) {
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        gap: 30px;
     }
 `;
 
@@ -20,6 +27,10 @@ const Paragraph = styled.p`
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
+
+    @media (max-width: 770px) {
+        font-size: 16px;
+    }
 `;
 
 const Label = styled.p`
@@ -30,7 +41,7 @@ const Label = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 110px;
+    font-size: 84px;
     color: #20836d;
     user-select: none;
     font-weight: 500;
@@ -49,8 +60,12 @@ const Title = styled.h2`
     margin: 0;
     max-width: 500px;
 
-    @media (max-width: 400px) {
-        font-size: 38px;
+    @media (max-width: 1024px) {
+        font-size: 34px;
+    }
+
+    @media (max-width: 770px) {
+        font-size: 28px;
     }
 `;
 
