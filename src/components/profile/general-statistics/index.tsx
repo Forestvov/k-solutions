@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
@@ -14,15 +16,16 @@ const TitleComponent = styled(Title)`
 `;
 
 const GeneralStatistics = () => {
+    const { t } = useTranslation('personal');
     return (
         <WhiteWrapper>
-            <TitleComponent>Общая статистика платформы</TitleComponent>
+            <TitleComponent>{t('Общая статистика платформы')}</TitleComponent>
             <Stack spacing={{ xs: '15px', sm: '31px' }}>
-                <Item label="Средневзвешенная ставка на рынке" value="25,5 %" />
-                <Item label="Инвесторов на платформе" value="28 681" />
-                <Item label="Среднее время выдачи займа" value="1 день " />
-                <Item label="Выдано кредитов бизнесу" value="> 10 000 000$" />
-                <Item label="Заемщиков на платформе" value="> 189 000" />
+                <Item label={t('Средневзвешенная ставка на рынке')} value="25,5 %" />
+                <Item label={t('Инвесторов на платформе')} value="28 681" />
+                <Item label={t('Среднее время выдачи займа')} value={`1 ${t('день')}`} />
+                <Item label={t('Выдано кредитов бизнесу')} value="> 10 000 000$" />
+                <Item label={t('Заемщиков на платформе')} value="> 189 000" />
             </Stack>
         </WhiteWrapper>
     );

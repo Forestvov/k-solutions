@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
@@ -27,9 +29,11 @@ const Wrapper = styled(Stack)`
 `;
 
 const AssetsAndAnalytics = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <div>
-            <TitleStyled>Активы и аналитика</TitleStyled>
+            <TitleStyled>{t('Активы и аналитика')}</TitleStyled>
             <Wrapper justifyContent="space-between">
                 <Assets />
                 <AreaAssets />

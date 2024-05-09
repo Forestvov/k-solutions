@@ -3,12 +3,15 @@ import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
 import Logo from 'assets/header/logo-personal.svg?react';
+import HeaderLocalization from 'components/layouts/header/header-localization';
 
 import useDeviceSize from 'hooks/useDeviceSize';
 
 import User from './user';
 import Balance from './balance';
 import Laggout from './laggout';
+import React from 'react';
+import Box from '@mui/material/Box';
 
 const HomeLink = styled(NavLink)`
     svg {
@@ -44,6 +47,16 @@ const PersonalHeader = () => {
             <Stack direction="row" justifyContent="space-between" alignItems="center">
                 <User />
                 <Balance />
+                <Box
+                    sx={{
+                        marginLeft: {
+                            md: '30px',
+                            xs: '10px',
+                        },
+                    }}
+                >
+                    <HeaderLocalization />
+                </Box>
                 {xl && <Laggout />}
             </Stack>
         </Stack>

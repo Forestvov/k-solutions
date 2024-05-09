@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
@@ -15,6 +17,8 @@ const TitleStyled = styled(Title)`
 `;
 
 const Finance = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <WhiteWrapper>
             <Stack
@@ -30,7 +34,7 @@ const Finance = () => {
                     <FinanceIncome />
                 </div>
                 <div>
-                    <TitleStyled>Аналитика KSOLUITONS</TitleStyled>
+                    <TitleStyled>{t('Аналитика')} KSOLUITONS</TitleStyled>
                     <Stack
                         direction={{
                             lg: 'row',
@@ -38,7 +42,7 @@ const Finance = () => {
                         justifyContent="space-between"
                     >
                         <ProfilechartAnalytics
-                            title="Динамика наших активов"
+                            title={t('Динамика наших активов')}
                             chart={{
                                 series: [
                                     { label: 'America', value: 4344 },
@@ -58,7 +62,7 @@ const Finance = () => {
                                 width: '100%',
                                 marginTop: '25px',
                             }}
-                            title="Динамика наших активов "
+                            title={t('Динамика наших активов')}
                             chart={{
                                 categories: [
                                     'Jan',
@@ -78,11 +82,11 @@ const Finance = () => {
                                     {
                                         data: [
                                             {
-                                                name: 'Компании',
+                                                name: t('Компании'),
                                                 data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 35, 51, 49],
                                             },
                                             {
-                                                name: 'Франшизы',
+                                                name: t('Франшизы'),
                                                 data: [10, 34, 13, 56, 77, 88, 99, 77, 45, 13, 56, 77],
                                             },
                                         ],

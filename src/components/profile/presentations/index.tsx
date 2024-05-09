@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import WhiteWrapper from '../white-wrapper';
@@ -17,9 +18,11 @@ const TitleComponent = styled(Title)`
 `;
 
 const Presentations = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapper>
-            <TitleComponent>Презентации платформы</TitleComponent>
+            <TitleComponent>{t('Презентации платформы')}</TitleComponent>
             <List />
         </Wrapper>
     );

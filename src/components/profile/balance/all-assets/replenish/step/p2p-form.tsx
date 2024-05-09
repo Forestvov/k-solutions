@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Button from '@mui/material/Button';
 
 import { getCoinPrice } from 'api/coin';
@@ -16,6 +18,8 @@ interface Props {
 }
 
 const P2PForm = ({ transactionType }: Props) => {
+    const { t } = useTranslation('personal');
+
     const { setValue, watch } = useFormContext();
 
     const { data } = useGetTransactions('p2p');
@@ -48,12 +52,21 @@ const P2PForm = ({ transactionType }: Props) => {
 
     return (
         <>
-            <Selector name="currencyToken" label={transactionType === 'Out' ? 'Получаете' : 'Отдаете'} items={data} />
-            <Input placeholder="0000 0000 0000 0000" mask="9999 9999 9999 9999" label="Номер карты" name="numberCart" />
-            <Input placeholder="Name Surname" label="Имя владельца карты" name="nameCart" />
+            <Selector
+                name="currencyToken"
+                label={transactionType === 'Out' ? t('Получаете') : t('Отдаете')}
+                items={data}
+            />
+            <Input
+                placeholder="0000 0000 0000 0000"
+                mask="9999 9999 9999 9999"
+                label={t('Номер карты')}
+                name="numberCart"
+            />
+            <Input placeholder="Name Surname" label={t('Имя владельца карты')} name="nameCart" />
             <Input
                 placeholder="00.00"
-                label="Сумма ₽"
+                label={t('Сумма ₽')}
                 prefix="₽"
                 type="number"
                 name="amountIn"
@@ -62,7 +75,7 @@ const P2PForm = ({ transactionType }: Props) => {
             {transactionType !== 'Out' && <GetterInput />}
             <Input
                 placeholder="00.00"
-                label="Сумма $"
+                label={t('Сумма $')}
                 prefix="$"
                 type="number"
                 name="amountOut"
@@ -70,10 +83,10 @@ const P2PForm = ({ transactionType }: Props) => {
             />
             <div>
                 <Button variant="dark-green" type="submit" fullWidth>
-                    {transactionType === 'Out' ? 'Перейти к выводу' : 'Перейти к оплате'}
+                    {transactionType === 'Out' ? t('Перейти к выводу') : t('Перейти к оплате')}
                 </Button>
                 <Description>
-                    Выплата производится в автоматическом режиме по регламенту пользовательского соглашения.
+                    {t('Выплата производится в автоматическом режиме по регламенту пользовательского соглашения.')}
                 </Description>
             </div>
         </>

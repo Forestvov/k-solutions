@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 
 import Box from '@mui/material/Box';
@@ -11,12 +13,12 @@ import type { FormState } from '../types';
 
 import { useGetTransactions } from 'api/transaction';
 import { getCoinPrice } from 'api/coin';
+import Input from 'components/profile/balance/all-assets/replenish/input';
+import { fCurrency } from 'helpers/number-format';
 
 import TitleStep from './title-step';
 
 import { PAYMENT_BANK } from './data';
-import Input from 'components/profile/balance/all-assets/replenish/input';
-import { fCurrency } from 'helpers/number-format';
 
 const Notification = styled.div`
     font-weight: 300;
@@ -57,6 +59,8 @@ interface Props {
 }
 
 const Step2Token = ({ transactionType }: Props) => {
+    const { t } = useTranslation('personal');
+
     const { watch, setValue, getValues } = useFormContext<FormState>();
     const token = getValues('transactionLinkType');
 
@@ -88,7 +92,7 @@ const Step2Token = ({ transactionType }: Props) => {
 
     return (
         <Box>
-            <TitleStep>{transactionType === 'Out' ? 'Способ вывода' : 'Способ оплаты'}</TitleStep>
+            <TitleStep>{transactionType === 'Out' ? t('Способ вывода') : t('Способ оплаты')}</TitleStep>
             <Box
                 sx={{
                     width: {
@@ -100,16 +104,18 @@ const Step2Token = ({ transactionType }: Props) => {
             >
                 <Stack spacing="30px">
                     <Selector name="currencyToken" isFirstStep items={data} />
-                    {transactionType === 'Out' && <Input placeholder="Укажите адрес кошелька" name="contact" />}
+                    {transactionType === 'Out' && <Input placeholder={t('Укажите адрес кошелька')} name="contact" />}
                     <Input
-                        placeholder={transactionType === 'In' ? 'Укажите сумму пополнения' : 'Укажите сумму вывода'}
+                        placeholder={
+                            transactionType === 'In' ? t('Укажите сумму пополнения') : t('Укажите сумму вывода')
+                        }
                         name="amountOut"
                         type="number"
                         prefix={watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH' ? '$' : ''}
                     />
                     {Number(watch().amountOut) > 0 && Number(watch().amountIn) > 0 && (
                         <Stack direction="row" alignItems="center" spacing="5px">
-                            <Notification>Курс :</Notification>
+                            <Notification>{t('Курс')} :</Notification>
                             <Value>
                                 {watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH'
                                     ? fCurrency(watch().amountOut)
@@ -123,7 +129,7 @@ const Step2Token = ({ transactionType }: Props) => {
                         variant="dark-green"
                         disabled={watch().amountOut === 0 || watch().amountOut === ''}
                     >
-                        Подтвердить
+                        {t('Подтвердить')}
                     </Button>
                 </Stack>
             </Box>

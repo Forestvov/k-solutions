@@ -1,14 +1,15 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import PaginatorPage from 'components/shared/paginator-page';
+import { useGetListBrief } from 'api/brief';
 
 import Title from '../title';
 import Counter from '../counter-title';
 
 import Filters from './filters';
 import List from './list';
-import { useGetListBrief } from 'api/brief';
-import { useState } from 'react';
 
 const Wrapper = styled.div`
     padding: 30px 30px 60px;
@@ -22,6 +23,8 @@ const TitleStyled = styled(Title)`
 `;
 
 const Showcases = () => {
+    const { t } = useTranslation('personal');
+
     const [page, setPage] = useState(0);
     const [filter, setFilter] = useState({
         key: '',
@@ -41,7 +44,7 @@ const Showcases = () => {
     return (
         <Wrapper>
             <TitleStyled>
-                Витрина
+                {t('Витрина')}
                 {!briefsLoading && <Counter>({totalElements})</Counter>}
             </TitleStyled>
             <Filters current={filter} onChange={setFilter} setPage={setPage} />

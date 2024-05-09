@@ -31,7 +31,6 @@ const ActionBlockCompany = ({
     companyType,
     briefcaseStatus,
 }: Props) => {
-    console.log(briefcaseStatus);
     return (
         <Wrapper>
             <InvestProgress

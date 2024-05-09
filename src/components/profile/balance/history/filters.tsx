@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 
@@ -46,6 +48,8 @@ interface IProps {
 }
 
 const Filters = ({ filters, onChangeFilter }: IProps) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapper>
             <ButtonStyled
@@ -57,7 +61,7 @@ const Filters = ({ filters, onChangeFilter }: IProps) => {
                     })
                 }
             >
-                Все
+                {t('Все')}
             </ButtonStyled>
             <ButtonStyled
                 active={filters.transactionType === 'Out'}
@@ -68,7 +72,7 @@ const Filters = ({ filters, onChangeFilter }: IProps) => {
                     })
                 }
             >
-                Вывод
+                {t('Вывод')}
             </ButtonStyled>
             <ButtonStyled
                 active={filters.transactionType === 'In'}
@@ -79,7 +83,7 @@ const Filters = ({ filters, onChangeFilter }: IProps) => {
                     })
                 }
             >
-                Пополнение
+                {t('Пополнение')}
             </ButtonStyled>
             <ButtonStyled
                 active={filters.transactionLinkType === 'p2p'}
@@ -90,7 +94,7 @@ const Filters = ({ filters, onChangeFilter }: IProps) => {
                     })
                 }
             >
-                Активные P2P
+                {t('Активные P2P')}
             </ButtonStyled>
         </Wrapper>
     );

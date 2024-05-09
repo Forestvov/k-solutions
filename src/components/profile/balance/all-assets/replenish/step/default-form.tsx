@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Button from '@mui/material/Button';
 
 interface Props {
@@ -5,9 +6,11 @@ interface Props {
 }
 
 const DefaultForm = ({ onNext }: Props) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Button onClick={onNext} variant="dark-green">
-            Подтвердить
+            {t('Подтвердить')}
         </Button>
     );
 };

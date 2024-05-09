@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Controller, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import type { FormState } from '../types';
 
@@ -65,13 +66,15 @@ const TypeTransaction = [
 ];
 
 const Step1: FC<Props> = ({ onNext, transactionType }) => {
+    const { t } = useTranslation('personal');
+
     const { watch, control } = useFormContext<FormState>();
 
     const values = watch();
 
     return (
         <Box>
-            <TitleStep>Выберите Платежную Систему</TitleStep>
+            <TitleStep>{t('Выберите Платежную Систему')}</TitleStep>
             <Box
                 sx={{
                     width: {

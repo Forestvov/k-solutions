@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 
 import IconHot from 'assets/pages/personal/hot-filter.svg?react';
 import { useSettingsContext } from 'context/settings/hooks/useSettingsContext';
+import { useTranslation } from 'react-i18next';
 
 const ButtonStyled = styled(Button)<{ active?: boolean }>`
     display: flex;
@@ -45,15 +46,22 @@ interface Props {
 }
 
 const Filters = ({ current, onChange, setPage }: Props) => {
+    const { t } = useTranslation('personal');
+
     const { settings } = useSettingsContext();
 
     const BUTTONS = [
-        { label: 'Все', value: '', type: '' },
-        { label: 'Горячие предложения', value: settings.briefcaseHot ?? '70', operation: '>', type: 'percentFinish' },
-        { label: 'Франшизы', value: 'Franchise', type: 'companyType' },
-        { label: 'Идет сбор займа', value: 'In progress', type: 'briefcaseStatus' },
-        { label: 'Сбор завершен', value: 'Collection completed', type: 'briefcaseStatus' },
-        { label: 'Займ погашен', value: 'Loan payed', type: 'briefcaseStatus' },
+        { label: t('Все'), value: '', type: '' },
+        {
+            label: t('Горячие предложения'),
+            value: settings.briefcaseHot ?? '70',
+            operation: '>',
+            type: 'percentFinish',
+        },
+        { label: t('Франшизы'), value: 'Franchise', type: 'companyType' },
+        { label: t('Идет сбор займа'), value: 'In progress', type: 'briefcaseStatus' },
+        { label: t('Сбор завершен'), value: 'Collection completed', type: 'briefcaseStatus' },
+        { label: t('Займ погашен'), value: 'Loan payed', type: 'briefcaseStatus' },
     ];
 
     return (

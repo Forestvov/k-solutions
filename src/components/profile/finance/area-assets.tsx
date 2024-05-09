@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import type { Dayjs } from 'dayjs';
+
 import styled from '@emotion/styled';
 import ProfilechartArea from 'components/profile/finance/profilechart-area';
 import { useGetAnaliticGain } from 'api/brief';
-import { useState } from 'react';
-import type { Dayjs } from 'dayjs';
 import type { AnaliticGainView } from 'types/brief';
 import type { CompanyType } from 'types/company';
 
@@ -24,6 +26,8 @@ const Area = styled(ProfilechartArea)`
 `;
 
 const AreaAssets = () => {
+    const { t } = useTranslation('personal');
+
     const [fromDate, setFromDate] = useState<Dayjs | null>(null);
     const [toDate, setToDate] = useState<Dayjs | null>(null);
 
@@ -48,18 +52,18 @@ const AreaAssets = () => {
                 flex: '0 0 auto',
                 width: '100%',
             }}
-            title="Ежемесячные доходы"
+            title={t('Ежемесячные доходы')}
             chart={{
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 series: [
                     {
                         data: [
                             {
-                                name: 'Компании',
+                                name: t('Компании'),
                                 data: generateFranchise(data, 'Company'),
                             },
                             {
-                                name: 'Франшизы',
+                                name: t('Франшизы'),
                                 data: generateFranchise(data, 'Franchise'),
                             },
                         ],

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
@@ -78,6 +80,8 @@ interface Props {
 }
 
 const InvestCloseDialog = ({ myTotal, countTransaction, companyType }: Props) => {
+    const { t } = useTranslation('personal');
+
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -91,14 +95,14 @@ const InvestCloseDialog = ({ myTotal, countTransaction, companyType }: Props) =>
     return (
         <>
             <Button variant="dark-green" fullWidth onClick={handleClickOpen}>
-                Подать запрос на закрытие
+                {t('Подать запрос на закрытие')}
             </Button>
             <DialogStyled open={open} onClose={handleClose}>
                 <Wrapper>
                     <Content>
-                        <TitleContent>Запрос на закрытие кредитования</TitleContent>
+                        <TitleContent>{t('Запрос на закрытие кредитования')}</TitleContent>
                         <Box>
-                            <Label>Инвестиции</Label>
+                            <Label>{t('Инвестиции')}</Label>
                             <InvestStats
                                 myTotal={myTotal}
                                 countTransaction={countTransaction}
@@ -108,7 +112,7 @@ const InvestCloseDialog = ({ myTotal, countTransaction, companyType }: Props) =>
                                 }}
                             />
                             <InvestForm companyType={companyType} closeInvest />
-                            <Description>Ваш запрос будет рассмотрен в течении 5 дней.</Description>
+                            <Description>{t('Ваш запрос будет рассмотрен в течении 5 дней.')}</Description>
                         </Box>
                     </Content>
                 </Wrapper>

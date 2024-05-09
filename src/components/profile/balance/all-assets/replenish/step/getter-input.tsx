@@ -1,5 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
+
 import { useFormContext } from 'react-hook-form';
 import { fCurrency } from 'helpers/number-format';
 
@@ -43,11 +46,12 @@ const Value = styled.div`
 `;
 
 const GetterInput = () => {
+    const { t } = useTranslation('personal');
     const { watch } = useFormContext();
 
     return (
         <div>
-            <Label>Получаете </Label>
+            <Label>{t('Получаете')}</Label>
             <Item>
                 <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_342_13686)">
@@ -74,7 +78,7 @@ const GetterInput = () => {
                 <span>Tether TRC20</span>
             </Item>
             <Stack direction="row" alignItems="baseline" spacing="10px">
-                <Notification>Курс :</Notification>
+                <Notification>{t('Курс')} :</Notification>
                 <Value>$1 = {fCurrency(watch().staticCurse, 'ru-RU', 'RUB')}</Value>
             </Stack>
         </div>

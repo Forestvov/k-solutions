@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Typography from '@mui/material/Typography';
 
@@ -10,11 +12,12 @@ const TitleComponent = styled(Title)`
 `;
 
 const ConsultationSubscribe = () => {
+    const { t } = useTranslation('personal');
     return (
         <Wrapper>
-            <TitleComponent>Нужна консультация ?</TitleComponent>
+            <TitleComponent>{t('Нужна консультация ?')}</TitleComponent>
             <Typography variant="body1" sx={{ margin: { xs: '0 0 20px 0', sm: '0 0 42px 0' } }}>
-                Оставьте заявку и наш специалист свяжется с вами!
+                {t('Оставьте заявку и наш специалист свяжется с вами!')}
             </Typography>
             <SubscribeForm />
         </Wrapper>

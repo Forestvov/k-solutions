@@ -8,6 +8,7 @@ import { getRemainDays } from 'helpers/format-time';
 import { declensionNum } from 'helpers/declension-num';
 
 import InvestStat from './invest-stat';
+import { useTranslation } from 'react-i18next';
 
 interface Prop {
     sx?: SxProps;
@@ -33,29 +34,31 @@ const InvestStats: FC<Prop> = ({
     companyType,
 }) => {
     const countDay = getRemainDays(finishDay ? finishDay : '');
+    const { t } = useTranslation('personal');
 
     return (
         <Stack spacing="10px" sx={sx}>
-            {amountFinish && <InvestStat title="Сумма займа:" value={fCurrency(amountFinish)} />}
+            {amountFinish && <InvestStat title={`${t('Сумма займа')}:`} value={fCurrency(amountFinish)} />}
             {finishDay && (
                 <InvestStat
-                    title="До конца сбора:"
-                    value={`${countDay} ${declensionNum(countDay, ['день', 'дня', 'дней'])}`}
+                    title={`${t('До конца сбора')}:`}
+                    value={`${countDay} ${declensionNum(countDay, [t('день'), t('дня'), t('дней')])}`}
                 />
             )}
             {percents && (
                 <InvestStat
-                    title={companyType === 'Company' ? 'Ставка, % ежемясчный:' : 'Ставка, % ежедневный:'}
+                    title={
+                        companyType === 'Company' ? `${t('Ставка, % ежемясчный')}:` : `${t('Ставка, % ежедневный')}:`
+                    }
                     value={fPercent(percents)}
                 />
             )}
-            {amountMin && <InvestStat title="Минимальная сумма:" value={fCurrency(amountMin)} />}
+            {amountMin && <InvestStat title={`${t('Минимальная сумма')}:`} value={fCurrency(amountMin)} />}
             {ranges &&
                 (ranges === 9999 ? (
                     <InvestStat
-                        title="Срок займа:"
-                        tooltip="
-                        Срок займа - в случае с франшизами, вы можете в любое вермя после инвестирования подать запрос на закрытие кредитования, который будет рассмотрен в течении 5 дней."
+                        title={`${t('Срок займа')}:`}
+                        tooltip={t('tooltip')}
                         value={
                             <svg
                                 width="17"
@@ -73,13 +76,13 @@ const InvestStats: FC<Prop> = ({
                     />
                 ) : (
                     <InvestStat
-                        title="Срок займа:"
-                        value={`${ranges} ${declensionNum(ranges, ['месяц', 'месяца', 'месяцев'])}`}
+                        title={`${t('Срок займа')}:`}
+                        value={`${ranges} ${declensionNum(ranges, [t('месяц'), t('месяца'), t('месяцев')])}`}
                     />
                 ))}
 
-            {myTotal && <InvestStat title="Сумма ваших инвестиций:" value={fCurrency(myTotal)} />}
-            {countTransaction && <InvestStat title="Кол-во транзакций:" value={countTransaction} />}
+            {myTotal && <InvestStat title={`${t('Сумма ваших инвестиций')}:`} value={fCurrency(myTotal)} />}
+            {countTransaction && <InvestStat title={`${t('Кол-во транзакций')}:`} value={countTransaction} />}
         </Stack>
     );
 };

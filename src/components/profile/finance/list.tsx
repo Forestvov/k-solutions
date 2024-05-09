@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
@@ -17,6 +18,7 @@ const TitleStyled = styled(Title)`
 `;
 
 const List = () => {
+    const { t } = useTranslation('personal');
     const { lg, md } = useDeviceSize();
     const [page, setPage] = useState(0);
 
@@ -35,7 +37,7 @@ const List = () => {
     return (
         <div>
             <TitleStyled>
-                Активы
+                {t('Активы')}
                 {totalElements > 0 ? <Counter>({totalElements})</Counter> : ' (0)'}
             </TitleStyled>
             <Box

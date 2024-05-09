@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
@@ -147,6 +149,8 @@ interface Props {
 }
 
 const Banner = ({ name, logo, description, showClose, companyType, countTransaction, myTotal }: Props) => {
+    const { t } = useTranslation('personal');
+
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('xl'));
 
@@ -158,7 +162,7 @@ const Banner = ({ name, logo, description, showClose, companyType, countTransact
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 1L1 6L6 11" stroke="white" strokeLinecap="round" />
                         </svg>
-                        <span>Назад к витрине</span>
+                        <span>{t('Назад к витрине')}</span>
                     </BackLink>
                     <Stack
                         sx={{
@@ -181,7 +185,7 @@ const Banner = ({ name, logo, description, showClose, companyType, countTransact
                         </ImageBox>
                         <CompanyName>
                             {name}
-                            {showClose && companyType === 'Franchise' && <StatusTag>Активный</StatusTag>}
+                            {showClose && companyType === 'Franchise' && <StatusTag>{t('Активный')}</StatusTag>}
                         </CompanyName>
                     </Stack>
                     <Description>{description}</Description>

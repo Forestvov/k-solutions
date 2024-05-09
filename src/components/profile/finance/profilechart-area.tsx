@@ -9,6 +9,7 @@ import styled from '@emotion/styled';
 
 import Chart, { useChart } from '../../shared/chart';
 import type { Dayjs } from 'dayjs';
+import { useTranslation } from 'react-i18next';
 
 const Title = styled.div`
     font-weight: 700;
@@ -54,6 +55,8 @@ interface Props extends CardProps {
 }
 
 export default function ProfilechartArea({ title, chart, toDate, setFromDate, fromDate, setToDate, ...other }: Props) {
+    const { t } = useTranslation('personal');
+
     const {
         colors = [
             ['#5BE49B', '#00A76F'],
@@ -106,8 +109,18 @@ export default function ProfilechartArea({ title, chart, toDate, setFromDate, fr
                             xs: '16px',
                         }}
                     >
-                        <DatePickerStyled label="Дата от" value={fromDate} onChange={setFromDate} format="DD-MM-YYYY" />
-                        <DatePickerStyled label="Дата до" value={toDate} onChange={setToDate} format="DD-MM-YYYY" />
+                        <DatePickerStyled
+                            label={t('Дата от')}
+                            value={fromDate}
+                            onChange={setFromDate}
+                            format="DD-MM-YYYY"
+                        />
+                        <DatePickerStyled
+                            label={t('Дата до')}
+                            value={toDate}
+                            onChange={setToDate}
+                            format="DD-MM-YYYY"
+                        />
                     </Stack>
                 </LocalizationProvider>
             </Stack>

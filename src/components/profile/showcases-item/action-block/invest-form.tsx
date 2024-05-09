@@ -1,14 +1,17 @@
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
+import Typography from '@mui/material/Typography';
+
 import type { CompanyType } from 'types/company';
 import { closeBrief, investBrief } from 'api/brief';
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-import Typography from '@mui/material/Typography';
 
 const Wrapper = styled.div`
     position: relative;
@@ -56,6 +59,8 @@ interface Props {
 }
 
 const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) => {
+    const { t } = useTranslation('personal');
+
     const [error, setError] = useState<boolean | string>(false);
     const [loader, setLoader] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -63,7 +68,7 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
     const { id } = useParams();
 
     const validate = yup.object().shape({
-        amount: yup.number().required('Необходимо указать число'),
+        amount: yup.number().required(t('Необходимо указать число')),
     });
 
     const resolver = yupResolver(validate);
@@ -103,15 +108,15 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
         } catch (e) {
             // @ts-ignore
             if (e?.message === 'Amount less or more then rang of current briefcase') {
-                setError('Указанная сумма меньше минимального взноса');
+                setError(t('Указанная сумма меньше минимального взноса'));
             }
             // @ts-ignore
             if (e?.message === 'Balance is not enough for invest') {
-                setError('Указанная сумма больше вашего баланса');
+                setError(t('Указанная сумма больше вашего баланса'));
             }
             // @ts-ignore
             if (e?.message === 'Amount bigger then invested') {
-                setError('Сумма превышает ваши инвестиции');
+                setError(t('Сумма превышает ваши инвестиции'));
             }
         }
 
@@ -136,8 +141,8 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
                                 type="text"
                                 placeholder={
                                     companyType === 'Franchise'
-                                        ? 'Введите сумму инвестиции ($)'
-                                        : 'Введите сумму кредитования ($)'
+                                        ? t('Введите сумму инвестиции ($)')
+                                        : t('Введите сумму кредитования ($)')
                                 }
                             />
                             {value && <Prefix>$</Prefix>}
@@ -167,13 +172,13 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
                     >
                         {!closeInvest
                             ? companyType === 'Franchise'
-                                ? 'Вы успешно проинвестировали'
-                                : 'Вы успешно прокредитовали'
-                            : 'Запрос на закрытие отправлен'}
+                                ? t('Вы успешно проинвестировали')
+                                : t('Вы успешно прокредитовали')
+                            : t('Запрос на закрытие отправлен')}
                     </Typography>
                 )}
                 <Button variant="dark-green" type="submit" fullWidth disabled={loader}>
-                    Подтвердить
+                    {t('Подтвердить')}
                 </Button>
             </Stack>
         </FormProvider>

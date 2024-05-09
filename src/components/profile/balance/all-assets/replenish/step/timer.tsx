@@ -2,6 +2,8 @@
 /* eslint-disable */
 
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
@@ -52,6 +54,8 @@ interface Prop {
 }
 
 const Timer = ({ timestamp, setStatus, deadMin }: Prop) => {
+    const { t } = useTranslation('personal');
+
     useEffect(() => {
         // 1. Получим элементы в которые нужно вывести оставшееся количество дней, часов, минут и секунд
         const elMinutes1 = document.querySelector('.minutes');
@@ -100,7 +104,7 @@ const Timer = ({ timestamp, setStatus, deadMin }: Prop) => {
                 <Time>
                     <span className="minutes" />:<span className="seconds" />
                 </Time>
-                <Label>Осталось времени</Label>
+                <Label>{t('Осталось времени')}</Label>
             </Stack>
         </Stack>
     );

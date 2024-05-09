@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -24,6 +26,8 @@ const Text = styled.p`
 `;
 
 const Awards = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapper>
             <Stack
@@ -48,11 +52,12 @@ const Awards = () => {
                 >
                     <Stack spacing="15px" direction="row">
                         <DollarIcon />
-                        <Title>Награды</Title>
+                        <Title>{t('Награды')}</Title>
                     </Stack>
                     <Text>
-                        Финансируй компании на раннем этапе, и развивайся вместе с ней, стань участником рынка на
-                        предварительном публичном размещении, и получи вознаграждение.
+                        {t(
+                            'Финансируй компании на раннем этапе, и развивайся вместе с ней, стань участником рынка на предварительном публичном размещении, и получи вознаграждение.'
+                        )}
                     </Text>
                 </Stack>
                 <Box sx={{ flex: 1 }}>

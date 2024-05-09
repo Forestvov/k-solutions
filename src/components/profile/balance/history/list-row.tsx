@@ -1,10 +1,15 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+
 import type { IHistory, StatusType } from 'types/transaction';
+
 import { fCurrency } from 'helpers/number-format';
 import { fDate, fTime } from 'helpers/format-time';
+
 import Replenish from 'components/profile/balance/all-assets/replenish';
 
 const Cell = styled(TableCell)`
@@ -105,20 +110,22 @@ const Item = ({ label, value }: ItemProps) => {
 };
 
 const ListRow = ({ row }: { row: IHistory }) => {
+    const { t } = useTranslation('personal');
+
     const { transactionType, transactionLinkType, transactionDate, transactionStatus, amountOut, amountIn } = row;
 
     const generateStatus = (type: StatusType) => {
         switch (type) {
             case 'Process':
-                return 'В процессе';
+                return t('В процессе');
             case 'Success':
-                return 'Успешно';
+                return t('Успешно');
             case 'Canceled':
-                return 'Отклоненна';
+                return t('Отклоненна');
             case 'Marked as paid':
-                return 'Оплачен';
+                return t('Оплачен');
             case 'Wait requisites':
-                return 'Ожидает реквизиты';
+                return t('Ожидает реквизиты');
             default:
                 return '';
         }
@@ -137,26 +144,26 @@ const ListRow = ({ row }: { row: IHistory }) => {
                 </Status>
             </Cell>
             <Cell>
-                <Item value={transactionType === 'In' ? 'Пополнение' : 'Вывод'} label="Тип транзакции" />
+                <Item value={transactionType === 'In' ? t('Пополнение') : t('Вывод')} label={t('Тип транзакции')} />
             </Cell>
             <Cell>
                 <Item
                     value={transactionLinkType === 'Token' ? 'Crypto' : transactionLinkType}
-                    label="Платежная система"
+                    label={t('Платежная система')}
                 />
             </Cell>
             <Cell>
                 {transactionType === 'Out' && transactionLinkType === 'p2p' ? (
-                    <Item value={fCurrency(amountIn ?? 0)} label="Сумма транзакции" />
+                    <Item value={fCurrency(amountIn ?? 0)} label={t('Сумма транзакции')} />
                 ) : (
-                    <Item value={fCurrency(amountOut ?? 0)} label="Сумма транзакции" />
+                    <Item value={fCurrency(amountOut ?? 0)} label={t('Сумма транзакции')} />
                 )}
             </Cell>
             <Cell>
-                <Item value={fDate(transactionDate)} label="Дата транзакции" />
+                <Item value={fDate(transactionDate)} label={t('Дата транзакции')} />
             </Cell>
             <Cell>
-                <Item value={fTime(transactionDate)} label="Время транзакции" />
+                <Item value={fTime(transactionDate)} label={t('Время транзакции')} />
             </Cell>
             <Cell>
                 <Replenish content={row} transactionType={row.transactionType}>

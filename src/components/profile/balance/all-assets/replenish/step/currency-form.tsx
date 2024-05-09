@@ -1,3 +1,6 @@
+import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
@@ -5,7 +8,6 @@ import styled from '@emotion/styled';
 import TitleStep from './title-step';
 import CopyInput from './copy-input';
 import Timer from './timer';
-import { useFormContext } from 'react-hook-form';
 
 const QrCode = styled.img`
     height: 317px;
@@ -27,6 +29,8 @@ const generatePrefix = (token: string) => {
 };
 
 const CurrencyForm = () => {
+    const { t } = useTranslation('personal');
+
     const { getValues } = useFormContext();
     return (
         <Box
@@ -36,7 +40,9 @@ const CurrencyForm = () => {
             }}
         >
             <Stack spacing="30px" alignItems="center">
-                <TitleStep>Пожалуйста, выполните заказ в установленный срок, иначе он будет аннулирован.</TitleStep>
+                <TitleStep>
+                    {t('Пожалуйста, выполните заказ в установленный срок, иначе он будет аннулирован.')}
+                </TitleStep>
                 <QrCode src={getValues('qrCode')} />
                 <CopyInput value={String(getValues('amountOut'))} prefix={generatePrefix(getValues('currencyToken'))} />
                 <CopyInput value={getValues('contact')} />

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { FileUploader } from 'react-drag-drop-files';
 import { Button, Typography } from '@mui/material';
 
@@ -8,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+import OutlineBtn from 'components/profile/settings/outline-btn';
 
 import { addPhotoForAccount } from 'api/user';
 import { toBase64 } from 'helpers/toBase64';
@@ -15,7 +18,6 @@ import { toBase64 } from 'helpers/toBase64';
 import Title from '../title';
 
 import DefaultButton from './default-button';
-import OutlineBtn from 'components/profile/settings/outline-btn';
 
 const FileWraper = styled(Stack)`
     label {
@@ -98,6 +100,8 @@ const GreenButton = styled(DefaultButton)`
 `;
 
 const DocumentForm = () => {
+    const { t } = useTranslation('personal');
+
     // @ts-ignore
     const { user } = useAuthContext();
 
@@ -161,11 +165,11 @@ const DocumentForm = () => {
                                     maxWidth: '1200px',
                                 }}
                             >
-                                <Title>Для прохождения идентификации, пожалуйста, загрузите паспорт.</Title>
+                                <Title>{t('Для прохождения идентификации, пожалуйста, загрузите паспорт.')}</Title>
                                 <Typography variant="body1">
-                                    На фотографии (скане) паспорта обязательно должны присутствовать первый разворот
-                                    (1-2 страницы паспорта) и регистрация (3-4 страницы паспорта). Фотография (скан)
-                                    паспорта должна быть цветной, в хорошем качестве и легко читаема.
+                                    {t(
+                                        'На фотографии (скане) паспорта обязательно должны присутствовать первый разворот (1-2 страницы паспорта) и регистрация (3-4 страницы паспорта). Фотография (скан) паспорта должна быть цветной, в хорошем качестве и легко читаема.'
+                                    )}
                                 </Typography>
                             </Stack>
                         </Stack>
@@ -212,12 +216,12 @@ const DocumentForm = () => {
                                                 fill="#006838"
                                             />
                                         </svg>
-                                        <TitleFile>Перетащите разворот с фотографией сюда</TitleFile>
+                                        <TitleFile>{t('Перетащите разворот с фотографией сюда')}</TitleFile>
                                         <Stack spacing="90px">
                                             <Text>
-                                                Или <span>Выберите файл</span> на вашем устройстве.
+                                                {t('Или')} <span>{t('Выберите файл')}</span> {t('на вашем устройстве.')}
                                             </Text>
-                                            <Text>Максимальный объем файла - 10MB</Text>
+                                            <Text>{t('Максимальный объем файла')} - 10MB</Text>
                                         </Stack>
                                     </FileInput>
                                 </FileUploader>
@@ -257,12 +261,12 @@ const DocumentForm = () => {
                                                 fill="#006838"
                                             />
                                         </svg>
-                                        <TitleFile>Перетащите разворот с фотографией сюда</TitleFile>
+                                        <TitleFile>{t('Перетащите разворот с фотографией сюда')}</TitleFile>
                                         <Stack spacing="90px">
                                             <Text>
-                                                Или <span>Выберите файл</span> на вашем устройстве.
+                                                {t('Или')} <span>{t('Выберите файл')}</span> {t('на вашем устройстве.')}
                                             </Text>
-                                            <Text>Максимальный объем файла - 10MB</Text>
+                                            <Text>{t('Максимальный объем файла')} - 10MB</Text>
                                         </Stack>
                                     </FileInput>
                                 </FileUploader>
@@ -277,7 +281,7 @@ const DocumentForm = () => {
                                 }}
                                 variant="dark-green"
                             >
-                                Отправить на верификацию
+                                {t('Отправить на верификацию')}
                             </Button>
                         )}
                     </Stack>
@@ -292,7 +296,7 @@ const DocumentForm = () => {
                                     maxWidth: '1200px',
                                 }}
                             >
-                                <Title>Пожалуйста, ожидайте верификации, ваша заявка в обработке.</Title>
+                                <Title>{t('Пожалуйста, ожидайте верификации, ваша заявка в обработке.')}</Title>
                             </Stack>
                         </Stack>
                     </Stack>
@@ -308,16 +312,17 @@ const DocumentForm = () => {
                                 }}
                             >
                                 <Title>
-                                    Вы не прошли верификацию!
+                                    {t('Вы не прошли верификацию!')}
                                     <br />
                                     <br />
-                                    Пожалуйста загрузите фото повтороно, чтобы получить доступ ко всем возможностям
-                                    платформы, на данный момент Ваш запрос отклонен !
+                                    {t(
+                                        'Пожалуйста загрузите фото повтороно, чтобы получить доступ ко всем возможностям платформы, на данный момент Ваш запрос отклонен !'
+                                    )}
                                 </Title>
                                 <Typography variant="body1">
-                                    На фотографии (скане) паспорта обязательно должны присутствовать первый разворот
-                                    (1-2 страницы паспорта) и регистрация (3-4 страницы паспорта). Фотография (скан)
-                                    паспорта должна быть цветной, в хорошем качестве и легко читаема.
+                                    {t(
+                                        'На фотографии (скане) паспорта обязательно должны присутствовать первый разворот (1-2 страницы паспорта) и регистрация (3-4 страницы паспорта). Фотография (скан) паспорта должна быть цветной, в хорошем качестве и легко читаема.'
+                                    )}
                                 </Typography>
                             </Stack>
                         </Stack>
@@ -364,12 +369,12 @@ const DocumentForm = () => {
                                                 fill="#006838"
                                             />
                                         </svg>
-                                        <TitleFile>Перетащите разворот с фотографией сюда</TitleFile>
+                                        <TitleFile>{t('Перетащите разворот с фотографией сюда')}</TitleFile>
                                         <Stack spacing="90px">
                                             <Text>
-                                                Или <span>Выберите файл</span> на вашем устройстве.
+                                                {t('Или')} <span>{t('Выберите файл')}</span> {t('на вашем устройстве.')}
                                             </Text>
-                                            <Text>Максимальный объем файла - 10MB</Text>
+                                            <Text>{t('Максимальный объем файла')} - 10MB</Text>
                                         </Stack>
                                     </FileInput>
                                 </FileUploader>
@@ -409,12 +414,12 @@ const DocumentForm = () => {
                                                 fill="#006838"
                                             />
                                         </svg>
-                                        <TitleFile>Перетащите разворот с фотографией сюда</TitleFile>
+                                        <TitleFile>{t('Перетащите разворот с фотографией сюда')}</TitleFile>
                                         <Stack spacing="90px">
                                             <Text>
-                                                Или <span>Выберите файл</span> на вашем устройстве.
+                                                {t('Или')} <span>{t('Выберите файл')}</span> {t('на вашем устройстве.')}
                                             </Text>
-                                            <Text>Максимальный объем файла - 10MB</Text>
+                                            <Text>{t('Максимальный объем файла')} - 10MB</Text>
                                         </Stack>
                                     </FileInput>
                                 </FileUploader>
@@ -429,7 +434,7 @@ const DocumentForm = () => {
                                 }}
                                 variant="dark-green"
                             >
-                                Отправить на верификацию
+                                {t('Отправить на верификацию')}
                             </Button>
                         )}
                     </Stack>
@@ -445,9 +450,9 @@ const DocumentForm = () => {
                                         maxWidth: '1200px',
                                     }}
                                 >
-                                    <Title>Вы успешно прошли верификацию !</Title>
+                                    <Title>{t('Вы успешно прошли верификацию !')}</Title>
                                     <Typography variant="body1">
-                                        Теперь вы можете посещать другие страницы вашего профиля.
+                                        {t('Теперь вы можете посещать другие страницы вашего профиля.')}
                                     </Typography>
                                 </Stack>
                             </Stack>
@@ -470,10 +475,11 @@ const DocumentForm = () => {
                                     maxWidth: '868px',
                                 }}
                             >
-                                <Title>Договор о сотрудничестве</Title>
+                                <Title>{t('Договор о сотрудничестве')}</Title>
                                 <Typography variant="body1">
-                                    Данный договор заключается между инвестором и компанией, скачайте и заполните его, а
-                                    затем загрузите на платформу.
+                                    {t(
+                                        'Данный договор заключается между инвестором и компанией, скачайте и заполните его, а затем загрузите на платформу.'
+                                    )}
                                 </Typography>
                             </Stack>
                             <Stack
@@ -510,9 +516,9 @@ const DocumentForm = () => {
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    Скачать
+                                    {t('Скачать')}
                                 </GreenButton>
-                                <OutlineBtn text="Загрузить Подписанный" />
+                                <OutlineBtn text={t('Загрузить Подписанный')} />
                             </Stack>
                         </Stack>
                     </>

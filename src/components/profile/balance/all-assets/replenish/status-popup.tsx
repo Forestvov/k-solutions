@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+
 import type { IHistory } from 'types/transaction';
 import { fCurrency } from 'helpers/number-format';
 
@@ -116,6 +119,7 @@ const TotalValue = styled.div<{ status: 'success' | 'cancel' }>`
 `;
 
 const Success = ({ type }: { type?: TransactionType }) => {
+    const { t } = useTranslation('personal');
     return (
         <Stack spacing="15px" alignItems="center">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,12 +140,13 @@ const Success = ({ type }: { type?: TransactionType }) => {
                     fill="white"
                 />
             </svg>
-            <Title status="success">{type === 'Out' ? 'Вывод прошел успешно' : 'Оплата прошла успешно'}</Title>
+            <Title status="success">{type === 'Out' ? t('Вывод прошел успешно') : t('Оплата прошла успешно')}</Title>
         </Stack>
     );
 };
 
 const Cancel = ({ type }: { type?: TransactionType }) => {
+    const { t } = useTranslation('personal');
     return (
         <Stack spacing="15px" alignItems="center">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,12 +163,13 @@ const Cancel = ({ type }: { type?: TransactionType }) => {
                     fill="white"
                 />
             </svg>
-            <Title status="cancel">{type === 'Out' ? 'Вывод не прошел' : 'Оплата не прошла'}</Title>
+            <Title status="cancel">{type === 'Out' ? t('Вывод не прошел') : t('Оплата не прошла')}</Title>
         </Stack>
     );
 };
 
 const StatusPopup = ({ onClose, content, transactionType }: Props) => {
+    const { t } = useTranslation('personal');
     return (
         <Wrapper>
             <Stack
@@ -192,7 +198,7 @@ const StatusPopup = ({ onClose, content, transactionType }: Props) => {
                         alignItems="baseline"
                         justifyContent="space-between"
                     >
-                        <Label>Платежная система</Label>
+                        <Label>{t('Платежная система')}</Label>
                         <Value>
                             {content.transactionLinkType === 'Token' ? 'Crypto' : content.transactionLinkType}/
                             {content.currentName}
@@ -209,7 +215,7 @@ const StatusPopup = ({ onClose, content, transactionType }: Props) => {
                         alignItems="baseline"
                         justifyContent="space-between"
                     >
-                        <Label>Пользователь</Label>
+                        <Label>{t('Пользователь')}</Label>
                         <Value>{content.fio}</Value>
                     </Stack>
                     <Stack
@@ -223,12 +229,12 @@ const StatusPopup = ({ onClose, content, transactionType }: Props) => {
                         alignItems="baseline"
                         justifyContent="space-between"
                     >
-                        <Label>ID Транзакции</Label>
+                        <Label>{t('ID Транзакции')}</Label>
                         <Value>{content.transactionId}</Value>
                     </Stack>
                 </Stack>
                 <Stack direction="row" alignItems="baseline" justifyContent="space-between">
-                    <TotalLabel>Сумма</TotalLabel>
+                    <TotalLabel>{t('Сумма')}</TotalLabel>
                     <TotalValue status={content.transactionStatus === 'Success' ? 'success' : 'cancel'}>
                         {content.transactionType === 'In'
                             ? fCurrency(Number(content.amountOut))
@@ -243,7 +249,7 @@ const StatusPopup = ({ onClose, content, transactionType }: Props) => {
                         padding: '20px',
                     }}
                 >
-                    Закрыть
+                    {t('Закрыть')}
                 </Button>
             </Stack>
         </Wrapper>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -27,6 +28,8 @@ const SvgBox = styled.div`
 `;
 
 const Vaiting = ({ onClose, transactionType }: Props) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Stack
             spacing="60px"
@@ -37,8 +40,8 @@ const Vaiting = ({ onClose, transactionType }: Props) => {
         >
             <TitleStep>
                 {transactionType === 'Out'
-                    ? 'Проводится вывод средств, пожалуйста подождите'
-                    : 'Проводится проверка оплаты, пожалуйста подождите'}
+                    ? t('Проводится вывод средств, пожалуйста подождите')
+                    : t('Проводится проверка оплаты, пожалуйста подождите')}
             </TitleStep>
             <SvgBox>
                 <svg width="132" height="131" viewBox="0 0 132 131" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +105,7 @@ const Vaiting = ({ onClose, transactionType }: Props) => {
                     padding: '20px',
                 }}
             >
-                Закрыть
+                {t('Закрыть')}
             </Button>
         </Stack>
     );

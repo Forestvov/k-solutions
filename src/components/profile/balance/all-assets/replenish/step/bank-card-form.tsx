@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -12,6 +14,8 @@ interface Props {
 }
 
 const BankCardForm = ({ transactionType }: Props) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Box
             sx={{
@@ -30,7 +34,7 @@ const BankCardForm = ({ transactionType }: Props) => {
                         <Input
                             isBankCard
                             placeholder="00.00"
-                            label={transactionType === 'Out' ? 'Сумма вывода' : 'Сумма пополнения'}
+                            label={transactionType === 'Out' ? t('Сумма вывода') : t('Сумма пополнения')}
                             prefix="$"
                             type="number"
                             name="amountIn"
@@ -46,8 +50,8 @@ const BankCardForm = ({ transactionType }: Props) => {
                             xs: '16px',
                         }}
                     >
-                        <Input isBankCard name="nameCart" placeholder="Olivia Rhye" label="Имя владельца карты" />
-                        <Input isBankCard name="dateCart" placeholder="06 / 2024" mask="99 / 9999" label="Дата" />
+                        <Input isBankCard name="nameCart" placeholder="Olivia Rhye" label={t('Имя владельца карты')} />
+                        <Input isBankCard name="dateCart" placeholder="06 / 2024" mask="99 / 9999" label={t('Дата')} />
                     </Stack>
                     <Stack
                         direction={{
@@ -62,7 +66,7 @@ const BankCardForm = ({ transactionType }: Props) => {
                             name="numberCart"
                             placeholder="0000 0000 0000 0000"
                             mask="9999 9999 9999 9999"
-                            label="Номер карты"
+                            label={t('Номер карты')}
                         />
                         <Input isBankCard name="cvvCart" placeholder="777" type="password" label="CVV" />
                     </Stack>
@@ -84,11 +88,11 @@ const BankCardForm = ({ transactionType }: Props) => {
                         fullWidth
                         type="submit"
                     >
-                        {transactionType === 'Out' ? 'Вывести' : 'Оплатить'}
+                        {transactionType === 'Out' ? t('Вывести') : t('Оплатить')}
                     </Button>
                 </Stack>
                 <Description>
-                    При переводе учитывайте комиссию вашего банка, так же комиссию за международную операцию 6%.
+                    {t('При переводе учитывайте комиссию вашего банка, так же комиссию за международную операцию 6%.')}
                 </Description>
             </Stack>
         </Box>

@@ -4,11 +4,10 @@ import useSWR from 'swr';
 import { endpoints, fetcher } from 'helpers/axios';
 
 import type { IPagination } from 'types/pagination';
-import type { LangType } from 'types/lang';
 import type { IResponseNews } from 'types/news';
 
 interface PropList extends IPagination {
-    lang: LangType;
+    lang: string;
 }
 
 export function useGetNews({ lang = 'ru', page, pageSize }: PropList) {

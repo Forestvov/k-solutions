@@ -1,4 +1,5 @@
 // import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
 import { FormProvider, useForm } from 'react-hook-form';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -13,6 +14,8 @@ import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 import { upadteAccount } from 'api/user';
 
 const AccountForm = () => {
+    const { t } = useTranslation('personal');
+
     // const resolver = yupResolver(validateSecurity);
 
     // @ts-ignore
@@ -66,7 +69,7 @@ const AccountForm = () => {
                     component="form"
                     onSubmit={methods.handleSubmit(onSubmit)}
                 >
-                    <Title>Личная информация</Title>
+                    <Title>{t('Личная информация')}</Title>
                     <Stack spacing="30px">
                         <Stack
                             direction={{
@@ -78,8 +81,8 @@ const AccountForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="name" placeholder="Имя" />
-                            <Input name="fio" placeholder="Фамилия" />
+                            <Input name="name" placeholder={t('Имя')} />
+                            <Input name="fio" placeholder={t('Фамилия')} />
                         </Stack>
                         <Stack
                             direction={{
@@ -91,7 +94,7 @@ const AccountForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="username" placeholder="Логин" />
+                            <Input name="username" placeholder={t('Логин')} />
                             <Input name="email" placeholder="E-mail" />
                         </Stack>
                         <Stack
@@ -104,8 +107,8 @@ const AccountForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="country" placeholder="Страна" />
-                            <Input name="phoneNumber" placeholder="Номер телефона" />
+                            <Input name="country" placeholder={t('Страна')} />
+                            <Input name="phoneNumber" placeholder={t('Номер телефона')} />
                         </Stack>
                     </Stack>
                     <Button
@@ -116,7 +119,7 @@ const AccountForm = () => {
                             maxWidth: '400px',
                         }}
                     >
-                        Сохранить изменения
+                        {t('Сохранить изменения')}
                     </Button>
                 </Stack>
             </Box>

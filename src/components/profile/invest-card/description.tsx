@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 
@@ -47,11 +49,13 @@ interface Props {
 }
 
 const Description = ({ name, status, text }: Props) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Box>
             <Name>
                 {name}
-                {status && <StatusTag>Активный</StatusTag>}
+                {status && <StatusTag>{t('Активный')}</StatusTag>}
             </Name>
             <Text>{text}</Text>
         </Box>

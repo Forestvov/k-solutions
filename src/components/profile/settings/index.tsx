@@ -1,9 +1,12 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import WhiteWrapper from '../white-wrapper';
 import Title from '../title';
@@ -17,8 +20,7 @@ import AccountIcon from 'assets/pages/personal/settings/account.svg?react';
 import DocumentsIcon from 'assets/pages/personal/settings/doccuments.svg?react';
 import UsersIcon from 'assets/pages/personal/settings/users.svg?react';
 import LockIcon from 'assets/pages/personal/settings/lock.svg?react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 type SettingPage = 'account' | 'document' | 'entrepreneurs' | 'security';
@@ -67,6 +69,8 @@ const Button = styled.button<{ active: boolean }>`
 `;
 
 const Settings = () => {
+    const { t } = useTranslation('personal');
+
     // @ts-ignore
     const { user } = useAuthContext();
     const [searchParams] = useSearchParams();
@@ -96,19 +100,19 @@ const Settings = () => {
             >
                 <Button active={page === 'account'} onClick={() => setPage('account')}>
                     <AccountIcon />
-                    Аккаунт
+                    {t('Аккаунт')}
                 </Button>
                 <Button active={page === 'document'} onClick={() => setPage('document')}>
                     <DocumentsIcon />
-                    Документы
+                    {t('Документы')}
                 </Button>
                 <Button active={page === 'entrepreneurs'} onClick={() => setPage('entrepreneurs')}>
                     <UsersIcon />
-                    Предпринимателям
+                    {t('Предпринимателям')}
                 </Button>
                 <Button active={page === 'security'} onClick={() => setPage('security')}>
                     <LockIcon />
-                    Безопасность
+                    {t('Безопасность')}
                 </Button>
             </Stack>
             <WhiteWrapper>
@@ -121,8 +125,8 @@ const Settings = () => {
                             },
                         }}
                     >
-                        <TitleMessage>Вы не верифицировали свой профиль!</TitleMessage>
-                        <Typography>Пожалуйста, пройдите верификацию!</Typography>
+                        <TitleMessage>{t('Вы не верифицировали свой профиль!')}</TitleMessage>
+                        <Typography>{t('Пожалуйста, пройдите верификацию!')}</Typography>
                     </Box>
                 )}
                 <RenderPage type={page} />

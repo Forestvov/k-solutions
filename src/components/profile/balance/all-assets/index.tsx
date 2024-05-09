@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+import { fCurrency, fPercent } from 'helpers/number-format';
+import { getCurrency } from 'api/balance';
+import { getCookie } from 'context/settings/cookie';
 
 import Title from '../../title';
 import GrayWrapper from '../gray-wrapper';
@@ -11,9 +15,6 @@ import type { CurrencyType } from './types';
 import CurrencyButtons from './currency-buttons';
 import ItemInfo from './item-info';
 import Replenish from './replenish';
-import { fCurrency, fPercent } from 'helpers/number-format';
-import { getCurrency } from 'api/balance';
-import { getCookie } from 'context/settings/cookie';
 
 const generateLocale = (locale: CurrencyType) => {
     switch (locale) {
@@ -49,6 +50,8 @@ const generateEmptyPrefix = (locale: CurrencyType) => {
 };
 
 const AllAssets = () => {
+    const { t } = useTranslation('personal');
+
     const [currency, setCurrency] = useState<CurrencyType>('dollar');
 
     const [demoCurrency, setDemoCurrency] = useState('0');
@@ -116,7 +119,7 @@ const AllAssets = () => {
                             xs: '5px',
                         }}
                     >
-                        <Title>Финансы</Title>
+                        <Title>{t('Финансы')}</Title>
                         <CurrencyButtons currency={currency} onClick={setCurrency} />
                     </Stack>
                     <Stack
@@ -136,7 +139,7 @@ const AllAssets = () => {
                             }}
                         >
                             <ItemInfo
-                                label="Общий Баланс"
+                                label={t('Общий Баланс')}
                                 value={
                                     balance
                                         ? fCurrency(balance, generateLocale(currency), generateCurrency(currency))
@@ -144,7 +147,7 @@ const AllAssets = () => {
                                 }
                             />
                             <ItemInfo
-                                label="Активы"
+                                label={t('Активы')}
                                 value={
                                     briefcaseBalance
                                         ? fCurrency(
@@ -156,7 +159,7 @@ const AllAssets = () => {
                                 }
                             />
                             <ItemInfo
-                                label="Доступный Баланс"
+                                label={t('Доступный Баланс')}
                                 value={
                                     active
                                         ? fCurrency(active, generateLocale(currency), generateCurrency(currency))
@@ -182,12 +185,12 @@ const AllAssets = () => {
                             }}
                         >
                             <ItemInfo
-                                label="Ожидаемая доходность"
+                                label={t('Ожидаемая доходность')}
                                 value={user?.balance?.gainPercents ? fPercent(demoCurrency) : '0%'}
                                 showIcon
                             />
                             <ItemInfo
-                                label="Доходность"
+                                label={t('Доходность')}
                                 value={user?.balance?.gainPercents ? fPercent(user?.balance?.gainPercents) : '0%'}
                             />
                             <Stack
@@ -200,8 +203,8 @@ const AllAssets = () => {
                                 }}
                                 sx={{ marginTop: { md: 'auto !important', xs: '30px !important' } }}
                             >
-                                <Replenish transactionType="In">Пополнить</Replenish>
-                                <Replenish transactionType="Out">Вывести</Replenish>
+                                <Replenish transactionType="In">{t('Пополнить')}</Replenish>
+                                <Replenish transactionType="Out">{t('Вывести')}</Replenish>
                             </Stack>
                         </Stack>
                     </Stack>

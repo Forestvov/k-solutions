@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
@@ -47,6 +49,8 @@ interface Props {
 }
 
 const PaginatorPage = ({ countPages, currentPage, isFirst, isLast, onChange }: Props) => {
+    const { t } = useTranslation('personal');
+
     if (countPages < 2) return null;
 
     return (
@@ -55,7 +59,7 @@ const PaginatorPage = ({ countPages, currentPage, isFirst, isLast, onChange }: P
                 <LeftArrowIcon />
             </Button>
             <Counter>
-                Страница <span>{currentPage + 1}</span> из <span>{countPages}</span>
+                {t('Страница')} <span>{currentPage + 1}</span> {t('из')} <span>{countPages}</span>
             </Counter>
             <Button disabled={isLast} onClick={() => onChange(currentPage + 1)}>
                 <RightArrowIcon />

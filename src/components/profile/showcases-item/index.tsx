@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
@@ -10,6 +11,10 @@ import { useGetBrief } from 'api/brief';
 import { useGetCompany } from 'api/company';
 import { useSearchParams } from 'hooks/use-search-params';
 
+import { declensionNum } from 'helpers/declension-num';
+import { fCurrency, fPercent } from 'helpers/number-format';
+import { getRemainDays } from 'helpers/format-time';
+
 import SplashScreen from 'components/shared/splash-screen';
 
 import Banner from './banner';
@@ -18,9 +23,6 @@ import KeyInformation from './key-information';
 import Info from './info';
 import Awards from './awards';
 import ActionBlock from './action-block';
-import { declensionNum } from 'helpers/declension-num';
-import { fCurrency, fPercent } from 'helpers/number-format';
-import { getRemainDays } from 'helpers/format-time';
 
 const Wrapper = styled.div`
     padding: 0 15px 20px;
@@ -37,6 +39,8 @@ const Wrapper = styled.div`
 `;
 
 const ShowcasesItem = () => {
+    const { t } = useTranslation('personal');
+
     const theme = useTheme();
     const matchesDesktop = useMediaQuery(theme.breakpoints.up('xl'));
     const matchesMobile = useMediaQuery(theme.breakpoints.down('xl'));
@@ -47,12 +51,10 @@ const ShowcasesItem = () => {
     const { brief, briefsLoading, mutate } = useGetBrief(String(id));
     const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')));
 
-    console.log('brief', brief);
-
     const getFinishDay = () => {
         if (brief && brief.finishDay) {
             const days = getRemainDays(brief.finishDay);
-            return `${days} ${declensionNum(days, ['день', 'дня', 'дней'])}`;
+            return `${days} ${declensionNum(days, [t('день'), t('дня'), t('дней')])}`;
         }
         return '';
     };
@@ -113,25 +115,25 @@ const ShowcasesItem = () => {
                                 firstRow={
                                     brief.companyType === 'Company'
                                         ? [
-                                              { label: 'Сумма займа', value: fPercent(brief.amountFinish) },
-                                              { label: 'Ставка, % ежемясчный', value: fPercent(brief.percents) },
-                                              { label: 'Минимальная сумма', value: fCurrency(brief.amountMin) },
+                                              { label: t('Сумма займа'), value: fPercent(brief.amountFinish) },
+                                              { label: t('Ставка, % ежемясчный'), value: fPercent(brief.percents) },
+                                              { label: t('Минимальная сумма'), value: fCurrency(brief.amountMin) },
                                               {
-                                                  label: 'Срок займа',
-                                                  value: `${brief.ranges} ${declensionNum(brief.ranges, ['месяц', 'месяца', 'месяцев'])}`,
+                                                  label: t('Срок займа'),
+                                                  value: `${brief.ranges} ${declensionNum(brief.ranges, [t('месяц'), t('месяца'), t('месяцев')])}`,
                                               },
                                           ]
                                         : [
                                               {
-                                                  label: 'Проинвестировано',
+                                                  label: t('Проинвестировано'),
                                                   value: brief.commonInvestedAmount
                                                       ? fCurrency(brief.commonInvestedAmount)
                                                       : '$0',
                                               },
-                                              { label: 'Ставка, % ежедневный', value: fPercent(brief.percents) },
-                                              { label: 'Минимальная сумма', value: fCurrency(brief.amountMin) },
+                                              { label: t('Ставка, % ежедневный'), value: fPercent(brief.percents) },
+                                              { label: t('Минимальная сумма'), value: fCurrency(brief.amountMin) },
                                               {
-                                                  label: 'Срок займа',
+                                                  label: t('Срок займа'),
                                                   value: 9999,
                                               },
                                           ]
@@ -140,18 +142,18 @@ const ShowcasesItem = () => {
                                     brief.companyType === 'Company'
                                         ? [
                                               {
-                                                  label: 'Собрано',
+                                                  label: t('Собрано'),
                                                   value: brief.commonInvestedAmount
                                                       ? fCurrency(brief.commonInvestedAmount)
                                                       : '$0',
                                               },
-                                              { label: 'До конца сбора:', value: getFinishDay() },
-                                              { label: 'Количество инвесторов', value: brief.pampInvestors },
+                                              { label: `${t('До конца сбора')}:`, value: getFinishDay() },
+                                              { label: t('Количество инвесторов'), value: brief.pampInvestors },
                                               { label: '', value: '' },
                                           ]
                                         : [
                                               {
-                                                  label: 'Количество инвесторов',
+                                                  label: t('Количество инвесторов'),
                                                   value: brief.accountCount ?? 0,
                                               },
                                               { label: '', value: '' },

@@ -8,6 +8,7 @@ import type { SxProps } from '@mui/system';
 
 import { fCurrency, fPercent } from 'helpers/number-format';
 import { declensionNum } from 'helpers/declension-num';
+import { useTranslation } from 'react-i18next';
 
 const Value = styled.span`
     color: #373737;
@@ -63,10 +64,12 @@ interface Prop {
 }
 
 const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFinish, accountCount }) => {
+    const { t } = useTranslation('personal');
+
     if (close) {
         return (
             <Box sx={{ width: '100%', ...sx }}>
-                <Value>Инвестиции </Value>
+                <Value>{t('Инвестиции')}</Value>
             </Box>
         );
     }
@@ -77,14 +80,18 @@ const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFin
         <Box sx={{ width: '100%', ...sx }}>
             <Stack marginBottom={!stoped ? '8px' : '12px'} alignItems="baseline" direction="row" spacing="12px">
                 <Value>{amount ? fCurrency(amount) : '$0'}</Value>
-                <Label>{stoped ? 'Проинвестировано' : 'Собрано'}</Label>
+                <Label>{stoped ? t('Проинвестировано') : t('Собрано')}</Label>
             </Stack>
             {!stoped && <Progress valueBuffer={100} variant="buffer" value={amount > amountFinish ? 100 : percent} />}
             <Stack marginTop="6px" direction="row" justifyContent="space-between">
                 <InvestInfo>
-                    {accountCount} {declensionNum(accountCount, ['инвестор', 'инвестора', 'инвесторов'])}
+                    {accountCount} {declensionNum(accountCount, [t('инвестор'), t('инвестора'), t('инвесторов')])}
                 </InvestInfo>
-                {!stoped && <InvestInfo>{fPercent(percent)} от цели</InvestInfo>}
+                {!stoped && (
+                    <InvestInfo>
+                        {fPercent(percent)} {t('от цели')}
+                    </InvestInfo>
+                )}
             </Stack>
         </Box>
     );

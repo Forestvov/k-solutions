@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 
 import GrayWrapper from '../gray-wrapper';
@@ -9,9 +11,11 @@ const TitleStyled = styled(Title)`
 `;
 
 const History = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <GrayWrapper>
-            <TitleStyled>История Транзакций</TitleStyled>
+            <TitleStyled>{t('История Транзакций')}</TitleStyled>
             <List />
         </GrayWrapper>
     );

@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -34,6 +36,8 @@ interface Prop {
 }
 
 const InvestCard = ({ card, hideStats }: Prop) => {
+    const { t } = useTranslation('personal');
+
     if (!card) return null;
 
     const {
@@ -76,7 +80,7 @@ const InvestCard = ({ card, hideStats }: Prop) => {
                 </Box>
                 <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
                     <Button variant="green" fullWidth>
-                        Подробнее
+                        {t('Подробнее')}
                     </Button>
                 </Link>
             </Stack>

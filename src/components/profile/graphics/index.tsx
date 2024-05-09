@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 
@@ -35,10 +37,12 @@ const SubTitleStyled = styled(Title)`
 `;
 
 const Graphics = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <WhiteWrapper>
-            <TitleStyled>Рынки</TitleStyled>
-            <SubTitleStyled>Объёмы венчурных инвестиций по отраслям</SubTitleStyled>
+            <TitleStyled>{t('Рынки')}</TitleStyled>
+            <SubTitleStyled>{t('Объёмы венчурных инвестиций по отраслям')}</SubTitleStyled>
             <List />
             <Carousel />
             <Box
@@ -51,7 +55,7 @@ const Graphics = () => {
                 }}
             >
                 <ChartBlock
-                    title="Общий объём венчурных инвестиций"
+                    title={t('Общий объём венчурных инвестиций')}
                     chart={{
                         labels: [
                             '2012',
@@ -87,8 +91,8 @@ const Graphics = () => {
                 />
                 <ChartBlock
                     prefixAfter=""
-                    prefixBefore="мл. р."
-                    title="Ожидаемая доходность"
+                    prefixBefore={t('мл. р.')}
+                    title={t('Ожидаемая доходность')}
                     chart={{
                         labels: ['2020', '2021', '2022', '2023', '2024'],
                         series: [
@@ -99,25 +103,25 @@ const Graphics = () => {
                                 data: [0, 15, 20, 30, 55],
                             },
                             {
-                                name: 'Акции',
+                                name: t('Акции'),
                                 type: 'line',
                                 fill: 'solid',
                                 data: [0, 5, 15, 20, 31],
                             },
                             {
-                                name: 'Облигации',
+                                name: t('Облигации'),
                                 type: 'line',
                                 fill: 'solid',
                                 data: [0, 5, 10, 15, 18],
                             },
                             {
-                                name: 'Депозит',
+                                name: t('Депозит'),
                                 type: 'line',
                                 fill: 'solid',
                                 data: [0, 5, 10, 12, 15],
                             },
                             {
-                                name: 'Жилая недвижимость',
+                                name: t('Жилая недвижимость'),
                                 type: 'line',
                                 fill: 'solid',
                                 data: [0, 5, 8, 10, 11],

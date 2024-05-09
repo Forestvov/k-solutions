@@ -1,5 +1,7 @@
 import type { ComponentType, FC, ReactElement } from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Snackbar from '@mui/material/Snackbar';
 import type { SlideProps } from '@mui/material/Slide';
@@ -77,6 +79,8 @@ function SlideTransition(props: SlideProps) {
 type TransitionType = ComponentType<TransitionProps & { children: ReactElement<any, any> }>;
 
 const CopyInput: FC<Prop> = ({ value, prefix, label }) => {
+    const { t } = useTranslation('personal');
+
     const [state, setState] = useState<{
         open: boolean;
         Transition: TransitionType;
@@ -122,7 +126,7 @@ const CopyInput: FC<Prop> = ({ value, prefix, label }) => {
                     open={state.open}
                     onClose={handleClose}
                     TransitionComponent={state.Transition}
-                    message="Добавлено в буфер обмена"
+                    message={t('Добавлено в буфер обмена')}
                     key={state.Transition.name}
                     autoHideDuration={3000}
                     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}

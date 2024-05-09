@@ -11,8 +11,11 @@ import InvestCard from 'components/profile/invest-card';
 import Pagination from 'components/pagination';
 
 import InvestSkeletonCard from '../invest-skeleton-card';
+import { useTranslation } from 'react-i18next';
 
 const List = () => {
+    const { i18n } = useTranslation('personal');
+
     const {
         settings: { briefcaseHot },
     } = useSettingsContext();
@@ -26,6 +29,7 @@ const List = () => {
         hotBriefsLoading,
         pageInfo: { currentPage, pages },
     } = useGetHotBrief({
+        lang: i18n.language,
         page: page,
         pageSize: lg ? 3 : md ? 2 : 1,
         percentFinish: briefcaseHot,

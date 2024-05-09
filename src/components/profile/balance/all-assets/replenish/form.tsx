@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
 
@@ -54,8 +56,6 @@ const TitleContent = styled.div`
     }
 `;
 
-const steps = ['ШАГ 1', 'ШАГ 2', 'ШАГ 3'];
-
 interface Props {
     onClose: VoidFunction;
     content?: IHistory;
@@ -63,6 +63,9 @@ interface Props {
 }
 
 export const Form = ({ onClose, content, transactionType }: Props) => {
+    const { t } = useTranslation('personal');
+    const steps = [`${t('ШАГ')} 1`, `${t('ШАГ')} 2`, `${t('ШАГ')} 3`];
+
     const [activeStep, setActiveStep] = useState(0);
 
     const methods = useForm<FormState>({
@@ -218,12 +221,10 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
         }
     };
 
-    console.log(methods.watch());
-
     return (
         <Wrapper>
             <TitleContent>
-                <span>{transactionType === 'Out' ? 'Вывод баланса' : 'Пополнить баланс'}</span>
+                <span>{transactionType === 'Out' ? t('Вывод баланса') : t('Пополнить баланс')}</span>
                 <div>{steps[activeStep]}</div>
             </TitleContent>
             <FormProvider {...methods}>

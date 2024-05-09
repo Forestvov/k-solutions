@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import validateSubscribe from 'helpers/validation/validateSubscribe';
 
 import { addContact } from 'api/order-contact';
+import { useTranslation } from 'react-i18next';
 
 interface Inputs {
     phoneNumber: string;
@@ -40,6 +41,8 @@ const Input = styled(InputMask)`
 `;
 
 const SubscribeForm = () => {
+    const { t } = useTranslation('form');
+
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<boolean | string>(false);
     const [load, setLoad] = useState(false);
@@ -66,7 +69,7 @@ const SubscribeForm = () => {
         } catch (e) {
             // @ts-ignore
             if (e?.message === 'This number is existed') {
-                setError('Заявка уже отправлена');
+                setError(t('Заявка уже отправлена'));
             }
         }
 
@@ -92,15 +95,15 @@ const SubscribeForm = () => {
                             mask="+9 (999) 999-99-99"
                             value={value}
                             onChange={onChange}
-                            placeholder="Введите номер телефона"
+                            placeholder={t('Введите номер телефона')}
                         />
                     )}
                 />
                 <Button variant="green" type="submit" disabled={load} sx={{ width: { sm: '278px' }, flex: '0 0 auto' }}>
-                    Заказать Консультацию
+                    {t('Заказать Консультацию')}
                 </Button>
             </Stack>
-            {success && <Typography variant="body1">Заявка успешно отправлена</Typography>}
+            {success && <Typography variant="body1">{t('Заявка успешно отправлена')}</Typography>}
             {error && <Typography variant="body1">{error}</Typography>}
         </Stack>
     );

@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
 import { fCurrency } from 'helpers/number-format';
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const Wrapper = styled(NavLink)`
-    margin-left: 30px;
+    margin-left: auto;
     padding: 15px;
     background: #006838;
     border-radius: 10px;
@@ -31,10 +32,11 @@ const Price = styled.span`
 const Balance = () => {
     // @ts-ignore
     const { user } = useAuthContext();
+    const { t } = useTranslation('personal');
 
     return (
         <Wrapper to="/balance">
-            Баланс: {user.balance.balance ? <Price>{fCurrency(user.balance.balance)}</Price> : '$0'}
+            {t('Баланс')}: {user.balance.balance ? <Price>{fCurrency(user.balance.balance)}</Price> : '$0'}
         </Wrapper>
     );
 };

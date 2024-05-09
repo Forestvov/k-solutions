@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
@@ -46,15 +46,9 @@ const TableStyled = styled.div`
     }
 `;
 
-const TableLabels = [
-    { id: 'name', label: 'Название компании', width: '400px' },
-    { id: 'category', label: 'Дата дохода' },
-    { id: 'country', label: 'Сумма инвестиций' },
-    { id: 'totalAmount', label: 'Ставка, %' },
-    { id: 'rank', label: 'Сумма дохода' },
-];
-
 const FinanceIncome = () => {
+    const { t } = useTranslation('personal');
+
     const [page, setPage] = useState(0);
     const {
         data,
@@ -66,11 +60,19 @@ const FinanceIncome = () => {
         pageSize: 4,
     });
 
+    const TableLabels = [
+        { id: 'name', label: t('Название компании'), width: '400px' },
+        { id: 'category', label: t('Дата дохода') },
+        { id: 'country', label: t('Сумма инвестиций') },
+        { id: 'totalAmount', label: t('Ставка, %') },
+        { id: 'rank', label: t('Сумма дохода') },
+    ];
+
     if (dataEmpty && !dataLoading) return null;
 
     return (
         <div>
-            <TitleStyled>Доходы</TitleStyled>
+            <TitleStyled>{t('Доходы')}</TitleStyled>
             <TableStyled>
                 <TableContainer
                     sx={{
@@ -131,6 +133,8 @@ function EcommerceBestSalesmanRow({
     gainAmount,
     image,
 }: IHistoryRow) {
+    const { t } = useTranslation('personal');
+
     return (
         <TableRow>
             <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
@@ -155,7 +159,9 @@ function EcommerceBestSalesmanRow({
 
             <TableCell>{briefcaseAccountAmount ? fCurrency(briefcaseAccountAmount) : '$0'}</TableCell>
 
-            <TableCell>{fPercent(percents)}/ ежедневно</TableCell>
+            <TableCell>
+                {fPercent(percents)}/ {t('ежедневно')}
+            </TableCell>
 
             <TableCell>
                 <Stack direction="row" alignItems="center" spacing="7px" sx={{ color: '#00A76F' }}>

@@ -17,9 +17,10 @@ import dayjs from 'dayjs';
 
 interface PropList extends IPagination {
     percentFinish: string;
+    lang: string;
 }
 
-export function useGetHotBrief({ page, pageSize, percentFinish }: PropList) {
+export function useGetHotBrief({ page, pageSize, percentFinish, lang }: PropList) {
     const URL = endpoints.briefs.hot;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<HotBriefResponse>(
@@ -34,7 +35,7 @@ export function useGetHotBrief({ page, pageSize, percentFinish }: PropList) {
             },
             'post',
             {
-                lang: 'ru',
+                lang,
             },
         ],
         fetcher,

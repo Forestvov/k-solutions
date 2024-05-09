@@ -1,13 +1,16 @@
 import 'swiper/css';
+import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
 import ShowcasesItem from 'components/profile/showcases-item';
 
 const ShowcasesItemPage = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <>
             <Helmet>
-                <title>Витрина</title>
+                <title>{t('Витрина')}</title>
             </Helmet>
             <ShowcasesItem />
         </>

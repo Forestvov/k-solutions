@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
+
+import { fCurrency } from 'helpers/number-format';
 
 import UsdIcon from 'assets/pages/personal/currency/usd.png';
 import EurIcon from 'assets/pages/personal/currency/eur.png';
@@ -13,7 +16,6 @@ import Title from '../../title';
 import GrayWrapper from '../gray-wrapper';
 import { getCurrency } from 'api/balance';
 import { useEffect, useState } from 'react';
-import { fCurrency } from 'helpers/number-format';
 
 const TitleStyled = styled(Title)`
     margin: 0 0 37px;
@@ -56,6 +58,8 @@ interface ItemProp {
 }
 
 const Item = ({ label, type, image, value }: ItemProp) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Stack
@@ -83,7 +87,7 @@ const Item = ({ label, type, image, value }: ItemProp) => {
                     flex: '0 0 auto',
                 }}
             >
-                <Type>Курс</Type>
+                <Type>{t('Курс')}</Type>
                 <Label>{fCurrency(parseFloat(value.replace(',', '.')), 'ru-RU', 'RUB')}</Label>
             </Stack>
         </Stack>
@@ -91,6 +95,8 @@ const Item = ({ label, type, image, value }: ItemProp) => {
 };
 
 const Well = () => {
+    const { t } = useTranslation('personal');
+
     const [list, setList] = useState({
         usd: 0,
         euro: 0,
@@ -146,13 +152,13 @@ const Well = () => {
             }}
         >
             <GrayWrapper>
-                <TitleStyled>Курс валют</TitleStyled>
+                <TitleStyled>{t('Курс валют')}</TitleStyled>
                 <Stack spacing="26px">
-                    <Item label="Доллар США" type="USD" value={String(list.usd)} image={UsdIcon} />
-                    <Item label="Евро" type="EUR" value={String(list.euro)} image={EurIcon} />
-                    <Item label="Фунт Стерлингов" type="GBP" value={String(list.funt)} image={GbrIcon} />
-                    <Item label="Японская Иена" type="JPY" value={String(list.yup)} image={JpyIcon} />
-                    <Item label="Китайский Юань" type="CNY" value={String(list.chine)} image={CnyIcon} />
+                    <Item label={t('Доллар США')} type="USD" value={String(list.usd)} image={UsdIcon} />
+                    <Item label={t('Евро')} type="EUR" value={String(list.euro)} image={EurIcon} />
+                    <Item label={t('Фунт Стерлингов')} type="GBP" value={String(list.funt)} image={GbrIcon} />
+                    <Item label={t('Японская Иена')} type="JPY" value={String(list.yup)} image={JpyIcon} />
+                    <Item label={t('Китайский Юань')} type="CNY" value={String(list.chine)} image={CnyIcon} />
                 </Stack>
             </GrayWrapper>
         </Box>

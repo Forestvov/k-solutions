@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
+import { useTranslation } from 'react-i18next';
 
 const config = {
     chart: {
@@ -86,6 +87,8 @@ const Wrapepr = styled.div`
 `;
 
 const Carousel = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapepr>
             <Swiper {...paramsSlider}>
@@ -107,7 +110,7 @@ const Carousel = () => {
                             type="area"
                             height={400}
                         />
-                        <p>Акции Genetico взлетели на 40% в первый день торгов после IPO </p>
+                        <p>{t('Акции Genetico взлетели на 40% в первый день торгов после IPO')}</p>
                     </a>
                 </SwiperSlide>
 
@@ -130,7 +133,7 @@ const Carousel = () => {
                             type="area"
                             height={400}
                         />
-                        <p>Акции Reddit выросли почти на 48% в первый день торгов</p>
+                        <p>{t('Акции Reddit выросли почти на 48% в первый день торгов')}</p>
                     </a>
                 </SwiperSlide>
 
@@ -155,7 +158,7 @@ const Carousel = () => {
                             type="area"
                             height={400}
                         />
-                        <p>Astera Labs подскочили более чем на 70% во время звездного дебюта на Nasdaq </p>
+                        <p>{t('Astera Labs подскочили более чем на 70% во время звездного дебюта на Nasdaq')}</p>
                     </a>
                 </SwiperSlide>
 
@@ -187,7 +190,7 @@ const Carousel = () => {
                             type="area"
                             height={400}
                         />
-                        <p>Акционеры казахстанского банка Kaspi.kz привлекли более $1 млрд в ходе IPO в США</p>
+                        <p>{t('Акционеры казахстанского банка Kaspi.kz привлекли более $1 млрд в ходе IPO в США')}</p>
                     </a>
                 </SwiperSlide>
             </Swiper>

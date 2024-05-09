@@ -1,4 +1,6 @@
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -13,6 +15,8 @@ interface Props {
 }
 
 const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
+    const { t } = useTranslation('personal');
+
     const { getValues } = useFormContext();
     // Wait requisites когда админ не отправил
     // Process когда отправил
@@ -21,7 +25,7 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
         return (
             <div>
                 <TitleStep>
-                    Выполните перевод на указанные реквизиты в установленный срок, иначе он будет аннулирован.
+                    {t('Выполните перевод на указанные реквизиты в установленный срок, иначе он будет аннулирован.')}
                 </TitleStep>
 
                 <Box
@@ -37,8 +41,8 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
                         }}
                     >
                         <Stack spacing="30px">
-                            <CopyInput label="Номер Карты" value={getValues('contact').split(':')[1]} />
-                            <CopyInput label="Фамлия Имя Владельца" value={getValues('contact').split(':')[0]} />
+                            <CopyInput label={t('Номер Карты')} value={getValues('contact').split(':')[1]} />
+                            <CopyInput label={t('Фамлия Имя Владельца')} value={getValues('contact').split(':')[0]} />
                             <Button
                                 variant="dark-green"
                                 fullWidth
@@ -50,10 +54,10 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
                                     onSetMarkAsPaid();
                                 }}
                             >
-                                Подтвердить оплату
+                                {t('Подтвердить оплату')}
                             </Button>
                         </Stack>
-                        <Description>Все платежи проходят по системе AML.</Description>
+                        <Description>{t('Все платежи проходят по системе AML.')}</Description>
                     </Box>
                     <Timer timestamp={getValues('transactionDate')} deadMin={60} setStatus={() => console.log()} />
                 </Box>
@@ -63,7 +67,7 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
 
     return (
         <div>
-            <TitleStep>Ожидайте получение реквизитов</TitleStep>
+            <TitleStep>{t('Ожидайте получение реквизитов')}</TitleStep>
             <Timer timestamp={getValues('transactionDate')} deadMin={60} setStatus={() => console.log()} />
             <Box
                 sx={{
@@ -71,8 +75,9 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
                 }}
             >
                 <Description>
-                    Вам будут выданы реквизиты для выполнения перевода. Среднее время выдачи реквизитов составляет 60
-                    минут.
+                    {t(
+                        'Вам будут выданы реквизиты для выполнения перевода. Среднее время выдачи реквизитов составляет 60 минут.'
+                    )}
                 </Description>
             </Box>
         </div>

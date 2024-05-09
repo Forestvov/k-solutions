@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 
 import { useGetAnaliticActive } from 'api/brief';
@@ -7,6 +9,8 @@ import ProfilechartRadial from 'components/profile/finance/profilechart-radial';
 import BlockSkeleton from 'components/profile/finance/block-skeleton';
 
 const Assets = () => {
+    const { t } = useTranslation('personal');
+
     const { data, dataLoading } = useGetAnaliticActive();
 
     const getSum = () => {
@@ -42,7 +46,7 @@ const Assets = () => {
                     <>
                         {data.analiticActiveView.length > 0 && (
                             <ProfilechartDonut
-                                title="Активы"
+                                title={t('Активы')}
                                 chart={{
                                     series: data.analiticActiveView.map((item) => ({
                                         label: item.companyName,
@@ -53,11 +57,11 @@ const Assets = () => {
                         )}
                         {data.analiticActiveGainView.length > 0 && (
                             <ProfilechartRadial
-                                title="Доходы"
+                                title={t('Доходы')}
                                 total={getSum()}
                                 chart={{
                                     series: data.analiticActiveGainView.map((item) => ({
-                                        label: item.companyType === 'Company' ? 'Компания' : 'Франшиза',
+                                        label: item.companyType === 'Company' ? t('Компания') : t('Франшиза'),
                                         value: item.amount,
                                     })),
                                 }}

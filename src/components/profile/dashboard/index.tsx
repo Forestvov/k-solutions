@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 
@@ -15,6 +17,7 @@ const TitleComponent = styled(Title)`
 `;
 
 const Dashboard = () => {
+    const { t } = useTranslation('personal');
     return (
         <Box
             sx={{
@@ -26,7 +29,7 @@ const Dashboard = () => {
         >
             <TitleComponent>
                 <Icon />
-                <span>Горячие предложения</span>
+                <span>{t('Горячие предложения')}</span>
             </TitleComponent>
             <List />
         </Box>

@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
+
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import { updatePasswordAccount } from 'api/user';
 
@@ -12,9 +15,10 @@ import Title from '../title';
 import type { FormStateSecurity } from './types';
 import { validateSecurity } from './validations';
 import Input from './input';
-import Typography from '@mui/material/Typography';
 
 const SecurityForm = () => {
+    const { t } = useTranslation('personal');
+
     const [error, setError] = useState<boolean | string>(false);
     const [success, setSuccess] = useState(false);
     const resolver = yupResolver(validateSecurity);
@@ -47,7 +51,7 @@ const SecurityForm = () => {
             console.log(e);
             // @ts-ignore
             if (e?.message === 'Old password not equal') {
-                setError('Старый пароль введен неверно');
+                setError(t('Старый пароль введен неверно'));
             }
         }
     };
@@ -70,7 +74,7 @@ const SecurityForm = () => {
                     component="form"
                     onSubmit={methods.handleSubmit(onSubmit)}
                 >
-                    <Title>Смена пароля</Title>
+                    <Title>{t('Смена пароля')}</Title>
                     <Stack spacing="30px">
                         <Stack
                             direction={{
@@ -82,8 +86,12 @@ const SecurityForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="oldPassword" type="password" placeholder="Введите старый пароль" />
-                            <Input name="repeatOldPassword" type="password" placeholder="Подвердите старый пароль" />
+                            <Input name="oldPassword" type="password" placeholder={t('Введите старый пароль')} />
+                            <Input
+                                name="repeatOldPassword"
+                                type="password"
+                                placeholder={t('Подвердите старый пароль')}
+                            />
                         </Stack>
                         <Stack
                             direction={{
@@ -95,8 +103,12 @@ const SecurityForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="newPassword" type="password" placeholder="Введите новый пароль" />
-                            <Input name="repeatNewPassword" type="password" placeholder="Подвердите новый пароль" />
+                            <Input name="newPassword" type="password" placeholder={t('Введите новый пароль')} />
+                            <Input
+                                name="repeatNewPassword"
+                                type="password"
+                                placeholder={t('Подвердите новый пароль')}
+                            />
                         </Stack>
                     </Stack>
                     {error && (
@@ -116,7 +128,7 @@ const SecurityForm = () => {
                                 color: '#118D57',
                             }}
                         >
-                            Пароль изменен
+                            {t('Пароль изменен')}
                         </Typography>
                     )}
                     <Button
@@ -127,7 +139,7 @@ const SecurityForm = () => {
                             maxWidth: '400px',
                         }}
                     >
-                        Сохранить изменения
+                        {t('Сохранить изменения')}
                     </Button>
                 </Stack>
             </Box>

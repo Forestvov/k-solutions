@@ -1,6 +1,8 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
-import { useState } from 'react';
 
 import { useGetNews } from 'api/news';
 
@@ -23,6 +25,8 @@ const TitleComponent = styled(Title)`
 `;
 
 export const Events = () => {
+    const { t, i18n } = useTranslation('personal');
+
     const [page, setPage] = useState(0);
 
     const {
@@ -30,14 +34,14 @@ export const Events = () => {
         newsLoading,
         pageInfo: { currentPage, pages },
     } = useGetNews({
-        lang: 'ru',
+        lang: i18n.language,
         page: page,
         pageSize: 2,
     });
 
     return (
         <Wrapper>
-            <TitleComponent>События</TitleComponent>
+            <TitleComponent>{t('События')}</TitleComponent>
             {newsLoading ? (
                 <EvetSkelenot />
             ) : (

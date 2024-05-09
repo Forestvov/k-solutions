@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
+
 import ChartBlock from './chart-block';
 
 const List = () => {
+    const { t } = useTranslation('personal');
     return (
         <Box
             sx={{
@@ -13,7 +17,7 @@ const List = () => {
             }}
         >
             <ChartBlock
-                title="Финтех"
+                title={t('Финтех')}
                 chart={{
                     labels: [
                         '2012',
@@ -48,7 +52,7 @@ const List = () => {
                 }}
             />
             <ChartBlock
-                title="Здравоохранение"
+                title={t('Здравоохранение')}
                 chart={{
                     labels: [
                         '2012',
@@ -83,7 +87,7 @@ const List = () => {
                 }}
             />
             <ChartBlock
-                title="Продовольствие и сел. хозяйство"
+                title={t('Продовольствие и сел. хозяйство')}
                 chart={{
                     labels: [
                         '2012',
@@ -118,7 +122,7 @@ const List = () => {
                 }}
             />
             <ChartBlock
-                title="Энергетика и экология"
+                title={t('Энергетика и экология')}
                 chart={{
                     labels: [
                         '2012',

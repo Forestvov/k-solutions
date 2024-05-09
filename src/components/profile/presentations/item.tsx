@@ -3,6 +3,7 @@ import Stack from '@mui/material/Stack';
 
 import ImageSrc from 'assets/moc-card.png';
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled.div`
     flex: 1;
@@ -88,13 +89,17 @@ const Date = styled.span`
 `;
 
 const Item = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapper>
             <Image src={ImageSrc} />
             <Content>
-                <Name>Презентация финансовой аналитики платформы KSolutions.</Name>
+                <Name>{t('Презентация финансовой аналитики платформы')} KSolutions.</Name>
                 <Text>
-                    В данной презентации Вы можете подробно посмотреть полную финансовую аналитику нашей платформы.
+                    {t(
+                        'В данной презентации Вы можете подробно посмотреть полную финансовую аналитику нашей платформы.'
+                    )}
                 </Text>
                 <Stack
                     direction={{ sm: 'row' }}
@@ -103,7 +108,7 @@ const Item = () => {
                     sx={{ marginTop: 'auto' }}
                 >
                     <Button variant="green" href="/" target="_blank">
-                        Скачать Презентацию
+                        {t('Скачать Презентацию')}
                     </Button>
                     <Date>Апрель 13, 2024</Date>
                 </Stack>

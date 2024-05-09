@@ -1,10 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import Title from '../title';
 import Wrapper from './wrapper';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 
 const LINK = 'https://t.me/ksolutions';
 
@@ -29,18 +31,20 @@ const Link = styled.a`
 `;
 
 const TelegramSubscribe = () => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapper>
-            <TitleComponent>Хотите получать уведомления о новых сборах?</TitleComponent>
+            <TitleComponent>{t('Хотите получать уведомления о новых сборах?')}</TitleComponent>
             <Typography variant="body1" sx={{ margin: { xs: '0 0 20px 0', sm: '0 0 42px 0' } }}>
-                Подпишитесь на наш телеграм канал и будьте всегда вкурсе выгодных предложений!
+                {t('Подпишитесь на наш телеграм канал и будьте всегда вкурсе выгодных предложений!')}
             </Typography>
             <Stack direction={{ sm: 'row' }} spacing={{ sm: '49px', xs: '20px' }} alignItems={{ sm: 'center' }}>
                 <Link href={LINK} target="_blank">
                     {LINK}
                 </Link>
                 <Button href={LINK} target="_blank" variant="green">
-                    Подписаться
+                    {t('Подписаться')}
                 </Button>
             </Stack>
         </Wrapper>

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 
 import KeyIcon from 'assets/pages/personal/key-info.svg?react';
@@ -17,12 +19,14 @@ interface Props {
 }
 
 const KeyInformation = ({ secondRow, firstRow }: Props) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Wrapper>
             <Stack spacing={{ lg: '45px', xs: '30px' }}>
                 <Stack spacing="15px" direction="row">
                     <KeyIcon />
-                    <Title>Ключевая информация</Title>
+                    <Title>{t('Ключевая информация')}</Title>
                 </Stack>
                 <List firstRow={firstRow} secondRow={secondRow} />
             </Stack>

@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { SxProps } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
@@ -20,6 +21,8 @@ interface Prop {
 }
 
 const Notification: FC<Prop> = ({ sx }) => {
+    const { t } = useTranslation('personal');
+
     return (
         <Stack alignItems="flex-start" direction="row" sx={sx}>
             <Icon>
@@ -32,8 +35,9 @@ const Notification: FC<Prop> = ({ sx }) => {
                 </svg>
             </Icon>
             <Text>
-                Срок займа - это период, на который ваши средства будут замороженны, в данный период вы не сможете
-                пользоваться этими средствами. Средства будут зачисленны обратно на баланс после окончания срока займа.
+                {t(
+                    'Срок займа - это период, на который ваши средства будут замороженны, в данный период вы не сможете пользоваться этими средствами. Средства будут зачисленны обратно на баланс после окончания срока займа.'
+                )}
             </Text>
         </Stack>
     );

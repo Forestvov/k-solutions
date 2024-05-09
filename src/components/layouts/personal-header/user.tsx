@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 import Icon from 'assets/header/user-personal.svg?react';
+import { useTranslation } from 'react-i18next';
 // import Arrow from 'assets/arrows/arrow-bottom.svg?react';
 
 const Wrapper = styled(Stack)`
@@ -29,12 +30,15 @@ const IconUser = styled(Icon)`
 const User = () => {
     // @ts-ignore
     const { user } = useAuthContext();
+    const { t } = useTranslation('personal');
 
     return (
         <Wrapper direction="row" alignItems="center" spacing={{ sm: '20px' }}>
             <IconUser />
             <Stack direction="row" alignItems="center" spacing="10px">
-                <Typography variant="body2">{user.accountTypeName === 'Company' ? 'Компания' : 'Инвестор'}</Typography>
+                <Typography variant="body2">
+                    {user.accountTypeName === 'Company' ? t('Компания') : t('Инвестор')}
+                </Typography>
                 {/* <IconArrow className="user-arrow" /> */}
             </Stack>
         </Wrapper>
