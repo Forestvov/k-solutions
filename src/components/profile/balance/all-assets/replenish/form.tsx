@@ -6,6 +6,7 @@ import Steep from './step';
 import type { FormState } from './types';
 import { addTransaction, setMarkAsTransaction } from 'api/transaction';
 import type { IHistory } from 'types/transaction';
+import Button from '@mui/material/Button';
 
 const Wrapper = styled.div`
     padding: 40px 20px;
@@ -224,6 +225,38 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                         onSetMarkAsPaid={onSetMarkAsPaid}
                         onClose={onClose}
                     />
+                    {activeStep === 1 && (
+                        <Button
+                            type="button"
+                            sx={{
+                                minWidth: '0',
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '50%',
+                                marginTop: '20px',
+                                svg: {
+                                    flex: '0 0 auto',
+                                },
+                            }}
+                            onClick={() => setActiveStep(0)}
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 14 14"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.8337 6.99984H1.16699M1.16699 6.99984L7.00033 12.8332M1.16699 6.99984L7.00033 1.1665"
+                                    stroke="#fff"
+                                    strokeWidth="1.67"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </Button>
+                    )}
                 </form>
             </FormProvider>
         </Wrapper>

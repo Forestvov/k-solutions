@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Box from '@mui/material/Box';
 
 import WhiteWrapper from 'components/profile/white-wrapper';
 
@@ -6,7 +7,6 @@ import Title from '../title';
 import List from './list';
 import Carousel from './carousel';
 import ChartBlock from './chart-block';
-import Stack from '@mui/material/Stack';
 
 const TitleStyled = styled(Title)`
     margin: 20px 0;
@@ -41,7 +41,15 @@ const Graphics = () => {
             <SubTitleStyled>Объёмы венчурных инвестиций по отраслям</SubTitleStyled>
             <List />
             <Carousel />
-            <Stack spacing="60px">
+            <Box
+                sx={{
+                    display: 'grid',
+                    gridGap: '90px 48px',
+                    gridTemplateColumns: {
+                        lg: 'repeat(2, 1fr)',
+                    },
+                }}
+            >
                 <ChartBlock
                     title="Общий объём венчурных инвестиций"
                     chart={{
@@ -117,7 +125,7 @@ const Graphics = () => {
                         ],
                     }}
                 />
-            </Stack>
+            </Box>
         </WhiteWrapper>
     );
 };

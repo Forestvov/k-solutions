@@ -31,7 +31,7 @@ export interface IHistory {
     accountId: number;
     email: string;
     accountTypeName: string;
-    transactionType: string;
+    transactionType: 'In' | 'Out';
     transactionStatus: StatusType;
     transactionDate: string;
     currentName: string;

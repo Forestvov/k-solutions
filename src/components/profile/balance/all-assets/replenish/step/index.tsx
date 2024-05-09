@@ -39,7 +39,7 @@ const Step: FC<Props> = ({ step, setStep, onClose, onSetMarkAsPaid, transactionT
         case 0:
             return <Step1 onNext={() => handleNext(1)} transactionType={transactionType} />;
         case 1:
-            return <Step2 onPrev={() => setStep(0)} transactionType={transactionType} />;
+            return <Step2 transactionType={transactionType} />;
         case 2:
             return <Step3 onSetMarkAsPaid={onSetMarkAsPaid} onPrev={() => setStep(0)} />;
         case 3:

@@ -3,14 +3,18 @@ import type { SwiperOptions } from 'swiper/types';
 import type { Swiper as SwiperInstance } from 'swiper';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useTranslation } from 'react-i18next';
 
 import Container from '@mui/material/Container';
 import styled from '@emotion/styled';
 
-import { slides } from './data/slides';
-
 import Item from './item';
 import CarouselButtonArrows from './carousel-button-arrows';
+
+import type { ItemProp } from './types/types';
+
+import ForClient1 from 'assets/pages/home/for-client-1.svg';
+import ForClient2 from 'assets/pages/home/for-client-2.svg';
 
 const Inner = styled.div`
     overflow: hidden;
@@ -125,6 +129,41 @@ const Slider = () => {
             }
         };
     }, [swiperInstance]);
+
+    const { t } = useTranslation('home-page');
+
+    const slides: ItemProp[] = [
+        {
+            title: t('Прозрачность'),
+            icon: ForClient1,
+            text: t('Прозрачность-text'),
+        },
+        {
+            title: t('Возможность получить долю в компании'),
+            icon: ForClient2,
+            text: t('Некоторые-модели'),
+        },
+        {
+            title: t('Прозрачность'),
+            icon: ForClient1,
+            text: t('Прозрачность-text'),
+        },
+        {
+            title: t('Возможность получить долю в компании'),
+            icon: ForClient2,
+            text: t('Некоторые-модели'),
+        },
+        {
+            title: t('Прозрачность'),
+            icon: ForClient1,
+            text: t('Прозрачность-text'),
+        },
+        {
+            title: t('Возможность получить долю в компании'),
+            icon: ForClient2,
+            text: t('Некоторые-модели'),
+        },
+    ];
 
     return (
         <Inner>

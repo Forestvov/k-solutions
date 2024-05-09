@@ -43,6 +43,7 @@ export interface IBrief {
 export interface IBriefPage {
     accountCount: number;
     briefcaseId: number;
+    commonInvestedAmount: number;
     briefcaseName: string;
     lang: string;
     briefcaseStatus: string;
@@ -174,11 +175,12 @@ export interface IHistoryRow {
     companyName: string;
     companyType: string;
     accounTypeName: string;
-    accountCompanyName: any;
-    numberCompany: any;
-    image: any;
-    logo: string;
-    briefcaseAmount?: number;
+    accountCompanyName: string;
+    numberCompany: number;
+    image: string;
+    briefcaseAmount: number;
+    percents: number;
+    briefcaseAccountAmount: number;
     gainAmount: number;
     lang: string;
     createdDate: string;

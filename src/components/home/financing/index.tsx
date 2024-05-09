@@ -1,4 +1,6 @@
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -23,11 +25,13 @@ const LogoIcon = styled(Logo)`
 `;
 
 const Financing: FC = () => {
+    const { t } = useTranslation('home-page');
+
     return (
         <Box sx={{ marginBottom: { xs: '100px', sm: '130px', md: '150px' } }}>
             <Container fixed>
                 <Typography variant="home-h2" component="h2" sx={{ maxWidth: '855px' }}>
-                    Именно поэтому, получить финансирование через&nbsp;&nbsp;
+                    {t('Именно поэтому, получить финансирование через')}&nbsp;&nbsp;
                     <LogoIcon />
                 </Typography>
                 <Box
@@ -35,15 +39,15 @@ const Financing: FC = () => {
                     gap={{ xs: '30px', md: '40px' }}
                 >
                     <Item
-                        title="Намного проще, чем в банке"
-                        description="Решение о финансировании по двум документам за 3 минуты в любое время 24/7"
-                        label="Решение за 3 минуты"
+                        title={t('Намного проще, чем в банке')}
+                        description={t('Решение о финансировании по двум документам за 3 минуты в любое время 24/7')}
+                        label={t('Решение за 3 минуты')}
                         value="24/7"
                     />
                     <Item
-                        title="Гораздо дешевле, чем в микрозаймах"
-                        description="Ставка 18,1% доступна для компаний с рейтингом 1"
-                        label="Ставка от"
+                        title={t('Гораздо дешевле, чем в микрозаймах')}
+                        description={t('Ставка 18,1% доступна для компаний с рейтингом 1')}
+                        label={t('Ставка от')}
                         value="18,1%"
                     />
                 </Box>

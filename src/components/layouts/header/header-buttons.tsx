@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import styled from '@emotion/styled';
@@ -15,11 +17,12 @@ interface Prop {
 
 const MyButton = styled(Button)`
     padding: 15px 45px;
+    text-transform: capitalize;
 `;
 
 const HeaderButtons: FC<Prop> = ({ hideLocalization }) => {
     const router = useRouter();
-
+    const { t } = useTranslation('main-navigation');
     // @ts-ignore
     const { authenticated } = useAuthContext();
 
@@ -63,10 +66,10 @@ const HeaderButtons: FC<Prop> = ({ hideLocalization }) => {
                         variant="gray"
                         onClick={() => router.push('/login')}
                     >
-                        Войти
+                        {t('enter')}
                     </MyButton>
                     <MyButton sx={{ width: { xs: '100%', xl: 'auto' } }} onClick={() => router.push('/register')}>
-                        Начать
+                        {t('begin')}
                     </MyButton>
                 </>
             )}

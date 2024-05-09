@@ -47,6 +47,8 @@ const ShowcasesItem = () => {
     const { brief, briefsLoading, mutate } = useGetBrief(String(id));
     const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')));
 
+    console.log('brief', brief);
+
     const getFinishDay = () => {
         if (brief && brief.finishDay) {
             const days = getRemainDays(brief.finishDay);
@@ -101,7 +103,7 @@ const ShowcasesItem = () => {
                                     companyType={company.companyType}
                                     ranges={brief.ranges}
                                     amountMin={brief.amountMin}
-                                    amount={brief.pampAmount + brief.myInvestAmount}
+                                    amount={brief.commonInvestedAmount}
                                     accountCount={brief.accountCount ?? 0}
                                     updateBrief={mutate}
                                     briefcaseStatus={brief.briefcaseStatus}
@@ -122,7 +124,9 @@ const ShowcasesItem = () => {
                                         : [
                                               {
                                                   label: 'Проинвестировано',
-                                                  value: fCurrency(brief.pampAmount + brief.totalInvestedAmount),
+                                                  value: brief.commonInvestedAmount
+                                                      ? fCurrency(brief.commonInvestedAmount)
+                                                      : '$0',
                                               },
                                               { label: 'Ставка, % ежедневный', value: fPercent(brief.percents) },
                                               { label: 'Минимальная сумма', value: fCurrency(brief.amountMin) },
@@ -135,7 +139,12 @@ const ShowcasesItem = () => {
                                 secondRow={
                                     brief.companyType === 'Company'
                                         ? [
-                                              { label: 'Собрано', value: fCurrency(brief.pampAmount ?? 0) },
+                                              {
+                                                  label: 'Собрано',
+                                                  value: brief.commonInvestedAmount
+                                                      ? fCurrency(brief.commonInvestedAmount)
+                                                      : '$0',
+                                              },
                                               { label: 'До конца сбора:', value: getFinishDay() },
                                               { label: 'Количество инвесторов', value: brief.pampInvestors },
                                               { label: '', value: '' },
@@ -173,7 +182,7 @@ const ShowcasesItem = () => {
                                     companyType={company.companyType}
                                     ranges={brief.ranges}
                                     amountMin={brief.amountMin}
-                                    amount={brief.pampAmount + brief.myInvestAmount}
+                                    amount={brief.commonInvestedAmount}
                                     accountCount={brief.accountCount ?? 0}
                                     updateBrief={mutate}
                                     briefcaseStatus={brief.briefcaseStatus}

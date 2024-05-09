@@ -8,11 +8,10 @@ import Description from './description';
 import Input from 'components/profile/balance/all-assets/replenish/input';
 
 interface Props {
-    onPrev?: VoidFunction;
     transactionType?: 'In' | 'Out';
 }
 
-const BankCardForm = ({ onPrev, transactionType }: Props) => {
+const BankCardForm = ({ transactionType }: Props) => {
     return (
         <Box
             sx={{
@@ -77,34 +76,7 @@ const BankCardForm = ({ onPrev, transactionType }: Props) => {
                     }}
                 >
                     <Button
-                        type="button"
                         sx={{
-                            border: '1px solid #D0D5DD',
-                            color: '#344054',
-                            background: 'transparent',
-                            height: '49px',
-                            width: {
-                                sm: '50%',
-                                xs: '100%',
-                            },
-                            borderRadius: '8px',
-
-                            '&:hover': {
-                                background: '#1E2021',
-                                color: '#fff',
-                            },
-                        }}
-                        fullWidth
-                        onClick={onPrev}
-                    >
-                        Отменить
-                    </Button>
-                    <Button
-                        sx={{
-                            width: {
-                                sm: '50%',
-                                xs: '100%',
-                            },
                             height: '49px',
                             borderRadius: '8px',
                         }}

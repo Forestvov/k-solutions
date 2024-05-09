@@ -51,11 +51,11 @@ const Navigation = () => {
             <Link to="/finance">
                 <TextIcon />
             </Link>
-            <Link to="/settings">
-                <UserIcon />
-            </Link>
             <Link to="/graphics">
                 <GraphicsIcon />
+            </Link>
+            <Link to="/settings">
+                <UserIcon />
             </Link>
         </Stack>
     );

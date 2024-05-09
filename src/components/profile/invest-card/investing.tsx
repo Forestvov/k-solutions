@@ -43,17 +43,6 @@ const LogoBox = styled.div`
     }
 `;
 
-const Image = styled.img`
-    display: block;
-    margin-bottom: 5px;
-    width: auto;
-    height: 85px;
-
-    @media (min-width: 768px) {
-        margin-bottom: 2px;
-    }
-`;
-
 const Name = styled.div`
     font-size: 0.75rem;
     color: #03330c;
@@ -77,7 +66,16 @@ const Investing = ({ logo, amount, amountFinish, accountCount }: Props) => {
         <Wrapper direction={{ sm: 'row' }} spacing="30px">
             <LogoBox>
                 <Name>
-                    <Image src={logo} alt="Energia" />
+                    <Box
+                        sx={{
+                            width: '79px',
+                            height: '85px',
+                            backgroundSize: 'contain',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundImage: `url(${logo})`,
+                        }}
+                    />
                 </Name>
             </LogoBox>
             <Box sx={{ width: '100%', padding: { sm: '23px 30px 0 0', xs: '20px' } }}>

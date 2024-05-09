@@ -41,9 +41,10 @@ const ButtonStyled = styled(Button)<{ active?: boolean }>`
 interface Props {
     current: Record<string, string>;
     onChange: (status: { key: string; operation?: string; value: string }) => void;
+    setPage: (page: number) => void;
 }
 
-const Filters = ({ current, onChange }: Props) => {
+const Filters = ({ current, onChange, setPage }: Props) => {
     const { settings } = useSettingsContext();
 
     const BUTTONS = [
@@ -61,7 +62,8 @@ const Filters = ({ current, onChange }: Props) => {
                 <ButtonStyled
                     key={idx}
                     active={current.value === btn.value}
-                    onClick={() =>
+                    onClick={() => {
+                        setPage(0);
                         btn.operation
                             ? onChange({
                                   key: btn.type,
@@ -71,8 +73,8 @@ const Filters = ({ current, onChange }: Props) => {
                             : onChange({
                                   key: btn.type,
                                   value: btn.value,
-                              })
-                    }
+                              });
+                    }}
                 >
                     {btn.type === 'percentFinish' && <IconHot />}
                     {btn.label}

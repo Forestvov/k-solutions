@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import Stack from '@mui/material/Stack';
 
 import FooterLink from './footer-link';
 
 const FooterNavigation = () => {
+    const { t } = useTranslation('main-navigation');
+
     return (
         <Stack
             direction={{ sm: 'row' }}
@@ -17,14 +20,14 @@ const FooterNavigation = () => {
             width="100%"
         >
             <Stack spacing={{ lg: '40px', xs: '20px' }}>
-                <FooterLink to="/">Главная</FooterLink>
-                <FooterLink to="/">Инвесторам</FooterLink>
-                <FooterLink to="/">Предпринимателям</FooterLink>
+                <FooterLink to="/">{t('home')}</FooterLink>
+                <FooterLink to="/investors">{t('investoram')}</FooterLink>
+                <FooterLink to="/">{t('entrepreneurs')}</FooterLink>
             </Stack>
             <Stack spacing={{ lg: '40px', xs: '20px' }}>
-                <FooterLink to="/">О платформе</FooterLink>
-                <FooterLink to="/">Медиа</FooterLink>
-                <FooterLink to="/">Личный Кабинет</FooterLink>
+                <FooterLink to="/">{t('about')}</FooterLink>
+                <FooterLink to="/">{t('media')}</FooterLink>
+                <FooterLink to="/">{t('lc')}</FooterLink>
             </Stack>
         </Stack>
     );

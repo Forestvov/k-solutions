@@ -1,4 +1,6 @@
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -69,6 +71,8 @@ const ScheduleIcon = styled(Schedule)`
 const MainBanner: FC = () => {
     const isDesktop = useMediaQuery('(min-width:1280px)');
 
+    const { t } = useTranslation('home-page');
+
     return (
         <Box
             sx={{
@@ -82,10 +86,7 @@ const MainBanner: FC = () => {
             <Inner fixed>
                 <Content>
                     <LogoIcon />
-                    <Paragraph>
-                        Интернет-сервис, на котором можно инвестировать деньги в бизнес или получить финансирование для
-                        компании !
-                    </Paragraph>
+                    <Paragraph>{t('bannerTitle')}</Paragraph>
                     <Form />
                     <ScheduleIcon />
                 </Content>

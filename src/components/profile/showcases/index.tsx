@@ -44,7 +44,7 @@ const Showcases = () => {
                 Витрина
                 {!briefsLoading && <Counter>({totalElements})</Counter>}
             </TitleStyled>
-            <Filters current={filter} onChange={setFilter} />
+            <Filters current={filter} onChange={setFilter} setPage={setPage} />
             <List loading={briefsLoading} list={briefs} />
             <PaginatorPage
                 countPages={pages}

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,11 +13,13 @@ const Value = styled.a`
 `;
 
 const FooterAddress = () => {
+    const { t } = useTranslation('main-navigation');
+
     return (
         <Stack spacing="44px" maxWidth={354} flexGrow={1}>
             <Box>
                 <Typography sx={{ color: '#444444', fontSize: { lg: '1.25rem', xl: '1.125rem' } }}>
-                    Адрес:{' '}
+                    {t('address')}:{' '}
                     <Value href="https://maps.app.goo.gl/eUqMAAxuZvmBhzrbA" target="_blank">
                         45 Daws Lane, London, England, NW7 4SD
                     </Value>
@@ -23,7 +27,7 @@ const FooterAddress = () => {
             </Box>
             <Box>
                 <Typography sx={{ color: '#444444', fontSize: { lg: '1.25rem', xl: '1.125rem' } }}>
-                    Регистрационный номер компании:{' '}
+                    {t('regNumber')}:{' '}
                     <Value
                         href="https://find-and-update.company-information.service.gov.uk/company/08051408"
                         target="_blank"
