@@ -144,7 +144,6 @@ const BorrowerBusiness: FC = () => {
                 background: '#F6F7F8',
                 paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',
-                marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
             <Inner fixed>

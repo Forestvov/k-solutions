@@ -65,6 +65,10 @@ const BottomPart = styled.div`
         flex-direction: column;
         background: transparent;
     }
+
+    @media (max-width: 400px) {
+        padding: 0;
+    }
 `;
 
 const Manager = styled.div`
@@ -86,11 +90,10 @@ const OnlineSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '850px', xl: '850px', sm: '900px', xs: '1100px' },
+                height: { lg: '850px', xl: '850px', sm: '900px', xs: '1000px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
                 overflow: 'hidden',
-                marginBottom: { xs: '100px', sm: '130px', md: '150px' },
             }}
         >
             <Inner fixed>

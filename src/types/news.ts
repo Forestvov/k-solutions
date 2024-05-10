@@ -25,3 +25,11 @@ export interface INewPost {
     type: 'Event' | 'News';
     url: string;
 }
+
+export interface INewsStatic {
+    id: string;
+    title: string;
+    text: string;
+    img: string;
+    date: string;
+}

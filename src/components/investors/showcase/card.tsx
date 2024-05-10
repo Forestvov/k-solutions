@@ -9,12 +9,18 @@ const Card = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 450px;
-    margin-bottom: 50px;
+    width: 420px;
     user-select: none;
+    background: #f6f7f8;
+    padding: 0 10px 0 10px;
+    border-radius: 25px;
 
-    @media (max-width: 779px) {
-        width: 320px;
+    @media (max-width: 1024px) {
+        width: 345px;
+    }
+
+    @media (max-width: 770px) {
+        width: 288px;
     }
 `;
 
@@ -23,11 +29,6 @@ const CardItem = styled.div`
     gap: 10px;
     flex-direction: column;
     align-items: flex-start;
-
-    @media (max-width: 420px) {
-        width: 320px;
-        height: 250px;
-    }
 `;
 
 const LineIt = styled.div`
@@ -37,13 +38,24 @@ const LineIt = styled.div`
     border-radius: 10px;
 `;
 
+const CardInputImg = styled.img`
+    width: 73.15px;
+    height: 83px;
+
+    @media (max-width: 770px) {
+        width: 53.15px;
+        height: 63px;
+    }
+`;
+
 const CardInput = styled.div`
     position: absolute;
-    top: 10rem;
+    top: 9rem;
 
     display: flex;
     background: white;
-    padding: 2px 35px;
+    padding: 2px 25px;
+    width: 75%;
     border-radius: 20px;
     justify-content: space-between;
     align-items: center;
@@ -53,8 +65,8 @@ const CardInput = styled.div`
         top: 7rem;
     }
 
-    @media (max-width: 779px) {
-        top: 5rem;
+    @media (max-width: 770px) {
+        top: 6rem;
         padding: 0 7px;
     }
 `;
@@ -75,37 +87,47 @@ const Title = styled.h3`
     @media (max-width: 1024px) {
         font-size: 26px;
     }
+
+    @media (max-width: 770px) {
+        margin: 45px 0 0 0;
+    }
 `;
 
 const Label = styled.p`
-    min-width: 445px;
-    font-size: 18px;
+    max-width: 420px;
+    font-size: 16px;
     font-weight: 400;
+    min-height: 216px;
     color: #747474;
     margin: 0;
 
     @media (max-width: 1024px) {
         font-size: 14px;
-        min-width: 330px;
+        max-width: 320px;
     }
-    @media (max-width: 420px) {
+
+    @media (max-width: 770px) {
+        max-width: 288px;
         font-size: 12px;
-        min-width: 300px;
+        min-height: 190px;
     }
 `;
 
 const SumT = styled.p`
     font-size: 18px;
     font-weight: 500;
+    margin: 0;
 
-    @media (max-width: 420px) {
+    @media (max-width: 770px) {
         font-size: 12px;
     }
 `;
 
 const Img = styled.img`
-    @media (max-width: 779px) {
-        width: 330px;
+    width: 105%;
+
+    @media (max-width: 770px) {
+        width: 107%;
     }
 `;
 
@@ -155,14 +177,14 @@ const ShowCasesCard = ({ row }: Props) => {
         <Card>
             <Img src={img} />
             <CardInput>
-                <img style={{ marginRight: '30px' }} src={cardInpImg} alt="InpImg" />
-                <div>
+                <CardInputImg src={cardInpImg} alt="InpImg" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                     <SumT>
                         ${sum}
                         <span style={{ fontSize: '12px', fontWeight: '400', marginLeft: '5px' }}>Собрано</span>
                     </SumT>
                     <LineIt />
-                    <p style={{ fontSize: '14px', fontWeight: '400' }}>100% от цели</p>
+                    <p style={{ margin: '0', fontSize: '14px', fontWeight: '400' }}>100% от цели</p>
                 </div>
             </CardInput>
             <CardItem>
