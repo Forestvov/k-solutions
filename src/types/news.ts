@@ -22,4 +22,6 @@ export interface INewPost {
     createdDate: string;
     lang: string;
     photo: string;
+    type: 'Event' | 'News';
+    url: string;
 }

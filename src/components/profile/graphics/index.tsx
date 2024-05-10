@@ -9,6 +9,7 @@ import Title from '../title';
 import List from './list';
 import Carousel from './carousel';
 import ChartBlock from './chart-block';
+import News from './news';
 
 const TitleStyled = styled(Title)`
     margin: 20px 0;
@@ -131,6 +132,7 @@ const Graphics = () => {
                     }}
                 />
             </Box>
+            <News />
         </WhiteWrapper>
     );
 };

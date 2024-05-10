@@ -2,29 +2,20 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 import { useGetNews } from 'api/news';
 
+import Title from 'components/profile/title';
+import EvetSkelenot from 'components/profile/events/evet-skelenot';
+import Event from 'components/profile/events/event';
 import Pagination from 'components/pagination';
 
-import WhiteWrapper from '../white-wrapper';
-import Title from '../title';
-
-import Event from './event';
-import EvetSkelenot from './evet-skelenot';
-
-const Wrapper = styled(WhiteWrapper)`
-    @media (min-width: 1668px) {
-        max-width: 633px;
-    }
+const TitleStyled = styled(Title)`
+    margin: 40px 0 30px;
 `;
 
-const TitleComponent = styled(Title)`
-    margin: 0 0 34px 0;
-`;
-
-export const Events = () => {
+const News = () => {
     const { t, i18n } = useTranslation('personal');
 
     const [page, setPage] = useState(0);
@@ -35,26 +26,35 @@ export const Events = () => {
         pageInfo: { currentPage, pages },
     } = useGetNews({
         lang: i18n.language,
-        type: 'Event',
+        type: 'News',
         page: page,
         pageSize: 2,
     });
 
     return (
-        <Wrapper>
-            <TitleComponent>{t('События')}</TitleComponent>
+        <Box>
+            <TitleStyled>{t('Аналитика')}</TitleStyled>
             {newsLoading ? (
                 <EvetSkelenot />
             ) : (
-                <Stack spacing="30px" sx={{ marginBottom: '30px' }}>
+                <Box
+                    sx={{
+                        marginBottom: '30px',
+                        display: 'grid',
+                        gridGap: '30px',
+                        gridTemplateColumns: {
+                            lg: 'repeat(2, 1fr)',
+                        },
+                    }}
+                >
                     {news.map((item) => (
                         <Event key={item.id} {...item} />
                     ))}
-                </Stack>
+                </Box>
             )}
             <Pagination countPage={pages} currentPage={currentPage} onChangePage={setPage} />
-        </Wrapper>
+        </Box>
     );
 };
 
-export default Events;
+export default News;

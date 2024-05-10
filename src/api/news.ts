@@ -8,9 +8,10 @@ import type { IResponseNews } from 'types/news';
 
 interface PropList extends IPagination {
     lang: string;
+    type: 'Event' | 'News';
 }
 
-export function useGetNews({ lang = 'ru', page, pageSize }: PropList) {
+export function useGetNews({ lang = 'ru', page, pageSize, type }: PropList) {
     const URL = endpoints.news.list;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IResponseNews>(
@@ -20,7 +21,10 @@ export function useGetNews({ lang = 'ru', page, pageSize }: PropList) {
                 page,
                 size: pageSize,
                 sortDir: 'ASC',
-                criteria: [{ key: 'lang', value: lang }],
+                criteria: [
+                    { key: 'lang', value: lang },
+                    { key: 'type', value: type },
+                ],
             },
             'post',
         ],

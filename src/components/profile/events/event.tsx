@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
@@ -70,11 +72,16 @@ const Text = styled.p`
     }
 `;
 
-const Divider = styled.div`
+const Divider = styled.div<{ show: boolean }>`
     height: 1px;
     background: #cccccc;
-    margin-top: auto;
     margin-bottom: 21px;
+
+    ${({ show }) =>
+        show &&
+        `
+        margin-top: auto;
+    `}
 `;
 
 const Tag = styled.span`
@@ -96,14 +103,37 @@ const Dot = styled.div`
     background: #006838;
 `;
 
-const Event = ({ createdDate, descriptions, newsType, photo, title }: INewPost) => {
+const Link = styled.a`
+    font-size: 14px;
+    color: #006838;
+    text-decoration: none;
+
+    &:last-of-type {
+        margin-top: auto;
+        margin-bottom: 10px;
+    }
+`;
+
+const Event = ({ createdDate, descriptions, newsType, photo, title, url, type }: INewPost) => {
+    const { t } = useTranslation('personal');
     return (
         <Stack direction={{ sm: 'row' }}>
             <Image src={photo} />
             <Content>
-                <Title>{title}</Title>
+                {url && type === 'News' ? (
+                    <Link href={url} target="_blank">
+                        <Title>{title}</Title>
+                    </Link>
+                ) : (
+                    <Title>{title}</Title>
+                )}
                 <Text>{descriptions}</Text>
-                <Divider />
+                {url && type === 'News' && (
+                    <Link href={url} target="_blank">
+                        {t('Подробнее')}
+                    </Link>
+                )}
+                <Divider show={!url} />
                 <Stack direction="row" spacing="10px" alignItems="center">
                     <Tag>{newsType} </Tag>
                     <Dot />
