@@ -54,6 +54,7 @@ const InvestCard = ({ card, hideStats }: Prop) => {
         companyInvestId,
         companyType,
         briefcaseImage,
+        amountMin,
     } = card;
 
     return (
@@ -69,14 +70,22 @@ const InvestCard = ({ card, hideStats }: Prop) => {
                 <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
                 <Description name={companyName} status={isActive} text={descriptions} />
                 <Box sx={{ marginBottom: 'auto' }}>
-                    {!hideStats && (
-                        <InvestStats
-                            amountFinish={amountFinish}
-                            finishDay={finishDay}
-                            companyType={companyType}
-                            percents={percents}
-                        />
-                    )}
+                    {!hideStats &&
+                        (companyType === 'Company' ? (
+                            <InvestStats
+                                amountFinish={amountFinish}
+                                finishDay={finishDay}
+                                companyType={companyType}
+                                percents={percents}
+                            />
+                        ) : (
+                            <InvestStats
+                                amountMin={amountMin}
+                                ranges={9999}
+                                percents={percents}
+                                companyType={companyType}
+                            />
+                        ))}
                 </Box>
                 <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
                     <Button variant="green" fullWidth>

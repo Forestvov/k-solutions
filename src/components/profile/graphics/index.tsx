@@ -47,6 +47,7 @@ const Graphics = () => {
             <Carousel />
             <Box
                 sx={{
+                    marginTop: '50px',
                     display: 'grid',
                     gridGap: '90px 48px',
                     gridTemplateColumns: {
