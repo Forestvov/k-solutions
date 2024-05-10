@@ -13,47 +13,18 @@ import 'swiper/css/pagination';
 
 import ShowCasesCard from 'components/investors/showcase/card';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper';
-
-const Inner = styled(Container)`
-    height: 100%;
-`;
-
-const SliderContainer = styled(Swiper)`
-    width: 100%;
-    padding-left: 20%;
-
-    @media (max-width: 500px) {
-        padding-left: 10%;
-    }
-
-    @media (max-width: 420px) {
-        padding-left: 5%;
-    }
-
-    @media (max-width: 380px) {
-        padding-left: 2%;
-    }
-`;
-
-const ShowcaseList = styled.div`
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width: 1024px) {
-        justify-content: center;
-        align-items: center;
-    }
-`;
+import type { Swiper as SwiperInstance } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
+import type { SwiperOptions } from 'swiper/types';
+import { useEffect, useState } from 'react';
+import CarouselButtonArrows from 'components/home/for-clients/carousel-button-arrows';
 
 const Title = styled.h2`
-    margin: 0 auto;
     font-size: 48px;
     color: #373737;
     user-select: none;
     font-weight: 600;
+    margin-bottom: 50px;
 
     @media (max-width: 1024px) {
         font-size: 38px;
@@ -103,39 +74,146 @@ const cardsItems = [
     },
 ];
 
+const Inner = styled.div`
+    overflow: hidden;
+
+    .for-client-navigation,
+    .for-client-pagination {
+        display: none;
+    }
+
+    &:hover .for-client-navigation,
+    &:hover .for-client-pagination {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    @media (min-width: 1042px) {
+        .for-client-navigation {
+            display: block;
+        }
+        .for-client-pagination {
+            display: flex;
+        }
+    }
+`;
+
+const SliderWrapper = styled(Swiper)`
+    overflow: visible;
+
+    @media (min-width: 770px) {
+        overflow: hidden;
+    }
+`;
+
+const Slide = styled(SwiperSlide)`
+    min-width: 288px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const PaginationWrapper = styled.div`
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 17px;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    @media (min-width: 1280px) {
+        margin-top: 45px;
+    }
+
+    .for-client-pagination-button {
+        width: 9px;
+        height: 9px;
+        padding: 0;
+        border: none;
+        margin: 0 5px;
+        display: block;
+        border-radius: 50%;
+        background: #d9d9d9;
+        cursor: pointer;
+        transition:
+            background 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+            transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        &:hover {
+            background: #006838;
+        }
+    }
+
+    .for-client-pagination-button-active {
+        transform: scale(1.9);
+        background: #006838;
+    }
+`;
+
+const paramsSlider: SwiperOptions = {
+    loop: true,
+    centeredSlides: true,
+    modules: [Navigation, Pagination],
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+            spaceBetween: 15,
+        },
+        770: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        1670: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+        },
+    },
+    pagination: {
+        el: '.for-client-pagination',
+        bulletClass: 'for-client-pagination-button',
+        bulletActiveClass: 'for-client-pagination-button-active',
+        clickable: true,
+        renderBullet: function () {
+            return `<button class="for-client-pagination-button"/>`;
+        },
+    },
+};
+
 const ShowcasesSection: FC = () => {
+    const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (swiperInstance) {
+                swiperInstance.destroy();
+            }
+        };
+    }, [swiperInstance]);
+
     return (
         <Box
             sx={{
-                height: { lg: '1065px', md: '965px', xl: '1065px', sm: '965px', xs: '905px' },
+                height: { lg: '1065px', md: '965px', xl: '1065px', sm: '965px', xs: '865px' },
                 background: 'transparent',
-                paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
+                paddingTop: { lg: '50px', xl: '30px', sm: '20px', xs: '10px' },
                 overflow: 'hidden',
             }}
         >
             <Inner>
-                <Title>Витрина</Title>
-                <ShowcaseList>
-                    <SliderContainer
-                        spaceBetween={50}
-                        centeredSlides={true}
-                        autoplay={{
-                            delay: 2500,
-                            disableOnInteraction: false,
-                        }}
-                        pagination={{
-                            clickable: true,
-                        }}
-                        navigation={true}
-                        modules={[Autoplay, Pagination]}
-                    >
+                <Container fixed sx={{ position: 'relative' }}>
+                    <Title>Витрина</Title>
+                    {swiperInstance && <CarouselButtonArrows instance={swiperInstance} />}
+                    <SliderWrapper {...paramsSlider} onSwiper={(swiper) => setSwiperInstance(swiper)}>
                         {cardsItems.map((row: any) => (
-                            <SwiperSlide key={row.id}>
+                            <Slide key={row.id}>
                                 <ShowCasesCard row={row} />
-                            </SwiperSlide>
+                            </Slide>
                         ))}
-                    </SliderContainer>
-                </ShowcaseList>
+                    </SliderWrapper>
+                    <PaginationWrapper className="for-client-pagination" />
+                </Container>
             </Inner>
         </Box>
     );

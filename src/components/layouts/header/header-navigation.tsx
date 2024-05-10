@@ -22,7 +22,7 @@ const HeaderNavigation = () => {
             <Link to="/investors">{t('investoram')}</Link>
             <Link to="/business">{t('entrepreneurs')}</Link>
             <Link to="/aboutPlatform">{t('about')}</Link>
-            <Link to="/">{t('media')}</Link>
+            <Link to="/blog">{t('media')}</Link>
         </Stack>
     );
 };
