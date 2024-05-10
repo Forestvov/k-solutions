@@ -14,6 +14,7 @@ import Select from '@mui/material/Select';
 import styled from '@emotion/styled';
 import MenuItem from '@mui/material/MenuItem';
 import P2PForm from 'components/profile/balance/all-assets/replenish/step/p2p-form';
+import { GenerateTransactionType } from 'components/shared/generate-transaction-type';
 
 interface Props {
     onNext?: VoidFunction;
@@ -139,7 +140,7 @@ const Step1: FC<Props> = ({ onNext, transactionType }) => {
                                         <BoxImage>
                                             <img src={item.image} alt={item.value} />
                                         </BoxImage>
-                                        {item.value === 'Token' ? 'Crypto' : item.value}
+                                        <GenerateTransactionType type={item.value} />
                                     </Item>
                                 ))}
                             </Select>
