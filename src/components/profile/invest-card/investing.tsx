@@ -31,27 +31,24 @@ const Wrapper = styled(Stack)`
     }
 `;
 
-const LogoBox = styled.div`
-    text-align: center;
-    padding: 10px;
+const LogoWrapper = styled.div`
     border-bottom: 1px solid #d8d8d8;
 
     @media (min-width: 768px) {
-        padding: 5px 17px 10px 10px;
         border-bottom: none;
-        border-right: 1px solid #d8d8d8;
     }
 `;
 
-const Name = styled.div`
-    font-size: 0.75rem;
-    color: #03330c;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    justify-content: center;
-    align-items: center;
+const LogoBox = styled.div`
+    position: relative;
+    text-align: center;
+    height: 100px;
+    width: 101px;
+    flex: 0 0 auto;
+
+    @media (min-width: 768px) {
+        border-right: 1px solid #d8d8d8;
+    }
 `;
 
 interface Props {
@@ -64,20 +61,21 @@ interface Props {
 const Investing = ({ logo, amount, amountFinish, accountCount }: Props) => {
     return (
         <Wrapper direction={{ sm: 'row' }} spacing="30px">
-            <LogoBox>
-                <Name>
+            <LogoWrapper>
+                <LogoBox>
                     <Box
                         sx={{
-                            width: '79px',
-                            height: '85px',
-                            backgroundSize: 'contain',
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            backgroundSize: 'auto',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
                             backgroundImage: `url(${logo})`,
                         }}
                     />
-                </Name>
-            </LogoBox>
+                </LogoBox>
+            </LogoWrapper>
             <Box sx={{ width: '100%', padding: { sm: '23px 30px 0 0', xs: '20px' } }}>
                 <InvestProgress accountCount={accountCount} amountFinish={amountFinish} amount={amount} />
             </Box>

@@ -70,6 +70,7 @@ const ShowcasesItem = () => {
             {company && brief && (
                 <>
                     <Banner
+                        bg={brief.image}
                         countTransaction={brief.myCountTransaction}
                         myTotal={brief.myInvestAmount}
                         description={company.descriptions}
@@ -85,6 +86,8 @@ const ShowcasesItem = () => {
                             xs: '30px',
                         }}
                         sx={{
+                            position: 'relative',
+                            zIndex: '1',
                             marginTop: {
                                 sm: '-140px',
                                 xs: '-50px',

@@ -123,7 +123,10 @@ export function useGetListBrief({ page, pageSize, filter }: GetListProp) {
     return memoizedValue;
 }
 
-export function useGetMyBriefs({ page, pageSize }: IPagination) {
+interface GetListProp extends IPagination {
+    filter: Record<string, string>;
+}
+export function useGetMyBriefs({ page, pageSize, filter }: GetListProp) {
     const URL = endpoints.briefs.myInvest;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IResponseMyBrief>(
@@ -133,7 +136,7 @@ export function useGetMyBriefs({ page, pageSize }: IPagination) {
                 page,
                 size: pageSize,
                 sortDir: 'ASC',
-                criteria: [],
+                criteria: filter.value ? [filter] : [],
             },
             'post',
             {

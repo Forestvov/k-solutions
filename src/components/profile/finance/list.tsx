@@ -13,6 +13,8 @@ import PaginatorPage from 'components/shared/paginator-page';
 
 import { useGetMyBriefs } from 'api/brief';
 
+import Filters from './filters';
+
 const TitleStyled = styled(Title)`
     margin: 0 0 30px;
 `;
@@ -21,6 +23,10 @@ const List = () => {
     const { t } = useTranslation('personal');
     const { lg, md } = useDeviceSize();
     const [page, setPage] = useState(0);
+    const [filter, setFilter] = useState({
+        key: '',
+        value: '',
+    });
 
     const {
         briefs,
@@ -30,6 +36,7 @@ const List = () => {
     } = useGetMyBriefs({
         page,
         pageSize: lg ? 3 : md ? 2 : 1,
+        filter,
     });
 
     if (!briefsLoading && briefsEmpty) return null;
@@ -40,6 +47,7 @@ const List = () => {
                 {t('Активы')}
                 {totalElements > 0 ? <Counter>({totalElements})</Counter> : ' (0)'}
             </TitleStyled>
+            <Filters current={filter} onChange={setFilter} setPage={setPage} />
             <Box
                 sx={{
                     display: 'grid',

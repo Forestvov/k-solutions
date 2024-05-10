@@ -10,34 +10,52 @@ import type { CompanyType } from 'types/company';
 
 import ActionBlockFranchiseInvestClose from '../../showcases-item/action-block/view/action-block-franchise-invest-close';
 
-import BgSrc from 'assets/pages/personal/bg-single-page.png';
-
-const Wrapper = styled.div`
-    background-image: url(${BgSrc});
+const Wrapper = styled.div<{ bgSrc: string }>`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     margin: 0 -30px;
-    padding: 32px 30px 120px;
+    padding: 32px 30px 110px;
     border-radius: 35px 35px 0 0;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 0% 100%);
+
+    &::before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.8;
+    }
+
+    ${({ bgSrc }) =>
+        bgSrc &&
+        `
+        background-image: url(${bgSrc});
+    `}
 
     @media (min-width: 768px) {
-        height: 570px;
-        padding: 52px 30px 0;
+        padding: 52px 30px 170px;
     }
 
     @media (min-width: 1668px) {
-        padding: 52px 90px 0;
+        padding: 52px 90px 190px;
         margin: 0 -90px;
     }
 `;
 
 const Content = styled.div`
+    position: relative;
+    z-index: 1;
     max-width: 1000px;
     width: 100%;
 `;
 
-const ImageBox = styled.div`
+const ImageBox = styled.div<{ image: string }>`
     width: 110px;
     height: 110px;
     border-radius: 15px;
@@ -46,16 +64,20 @@ const ImageBox = styled.div`
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    ${({ image }) =>
+        image &&
+        `
+        background-image: url(${image});
+    `}
 
     @media (min-width: 1668px) {
         width: 130px;
         height: 130px;
     }
-`;
-
-const Image = styled.img`
-    width: 80px;
-    height: 85px;
 `;
 
 const BackLink = styled(NavLink)`
@@ -139,6 +161,7 @@ const WrapperClose = styled.div`
 `;
 
 interface Props {
+    bg: string;
     name: string;
     logo: string;
     description: string;
@@ -148,14 +171,14 @@ interface Props {
     countTransaction: number;
 }
 
-const Banner = ({ name, logo, description, showClose, companyType, countTransaction, myTotal }: Props) => {
+const Banner = ({ name, logo, description, showClose, companyType, countTransaction, myTotal, bg }: Props) => {
     const { t } = useTranslation('personal');
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('xl'));
 
     return (
-        <Wrapper>
+        <Wrapper bgSrc={bg}>
             <Stack direction="row" spacing="60px">
                 <Content>
                     <BackLink to="/showcases">
@@ -180,9 +203,7 @@ const Banner = ({ name, logo, description, showClose, companyType, countTransact
                             xs: '10px',
                         }}
                     >
-                        <ImageBox>
-                            <Image src={logo} />
-                        </ImageBox>
+                        <ImageBox image={logo} />
                         <CompanyName>
                             {name}
                             {showClose && companyType === 'Franchise' && <StatusTag>{t('Активный')}</StatusTag>}
