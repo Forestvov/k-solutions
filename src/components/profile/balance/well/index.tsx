@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 
 import { fCurrency } from 'helpers/number-format';
+import { useCurrencyContext } from 'context/currency';
 
 import UsdIcon from 'assets/pages/personal/currency/usd.png';
 import EurIcon from 'assets/pages/personal/currency/eur.png';
@@ -14,8 +15,6 @@ import CnyIcon from 'assets/pages/personal/currency/cny.png';
 import Title from '../../title';
 
 import GrayWrapper from '../gray-wrapper';
-import { getCurrency } from 'api/balance';
-import { useEffect, useState } from 'react';
 
 const TitleStyled = styled(Title)`
     margin: 0 0 37px;
@@ -96,26 +95,7 @@ const Item = ({ label, type, image, value }: ItemProp) => {
 
 const Well = () => {
     const { t } = useTranslation('personal');
-
-    const [list, setList] = useState({
-        usd: 0,
-        euro: 0,
-        funt: 0,
-        yup: 0,
-        chine: 0,
-    });
-
-    useEffect(() => {
-        getCurrency().then(({ data }) => {
-            setList({
-                usd: data.USDRUB,
-                euro: data.EURRUB,
-                funt: data.GBPRUB,
-                yup: data.JPYRUB,
-                chine: data.CNYRUB,
-            });
-        });
-    }, []);
+    const { currency } = useCurrencyContext();
 
     return (
         <Box
@@ -127,11 +107,11 @@ const Well = () => {
             <GrayWrapper>
                 <TitleStyled>{t('Курс валют')}</TitleStyled>
                 <Stack spacing="26px">
-                    <Item label={t('Доллар США')} type="USD" value={String(list.usd)} image={UsdIcon} />
-                    <Item label={t('Евро')} type="EUR" value={String(list.euro)} image={EurIcon} />
-                    <Item label={t('Фунт Стерлингов')} type="GBP" value={String(list.funt)} image={GbrIcon} />
-                    <Item label={t('Японская Иена')} type="JPY" value={String(list.yup)} image={JpyIcon} />
-                    <Item label={t('Китайский Юань')} type="CNY" value={String(list.chine)} image={CnyIcon} />
+                    <Item label={t('Доллар США')} type="USD" value={String(currency.USD)} image={UsdIcon} />
+                    <Item label={t('Евро')} type="EUR" value={String(currency.EUR)} image={EurIcon} />
+                    <Item label={t('Фунт Стерлингов')} type="GBP" value={String(currency.GBP)} image={GbrIcon} />
+                    <Item label={t('Японская Иена')} type="JPY" value={String(currency.JPY)} image={JpyIcon} />
+                    <Item label={t('Китайский Юань')} type="CNY" value={String(currency.CNY)} image={CnyIcon} />
                 </Stack>
             </GrayWrapper>
         </Box>

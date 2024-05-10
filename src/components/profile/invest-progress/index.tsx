@@ -9,6 +9,8 @@ import type { SxProps } from '@mui/system';
 import { fCurrency, fPercent } from 'helpers/number-format';
 import { declensionNum } from 'helpers/declension-num';
 import { useTranslation } from 'react-i18next';
+import { useCurrencyContext } from 'context/currency';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 const Value = styled.span`
     color: #373737;
@@ -65,6 +67,7 @@ interface Prop {
 
 const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFinish, accountCount }) => {
     const { t } = useTranslation('personal');
+    const { selected, currency } = useCurrencyContext();
 
     if (close) {
         return (
@@ -79,7 +82,18 @@ const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFin
     return (
         <Box sx={{ width: '100%', ...sx }}>
             <Stack marginBottom={!stoped ? '8px' : '12px'} alignItems="baseline" direction="row" spacing="12px">
-                <Value>{amount ? fCurrency(amount) : '$0'}</Value>
+                <Value>
+                    {amount
+                        ? fCurrency(
+                              renderCurrency({
+                                  usd: amount,
+                                  rub: currency.USD,
+                                  eur: currency.EUR,
+                                  currency: selected,
+                              })
+                          )
+                        : '$0'}
+                </Value>
                 <Label>{stoped ? t('Проинвестировано') : t('Собрано')}</Label>
             </Stack>
             {!stoped && <Progress valueBuffer={100} variant="buffer" value={amount > amountFinish ? 100 : percent} />}

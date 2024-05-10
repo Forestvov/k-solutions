@@ -4,8 +4,12 @@ import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
+import { useCurrencyContext } from 'context/currency';
+
 import type { IHistory } from 'types/transaction';
+
 import { fCurrency } from 'helpers/number-format';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 const Wrapper = styled.div`
     padding: 50px 30px;
@@ -170,6 +174,8 @@ const Cancel = ({ type }: { type?: TransactionType }) => {
 
 const StatusPopup = ({ onClose, content, transactionType }: Props) => {
     const { t } = useTranslation('personal');
+    const { selected, currency } = useCurrencyContext();
+
     return (
         <Wrapper>
             <Stack
@@ -237,8 +243,22 @@ const StatusPopup = ({ onClose, content, transactionType }: Props) => {
                     <TotalLabel>{t('Сумма')}</TotalLabel>
                     <TotalValue status={content.transactionStatus === 'Success' ? 'success' : 'cancel'}>
                         {content.transactionType === 'In'
-                            ? fCurrency(Number(content.amountOut))
-                            : fCurrency(Number(content.amountIn))}
+                            ? fCurrency(
+                                  renderCurrency({
+                                      usd: Number(content.amountOut),
+                                      rub: currency.USD,
+                                      eur: currency.EUR,
+                                      currency: selected,
+                                  })
+                              )
+                            : fCurrency(
+                                  renderCurrency({
+                                      usd: Number(content.amountIn),
+                                      rub: currency.USD,
+                                      eur: currency.EUR,
+                                      currency: selected,
+                                  })
+                              )}
                     </TotalValue>
                 </Stack>
                 <Button

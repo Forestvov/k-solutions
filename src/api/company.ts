@@ -5,7 +5,7 @@ import type { ICompanyPag, ISlide } from 'types/company';
 
 import { endpoints, fetcher } from 'helpers/axios';
 
-export function useGetCompany(id: string) {
+export function useGetCompany(id: string, lang = 'ru') {
     const URL = `${endpoints.company.page}/${id}`;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<ICompanyPag>(
@@ -14,7 +14,7 @@ export function useGetCompany(id: string) {
             {},
             'get',
             {
-                lang: 'ru',
+                lang,
             },
         ],
         fetcher,

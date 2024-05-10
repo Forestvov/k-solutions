@@ -1,14 +1,18 @@
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 import type { SxProps } from '@mui/system';
 import type { CompanyType } from 'types/company';
+
+import { useCurrencyContext } from 'context/currency';
 
 import { fCurrency, fPercent } from 'helpers/number-format';
 import { getRemainDays } from 'helpers/format-time';
 import { declensionNum } from 'helpers/declension-num';
 
 import InvestStat from './invest-stat';
-import { useTranslation } from 'react-i18next';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 interface Prop {
     sx?: SxProps;
@@ -34,11 +38,24 @@ const InvestStats: FC<Prop> = ({
     companyType,
 }) => {
     const countDay = getRemainDays(finishDay ? finishDay : '');
+    const { selected, currency } = useCurrencyContext();
     const { t } = useTranslation('personal');
 
     return (
         <Stack spacing="10px" sx={sx}>
-            {amountFinish && <InvestStat title={`${t('Сумма займа')}:`} value={fCurrency(amountFinish)} />}
+            {amountFinish && (
+                <InvestStat
+                    title={`${t('Сумма займа')}:`}
+                    value={fCurrency(
+                        renderCurrency({
+                            usd: amountFinish,
+                            rub: currency.USD,
+                            eur: currency.EUR,
+                            currency: selected,
+                        })
+                    )}
+                />
+            )}
             {finishDay && (
                 <InvestStat
                     title={`${t('До конца сбора')}:`}
@@ -53,7 +70,19 @@ const InvestStats: FC<Prop> = ({
                     value={fPercent(percents)}
                 />
             )}
-            {amountMin && <InvestStat title={`${t('Минимальная сумма')}:`} value={fCurrency(amountMin)} />}
+            {amountMin && (
+                <InvestStat
+                    title={`${t('Минимальная сумма')}:`}
+                    value={fCurrency(
+                        renderCurrency({
+                            usd: amountMin,
+                            rub: currency.USD,
+                            eur: currency.EUR,
+                            currency: selected,
+                        })
+                    )}
+                />
+            )}
             {ranges &&
                 (ranges === 9999 ? (
                     <InvestStat
@@ -81,7 +110,19 @@ const InvestStats: FC<Prop> = ({
                     />
                 ))}
 
-            {myTotal && <InvestStat title={`${t('Сумма ваших инвестиций')}:`} value={fCurrency(myTotal)} />}
+            {myTotal && (
+                <InvestStat
+                    title={`${t('Сумма ваших инвестиций')}:`}
+                    value={fCurrency(
+                        renderCurrency({
+                            usd: myTotal,
+                            rub: currency.USD,
+                            eur: currency.EUR,
+                            currency: selected,
+                        })
+                    )}
+                />
+            )}
             {countTransaction && <InvestStat title={`${t('Кол-во транзакций')}:`} value={countTransaction} />}
         </Stack>
     );

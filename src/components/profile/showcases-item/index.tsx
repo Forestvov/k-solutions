@@ -17,12 +17,15 @@ import { getRemainDays } from 'helpers/format-time';
 
 import SplashScreen from 'components/shared/splash-screen';
 
+import { useCurrencyContext } from 'context/currency';
+
 import Banner from './banner';
 import Slider from './slider';
 import KeyInformation from './key-information';
 import Info from './info';
 import Awards from './awards';
 import ActionBlock from './action-block';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 const Wrapper = styled.div`
     padding: 0 15px 20px;
@@ -39,7 +42,8 @@ const Wrapper = styled.div`
 `;
 
 const ShowcasesItem = () => {
-    const { t } = useTranslation('personal');
+    const { t, i18n } = useTranslation('personal');
+    const { selected, currency } = useCurrencyContext();
 
     const theme = useTheme();
     const matchesDesktop = useMediaQuery(theme.breakpoints.up('xl'));
@@ -49,7 +53,7 @@ const ShowcasesItem = () => {
     const searchParams = useSearchParams();
 
     const { brief, briefsLoading, mutate } = useGetBrief(String(id));
-    const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')));
+    const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')), i18n.language);
 
     const getFinishDay = () => {
         if (brief && brief.finishDay) {
@@ -117,7 +121,17 @@ const ShowcasesItem = () => {
                                         ? [
                                               { label: t('Сумма займа'), value: fPercent(brief.amountFinish) },
                                               { label: t('Ставка, % ежемясчный'), value: fPercent(brief.percents) },
-                                              { label: t('Минимальная сумма'), value: fCurrency(brief.amountMin) },
+                                              {
+                                                  label: t('Минимальная сумма'),
+                                                  value: fCurrency(
+                                                      renderCurrency({
+                                                          usd: brief.amountMin,
+                                                          rub: currency.USD,
+                                                          eur: currency.EUR,
+                                                          currency: selected,
+                                                      })
+                                                  ),
+                                              },
                                               {
                                                   label: t('Срок займа'),
                                                   value: `${brief.ranges} ${declensionNum(brief.ranges, [t('месяц'), t('месяца'), t('месяцев')])}`,
@@ -127,11 +141,28 @@ const ShowcasesItem = () => {
                                               {
                                                   label: t('Проинвестировано'),
                                                   value: brief.commonInvestedAmount
-                                                      ? fCurrency(brief.commonInvestedAmount)
+                                                      ? fCurrency(
+                                                            renderCurrency({
+                                                                usd: brief.commonInvestedAmount,
+                                                                rub: currency.USD,
+                                                                eur: currency.EUR,
+                                                                currency: selected,
+                                                            })
+                                                        )
                                                       : '$0',
                                               },
                                               { label: t('Ставка, % ежедневный'), value: fPercent(brief.percents) },
-                                              { label: t('Минимальная сумма'), value: fCurrency(brief.amountMin) },
+                                              {
+                                                  label: t('Минимальная сумма'),
+                                                  value: fCurrency(
+                                                      renderCurrency({
+                                                          usd: brief.amountMin,
+                                                          rub: currency.USD,
+                                                          eur: currency.EUR,
+                                                          currency: selected,
+                                                      })
+                                                  ),
+                                              },
                                               {
                                                   label: t('Срок займа'),
                                                   value: 9999,
@@ -144,7 +175,14 @@ const ShowcasesItem = () => {
                                               {
                                                   label: t('Собрано'),
                                                   value: brief.commonInvestedAmount
-                                                      ? fCurrency(brief.commonInvestedAmount)
+                                                      ? fCurrency(
+                                                            renderCurrency({
+                                                                usd: brief.commonInvestedAmount,
+                                                                rub: currency.USD,
+                                                                eur: currency.EUR,
+                                                                currency: selected,
+                                                            })
+                                                        )
                                                       : '$0',
                                               },
                                               { label: `${t('До конца сбора')}:`, value: getFinishDay() },

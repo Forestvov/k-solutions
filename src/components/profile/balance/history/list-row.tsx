@@ -5,10 +5,13 @@ import Stack from '@mui/material/Stack';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
+import { useCurrencyContext } from 'context/currency';
+
 import type { IHistory, StatusType } from 'types/transaction';
 
 import { fCurrency } from 'helpers/number-format';
 import { fDate, fTime } from 'helpers/format-time';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 import Replenish from 'components/profile/balance/all-assets/replenish';
 
@@ -111,6 +114,7 @@ const Item = ({ label, value }: ItemProps) => {
 
 const ListRow = ({ row }: { row: IHistory }) => {
     const { t } = useTranslation('personal');
+    const { selected, currency } = useCurrencyContext();
 
     const { transactionType, transactionLinkType, transactionDate, transactionStatus, amountOut, amountIn } = row;
 
@@ -154,9 +158,29 @@ const ListRow = ({ row }: { row: IHistory }) => {
             </Cell>
             <Cell>
                 {transactionType === 'Out' && transactionLinkType === 'p2p' ? (
-                    <Item value={fCurrency(amountIn ?? 0)} label={t('Сумма транзакции')} />
+                    <Item
+                        value={fCurrency(
+                            renderCurrency({
+                                usd: Number(amountIn),
+                                rub: currency.USD,
+                                eur: currency.EUR,
+                                currency: selected,
+                            })
+                        )}
+                        label={t('Сумма транзакции')}
+                    />
                 ) : (
-                    <Item value={fCurrency(amountOut ?? 0)} label={t('Сумма транзакции')} />
+                    <Item
+                        value={fCurrency(
+                            renderCurrency({
+                                usd: Number(amountOut),
+                                rub: currency.USD,
+                                eur: currency.EUR,
+                                currency: selected,
+                            })
+                        )}
+                        label={t('Сумма транзакции')}
+                    />
                 )}
             </Cell>
             <Cell>

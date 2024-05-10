@@ -5,63 +5,22 @@ import Box from '@mui/material/Box';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 import { fCurrency, fPercent } from 'helpers/number-format';
-import { getCurrency } from 'api/balance';
 import { getCookie } from 'context/settings/cookie';
+import { useCurrencyContext } from 'context/currency';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 import Title from '../../title';
 import GrayWrapper from '../gray-wrapper';
-
-import type { CurrencyType } from './types';
 import CurrencyButtons from './currency-buttons';
 import ItemInfo from './item-info';
 import Replenish from './replenish';
 
-const generateLocale = (locale: CurrencyType) => {
-    switch (locale) {
-        case 'dollar':
-            return 'en-US';
-        case 'euro':
-            return 'de-DE';
-        default:
-            return 'ru-RU';
-    }
-};
-
-const generateCurrency = (locale: CurrencyType) => {
-    switch (locale) {
-        case 'dollar':
-            return 'USD';
-        case 'euro':
-            return 'EUR';
-        default:
-            return 'RUB';
-    }
-};
-
-const generateEmptyPrefix = (locale: CurrencyType) => {
-    switch (locale) {
-        case 'dollar':
-            return '$0';
-        case 'euro':
-            return '0 €';
-        default:
-            return '0 ₽';
-    }
-};
-
 const AllAssets = () => {
     const { t } = useTranslation('personal');
 
-    const [currency, setCurrency] = useState<CurrencyType>('dollar');
-
     const [demoCurrency, setDemoCurrency] = useState('0');
 
-    const [currencyRubValue, setCurrencyRubValue] = useState(1);
-    const [currencyEuroValue, setCurrencyEuroValue] = useState(1);
-
-    const [balance, setBalance] = useState(0);
-    const [active, setActive] = useState(0);
-    const [briefcaseBalance, setBriefcaseBalance] = useState(0);
+    const { selected, currency, setSelect } = useCurrencyContext();
 
     // @ts-ignore
     const { user } = useAuthContext();
@@ -70,30 +29,7 @@ const AllAssets = () => {
         const demo = getCookie('rd');
 
         setDemoCurrency(demo ?? '0');
-
-        getCurrency().then(({ data }) => {
-            setCurrencyRubValue(data.USDRUB);
-            setCurrencyEuroValue(data.EURRUB);
-        });
     }, []);
-
-    useEffect(() => {
-        if (currency) {
-            if (currency === 'rub') {
-                setBalance(user.balance.balance * currencyRubValue);
-                setActive(user.balance.activeBalance * currencyRubValue);
-                setBriefcaseBalance(user.balance.briefcaseBalance * currencyRubValue);
-            } else if (currency === 'euro') {
-                setBalance((user.balance.balance * currencyRubValue) / currencyEuroValue);
-                setActive((user.balance.activeBalance * currencyRubValue) / currencyEuroValue);
-                setBriefcaseBalance((user.balance.briefcaseBalance * currencyRubValue) / currencyEuroValue);
-            } else {
-                setBalance(user.balance.balance);
-                setActive(user.balance.activeBalance);
-                setBriefcaseBalance(user.balance.briefcaseBalance);
-            }
-        }
-    }, [user, currency]);
 
     return (
         <Box
@@ -118,7 +54,7 @@ const AllAssets = () => {
                         }}
                     >
                         <Title>{t('Финансы')}</Title>
-                        <CurrencyButtons currency={currency} onClick={setCurrency} />
+                        <CurrencyButtons currency={selected} onClick={setSelect} />
                     </Stack>
                     <Stack
                         direction={{
@@ -138,31 +74,36 @@ const AllAssets = () => {
                         >
                             <ItemInfo
                                 label={t('Общий Баланс')}
-                                value={
-                                    balance
-                                        ? fCurrency(balance, generateLocale(currency), generateCurrency(currency))
-                                        : generateEmptyPrefix(currency)
-                                }
+                                value={fCurrency(
+                                    renderCurrency({
+                                        usd: user.balance.balance,
+                                        rub: currency.USD,
+                                        eur: currency.EUR,
+                                        currency: selected,
+                                    })
+                                )}
                             />
                             <ItemInfo
                                 label={t('Активы')}
-                                value={
-                                    briefcaseBalance
-                                        ? fCurrency(
-                                              briefcaseBalance,
-                                              generateLocale(currency),
-                                              generateCurrency(currency)
-                                          )
-                                        : generateEmptyPrefix(currency)
-                                }
+                                value={fCurrency(
+                                    renderCurrency({
+                                        usd: user.balance.briefcaseBalance,
+                                        rub: currency.USD,
+                                        eur: currency.EUR,
+                                        currency: selected,
+                                    })
+                                )}
                             />
                             <ItemInfo
                                 label={t('Доступный Баланс')}
-                                value={
-                                    active
-                                        ? fCurrency(active, generateLocale(currency), generateCurrency(currency))
-                                        : generateEmptyPrefix(currency)
-                                }
+                                value={fCurrency(
+                                    renderCurrency({
+                                        usd: user.balance.activeBalance,
+                                        rub: currency.USD,
+                                        eur: currency.EUR,
+                                        currency: selected,
+                                    })
+                                )}
                             />
                         </Stack>
                         <Stack
