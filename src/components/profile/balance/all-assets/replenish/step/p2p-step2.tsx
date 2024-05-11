@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
+import { useSettingsContext } from 'context/settings/hooks/useSettingsContext';
+
 import TitleStep from './title-step';
 import Description from './description';
 import Timer from './timer';
@@ -17,7 +19,11 @@ interface Props {
 const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
     const { t } = useTranslation('personal');
 
+    const {
+        settings: { waitRequest, timeAccept },
+    } = useSettingsContext();
     const { getValues } = useFormContext();
+
     // Wait requisites когда админ не отправил
     // Process когда отправил
     // transactionId
@@ -59,7 +65,11 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
                         </Stack>
                         <Description>{t('Все платежи проходят по системе AML.')}</Description>
                     </Box>
-                    <Timer timestamp={getValues('transactionDate')} deadMin={60} setStatus={() => console.log()} />
+                    <Timer
+                        timestamp={getValues('transactionDate')}
+                        deadMin={Number(timeAccept)}
+                        setStatus={() => console.log()}
+                    />
                 </Box>
             </div>
         );
@@ -68,7 +78,11 @@ const P2PStep2 = ({ onSetMarkAsPaid }: Props) => {
     return (
         <div>
             <TitleStep>{t('Ожидайте получение реквизитов')}</TitleStep>
-            <Timer timestamp={getValues('transactionDate')} deadMin={60} setStatus={() => console.log()} />
+            <Timer
+                timestamp={getValues('transactionDate')}
+                deadMin={Number(waitRequest)}
+                setStatus={() => console.log()}
+            />
             <Box
                 sx={{
                     maxWidth: '456px',

@@ -1,6 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { useSettingsContext } from 'context/settings/hooks/useSettingsContext';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
@@ -31,6 +33,10 @@ const generatePrefix = (token: string) => {
 const CurrencyForm = () => {
     const { t } = useTranslation('personal');
 
+    const {
+        settings: { timeProcess },
+    } = useSettingsContext();
+
     const { getValues } = useFormContext();
     return (
         <Box
@@ -46,7 +52,11 @@ const CurrencyForm = () => {
                 <QrCode src={getValues('qrCode')} />
                 <CopyInput value={String(getValues('amountOut'))} prefix={generatePrefix(getValues('currencyToken'))} />
                 <CopyInput value={getValues('contact')} />
-                <Timer timestamp={getValues('transactionDate')} deadMin={20} setStatus={() => console.log()} />
+                <Timer
+                    timestamp={getValues('transactionDate')}
+                    deadMin={Number(timeProcess)}
+                    setStatus={() => console.log()}
+                />
             </Stack>
         </Box>
     );

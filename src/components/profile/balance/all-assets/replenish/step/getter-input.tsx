@@ -49,6 +49,7 @@ const GetterInput = () => {
     const { t } = useTranslation('personal');
     const { watch } = useFormContext();
 
+    console.log(watch());
     return (
         <div>
             <Label>{t('Получаете')}</Label>

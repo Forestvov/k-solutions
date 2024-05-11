@@ -113,14 +113,14 @@ const Step2Token = ({ transactionType }: Props) => {
                         type="number"
                         prefix={watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH' ? '$' : ''}
                     />
-                    {Number(watch().amountOut) > 0 && Number(watch().amountIn) > 0 && (
+                    {token === 'Token' && Number(watch().amountOut) > 0 && Number(watch().amountIn) > 0 && (
                         <Stack direction="row" alignItems="center" spacing="5px">
                             <Notification>{t('Курс')} :</Notification>
                             <Value>
                                 {watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH'
-                                    ? fCurrency(watch().amountOut)
+                                    ? fCurrency(watch().amountOut, 'en-US', 'USD')
                                     : `${watch().amountOut} ${generatePrefix(watch().currencyToken)}`}
-                                = {fCurrency(Number(watch().amountIn) * Number(watch().amountOut))}
+                                = {fCurrency(Number(watch().amountIn) * Number(watch().amountOut), 'en-US', 'USD')}
                             </Value>
                         </Stack>
                     )}

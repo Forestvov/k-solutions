@@ -20,6 +20,9 @@ interface SettingResponse {
 
 interface State {
     briefcaseHot: null | string;
+    waitRequest: null | string;
+    timeAccept: null | string;
+    timeProcess: null | string;
 }
 
 export function SettingsProvider({ children }: Props) {
@@ -27,17 +30,29 @@ export function SettingsProvider({ children }: Props) {
     const { user } = useAuthContext();
 
     const [settings, setsSttings] = useState<State>({
-        briefcaseHot: null,
+        briefcaseHot: '0',
+        waitRequest: '0',
+        timeAccept: '0',
+        timeProcess: '0',
     });
 
     const initialize = useCallback(async () => {
         try {
             const resHotOffer = await axios<SettingResponse>(`${endpoints.settings.root}/briefcase.hot.offer`);
+            const resWaitRequest = await axios<SettingResponse>(`${endpoints.settings.root}/p2p.time.wait_requisites`);
+            const resTimeAccept = await axios<SettingResponse>(`${endpoints.settings.root}/token.time.accept`);
+            const resTimeProcess = await axios<SettingResponse>(`${endpoints.settings.root}/p2p.time.process`);
 
-            const data = await resHotOffer.data;
+            const dataHotOffer = await resHotOffer.data;
+            const dataWaitRequest = await resWaitRequest.data;
+            const dataTimeAccept = await resTimeAccept.data;
+            const dataTimeProcess = await resTimeProcess.data;
 
-            await setsSttings({
-                briefcaseHot: data.settingValue || '',
+            setsSttings({
+                briefcaseHot: dataHotOffer.settingValue || '',
+                waitRequest: dataWaitRequest.settingValue || '',
+                timeAccept: dataTimeAccept.settingValue || '',
+                timeProcess: dataTimeProcess.settingValue || '',
             });
         } catch (error) {
             console.error(error);
