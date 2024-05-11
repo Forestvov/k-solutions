@@ -45,8 +45,8 @@ const List = () => {
                         xs: '1fr',
                         md: 'repeat(2, 1fr)',
                         lg: 'repeat(3, 1fr)',
-                        marginBottom: { lg: '60px', xs: '20px' },
                     },
+                    marginBottom: { lg: '60px', xs: '20px' },
                 }}
             >
                 {hotBriefsLoading ? (
@@ -56,7 +56,7 @@ const List = () => {
                         {lg && <InvestSkeletonCard />}
                     </>
                 ) : (
-                    hotBriefs.map((brief) => <InvestCard hideStats key={brief.briefcaseId} card={brief} />)
+                    hotBriefs.map((brief, idx) => <InvestCard hideStats key={idx} card={brief} />)
                 )}
             </Box>
             <Pagination countPage={pages} currentPage={currentPage} onChangePage={setPage} />

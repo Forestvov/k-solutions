@@ -23,7 +23,7 @@ const TitleStyled = styled(Title)`
 `;
 
 const Showcases = () => {
-    const { t } = useTranslation('personal');
+    const { t, i18n } = useTranslation('personal');
 
     const [page, setPage] = useState(0);
     const [filter, setFilter] = useState({
@@ -36,6 +36,7 @@ const Showcases = () => {
         pageInfo: { totalElements, currentPage, pages, isFirst, isLast },
         briefsLoading,
     } = useGetListBrief({
+        lang: i18n.language,
         page: page,
         pageSize: 6,
         filter,

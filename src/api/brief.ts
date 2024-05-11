@@ -65,9 +65,10 @@ export function useGetHotBrief({ page, pageSize, percentFinish, lang }: PropList
 
 interface GetListProp extends IPagination {
     filter: Record<string, string>;
+    lang: string;
 }
 
-export function useGetListBrief({ page, pageSize, filter }: GetListProp) {
+export function useGetListBrief({ page, pageSize, filter, lang }: GetListProp) {
     const URL = endpoints.briefs.hot;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<HotBriefResponse>(
@@ -82,7 +83,7 @@ export function useGetListBrief({ page, pageSize, filter }: GetListProp) {
             },
             'post',
             {
-                lang: 'ru',
+                lang,
             },
         ],
         fetcher,
@@ -125,8 +126,9 @@ export function useGetListBrief({ page, pageSize, filter }: GetListProp) {
 
 interface GetListProp extends IPagination {
     filter: Record<string, string>;
+    lang: string;
 }
-export function useGetMyBriefs({ page, pageSize, filter }: GetListProp) {
+export function useGetMyBriefs({ page, pageSize, filter, lang }: GetListProp) {
     const URL = endpoints.briefs.myInvest;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IResponseMyBrief>(
@@ -140,7 +142,7 @@ export function useGetMyBriefs({ page, pageSize, filter }: GetListProp) {
             },
             'post',
             {
-                lang: 'ru',
+                lang,
             },
         ],
         fetcher,
@@ -181,7 +183,7 @@ export function useGetMyBriefs({ page, pageSize, filter }: GetListProp) {
     return memoizedValue;
 }
 
-export function useGetBrief(id: string) {
+export function useGetBrief(id: string, lang: string) {
     const URL = `${endpoints.briefs.page}/${id}`;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IBriefPage>(
@@ -190,7 +192,7 @@ export function useGetBrief(id: string) {
             {},
             'get',
             {
-                lang: 'ru',
+                lang,
             },
         ],
         fetcher,
@@ -297,6 +299,8 @@ export function useGetAnaliticHistoryGain({ page, pageSize }: IPagination) {
             {
                 page,
                 size: pageSize,
+                sortDir: 'DESC',
+                sortField: 'createdDate',
             },
             'POST',
             {

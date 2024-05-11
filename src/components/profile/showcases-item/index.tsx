@@ -52,7 +52,7 @@ const ShowcasesItem = () => {
     const { id } = useParams();
     const searchParams = useSearchParams();
 
-    const { brief, briefsLoading, mutate } = useGetBrief(String(id));
+    const { brief, briefsLoading, mutate } = useGetBrief(String(id), i18n.language);
     const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')), i18n.language);
 
     const getFinishDay = () => {

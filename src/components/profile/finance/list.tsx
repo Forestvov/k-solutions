@@ -20,7 +20,7 @@ const TitleStyled = styled(Title)`
 `;
 
 const List = () => {
-    const { t } = useTranslation('personal');
+    const { t, i18n } = useTranslation('personal');
     const { lg, md } = useDeviceSize();
     const [page, setPage] = useState(0);
     const [filter, setFilter] = useState({
@@ -34,6 +34,7 @@ const List = () => {
         briefsEmpty,
         pageInfo: { currentPage, pages, totalElements, isLast, isFirst },
     } = useGetMyBriefs({
+        lang: i18n.language,
         page,
         pageSize: lg ? 3 : md ? 2 : 1,
         filter,

@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 const Overlay = styled.div`
     position: absolute;
+    z-index: 2;
     top: 0;
     right: 0;
     opacity: 0;
