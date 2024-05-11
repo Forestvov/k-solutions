@@ -122,7 +122,17 @@ const ShowcasesItem = () => {
                                 firstRow={
                                     brief.companyType === 'Company'
                                         ? [
-                                              { label: t('Сумма займа'), value: fPercent(brief.amountFinish) },
+                                              {
+                                                  label: t('Сумма займа'),
+                                                  value: fCurrency(
+                                                      renderCurrency({
+                                                          usd: brief.amountFinish,
+                                                          rub: currency.USD,
+                                                          eur: currency.EUR,
+                                                          currency: selected,
+                                                      })
+                                                  ),
+                                              },
                                               { label: t('Ставка, % ежемясчный'), value: fPercent(brief.percents) },
                                               {
                                                   label: t('Минимальная сумма'),

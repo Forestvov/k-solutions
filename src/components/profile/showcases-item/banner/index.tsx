@@ -156,6 +156,8 @@ const Description = styled.p`
 `;
 
 const WrapperClose = styled.div`
+    position: relative;
+    z-index: 1;
     max-width: 510px;
     width: 100%;
 `;

@@ -30,6 +30,17 @@ const generatePrefix = (token: string) => {
     }
 };
 
+export const generatePrefixCurrency = (token: string) => {
+    switch (token) {
+        case 'USD':
+            return '$';
+        case 'RUB':
+            return '₽';
+        default:
+            return '€';
+    }
+};
+
 const CurrencyForm = () => {
     const { t } = useTranslation('personal');
 

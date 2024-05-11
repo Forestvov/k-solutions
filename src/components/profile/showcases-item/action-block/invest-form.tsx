@@ -12,6 +12,9 @@ import Typography from '@mui/material/Typography';
 
 import type { CompanyType } from 'types/company';
 import { closeBrief, investBrief } from 'api/brief';
+import { useCurrencyContext } from 'context/currency';
+import { generatePrefixCurrency } from 'components/profile/balance/all-assets/replenish/step/currency-form';
+import { returnCurrencyForm } from 'helpers/renderCurrency';
 
 const Wrapper = styled.div`
     position: relative;
@@ -61,6 +64,8 @@ interface Props {
 const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) => {
     const { t } = useTranslation('personal');
 
+    const { selected, currency } = useCurrencyContext();
+
     const [error, setError] = useState<boolean | string>(false);
     const [loader, setLoader] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -89,17 +94,27 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
         try {
             if (closeInvest) {
                 await closeBrief({
-                    amount: `-${data.amount}`,
+                    amount: `-${returnCurrencyForm({
+                        usd: Number(data.amount),
+                        rub: currency.USD,
+                        eur: currency.EUR,
+                        currency: selected,
+                    })}`,
                     briefcaseId: String(id),
                 });
             } else {
                 await investBrief({
-                    amount: data.amount,
+                    amount: returnCurrencyForm({
+                        usd: Number(data.amount),
+                        rub: currency.USD,
+                        eur: currency.EUR,
+                        currency: selected,
+                    }),
                     briefcaseId: String(id),
                 });
             }
 
-            if (companyType === 'Franchise' && updateBrief) {
+            if (updateBrief) {
                 await updateBrief();
             }
 
@@ -138,14 +153,14 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
                                 {...methods.register('amount')}
                                 onChange={onChange}
                                 value={value}
-                                type="text"
+                                type="number"
                                 placeholder={
                                     companyType === 'Franchise'
-                                        ? t('Введите сумму инвестиции ($)')
-                                        : t('Введите сумму кредитования ($)')
+                                        ? `${t('Введите сумму инвестиции')} (${generatePrefixCurrency(selected)})`
+                                        : `${t('Введите сумму кредитования')} (${generatePrefixCurrency(selected)})`
                                 }
                             />
-                            {value && <Prefix>$</Prefix>}
+                            {value && <Prefix>{generatePrefixCurrency(selected)}</Prefix>}
                         </Wrapper>
                     )}
                     control={methods.control}
