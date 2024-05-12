@@ -16,7 +16,7 @@ const FooterAddress = () => {
     const { t } = useTranslation('main-navigation');
 
     return (
-        <Stack spacing="44px" maxWidth={354} flexGrow={1}>
+        <Stack spacing="44px" maxWidth={300} flexGrow={1}>
             <Box>
                 <Typography sx={{ color: '#444444', fontSize: { lg: '1.25rem', xl: '1.125rem' } }}>
                     {t('address')}:{' '}

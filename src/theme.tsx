@@ -6,6 +6,18 @@ const theme = createTheme({
         fontFamily: ['inter', 'sans-serif'].join(','),
     },
     components: {
+        MuiContainer: {
+            styleOverrides: {
+                root: {
+                    '@media (min-width: 1280px)': {
+                        maxWidth: '1200px',
+                    },
+                    '@media (min-width: 1668px)': {
+                        maxWidth: '1620px',
+                    },
+                },
+            },
+        },
         MuiTypography: {
             styleOverrides: {
                 body1: {
