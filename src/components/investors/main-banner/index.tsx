@@ -68,7 +68,8 @@ const MainBanner: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
+                height: { lg: 'min(100vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
+                minHeight: { lg: '787px' },
                 background: 'transparent',
                 paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',

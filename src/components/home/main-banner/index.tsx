@@ -11,6 +11,7 @@ import Schedule from 'assets/pages/home/banner-schedule.svg?react';
 import Form from './form';
 import Image from './image';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Stack from '@mui/material/Stack';
 
 const Inner = styled(Container)`
     position: relative;
@@ -18,6 +19,7 @@ const Inner = styled(Container)`
 `;
 
 const Content = styled.div`
+    height: 100%;
     @media (min-width: 1280px) {
         padding-right: 450px;
     }
@@ -43,6 +45,7 @@ const Paragraph = styled.p`
 const LogoIcon = styled(Logo)`
     height: auto;
     width: 280px;
+    flex: 0 0 auto;
 
     @media (min-width: 768px) {
         width: 600px;
@@ -56,6 +59,7 @@ const LogoIcon = styled(Logo)`
 
 const ScheduleIcon = styled(Schedule)`
     height: auto;
+    margin-top: auto;
     width: 100%;
 
     @media (min-width: 768px) {
@@ -76,7 +80,8 @@ const MainBanner: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
+                height: { lg: 'min(100vh - 110px, 970px);', xs: 'auto' },
+                minHeight: { lg: '787px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '229px', xl: '200px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
@@ -85,10 +90,14 @@ const MainBanner: FC = () => {
         >
             <Inner fixed>
                 <Content>
-                    <LogoIcon />
-                    <Paragraph>{t('bannerTitle')}</Paragraph>
-                    <Form />
-                    <ScheduleIcon />
+                    <Stack sx={{ height: '100%' }}>
+                        <LogoIcon />
+                        <Paragraph>{t('bannerTitle')}</Paragraph>
+                        <Stack sx={{ flex: '1' }}>
+                            <Form />
+                            <ScheduleIcon />
+                        </Stack>
+                    </Stack>
                 </Content>
                 {isDesktop && <Image />}
             </Inner>

@@ -82,7 +82,7 @@ const Form = () => {
     };
 
     return (
-        <Stack spacing="25px" sx={{ marginBottom: { lg: '175px', md: '100px', sm: '140px', xs: '80px' } }}>
+        <Stack spacing="25px" sx={{ marginBottom: '40px' }}>
             <Stack
                 component="form"
                 spacing={{ sm: '50px', xs: '25px' }}
