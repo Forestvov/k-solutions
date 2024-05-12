@@ -7,7 +7,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 
 import PaginatorPage from 'components/shared/paginator-page';
-import Scrollbar from 'components/shared/scrollbar';
 
 import { useGetHistoryTransaction } from 'api/transaction';
 
@@ -74,7 +73,7 @@ const List = () => {
                         <SkeletonBlock />
                     </>
                 ) : (
-                    <TableContainer
+                    <Box
                         sx={{
                             borderRadius: {
                                 sm: '15px',
@@ -83,7 +82,7 @@ const List = () => {
                             overflow: 'hidden',
                         }}
                     >
-                        <Scrollbar>
+                        <TableContainer>
                             <StyledTable sx={{ minWidth: 1435 }}>
                                 <TableBody>
                                     {data.map((row) => (
@@ -91,8 +90,8 @@ const List = () => {
                                     ))}
                                 </TableBody>
                             </StyledTable>
-                        </Scrollbar>
-                    </TableContainer>
+                        </TableContainer>
+                    </Box>
                 )}
             </Box>
             <PaginatorPage
