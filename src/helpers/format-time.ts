@@ -1,12 +1,24 @@
 import { format } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import i18n from 'i18next';
+import { de, enUS, ru } from 'date-fns/locale';
+
+const getLocale = (lang: string) => {
+    switch (lang) {
+        case 'ru':
+            return ru;
+        case 'de':
+            return de;
+        default:
+            return enUS;
+    }
+};
 
 export function fDate(date: string, newFormat?: string) {
     const fm = newFormat || 'dd MMM yyyy';
 
     return date
         ? format(new Date(date), fm, {
-              locale: ru,
+              locale: getLocale(i18n.language),
           })
         : '';
 }
@@ -22,6 +34,25 @@ export function fDateCurrent() {
 
     return format(new Date(), fm, {});
 }
+
+export const clearDate = (date: string, getTime?: boolean): string => {
+    const formDate = new Date(date);
+
+    const day = formDate.getDate();
+    const month = formDate.getMonth() + 1;
+    const year = formDate.getFullYear();
+
+    const dateStr = `${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month}`}.${year}`;
+
+    if (getTime) {
+        const hours = formDate.getHours();
+        const minutes = formDate.getMinutes();
+
+        return `${dateStr}, ${hours > 9 ? hours : `0${hours}`}:${minutes > 9 ? minutes : `0${minutes}`}`;
+    }
+
+    return dateStr;
+};
 
 export function isAfter(startDate: Date | null, endDate: Date | null) {
     const results = startDate && endDate ? new Date(startDate).getTime() > new Date(endDate).getTime() : false;

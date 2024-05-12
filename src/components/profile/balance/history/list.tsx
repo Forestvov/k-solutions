@@ -12,6 +12,8 @@ import { useGetHistoryTransaction } from 'api/transaction';
 
 import SkeletonBlock from './skeleton-row';
 
+import ListRow from './list-row';
+
 import Filters from './filters';
 
 const StyledTable = styled(Table)`
@@ -28,6 +30,7 @@ const List = () => {
     });
 
     const {
+        data,
         dataLoading,
         pageInfo: { pages, currentPage, isLast, isFirst },
         mutate,
@@ -82,9 +85,9 @@ const List = () => {
                         <TableContainer>
                             <StyledTable sx={{ minWidth: 1435 }}>
                                 <TableBody>
-                                    {/* {data.map((row) => ( */}
-                                    {/*     <ListRow row={row} key={row.transactionId} /> */}
-                                    {/* ))} */}
+                                    {data.map((row) => (
+                                        <ListRow row={row} key={row.transactionId} />
+                                    ))}
                                 </TableBody>
                             </StyledTable>
                         </TableContainer>

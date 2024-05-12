@@ -10,10 +10,10 @@ import { useCurrencyContext } from 'context/currency';
 import type { IHistory, StatusType } from 'types/transaction';
 
 import { fCurrency } from 'helpers/number-format';
-import { fDate, fTime } from 'helpers/format-time';
 import { renderCurrency } from 'helpers/renderCurrency';
 
 import Replenish from 'components/profile/balance/all-assets/replenish';
+import { fDate } from 'helpers/format-time';
 
 const Cell = styled(TableCell)`
     padding: 20px 30px;
@@ -135,6 +135,8 @@ const ListRow = ({ row }: { row: IHistory }) => {
         }
     };
 
+    console.log(transactionDate.split(',')[1].slice(0, 6));
+
     return (
         <TableRow
             sx={{
@@ -184,10 +186,10 @@ const ListRow = ({ row }: { row: IHistory }) => {
                 )}
             </Cell>
             <Cell>
-                <Item value={fDate(transactionDate)} label={t('Дата транзакции')} />
+                <Item value={fDate(transactionDate.split(',')[0])} label={t('Дата транзакции')} />
             </Cell>
             <Cell>
-                <Item value={fTime(transactionDate)} label={t('Время транзакции')} />
+                <Item value={transactionDate.split(',')[1].slice(0, 6)} label={t('Время транзакции')} />
             </Cell>
             <Cell>
                 <Replenish content={row} transactionType={row.transactionType}>
