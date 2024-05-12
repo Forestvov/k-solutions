@@ -24,6 +24,8 @@ import BusinessPage from './ui/business-page';
 import AboutPlatformPage from './ui/about-platfom-page';
 import BlogPage from './ui/blog-page';
 import SingleBlogPage from 'components/blog/singleBlogPage';
+import { PrivacyPolicyPage } from './ui/privacy-policy-page';
+import { AmlPolicyPage } from './ui/aml-policy-page';
 
 export const appRouter = createBrowserRouter([
     {
@@ -59,6 +61,14 @@ export const appRouter = createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage />,
+            },
+            {
+                path: '/privacy-policy',
+                element: <PrivacyPolicyPage />,
+            },
+            {
+                path: '/aml-policy',
+                element: <AmlPolicyPage />,
             },
             {
                 path: '/investors',
