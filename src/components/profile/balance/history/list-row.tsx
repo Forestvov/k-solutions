@@ -135,8 +135,6 @@ const ListRow = ({ row }: { row: IHistory }) => {
         }
     };
 
-    console.log(transactionDate.split(',')[1].slice(0, 6));
-
     return (
         <TableRow
             sx={{

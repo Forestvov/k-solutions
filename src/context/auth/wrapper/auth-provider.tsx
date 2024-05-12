@@ -120,8 +120,6 @@ export function AuthProvider({ children }: Props) {
         initialize();
     }, [initialize]);
 
-    console.log('AUTH CONTEXT:', state);
-
     // LOGIN
     const login = useCallback(async (email: string, password: string) => {
         const data = {

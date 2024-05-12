@@ -22,7 +22,6 @@ function getLocaleCurrency() {
 }
 
 const generateEmptyPrefix = (locale: string) => {
-    console.log(locale);
     switch (locale) {
         case 'USD':
             return '$0';
