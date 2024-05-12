@@ -51,7 +51,7 @@ const cards = [
     },
     {
         id: '3',
-        title: 'b2p',
+        title: 'b2b',
         text: 'business to business, когда заемщик и инвесторы — юридические лица',
     },
 ];

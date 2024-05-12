@@ -93,7 +93,7 @@ const CrowdfundingGoals: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Цели краудфандинга</Title>
+                <Title>Цели Краудлендинга</Title>
                 <Content>
                     {cards.map((row: any) => (
                         <CrowdfundingGoalsCard key={row.id} row={row} />

@@ -72,7 +72,7 @@ const CommandSection: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Мы — наиболее успешная краудфандинговая платформа</Title>
+                <Title>Мы — наиболее успешная Краудлендинговая платформа</Title>
                 <Content>
                     {cards.map((row: any) => (
                         <LargestCommandCard key={row.id} row={row} />

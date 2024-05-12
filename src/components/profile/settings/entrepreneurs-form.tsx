@@ -49,7 +49,7 @@ const EntrepreneursForm = () => {
                     component="form"
                     onSubmit={methods.handleSubmit(onSubmit)}
                 >
-                    <Title>{t('Смена пароля')}</Title>
+                    <Title>{t('Информация о компании')}</Title>
                     <Stack spacing="30px">
                         <Stack
                             direction={{
