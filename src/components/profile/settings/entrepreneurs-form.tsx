@@ -4,9 +4,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+
 import Title from '../title';
-import type { FormStateAccount } from './types';
+import type { FormStateCompany } from './types';
 import Input from './input';
+import { upadteAccount } from 'api/user';
 
 // import { validateSecurity } from './validations';
 
@@ -14,21 +17,25 @@ const EntrepreneursForm = () => {
     // const resolver = yupResolver(validateSecurity);
     const { t } = useTranslation('personal');
 
-    const methods = useForm<FormStateAccount>({
+    // @ts-ignore
+    const { user, update } = useAuthContext();
+
+    const methods = useForm<FormStateCompany>({
         mode: 'onChange',
         // resolver,
         defaultValues: {
-            fio: '',
-            name: '',
-            email: '',
-            username: '',
-            phoneNumber: '',
-            country: '',
+            email: user?.email ?? '',
+            companyName: user?.companyName ?? '',
+            famCeo: user?.famCeo ?? '',
+            numberPhone: user?.numberPhone ?? '',
+            numberCompany: user?.numberCompany ?? '',
         },
     });
 
-    const onSubmit = (data: FormStateAccount) => {
-        console.log(data);
+    const onSubmit = async (data: FormStateCompany) => {
+        // @ts-ignore
+        await upadteAccount(data);
+        await update();
     };
 
     return (
@@ -61,8 +68,7 @@ const EntrepreneursForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="name" placeholder={t('Индивидуальный предприниматель')} />
-                            <Input name="fio" placeholder={t('Наименование компании')} />
+                            <Input name="companyName" placeholder={t('Наименование компании')} />
                         </Stack>
                         <Stack
                             direction={{
@@ -74,8 +80,8 @@ const EntrepreneursForm = () => {
                             }}
                             justifyContent="space-between"
                         >
-                            <Input name="username" placeholder={t('Номер компании')} />
-                            <Input name="email" placeholder={t('ФИО директора')} />
+                            <Input name="numberCompany" placeholder={t('Номер компании')} />
+                            <Input name="famCeo" placeholder={t('ФИО директора')} />
                         </Stack>
                         <Stack
                             direction={{
@@ -88,7 +94,7 @@ const EntrepreneursForm = () => {
                             justifyContent="space-between"
                         >
                             <Input name="email" placeholder={t('Почта компании')} />
-                            <Input name="phoneNumber" placeholder={t('Номер телефона')} />
+                            <Input name="numberPhone" placeholder={t('Номер телефона')} />
                         </Stack>
                     </Stack>
                     <Button

@@ -103,7 +103,7 @@ const DocumentForm = () => {
     const { t } = useTranslation('personal');
 
     // @ts-ignore
-    const { user } = useAuthContext();
+    const { user, update } = useAuthContext();
 
     const [fileMain, setFileMain] = useState<File | null>(null);
     const [fileBack, setFileBack] = useState<File | null>(null);
@@ -134,6 +134,7 @@ const DocumentForm = () => {
                     file: fileBackBase64,
                     typeFile: 'PHOTO.BACK',
                 });
+                await update();
                 setSetSuccess(true);
             } catch (e) {
                 console.log(e);

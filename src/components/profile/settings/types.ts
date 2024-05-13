@@ -15,10 +15,9 @@ export interface FormStateAccount {
 }
 
 export interface FormStateCompany {
-    name: string;
-    fio: string;
-    username: string;
+    numberCompany: string;
+    numberPhone: string;
+    famCeo: string;
+    companyName: string;
     email: string;
-    phoneNumber: string;
-    country: string;
 }

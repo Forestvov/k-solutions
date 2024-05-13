@@ -180,8 +180,9 @@ export function AuthProvider({ children }: Props) {
             login,
             register,
             logout,
+            update: initialize,
         }),
-        [login, logout, register, state.user, status]
+        [login, logout, register, state.user, status, initialize]
     );
 
     return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

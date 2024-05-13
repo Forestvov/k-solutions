@@ -19,7 +19,7 @@ const AccountForm = () => {
     // const resolver = yupResolver(validateSecurity);
 
     // @ts-ignore
-    const { user } = useAuthContext();
+    const { user, update } = useAuthContext();
 
     const methods = useForm<FormStateAccount>({
         mode: 'onChange',
@@ -48,6 +48,7 @@ const AccountForm = () => {
         if (user.id) {
             // @ts-ignore
             await upadteAccount(newData);
+            await update();
         }
     };
 
