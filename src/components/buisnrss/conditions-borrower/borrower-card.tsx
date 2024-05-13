@@ -30,7 +30,7 @@ const Paragraph = styled.p`
 `;
 
 const Title = styled.h2`
-    font-size: 24px;
+    font-size: 22px;
     color: #373737;
     user-select: none;
     font-weight: 500;

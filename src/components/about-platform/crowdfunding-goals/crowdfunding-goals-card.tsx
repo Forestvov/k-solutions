@@ -1,23 +1,5 @@
 import styled from '@emotion/styled';
-
-const CondCard = styled.div`
-    width: 379px;
-    height: 235px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 25px 30px;
-    border-radius: 30px;
-    background: white;
-    gap: 10px;
-    margin-bottom: 20px;
-
-    @media (max-width: 770px) {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-`;
+import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
@@ -53,9 +35,26 @@ interface Props {
 export const CrowdfundingGoalsCard = ({ row }: Props) => {
     const { title, text } = row;
     return (
-        <CondCard>
-            <Title>{title}</Title>
-            <Paragraph>{text}</Paragraph>
-        </CondCard>
+        <Stack
+            sx={{
+                padding: { xs: '15px', sm: '25px' },
+                height: { xs: '220px', sm: '230px' },
+                background: 'white',
+                borderRadius: { xs: '25px', sm: '35px' },
+                transition: 'background 400ms',
+
+                '&:hover': {
+                    background: '#006838',
+                    color: '#fff',
+
+                    '.stat-item-text': {
+                        color: '#fff !important',
+                    },
+                },
+            }}
+        >
+            <Title className="stat-item-text">{title}</Title>
+            <Paragraph className="stat-item-text">{text}</Paragraph>
+        </Stack>
     );
 };
