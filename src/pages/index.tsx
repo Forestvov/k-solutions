@@ -93,7 +93,6 @@ export const appRouter = createBrowserRouter([
         ],
     },
     {
-        // todo add protected routes
         element: (
             <AuthGuard>
                 <ProfileLayout />
@@ -127,6 +126,45 @@ export const appRouter = createBrowserRouter([
             },
             {
                 path: '/graphics',
+                element: <GraphicsPage />,
+            },
+        ],
+    },
+    // todo это админка
+    {
+        element: (
+            <AuthGuard>
+                <ProfileLayout />
+            </AuthGuard>
+        ),
+        errorElement: <div>error</div>,
+        children: [
+            {
+                path: '/:id/personal',
+                element: <PersonalPage />,
+            },
+            {
+                path: '/:id/finance',
+                element: <FinancePage />,
+            },
+            {
+                path: '/:id/showcases',
+                element: <ShowcasesPage />,
+            },
+            {
+                path: '/:id/showcases/:id',
+                element: <ShowcasesItemPage />,
+            },
+            {
+                path: '/:id/balance',
+                element: <BalancePage />,
+            },
+            {
+                path: '/:id/settings',
+                element: <SettingsPage />,
+            },
+            {
+                path: '/:id/graphics',
                 element: <GraphicsPage />,
             },
         ],

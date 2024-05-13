@@ -1,3 +1,4 @@
+import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
@@ -33,6 +34,37 @@ const Link = styled(NavLink)`
 `;
 
 const Navigation = () => {
+    const { id } = useParams();
+
+    if (id) {
+        return (
+            <Stack
+                spacing={{ xs: '15px', xl: '24px' }}
+                marginBottom={{ xl: '30px' }}
+                direction={{ xs: 'row', xl: 'column' }}
+            >
+                <Link to={`/${id}/personal`}>
+                    <OverviewIcon />
+                </Link>
+                <Link to={`/${id}/showcases`}>
+                    <ResearchIcon />
+                </Link>
+                <Link to={`/${id}/balance`}>
+                    <TeamsIcon />
+                </Link>
+                <Link to={`/${id}/finance`}>
+                    <TextIcon />
+                </Link>
+                <Link to={`/${id}/graphics`}>
+                    <GraphicsIcon />
+                </Link>
+                <Link to={`/${id}/settings`}>
+                    <UserIcon />
+                </Link>
+            </Stack>
+        );
+    }
+
     return (
         <Stack
             spacing={{ xs: '15px', xl: '24px' }}

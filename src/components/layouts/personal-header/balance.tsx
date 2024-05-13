@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router';
 
 import styled from '@emotion/styled';
 
@@ -38,8 +39,31 @@ const Balance = () => {
     // @ts-ignore
     const { user } = useAuthContext();
     const { t } = useTranslation('personal');
+    const { id } = useParams();
 
     const { selected, currency } = useCurrencyContext();
+
+    if (id) {
+        return (
+            <Wrapper to={`/${id}/balance`}>
+                {t('Баланс')}:{' '}
+                {user.balance.balance ? (
+                    <Price>
+                        {fCurrency(
+                            renderCurrency({
+                                usd: user.balance.balance,
+                                rub: currency.USD,
+                                eur: currency.EUR,
+                                currency: selected,
+                            })
+                        )}
+                    </Price>
+                ) : (
+                    '$0'
+                )}
+            </Wrapper>
+        );
+    }
 
     return (
         <Wrapper to="/balance">

@@ -4,7 +4,17 @@ import { HOST_API } from '../config-global';
 
 // ----------------------------------------------------------------------
 
-const axiosInstance = axios.create({ baseURL: HOST_API });
+const splitArr = window.location.href.split('/');
+const id = Number(splitArr[splitArr.length - 2]);
+
+const axiosInstance = axios.create({
+    baseURL: HOST_API,
+    headers: id
+        ? {
+              'Account-Id': id,
+          }
+        : {},
+});
 
 axiosInstance.interceptors.response.use(
     (res) => res,

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router';
 
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
@@ -37,6 +38,7 @@ interface Prop {
 
 const InvestCard = ({ card, hideStats }: Prop) => {
     const { t } = useTranslation('personal');
+    const { id } = useParams();
 
     if (!card) return null;
 
@@ -87,11 +89,19 @@ const InvestCard = ({ card, hideStats }: Prop) => {
                             />
                         ))}
                 </Box>
-                <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
-                    <Button variant="green" fullWidth>
-                        {t('Подробнее')}
-                    </Button>
-                </Link>
+                {id ? (
+                    <Link to={`/${id}/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
+                        <Button variant="green" fullWidth>
+                            {t('Подробнее')}
+                        </Button>
+                    </Link>
+                ) : (
+                    <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
+                        <Button variant="green" fullWidth>
+                            {t('Подробнее')}
+                        </Button>
+                    </Link>
+                )}
             </Stack>
         </Item>
     );
