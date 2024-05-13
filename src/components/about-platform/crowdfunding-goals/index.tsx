@@ -10,28 +10,13 @@ const Inner = styled(Container)`
     height: 100%;
 `;
 
-const Content = styled.div`
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 70px;
-
-    @media (max-width: 1280px) {
-        width: 100%;
-        justify-content: center;
-    }
-`;
-
 const Title = styled.h2`
     font-size: 48px;
     color: #373737;
     line-height: 60px;
     user-select: none;
     font-weight: 600;
-    margin: 0;
+    margin-bottom: 50px;
 
     @media (max-width: 770px) {
         font-size: 38px;
@@ -85,20 +70,23 @@ const CrowdfundingGoals: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '820px', xl: '1120px', md: '1370px', sm: '2500px', xs: '2500px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingBottom: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
             <Inner fixed>
                 <Title>Цели Краудлендинга</Title>
-                <Content>
+                <Box
+                    sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(2, 1fr)', xl: 'repeat(4, 1fr)' } }}
+                    gap={{ xs: '30px', md: '40px 45px' }}
+                >
                     {cards.map((row: any) => (
                         <CrowdfundingGoalsCard key={row.id} row={row} />
                     ))}
-                </Content>
+                </Box>
             </Inner>
         </Box>
     );

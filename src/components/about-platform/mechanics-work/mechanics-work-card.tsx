@@ -1,25 +1,5 @@
 import styled from '@emotion/styled';
-
-const CondCard = styled.div`
-    width: 510px;
-    height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 25px 30px;
-    border-radius: 30px;
-    background: white;
-    gap: 10px;
-
-    @media (max-width: 1670px) {
-        width: 400px;
-    }
-
-    @media (max-width: 770px) {
-        width: 100%;
-    }
-`;
+import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
@@ -55,9 +35,26 @@ interface Props {
 export const MechanicsWorkCard = ({ row }: Props) => {
     const { title, text } = row;
     return (
-        <CondCard>
-            <Title>{title}</Title>
-            <Paragraph>{text}</Paragraph>
-        </CondCard>
+        <Stack
+            sx={{
+                padding: { xs: '25px', sm: '35px' },
+                height: { xs: '250px', sm: '280px' },
+                background: 'white',
+                borderRadius: { xs: '25px', sm: '35px' },
+                transition: 'background 400ms',
+
+                '&:hover': {
+                    background: '#006838',
+                    color: '#fff',
+
+                    '.stat-item-text': {
+                        color: '#fff !important',
+                    },
+                },
+            }}
+        >
+            <Title className="stat-item-text">{title}</Title>
+            <Paragraph className="stat-item-text">{text}</Paragraph>
+        </Stack>
     );
 };

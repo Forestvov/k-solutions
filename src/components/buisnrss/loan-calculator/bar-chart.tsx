@@ -1,5 +1,5 @@
 import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'chart.js';
 import styled from '@emotion/styled';
 
 const BarContainer = styled.div`
@@ -13,7 +13,7 @@ const BarContainer = styled.div`
     }
 `;
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
 export const BarGraph = ({ columns }: { columns: number[] }) => {
     const barChartData: any = {
@@ -27,7 +27,7 @@ export const BarGraph = ({ columns }: { columns: number[] }) => {
         ],
     };
 
-    const options = {};
+    const options: any = {};
 
     return (
         <BarContainer>

@@ -13,10 +13,10 @@ const Inner = styled(Container)`
 const Content = styled.div`
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     margin-top: 70px;
 
     @media (max-width: 1280px) {
@@ -34,7 +34,8 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 38px;
+        font-size: 34px;
+        line-height: 50px;
     }
 `;
 
@@ -60,7 +61,7 @@ const MechanicsWorkSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '720px', xl: '720px', md: '1070px', sm: '1350px', xs: '1350px' },
+                height: { lg: '720px', xl: '920px', md: '1070px', sm: '1350px', xs: '1300px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
