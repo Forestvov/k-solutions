@@ -17,10 +17,11 @@ const Balance = () => {
             >
                 <Stack
                     direction={{
-                        lg: 'row',
+                        md: 'row',
                     }}
                     spacing={{
-                        xs: '30px',
+                        xl: '30px',
+                        xs: '20px',
                     }}
                 >
                     <AllAssets />

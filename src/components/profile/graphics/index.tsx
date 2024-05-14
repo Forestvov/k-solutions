@@ -51,6 +51,7 @@ const Graphics = () => {
                     marginTop: '50px',
                     display: 'grid',
                     gridGap: '30px',
+                    overflow: 'hidden',
                     gridTemplateColumns: {
                         md: 'repeat(2, 1fr)',
                     },

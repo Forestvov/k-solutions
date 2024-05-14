@@ -38,8 +38,8 @@ const config = {
 };
 
 const paramsSlider: SwiperOptions = {
-    slidesPerView: 1,
-    spaceBetween: 30,
+    slidesPerView: 3,
+    spaceBetween: 10,
     loop: true,
     autoplay: {
         disableOnInteraction: false,
@@ -47,6 +47,17 @@ const paramsSlider: SwiperOptions = {
     },
     modules: [Navigation, Pagination, Autoplay],
     pagination: { clickable: true },
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        1280: {
+            slidesPerView: 3,
+        },
+    },
 };
 
 const Wrapepr = styled.div`
@@ -62,7 +73,7 @@ const Wrapepr = styled.div`
     p {
         text-align: center;
         margin: -30px 0 0;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 700;
     }
 
@@ -91,13 +102,25 @@ const Wrapepr = styled.div`
     }
 `;
 
+const Slide = styled(SwiperSlide)`
+    width: 100% !important;
+
+    @media (min-width: 768px) {
+        width: calc(50% - 5px) !important;
+    }
+
+    @media (min-width: 1280px) {
+        width: calc(33.33% - 5px) !important;
+    }
+`;
+
 const Carousel = () => {
     const { t } = useTranslation('personal');
 
     return (
         <Wrapepr>
             <Swiper {...paramsSlider}>
-                <SwiperSlide>
+                <Slide>
                     <a href="https://quote.rbc.ru/news/article/6448caf09a79474fc4a59a5d" target="_blank">
                         <Chart
                             // @ts-ignore
@@ -117,9 +140,9 @@ const Carousel = () => {
                         />
                         <p>{t('Акции Genetico взлетели на 40% в первый день торгов после IPO')}</p>
                     </a>
-                </SwiperSlide>
+                </Slide>
 
-                <SwiperSlide>
+                <Slide>
                     <a href="https://quote.rbc.ru/news/article/6448caf09a79474fc4a59a5d" target="_blank">
                         <Chart
                             // @ts-ignore
@@ -140,9 +163,9 @@ const Carousel = () => {
                         />
                         <p>{t('Акции Reddit выросли почти на 48% в первый день торгов')}</p>
                     </a>
-                </SwiperSlide>
+                </Slide>
 
-                <SwiperSlide>
+                <Slide>
                     <a
                         href="https://www.reuters.com/markets/deals/astera-labs-shares-jump-46-strong-nasdaq-debut-2024-03-20/"
                         target="_blank"
@@ -165,9 +188,9 @@ const Carousel = () => {
                         />
                         <p>{t('Astera Labs подскочили более чем на 70% во время звездного дебюта на Nasdaq')}</p>
                     </a>
-                </SwiperSlide>
+                </Slide>
 
-                <SwiperSlide>
+                <Slide>
                     <a
                         href="https://www.forbes.ru/investicii/504573-akcionery-kazahstanskogo-banka-kaspi-kz-privlekli-bolee-1-mlrd-v-hode-ipo-v-ssa"
                         target="_blank"
@@ -197,7 +220,7 @@ const Carousel = () => {
                         />
                         <p>{t('Акционеры казахстанского банка Kaspi.kz привлекли более $1 млрд в ходе IPO в США')}</p>
                     </a>
-                </SwiperSlide>
+                </Slide>
             </Swiper>
         </Wrapepr>
     );

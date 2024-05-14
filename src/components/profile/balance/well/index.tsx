@@ -101,7 +101,7 @@ const Well = () => {
         <Box
             sx={{
                 width: '100%',
-                maxWidth: { lg: '560px' },
+                maxWidth: { md: '385px', lg: '560px' },
             }}
         >
             <GrayWrapper>

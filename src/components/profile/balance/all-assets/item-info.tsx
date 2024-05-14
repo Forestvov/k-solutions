@@ -32,8 +32,15 @@ const Value = styled(Stack)`
     }
 
     @media (min-width: 1024px) {
-        font-size: 48px;
+        font-size: 33px;
+        line-height: 54px;
+        letter-spacing: -1.6px;
+    }
+
+    @media (min-width: 1668px) {
+        font-size: 42px;
         line-height: 58px;
+        letter-spacing: 1px;
     }
 `;
 

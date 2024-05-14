@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useStickyBox } from 'react-sticky-box';
 
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
@@ -49,6 +50,8 @@ const ShowcasesItem = () => {
     const matchesDesktop = useMediaQuery(theme.breakpoints.up('xl'));
     const matchesMobile = useMediaQuery(theme.breakpoints.down('xl'));
 
+    const stickyRef = useStickyBox({ offsetTop: 20 });
+
     const { id } = useParams();
     const searchParams = useSearchParams();
 
@@ -81,6 +84,7 @@ const ShowcasesItem = () => {
                     />
                     <Stack
                         direction="row"
+                        alignItems="flex-start"
                         spacing={{
                             lg: '60px',
                             xs: '30px',
@@ -218,6 +222,7 @@ const ShowcasesItem = () => {
                         </Stack>
                         {matchesDesktop && (
                             <Box
+                                ref={stickyRef}
                                 maxWidth={{
                                     lg: '510px',
                                     xs: '400px',

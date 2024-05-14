@@ -9,7 +9,6 @@ import { useScrollToTop } from 'helpers/useScrollToTop';
 
 const MainLayout: FC = () => {
     useScrollToTop();
-
     return (
         <Stack
             component="main"

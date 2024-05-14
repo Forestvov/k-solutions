@@ -134,13 +134,17 @@ const AllAssets = () => {
                             />
                             <Stack
                                 direction={{
-                                    sm: 'row',
+                                    lg: 'row',
                                 }}
                                 spacing={{
-                                    sm: '30px',
                                     xs: '20px',
                                 }}
-                                sx={{ marginTop: { md: 'auto !important', xs: '30px !important' } }}
+                                sx={{
+                                    marginTop: { md: 'auto !important', xs: '30px !important' },
+                                    '> button': {
+                                        width: '100%',
+                                    },
+                                }}
                             >
                                 <Replenish transactionType="In">{t('Пополнить')}</Replenish>
                                 <Replenish transactionType="Out">{t('Вывести')}</Replenish>
