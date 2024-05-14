@@ -43,7 +43,7 @@ const Agreement = () => {
     const onSubmitDoc = async () => {
         if (fileMain) {
             try {
-                await addSettingAccount({ profileSettingCode: 'verify.agreenmment', value: 'true' });
+                await addSettingAccount({ profileSettingsCode: 'verify.agreenmment', value: 'true' });
                 await update();
             } catch (e) {
                 console.log(e);

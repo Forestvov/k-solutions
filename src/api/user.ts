@@ -18,7 +18,7 @@ export const addPhotoForAccount = async (data: RequestFile) => {
 };
 
 interface RequestSetting {
-    profileSettingCode: string;
+    profileSettingsCode: string;
     value: string;
 }
 
