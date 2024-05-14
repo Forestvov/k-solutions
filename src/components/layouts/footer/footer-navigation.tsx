@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import Stack from '@mui/material/Stack';
 
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
+
 import FooterLink from './footer-link';
 
 const FooterNavigation = () => {
     const { t } = useTranslation('main-navigation');
+    // @ts-ignore
+    const { authenticated } = useAuthContext();
 
     return (
         <Stack
@@ -27,7 +31,7 @@ const FooterNavigation = () => {
             <Stack spacing={{ lg: '40px', xs: '20px' }}>
                 <FooterLink to="/aboutPlatform">{t('about')}</FooterLink>
                 <FooterLink to="/blog">{t('media')}</FooterLink>
-                <FooterLink to="/">{t('lc')}</FooterLink>
+                <FooterLink to={authenticated ? '/personal' : '/login'}>{t('lc')}</FooterLink>
             </Stack>
         </Stack>
     );
