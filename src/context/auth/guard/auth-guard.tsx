@@ -45,6 +45,8 @@ function Container({ children }: Props) {
             router.push('/settings?tab=documents');
         } else if (user?.status === 'Canceled' && location.pathname !== '/settings') {
             router.push('/settings?tab=documents');
+        } else if (user?.status === 'Process' && location.pathname !== '/settings') {
+            router.push('/settings?tab=documents');
         }
     }, [location, user]);
 

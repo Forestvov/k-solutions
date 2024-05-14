@@ -16,3 +16,12 @@ interface RequestFile {
 export const addPhotoForAccount = async (data: RequestFile) => {
     await axios.post(endpoints.account.addFile, data);
 };
+
+interface RequestSetting {
+    profileSettingCode: string;
+    value: string;
+}
+
+export const addSettingAccount = async (data: RequestSetting) => {
+    await axios.post(endpoints.account.settingSet, data);
+};

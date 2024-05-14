@@ -6,7 +6,10 @@ import styled from '@emotion/styled';
 import { fDate } from 'helpers/format-time';
 import type { INewPost } from 'types/news';
 
-const Image = styled.img`
+const Image = styled.div<{ bgSrc: string }>`
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     display: block;
     width: 100%;
     height: 310px;
@@ -14,6 +17,12 @@ const Image = styled.img`
     border-radius: 20px 20px 0 0;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     flex: 0 0 auto;
+
+    ${({ bgSrc }) =>
+        bgSrc &&
+        `
+        background-image: url(${bgSrc});
+    `}
 
     &:hover {
         opacity: 0.9;
@@ -118,7 +127,7 @@ const Event = ({ createdDate, descriptions, newsType, photo, title, url, type }:
     const { t } = useTranslation('personal');
     return (
         <Stack direction={{ sm: 'row' }}>
-            <Image src={photo} />
+            <Image bgSrc={photo} />
             <Content>
                 {url && type === 'News' ? (
                     <Link href={url} target="_blank">

@@ -42,10 +42,9 @@ const ButtonStyled = styled(Button)<{ active?: boolean }>`
 interface Props {
     current: Record<string, string>;
     onChange: (status: { key: string; operation?: string; value: string }) => void;
-    setPage: (page: number) => void;
 }
 
-const Filters = ({ current, onChange, setPage }: Props) => {
+const Filters = ({ current, onChange }: Props) => {
     const { t } = useTranslation('personal');
 
     const { settings } = useSettingsContext();
@@ -71,7 +70,6 @@ const Filters = ({ current, onChange, setPage }: Props) => {
                     key={idx}
                     active={current.value === btn.value}
                     onClick={() => {
-                        setPage(0);
                         btn.operation
                             ? onChange({
                                   key: btn.type,

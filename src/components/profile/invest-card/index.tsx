@@ -19,6 +19,11 @@ const Item = styled(Stack)`
     border-radius: 15px;
     height: 100%;
     flex: 1;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 
     @media (min-width: 768px) {
         border-radius: 35px;

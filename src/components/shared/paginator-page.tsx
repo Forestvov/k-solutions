@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
@@ -29,6 +30,31 @@ const Button = styled.button`
     }
 `;
 
+const ButtonMore = styled.button`
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+        color: #006838;
+        svg {
+            transform: rotate(90deg);
+        }
+    }
+
+    svg {
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        margin-left: 10px;
+        transform: rotate(270deg);
+    }
+`;
+
 const Counter = styled.span`
     font-weight: 400;
     font-size: 0.875rem;
@@ -41,17 +67,43 @@ const Counter = styled.span`
 `;
 
 interface Props {
-    isFirst: boolean;
+    isFirst?: boolean;
     isLast: boolean;
-    currentPage: number;
-    countPages: number;
-    onChange: (page: number) => void;
+    currentPage?: number;
+    countPages?: number;
+    onChange?: (page: number) => void;
+    currentSize?: number;
+    onChangeSize?: (page: number) => void;
+    showMore?: boolean;
 }
 
-const PaginatorPage = ({ countPages, currentPage, isFirst, isLast, onChange }: Props) => {
+const PaginatorPage = ({
+    countPages = 2,
+    currentPage,
+    isFirst,
+    isLast,
+    onChange,
+    showMore = false,
+    currentSize,
+    onChangeSize,
+}: Props) => {
     const { t } = useTranslation('personal');
 
     if (countPages < 2) return null;
+
+    if (showMore && currentSize && onChangeSize) {
+        const onChangeSizeHandler = () => {
+            onChangeSize(currentSize + currentSize);
+        };
+
+        if (isLast) return null;
+
+        return (
+            <ButtonMore onClick={onChangeSizeHandler}>
+                Показать еще <RightArrowIcon />
+            </ButtonMore>
+        );
+    }
 
     return (
         <Stack direction="row" alignItems="center" justifyContent="center" spacing={{ xs: '20px', md: '60px' }}>

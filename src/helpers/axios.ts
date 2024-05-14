@@ -53,6 +53,7 @@ export const endpoints = {
         update: 'account/me',
         changePassword: 'auth/change-password',
         addFile: 'account/file',
+        settingSet: 'account/setting/set',
     },
     order: {
         root: 'order-contact',

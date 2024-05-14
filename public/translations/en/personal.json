@@ -268,5 +268,7 @@
   "Электронные кошельки": "Electronic wallets",
   "Банковский перевод": "Bank transfer",
   "Информация о компании": "Information about the company",
-  "Отправить": "Send"
+  "Отправить": "Send",
+  "Вы успшено подписали договор": "You successfully signed the agreement",
+  "Данный договор заключается между инвестором и компанией": "This agreement is concluded between the investor and the company"
 }

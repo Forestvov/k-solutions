@@ -25,7 +25,7 @@ const TitleStyled = styled(Title)`
 const Showcases = () => {
     const { t, i18n } = useTranslation('personal');
 
-    const [page, setPage] = useState(0);
+    const [pageSize, setPageSize] = useState(6);
     const [filter, setFilter] = useState({
         key: '',
         value: '',
@@ -33,12 +33,12 @@ const Showcases = () => {
 
     const {
         briefs,
-        pageInfo: { totalElements, currentPage, pages, isFirst, isLast },
+        pageInfo: { totalElements, isLast },
         briefsLoading,
     } = useGetListBrief({
         lang: i18n.language,
-        page: page,
-        pageSize: 6,
+        page: 0,
+        pageSize: pageSize,
         filter,
     });
 
@@ -48,15 +48,9 @@ const Showcases = () => {
                 {t('Витрина')}
                 {!briefsLoading && <Counter>({totalElements})</Counter>}
             </TitleStyled>
-            <Filters current={filter} onChange={setFilter} setPage={setPage} />
+            <Filters current={filter} onChange={setFilter} />
             <List loading={briefsLoading} list={briefs} />
-            <PaginatorPage
-                countPages={pages}
-                currentPage={currentPage}
-                isFirst={isFirst}
-                isLast={isLast}
-                onChange={setPage}
-            />
+            <PaginatorPage showMore currentSize={pageSize} onChangeSize={setPageSize} isLast={isLast} />
         </Wrapper>
     );
 };
