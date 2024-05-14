@@ -9,6 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import type { CompanyType } from 'types/company';
 
 import ActionBlockFranchiseInvestClose from '../../showcases-item/action-block/view/action-block-franchise-invest-close';
+import { useParams } from 'react-router';
 
 const Wrapper = styled.div<{ bgSrc: string }>`
     background-repeat: no-repeat;
@@ -175,6 +176,7 @@ interface Props {
 
 const Banner = ({ name, logo, description, showClose, companyType, countTransaction, myTotal, bg }: Props) => {
     const { t } = useTranslation('personal');
+    const { userId } = useParams();
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('xl'));
@@ -183,7 +185,7 @@ const Banner = ({ name, logo, description, showClose, companyType, countTransact
         <Wrapper bgSrc={bg}>
             <Stack direction="row" spacing="60px">
                 <Content>
-                    <BackLink to="/showcases">
+                    <BackLink to={userId ? `/${userId}/showcases` : '/showcases'}>
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 1L1 6L6 11" stroke="white" strokeLinecap="round" />
                         </svg>

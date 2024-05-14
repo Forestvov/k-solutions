@@ -22,11 +22,11 @@ const FooterNavigation = () => {
             <Stack spacing={{ lg: '40px', xs: '20px' }}>
                 <FooterLink to="/">{t('home')}</FooterLink>
                 <FooterLink to="/investors">{t('investoram')}</FooterLink>
-                <FooterLink to="/">{t('entrepreneurs')}</FooterLink>
+                <FooterLink to="/business">{t('entrepreneurs')}</FooterLink>
             </Stack>
             <Stack spacing={{ lg: '40px', xs: '20px' }}>
-                <FooterLink to="/">{t('about')}</FooterLink>
-                <FooterLink to="/">{t('media')}</FooterLink>
+                <FooterLink to="/aboutPlatform">{t('about')}</FooterLink>
+                <FooterLink to="/blog">{t('media')}</FooterLink>
                 <FooterLink to="/">{t('lc')}</FooterLink>
             </Stack>
         </Stack>

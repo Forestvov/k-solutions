@@ -140,31 +140,31 @@ export const appRouter = createBrowserRouter([
         errorElement: <div>error</div>,
         children: [
             {
-                path: '/:id/personal',
+                path: '/:userId/personal',
                 element: <PersonalPage />,
             },
             {
-                path: '/:id/finance',
+                path: '/:userId/finance',
                 element: <FinancePage />,
             },
             {
-                path: '/:id/showcases',
+                path: '/:userId/showcases',
                 element: <ShowcasesPage />,
             },
             {
-                path: '/:id/showcases/:id',
+                path: '/:userId/showcases/:id',
                 element: <ShowcasesItemPage />,
             },
             {
-                path: '/:id/balance',
+                path: '/:userId/balance',
                 element: <BalancePage />,
             },
             {
-                path: '/:id/settings',
+                path: '/:userId/settings',
                 element: <SettingsPage />,
             },
             {
-                path: '/:id/graphics',
+                path: '/:userId/graphics',
                 element: <GraphicsPage />,
             },
         ],

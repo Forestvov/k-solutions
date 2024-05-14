@@ -10,9 +10,9 @@ const List = () => {
         <Box
             sx={{
                 display: 'grid',
-                gridGap: '90px 48px',
+                gridGap: '30px',
                 gridTemplateColumns: {
-                    lg: 'repeat(2, 1fr)',
+                    md: 'repeat(2, 1fr)',
                 },
             }}
         >

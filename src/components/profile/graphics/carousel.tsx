@@ -1,7 +1,7 @@
 import Chart from 'react-apexcharts';
 import React from 'react';
 import styled from '@emotion/styled';
-import { Navigation, Pagination } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
 import { useTranslation } from 'react-i18next';
@@ -40,7 +40,12 @@ const config = {
 const paramsSlider: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 30,
-    modules: [Navigation, Pagination],
+    loop: true,
+    autoplay: {
+        disableOnInteraction: false,
+        delay: 3000,
+    },
+    modules: [Navigation, Pagination, Autoplay],
     pagination: { clickable: true },
 };
 

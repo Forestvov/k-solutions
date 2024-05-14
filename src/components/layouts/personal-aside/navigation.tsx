@@ -34,31 +34,31 @@ const Link = styled(NavLink)`
 `;
 
 const Navigation = () => {
-    const { id } = useParams();
+    const { userId } = useParams();
 
-    if (id) {
+    if (userId) {
         return (
             <Stack
                 spacing={{ xs: '15px', xl: '24px' }}
                 marginBottom={{ xl: '30px' }}
                 direction={{ xs: 'row', xl: 'column' }}
             >
-                <Link to={`/${id}/personal`}>
+                <Link to={`/${userId}/personal`}>
                     <OverviewIcon />
                 </Link>
-                <Link to={`/${id}/showcases`}>
+                <Link to={`/${userId}/showcases`}>
                     <ResearchIcon />
                 </Link>
-                <Link to={`/${id}/balance`}>
+                <Link to={`/${userId}/balance`}>
                     <TeamsIcon />
                 </Link>
-                <Link to={`/${id}/finance`}>
+                <Link to={`/${userId}/finance`}>
                     <TextIcon />
                 </Link>
-                <Link to={`/${id}/graphics`}>
+                <Link to={`/${userId}/graphics`}>
                     <GraphicsIcon />
                 </Link>
-                <Link to={`/${id}/settings`}>
+                <Link to={`/${userId}/settings`}>
                     <UserIcon />
                 </Link>
             </Stack>

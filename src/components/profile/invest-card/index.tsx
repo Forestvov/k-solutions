@@ -38,7 +38,7 @@ interface Prop {
 
 const InvestCard = ({ card, hideStats }: Prop) => {
     const { t } = useTranslation('personal');
-    const { id } = useParams();
+    const { userId } = useParams();
 
     if (!card) return null;
 
@@ -89,8 +89,8 @@ const InvestCard = ({ card, hideStats }: Prop) => {
                             />
                         ))}
                 </Box>
-                {id ? (
-                    <Link to={`/${id}/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
+                {userId ? (
+                    <Link to={`/${userId}/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
                         <Button variant="green" fullWidth>
                             {t('Подробнее')}
                         </Button>

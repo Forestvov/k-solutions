@@ -39,13 +39,13 @@ const Balance = () => {
     // @ts-ignore
     const { user } = useAuthContext();
     const { t } = useTranslation('personal');
-    const { id } = useParams();
+    const { userId } = useParams();
 
     const { selected, currency } = useCurrencyContext();
 
-    if (id) {
+    if (userId) {
         return (
-            <Wrapper to={`/${id}/balance`}>
+            <Wrapper to={`/${userId}/balance`}>
                 {t('Баланс')}:{' '}
                 {user.balance.balance ? (
                     <Price>

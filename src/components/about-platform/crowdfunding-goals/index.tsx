@@ -78,7 +78,7 @@ const CrowdfundingGoals: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Цели Краудлендинга</Title>
+                <Title>Цели Краудинвестинга</Title>
                 <Box
                     sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(2, 1fr)', xl: 'repeat(4, 1fr)' } }}
                     gap={{ xs: '30px', md: '40px 45px' }}

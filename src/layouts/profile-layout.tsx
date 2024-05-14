@@ -28,7 +28,7 @@ const Link = styled(NavLink)`
 const ProfileLayout = () => {
     useScrollToTop();
 
-    const { id } = useParams();
+    const { userId } = useParams();
 
     return (
         <Stack
@@ -49,7 +49,7 @@ const ProfileLayout = () => {
                         <Outlet />
                     </Stack>
                 </Stack>
-                {id && <Link to="/admin/user">Обратно в админ панель</Link>}
+                {userId && <Link to="/admin/user">Обратно в админ панель</Link>}
             </Box>
         </Stack>
     );
