@@ -20,7 +20,7 @@ const Wrapper = styled.div<{ bgSrc: string }>`
     border-radius: 35px 35px 0 0;
     position: relative;
     overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 72%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 0% 100%);
 
     &::before {
         position: absolute;

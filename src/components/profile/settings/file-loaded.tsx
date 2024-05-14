@@ -15,7 +15,7 @@ const FileLoaded = styled.div`
             color: #006838;
             cursor: pointer;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 1rem;
         }
     }
 `;

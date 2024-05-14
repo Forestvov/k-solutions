@@ -35,7 +35,7 @@ const CondCard = styled.div`
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
@@ -51,7 +51,7 @@ const BlogSingleLink = styled(NavLink)`
 `;
 
 const Title = styled.h2`
-    font-size: 22px;
+    font-size: 1.375rem;
     color: #006838;
     line-height: 30px;
     user-select: none;
@@ -63,12 +63,12 @@ const Title = styled.h2`
     -webkit-line-clamp: 3;
 
     @media (max-width: 400px) {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 `;
 
 const Span = styled.span`
-    font-size: 22px;
+    font-size: 1.375rem;
     color: #747474;
     line-height: 30px;
     user-select: none;

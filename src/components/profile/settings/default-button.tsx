@@ -9,7 +9,7 @@ const DefaultButton = styled.button`
     border-radius: 10px;
     border: none;
     justify-content: center;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
 
     @media (min-width: 768px) {
@@ -26,7 +26,7 @@ export const DefaultLink = styled.a`
     border-radius: 10px;
     border: none;
     justify-content: center;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
 

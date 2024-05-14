@@ -30,7 +30,7 @@ const Link = styled(NavLink).bind(Button)`
 
 const Label = styled.div`
     font-weight: 500;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 24px;
     letter-spacing: 0.015em;
     color: #373737;

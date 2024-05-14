@@ -26,7 +26,7 @@ const Line = styled.div`
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
@@ -34,13 +34,13 @@ const Paragraph = styled.p`
 
 const Label = styled.p`
     font-weight: 400;
-    font-size: 34px;
+    font-size: 2.125rem;
     color: #006838;
     margin: 0;
 `;
 
 const Title = styled.h2`
-    font-size: 38px;
+    font-size: 2.375rem;
     color: #373737;
     line-height: 50px;
     user-select: none;
@@ -49,7 +49,7 @@ const Title = styled.h2`
     max-width: 250px;
 
     @media (max-width: 1280px) {
-        font-size: 28px;
+        font-size: 1.75rem;
     }
 `;
 

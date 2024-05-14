@@ -41,13 +41,13 @@ const Label = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 84px;
+    font-size: 5.25rem;
     color: #20836d;
     user-select: none;
     font-weight: 500;
 
     @media (max-width: 1280px) {
-        font-size: 50px;
+        font-size: 3.125rem;
     }
 `;
 

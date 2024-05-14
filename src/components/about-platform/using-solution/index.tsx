@@ -21,7 +21,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 48px;
+    font-size: 3rem;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -29,18 +29,18 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 38px;
+        font-size: 2.375rem;
     }
 `;
 
 const Span = styled.span`
-    font-size: 48px;
+    font-size: 3rem;
     color: #006838;
     user-select: none;
     font-weight: 600;
 
     @media (max-width: 770px) {
-        font-size: 42px;
+        font-size: 2.625rem;
     }
 `;
 

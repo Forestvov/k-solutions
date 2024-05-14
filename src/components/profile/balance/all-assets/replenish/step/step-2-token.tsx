@@ -22,7 +22,7 @@ import { PAYMENT_BANK } from './data';
 
 const Notification = styled.div`
     font-weight: 300;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 19px;
     color: #696969;
     display: flex;
@@ -31,7 +31,7 @@ const Notification = styled.div`
 
 const Value = styled.div`
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 19px;
     color: #373737;
     display: flex;

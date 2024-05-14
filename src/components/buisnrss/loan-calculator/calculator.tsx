@@ -133,7 +133,7 @@ const TotalCount = styled.p`
 
 const Count = styled.p`
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #393939;
     margin: 0;
 `;

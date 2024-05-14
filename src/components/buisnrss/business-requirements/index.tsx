@@ -40,7 +40,7 @@ const BottomCard = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 48px;
+    font-size: 3rem;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -48,12 +48,12 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 38px;
+        font-size: 2.375rem;
     }
 `;
 
 const BottomCardTitle = styled.p`
-    font-size: 38px;
+    font-size: 2.375rem;
     color: #373737;
     line-height: 50px;
     user-select: none;
@@ -61,20 +61,20 @@ const BottomCardTitle = styled.p`
     margin: 0;
 
     @media (max-width: 1280px) {
-        font-size: 28px;
+        font-size: 1.75rem;
     }
 `;
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
 `;
 
 const Label = styled.p`
-    font-size: 40px;
+    font-size: 2.5rem;
     color: #006838;
     user-select: none;
     font-weight: 500;

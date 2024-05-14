@@ -63,7 +63,7 @@ const BottomContent = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 48px;
+    font-size: 3rem;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -72,14 +72,14 @@ const Title = styled.h2`
 `;
 
 const BottomCardTitle = styled.p`
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #373737;
     user-select: none;
     font-weight: 500;
     margin: 0;
 
     @media (max-width: 1280px) {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 `;
 

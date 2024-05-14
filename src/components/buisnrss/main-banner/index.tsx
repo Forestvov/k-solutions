@@ -38,18 +38,18 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 64px;
+    font-size: 4rem;
     color: #006838;
     user-select: none;
     font-weight: 400;
 
     @media (max-width: 770px) {
-        font-size: 47px;
+        font-size: 2.938rem;
     }
 `;
 
 const Title = styled.h2`
-    font-size: 64px;
+    font-size: 4rem;
     color: #373737;
     line-height: 90px;
     user-select: none;

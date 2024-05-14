@@ -22,7 +22,7 @@ const GreenButton = styled(DefaultLink)`
 const GreenDefaultButton = styled(DefaultButton)`
     background: #20836d;
     color: #fff;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
 `;
 

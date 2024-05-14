@@ -24,7 +24,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 48px;
+    font-size: 3rem;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -32,17 +32,17 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 38px;
+        font-size: 2.375rem;
     }
 
     @media (max-width: 600px) {
-        font-size: 24px;
+        font-size: 1.5rem;
         line-height: 40px;
     }
 `;
 
 const Label = styled.h3`
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #373737;
     line-height: 20px;
     user-select: none;
@@ -50,16 +50,16 @@ const Label = styled.h3`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     @media (max-width: 600px) {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 `;
 
 const Paragraph = styled.p`
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #000000;
     line-height: 30px;
     user-select: none;
@@ -67,11 +67,11 @@ const Paragraph = styled.p`
     margin-top: 20px;
 
     @media (max-width: 770px) {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     @media (max-width: 600px) {
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 25px;
     }
 `;
