@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import FranchiseTable from 'components/investors/investing-in-franchises/table';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     height: 100%;
@@ -14,9 +15,9 @@ const Inner = styled(Container)`
 
 const Content = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 `;
 
 const Paragraph = styled.p`
@@ -35,7 +36,7 @@ const Paragraph = styled.p`
 `;
 
 const Title = styled.h2`
-    margin: 0 auto;
+    margin: 0;
     font-size: 48px;
     color: #373737;
     user-select: none;
@@ -49,6 +50,8 @@ const Title = styled.h2`
     }
 `;
 const InvestInFranchise: FC = () => {
+    const { t } = useTranslation('investor-page');
+
     return (
         <Box
             sx={{
@@ -60,12 +63,8 @@ const InvestInFranchise: FC = () => {
             <Inner fixed>
                 <Content>
                     <div>
-                        <Title>Инвестиции во франшизы vs классический франчайзинг</Title>
-                        <Paragraph>
-                            Инвестиции во франшизы и покупка франшизы — два различных подхода к франчайзингу, каждый из
-                            которых имеет свои особенности, преимущества и риски. Рассмотрим ключевые отличия этих
-                            подходов.
-                        </Paragraph>
+                        <Title>{t('Инвестиции во франшизы')}</Title>
+                        <Paragraph>{t('Инвестиции во франшизы и покупка')}</Paragraph>
                     </div>
                     <FranchiseTable />
                 </Content>

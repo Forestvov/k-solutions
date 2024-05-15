@@ -40,7 +40,7 @@ const Label = styled.p`
 `;
 
 const Title = styled.h2`
-    font-size: 2.375rem;
+    font-size: 2rem;
     color: #373737;
     line-height: 50px;
     user-select: none;

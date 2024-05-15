@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { ConditionCard } from 'components/buisnrss/conditions-business/condition-card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -29,56 +30,60 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2.125rem;
+        font-size: 2rem;
     }
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'Моментальное решение',
-        text: 'Решение о финансировании по двум документам',
-        label: 'Решение 24/7 за',
-        count: '3 минуты',
-    },
-    {
-        id: '2',
-        title: 'Постоянно растущий лимит',
-        text: 'При соблюдении финансовой дисциплины и доступной кредитоемкости бизнеса',
-        label: 'Лимит до',
-        count: '56,9 млн$',
-    },
-    {
-        id: '3',
-        title: 'Ставка по займу на уровне или ниже, чем в банках',
-        text: 'Ставка 18,1% доступна для наиболее надежных компаний',
-        label: 'Ставка от',
-        count: '18,1%',
-    },
-    {
-        id: '4',
-        title: 'Возобновляемая линия займов',
-        text: 'Неограниченное количество траншей в удобное время без дополнительного одобрения в пределах лимита.',
-        label: 'Количество траншей',
-        count: '∞',
-    },
-];
-
 const ConditionsBusiness: FC = () => {
+    const { t } = useTranslation('business-page');
+
+    const cards = [
+        {
+            id: '1',
+            title: t('Моментальное решение'),
+            text: t('Решение о финансировании по двум документам'),
+            label: t('Решение 24/7 за'),
+            count: t('3 минуты'),
+        },
+        {
+            id: '2',
+            title: t('Постоянно растущий лимит'),
+            text: t('При соблюдении финансовой дисциплины и доступной кредитоемкости бизнеса'),
+            label: t('Лимит до'),
+            count: t('56,9 млн$'),
+        },
+        {
+            id: '3',
+            title: t('Ставка по займу на уровне или ниже, чем в банках'),
+            text: t('Ставка 18,1% доступна для наиболее надежных компаний'),
+            label: t('Ставка от'),
+            count: t('18,1%'),
+        },
+        {
+            id: '4',
+            title: t('Возобновляемая линия займов'),
+            text: t(
+                'Неограниченное количество траншей в удобное время без дополнительного одобрения в пределах лимита'
+            ),
+            label: t('Количество траншей'),
+            count: '∞',
+        },
+    ];
+
     return (
         <Box
             sx={{
-                height: { lg: '1450px', xl: '1400px', sm: '1400px', xs: '2200px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
+                paddingBottom: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
             <Inner fixed>
                 <Title>
-                    Лучшие условия на рынке
-                    <br /> финансирования бизнеса
+                    {t('Лучшие условия на рынке')}
+                    <br /> {t('финансирования бизнеса')}
                 </Title>
                 <Content>
                     {cards.map((row: any) => (

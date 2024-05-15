@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useRef, useState } from 'react';
 import { BarGraph } from 'components/buisnrss/loan-calculator/bar-chart';
+import { useTranslation } from 'react-i18next';
 
 const CalcContainer = styled.div`
     width: 100%;
@@ -92,10 +93,10 @@ const CheckBoxPart = styled.div`
 `;
 
 const CheckBoxDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     @media (max-width: 1024px) {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
         min-width: 110px;
         min-height: 165px;
     }
@@ -292,11 +293,13 @@ export const Calculator = () => {
         array.push(i);
     }
 
+    const { t } = useTranslation('business-page');
+
     return (
         <CalcContainer>
             <InputWrapper>
                 <InputContainer>
-                    <Label>Желаемая сумма займа</Label>
+                    <Label>{t('Желаемая сумма займа')}</Label>
                     {/* <input ref={sumNumberRef} disabled style={{border: "none", userSelect: "none"}} type="number"  value={rangeSumValue.toString()} /> */}
                     <Count ref={sumNumberRef}>{rangeSumValue.toString()} $</Count>
                     <Input
@@ -310,9 +313,11 @@ export const Calculator = () => {
                     />
                 </InputContainer>
                 <InputContainer>
-                    <Label>Желаемый срок займа</Label>
+                    <Label>{t('Желаемый срок займа')}</Label>
                     {/* <input ref={sumNumberRef} disabled style={{border: "none", userSelect: "none"}} type="number"  value={rangeMonthsValue.toString()} /> */}
-                    <Count ref={sumNumberRef}>{rangeMonthsValue.toString()} мес.</Count>
+                    <Count ref={sumNumberRef}>
+                        {rangeMonthsValue.toString()} {t('Месяцы')}
+                    </Count>
                     <Input
                         ref={sumMonthsRef}
                         type="range"
@@ -324,7 +329,7 @@ export const Calculator = () => {
                     />
                 </InputContainer>
                 <InputContainer>
-                    <Label>Среднемесячная выручка за последний год</Label>
+                    <Label>{t('Среднемесячная выручка за последний год')}</Label>
                     {/* <input ref={sumNumberRef} disabled style={{border: "none", userSelect: "none"}} type="number"  value={rangeProfitValue.toString()} /> */}
                     <Count ref={sumNumberRef}>{rangeProfitValue.toString()} $</Count>
                     <Input
@@ -340,7 +345,7 @@ export const Calculator = () => {
                 <CheckBoxContainer>
                     <CheckBoxPart>
                         <CheckBoxDiv>
-                            <Label>Компания зарегистрирована более 12 месяцев назад</Label>
+                            <Label>{t('Компания зарегистрирована более 12 месяцев назад')}</Label>
                             <CheckBox
                                 onChange={handleCheckBoxChange}
                                 type="checkbox"
@@ -349,8 +354,8 @@ export const Calculator = () => {
                             />
                             <CheckboxLabel htmlFor="checkbox" className="checkbox-label" />
                         </CheckBoxDiv>
-                        <CheckBoxDiv>
-                            <Label>Кредитная история положительная или нейтральная</Label>
+                        <CheckBoxDiv style={{ maxWidth: '253px' }}>
+                            <Label>{t('Кредитная история положительная или нейтральная')}</Label>
                             <CheckBox
                                 onChange={handleCheckBoxChange1}
                                 type="checkbox"
@@ -362,7 +367,7 @@ export const Calculator = () => {
                     </CheckBoxPart>
                     <CheckBoxPart>
                         <CheckBoxDiv>
-                            <Label>В компании работает более 10 персон</Label>
+                            <Label>{t('В компании работает более 10 персон')}</Label>
                             <CheckBox
                                 onChange={handleCheckBoxChange2}
                                 type="checkbox"
@@ -372,7 +377,7 @@ export const Calculator = () => {
                             <CheckboxLabel htmlFor="checkbox2" className="checkbox-label2" />
                         </CheckBoxDiv>
                         <CheckBoxDiv>
-                            <Label>Стабильное поступление выручки каждый месяц</Label>
+                            <Label>{t('Стабильное поступление выручки каждый месяц')}</Label>
                             <CheckBox
                                 onChange={handleCheckBoxChange3}
                                 type="checkbox"
@@ -397,17 +402,17 @@ export const Calculator = () => {
                     }}
                 >
                     <div style={{ paddingRight: '10px', borderRight: '1px solid #CFCFCF' }}>
-                        <Label>Ежемесячный платеж</Label>
+                        <Label>{t('Ежемесячный платеж')}</Label>
                         <TotalCount style={{ fontWeight: '500', color: '#006838' }}>
                             {!isChecked ? monthlyPayment : monthlyPayment2}$
                         </TotalCount>
                     </div>
                     <div style={{ paddingRight: '10px', borderRight: '1px solid #CFCFCF' }}>
-                        <Label>Ежемесячный платеж</Label>
+                        <Label>{t('Процентная ставка')}</Label>
                         <TotalCount>{!isChecked1 ? '40,8 % — 44,1 %' : '18,1 % — 18,1 %'}</TotalCount>
                     </div>
                     <div>
-                        <Label>Вероятность одобрения</Label>
+                        <Label>{t('Вероятность одобрения')}</Label>
                         <TotalCount>{!isChecked2 ? '45%' : '90%'}</TotalCount>
                     </div>
                 </div>

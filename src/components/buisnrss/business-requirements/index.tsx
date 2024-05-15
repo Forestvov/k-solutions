@@ -7,6 +7,8 @@ import { RequirementsCard } from 'components/buisnrss/business-requirements/requ
 
 import reqImg from '../../../assets/pages/businessPage/Sloj.png';
 
+import { useTranslation } from 'react-i18next';
+
 const Inner = styled(Container)`
     position: relative;
     height: 100%;
@@ -48,7 +50,7 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2.375rem;
+        font-size: 1.5rem;
     }
 `;
 
@@ -78,7 +80,7 @@ const Label = styled.p`
     color: #006838;
     user-select: none;
     font-weight: 500;
-    margin-bottom: 250px;
+    margin-bottom: 220px;
 
     @media (max-width: 770px) {
         display: none;
@@ -99,22 +101,24 @@ const Line = styled.div`
     border-radius: 10px;
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'Среднемесячная выручка',
-        text: 'Среднемесячная безналичная выручка за последние 12 месяцев больше 600 тыс ₽',
-        label: '≥$600 тыс.',
-    },
-    {
-        id: '2',
-        title: 'Регистрация компании',
-        text: 'Срок регистрации юридического лица более 12 месяцев.',
-        label: '≥12 месяцев',
-    },
-];
-
 const RequirementsBusiness: FC = () => {
+    const { t } = useTranslation('business-page');
+
+    const cards = [
+        {
+            id: '1',
+            title: t('biusnessReqTitleCard1'),
+            text: t('biusnessReqtextCard1'),
+            label: t('biusnessReqlabelCard1'),
+        },
+        {
+            id: '2',
+            title: t('biusnessReqTitleCard2'),
+            text: t('biusnessReqtextCard2'),
+            label: t('biusnessReqlabelCard2'),
+        },
+    ];
+
     return (
         <Box
             sx={{
@@ -126,7 +130,7 @@ const RequirementsBusiness: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Требования к бизнесу</Title>
+                <Title>{t('Требования к бизнесу')}</Title>
                 <Content>
                     {cards.map((row: any) => (
                         <RequirementsCard key={row.id} row={row} />
@@ -140,16 +144,13 @@ const RequirementsBusiness: FC = () => {
                                 flexDirection: 'column',
                             }}
                         >
-                            <BottomCardTitle>Кредитная история бизнеса</BottomCardTitle>
+                            <BottomCardTitle>{t('Кредитная история бизнеса')}</BottomCardTitle>
                             <Line />
-                            <Paragraph>
-                                Отсутствуют текущие просрочки, арбитражи в качестве ответчика и непогашенные
-                                исполнительные листы
-                            </Paragraph>
+                            <Paragraph>{t('creditStoryBusinessText')}</Paragraph>
                         </div>
                         <Image src={reqImg} />
                         <div>
-                            <Label>≥Нейтральная</Label>
+                            <Label>{t('creditStoryBusinessLabel')}</Label>
                         </div>
                     </BottomCard>
                 </Content>

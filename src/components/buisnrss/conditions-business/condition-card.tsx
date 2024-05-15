@@ -1,25 +1,5 @@
 import styled from '@emotion/styled';
-
-const CondCard = styled.div`
-    width: 48%;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 75px;
-    margin-bottom: 50px;
-
-    padding: 25px 25px;
-    border-radius: 30px;
-    background: white;
-
-    @media (max-width: 770px) {
-        width: 100%;
-        height: 100%;
-        justify-content: space-between;
-        gap: 30px;
-    }
-`;
+import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
@@ -83,16 +63,35 @@ interface Props {
 export const ConditionCard = ({ row }: Props) => {
     const { title, text, count, label } = row;
     return (
-        <CondCard>
+        <Stack
+            sx={{
+                padding: { xs: '25px', sm: '35px' },
+                width: { xs: '100%', sm: '48%' },
+                height: { xs: '410', sm: '450px' },
+                background: 'white',
+                marginBottom: '50px',
+                borderRadius: { xs: '25px', sm: '35px' },
+                transition: 'background 400ms',
+
+                '&:hover': {
+                    background: '#006838',
+                    color: '#fff',
+
+                    '.stat-item-text': {
+                        color: '#fff !important',
+                    },
+                },
+            }}
+        >
             <div>
-                <Title>{title}</Title>
-                <Paragraph>{text}</Paragraph>
+                <Title className="stat-item-text">{title}</Title>
+                <Paragraph className="stat-item-text">{text}</Paragraph>
             </div>
 
             <div>
-                <Label>{label}</Label>
-                <Span>{count}</Span>
+                <Label className="stat-item-text">{label}</Label>
+                <Span className="stat-item-text">{count}</Span>
             </div>
-        </CondCard>
+        </Stack>
     );
 };

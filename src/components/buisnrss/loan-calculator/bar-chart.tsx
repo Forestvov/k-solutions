@@ -1,6 +1,7 @@
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'chart.js';
 import styled from '@emotion/styled';
+import { useTranslation } from 'react-i18next';
 
 const BarContainer = styled.div`
     background: #f6f7f8;
@@ -16,11 +17,12 @@ const BarContainer = styled.div`
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
 export const BarGraph = ({ columns }: { columns: number[] }) => {
+    const { t } = useTranslation('business-page');
     const barChartData: any = {
         labels: columns,
         datasets: [
             {
-                label: 'Мясяцы',
+                label: t('Месяцы'),
                 backgroundColor: '#20836D',
                 data: columns,
             },

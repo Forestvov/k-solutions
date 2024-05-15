@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { Calculator } from 'components/buisnrss/loan-calculator/calculator';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -34,6 +35,8 @@ const Title = styled.h2`
 `;
 
 const CalculatorSection: FC = () => {
+    const { t } = useTranslation('business-page');
+
     return (
         <Box
             sx={{
@@ -45,7 +48,7 @@ const CalculatorSection: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Калькулятор займа</Title>
+                <Title>{t('Калькулятор займа')}</Title>
                 <Content>
                     <Calculator />
                 </Content>

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import cardInpImg from 'assets/pages/investors/CardInpImg.png';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Card = styled.div`
     position: relative;
@@ -168,6 +169,7 @@ interface Props {
 const ShowCasesCard = ({ row }: Props) => {
     const { title, sum3, invSum, sum2, sum, img, label } = row;
     const [showDropdown, setShowDropdown] = useState(false);
+    const { t } = useTranslation('investor-page');
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
@@ -181,10 +183,10 @@ const ShowCasesCard = ({ row }: Props) => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                     <SumT>
                         ${sum}
-                        <span style={{ fontSize: '12px', fontWeight: '400', marginLeft: '5px' }}>Собрано</span>
+                        <span style={{ fontSize: '12px', fontWeight: '400', marginLeft: '5px' }}>{t('Собрано')}</span>
                     </SumT>
                     <LineIt />
-                    <p style={{ margin: '0', fontSize: '14px', fontWeight: '400' }}>100% от цели</p>
+                    <p style={{ margin: '0', fontSize: '14px', fontWeight: '400' }}>{t('100% от цели')}</p>
                 </div>
             </CardInput>
             <CardItem>
@@ -192,7 +194,7 @@ const ShowCasesCard = ({ row }: Props) => {
                 <Label>{label}</Label>
             </CardItem>
             <DropdownContent isOpen={showDropdown}>
-                <p style={{ fontSize: '18px', marginLeft: '15px', fontWeight: '500' }}>Подробная информация</p>
+                <p style={{ fontSize: '18px', marginLeft: '15px', fontWeight: '500' }}>{t('Подробная информация')}</p>
                 <DropDownItem>
                     <p
                         style={{
@@ -219,7 +221,7 @@ const ShowCasesCard = ({ row }: Props) => {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        Предварительная оценка:
+                        {t('Предварительная оценка')}
                     </p>
                     <p style={{ textAlign: 'end', fontSize: '16px', fontWeight: '500', color: 'green', margin: '0' }}>
                         {sum2}
@@ -251,7 +253,7 @@ const ShowCasesCard = ({ row }: Props) => {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        Инвесторов:
+                        {t('Инвесторов')}
                     </p>
                     <p style={{ fontSize: '18px', fontWeight: '500', color: 'green', margin: '0' }}>{sum3}</p>
                 </DropDownItem>
@@ -281,13 +283,13 @@ const ShowCasesCard = ({ row }: Props) => {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        Цена акций компании:
+                        {t('Цена акций компании')}
                     </p>
                     <p style={{ fontSize: '18px', fontWeight: '500', color: 'green', margin: '0' }}>{invSum}</p>
                 </DropDownItem>
             </DropdownContent>
             <Button style={{ marginTop: '15px' }} variant="green" fullWidth onClick={toggleDropdown}>
-                {showDropdown ? 'Скрыть' : 'Подробнее'}
+                {showDropdown ? t('Скрыть') : t('Подробнее')}
             </Button>
         </Card>
     );

@@ -10,6 +10,7 @@ import { addContact } from 'api/order-contact';
 
 import validateSubscribe from 'helpers/validation/validateSubscribe';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Inputs {
     phoneNumber: string;
@@ -66,6 +67,8 @@ const Form = () => {
     const [load, setLoad] = useState(false);
     const resolver = yupResolver(validateSubscribe);
 
+    const { t } = useTranslation('form');
+
     const { control, handleSubmit, reset } = useForm<Inputs>({
         mode: 'onChange',
         resolver,
@@ -86,7 +89,7 @@ const Form = () => {
         } catch (e) {
             // @ts-ignore
             if (e?.message === 'This number is existed') {
-                setError('Заявка уже отправлена');
+                setError(t('Заявка уже отправлена'));
             }
         }
 
@@ -96,7 +99,7 @@ const Form = () => {
 
     return (
         <Stack spacing="25px" sx={{ marginBottom: { lg: '175px', md: '100px', sm: '140px', xs: '80px' } }}>
-            <Paragraph>Вложите инвестиции в действующий бизнес сегодня.</Paragraph>
+            <Paragraph>{t('Вложите инвестиции')}</Paragraph>
             <Stack
                 component="form"
                 spacing={{ sm: '50px', xs: '25px' }}
@@ -113,15 +116,15 @@ const Form = () => {
                             mask="+9 (999) 999-99-99"
                             value={value}
                             onChange={onChange}
-                            placeholder="Введите номер телефона"
+                            placeholder={t('Введите номер телефона')}
                         />
                     )}
                 />
                 <Button variant="green" type="submit" disabled={load} sx={{ padding: { xs: '12px 40px' } }}>
-                    Заказать Звонок
+                    {t('Заказать Звонок')}
                 </Button>
             </Stack>
-            {success && <Typography variant="body1">Заявка успешно отправлена</Typography>}
+            {success && <Typography variant="body1">{t('Заявка успешно отправлена')}</Typography>}
             {error && <Typography variant="body1">{error}</Typography>}
         </Stack>
     );

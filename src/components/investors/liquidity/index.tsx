@@ -9,6 +9,7 @@ import liqImg_3 from 'assets/pages/investors/liqImg_3.png';
 import liqImg_4 from 'assets/pages/investors/liqImg_4.png';
 import liqImg_5 from 'assets/pages/investors/liqImg_5.png';
 import liqImg_6 from 'assets/pages/investors/liqImg_6.png';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     height: 100%;
@@ -125,6 +126,8 @@ const Liquidity: FC = () => {
         { src: liqImg_6, alt: '6' },
     ];
 
+    const { t } = useTranslation('investor-page');
+
     return (
         <Box
             sx={{
@@ -138,10 +141,8 @@ const Liquidity: FC = () => {
             <Inner fixed>
                 <Content>
                     <div>
-                        <Title>Ликвидность</Title>
-                        <Paragraph>
-                            Выводите свой портфель инвестора в наличные по одному клику через вторичный рынок
-                        </Paragraph>
+                        <Title>{t('Ликвидность')}</Title>
+                        <Paragraph>{t('Выводите свой портфель')}</Paragraph>
                         <ImageWrapper>
                             {images.map((image, index) => (
                                 <Img key={index} src={image.src} alt={image.alt} />
@@ -150,14 +151,14 @@ const Liquidity: FC = () => {
                     </div>
                     <LeftPart>
                         <div>
-                            <Profit>1 млн</Profit>
-                            <Paragraph>7 часов</Paragraph>
+                            <Profit>{t('1 млн')}</Profit>
+                            <Paragraph>{t('7 часов')}</Paragraph>
                         </div>
                         <div>
-                            <Profit>10 млн</Profit>
-                            <Paragraph>4 дня</Paragraph>
+                            <Profit>{t('10 млн')}</Profit>
+                            <Paragraph>{t('4 дня')}</Paragraph>
                             <br />
-                            <ProfitLabel>*при выставлении цены ниже или равной 90%</ProfitLabel>
+                            <ProfitLabel>{t('при выставлении цены')}</ProfitLabel>
                         </div>
                     </LeftPart>
                 </Content>
