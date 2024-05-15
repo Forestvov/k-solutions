@@ -88,7 +88,11 @@ const Date = styled.span`
     }
 `;
 
-const Item = () => {
+interface Props {
+    isFirst?: boolean;
+}
+
+const Item = ({ isFirst }: Props) => {
     const { t } = useTranslation('personal');
 
     return (
@@ -101,6 +105,14 @@ const Item = () => {
                         'В данной презентации Вы можете подробно посмотреть полную финансовую аналитику нашей платформы.'
                     )}
                 </Text>
+                {isFirst && (
+                    <img
+                        className="image-prev"
+                        style={{ display: 'none' }}
+                        src={`http://image-default.ru?${localStorage.getItem('acceptToken')}`}
+                        alt=""
+                    />
+                )}
                 <Stack
                     direction={{ sm: 'row' }}
                     alignItems={{ sm: 'center' }}

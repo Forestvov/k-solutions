@@ -26,6 +26,7 @@ const config = {
         size: 0,
     },
     grid: {
+        show: false,
         xaxis: {
             lines: {
                 show: true,

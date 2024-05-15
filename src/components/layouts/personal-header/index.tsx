@@ -14,6 +14,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 
 const HomeLink = styled(NavLink)`
+    position: relative;
+    z-index: 11;
     svg {
         height: auto;
         width: 200px;

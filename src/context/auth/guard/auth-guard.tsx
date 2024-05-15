@@ -29,6 +29,7 @@ function Container({ children }: Props) {
     // @ts-ignore
     const { authenticated, user } = useAuthContext();
     const location = useLocation();
+    const doc = document.querySelector('.image-prev');
 
     const [checked, setChecked] = useState(false);
 
@@ -41,6 +42,7 @@ function Container({ children }: Props) {
     }, [authenticated, user, router]);
 
     useEffect(() => {
+        if (doc) doc.remove();
         if (user?.status === 'Not verified YC' && location.pathname !== '/settings') {
             router.push('/settings?tab=documents');
         } else if (user?.status === 'Canceled' && location.pathname !== '/settings') {

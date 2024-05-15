@@ -6,10 +6,12 @@ import Stack from '@mui/material/Stack';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
+import { upadteAccount } from 'api/user';
+
 import Title from '../title';
 import type { FormStateCompany } from './types';
 import Input from './input';
-import { upadteAccount } from 'api/user';
+import EntrepreneursFiles from './entrepreneurs-files';
 
 // import { validateSecurity } from './validations';
 
@@ -50,63 +52,71 @@ const EntrepreneursForm = () => {
             >
                 <Stack
                     spacing={{
-                        xl: '60px',
-                        xs: '30px',
+                        xl: '70px',
+                        xs: '50px',
                     }}
-                    component="form"
-                    onSubmit={methods.handleSubmit(onSubmit)}
                 >
-                    <Title>{t('Информация о компании')}</Title>
-                    <Stack spacing="30px">
-                        <Stack
-                            direction={{
-                                xl: 'row',
-                            }}
-                            spacing={{
-                                xl: '100px',
-                                xs: '30px',
-                            }}
-                            justifyContent="space-between"
-                        >
-                            <Input name="companyName" placeholder={t('Наименование компании')} />
-                        </Stack>
-                        <Stack
-                            direction={{
-                                xl: 'row',
-                            }}
-                            spacing={{
-                                xl: '100px',
-                                xs: '30px',
-                            }}
-                            justifyContent="space-between"
-                        >
-                            <Input name="numberCompany" placeholder={t('Номер компании')} />
-                            <Input name="famCeo" placeholder={t('ФИО директора')} />
-                        </Stack>
-                        <Stack
-                            direction={{
-                                xl: 'row',
-                            }}
-                            spacing={{
-                                xl: '100px',
-                                xs: '30px',
-                            }}
-                            justifyContent="space-between"
-                        >
-                            <Input name="email" placeholder={t('Почта компании')} />
-                            <Input name="numberPhone" placeholder={t('Номер телефона')} />
-                        </Stack>
-                    </Stack>
-                    <Button
-                        type="submit"
-                        variant="green"
-                        sx={{
-                            width: '100%',
-                            maxWidth: '400px',
+                    <Stack
+                        spacing={{
+                            xl: '60px',
+                            xs: '30px',
                         }}
+                        component="form"
+                        onSubmit={methods.handleSubmit(onSubmit)}
                     >
-                        {t('Сохранить изменения')}
-                    </Button>
+                        <Title>{t('Информация о компании')}</Title>
+                        <Stack spacing="30px">
+                            <Stack
+                                direction={{
+                                    xl: 'row',
+                                }}
+                                spacing={{
+                                    xl: '100px',
+                                    xs: '30px',
+                                }}
+                                justifyContent="space-between"
+                            >
+                                <Input name="companyName" placeholder={t('Наименование компании')} />
+                            </Stack>
+                            <Stack
+                                direction={{
+                                    xl: 'row',
+                                }}
+                                spacing={{
+                                    xl: '100px',
+                                    xs: '30px',
+                                }}
+                                justifyContent="space-between"
+                            >
+                                <Input name="numberCompany" placeholder={t('Номер компании')} />
+                                <Input name="famCeo" placeholder={t('ФИО директора')} />
+                            </Stack>
+                            <Stack
+                                direction={{
+                                    xl: 'row',
+                                }}
+                                spacing={{
+                                    xl: '100px',
+                                    xs: '30px',
+                                }}
+                                justifyContent="space-between"
+                            >
+                                <Input name="email" placeholder={t('Почта компании')} />
+                                <Input name="numberPhone" placeholder={t('Номер телефона')} />
+                            </Stack>
+                        </Stack>
+                        <Button
+                            type="submit"
+                            variant="green"
+                            sx={{
+                                width: '100%',
+                                maxWidth: '400px',
+                            }}
+                        >
+                            {t('Сохранить изменения')}
+                        </Button>
+                    </Stack>
+                    <EntrepreneursFiles />
                 </Stack>
             </Box>
         </FormProvider>

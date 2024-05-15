@@ -50,7 +50,6 @@ export default function ChartBlock({ title, chart, prefixAfter = '$', prefixBefo
             type: series.map((i) => i.fill) as string[],
         },
         labels,
-
         yaxis: {
             labels: {
                 // @ts-ignore

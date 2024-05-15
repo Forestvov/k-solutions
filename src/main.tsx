@@ -17,6 +17,7 @@ import { App } from './app';
 import theme from './theme';
 import './main.css';
 import './splash-screen.css';
+import './animate-banner.css';
 
 const rootElement = document.getElementById('k-solutions');
 const root = ReactDOM.createRoot(rootElement!);

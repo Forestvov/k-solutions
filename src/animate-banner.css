@@ -1,0 +1,238 @@
+.chart {
+    position: relative;
+    width: 712px;
+    height: 310px;
+    margin-bottom: 20px;
+}
+.labels {
+    font-weight: 700;
+    font-size: 26.69px;
+    color: rgba(0, 104, 56, 1);
+    text-align: center;
+    bottom: 0;
+
+    & span {
+        bottom: 0;
+    }
+
+    & span:nth-child(1) {
+        left: 13px;
+    }
+    & span:nth-child(2) {
+        left: 117px;
+
+        @media (min-width: 768px) {
+            left: 137px;
+        }
+    }
+
+    & span:nth-child(3) {
+        left: 212px;
+
+        @media (min-width: 768px) {
+            left: 252px;
+        }
+    }
+    & span:nth-child(4) {
+        left: 408px;
+    }
+    & span:nth-child(5) {
+        left: 531px;
+    }
+    & span:nth-child(6) {
+        left: 648px;
+    }
+}
+.chart * {
+    position: absolute;
+}
+.bar {
+    width: 34px;
+    height: 260px;
+    transform-origin: 0 100%;
+    background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.4));
+}
+.bar:nth-child(1) {
+    left: 0;
+    animation: grow-1 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-1 {
+    0%,
+    6.25% {
+        transform: scaleY(0);
+    }
+    18.75%,
+    100% {
+        transform: scaleY(0.5);
+    }
+}
+.bar:nth-child(2) {
+    left: calc(34px + 10px);
+    animation: grow-2 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-2 {
+    0%,
+    12.5% {
+        transform: scaleY(0);
+    }
+    25%,
+    100% {
+        transform: scaleY(0.3);
+    }
+}
+.bar:nth-child(3) {
+    left: calc(100px);
+    animation: grow-3 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+
+    @media (min-width: 768px) {
+        left: calc(119px);
+    }
+}
+@keyframes grow-3 {
+    0%,
+    18.75% {
+        transform: scaleY(0);
+    }
+    31.25%,
+    100% {
+        transform: scaleY(0.35);
+    }
+}
+.bar:nth-child(4) {
+    left: calc(145px);
+    animation: grow-4 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+
+    @media (min-width: 768px) {
+        left: calc(119px + 45px);
+    }
+}
+@keyframes grow-4 {
+    0%,
+    25% {
+        transform: scaleY(0);
+    }
+    37.5%,
+    100% {
+        transform: scaleY(0.7);
+    }
+}
+.bar:nth-child(5) {
+    left: calc(195px);
+    animation: grow-5 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+
+    @media (min-width: 768px) {
+        left: 240px;
+    }
+}
+@keyframes grow-5 {
+    0%,
+    31.25% {
+        transform: scaleY(0);
+    }
+    43.75%,
+    100% {
+        transform: scaleY(0.85);
+    }
+}
+.bar:nth-child(6) {
+    left: 240px;
+    animation: grow-6 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+
+    @media (min-width: 768px) {
+        left: 285px;
+    }
+}
+@keyframes grow-6 {
+    0%,
+    37.5% {
+        transform: scaleY(0);
+    }
+    50%,
+    100% {
+        transform: scaleY(0.74);
+    }
+}
+.bar:nth-child(7) {
+    left: 395px;
+    animation: grow-7 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-7 {
+    0%,
+    43.75% {
+        transform: scaleY(0);
+    }
+    56.25%,
+    100% {
+        transform: scaleY(0.78);
+    }
+}
+.bar:nth-child(8) {
+    left: 439px;
+    animation: grow-8 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-8 {
+    0%,
+    50% {
+        transform: scaleY(0);
+    }
+    62.5%,
+    100% {
+        transform: scaleY(0.65);
+    }
+}
+.bar:nth-child(9) {
+    left: 515px;
+    animation: grow-9 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-9 {
+    0%,
+    56.25% {
+        transform: scaleY(0);
+    }
+    68.75%,
+    100% {
+        transform: scaleY(0.73);
+    }
+}
+.bar:nth-child(10) {
+    left: 558px;
+    animation: grow-10 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-10 {
+    0%,
+    62.5% {
+        transform: scaleY(0);
+    }
+    75%,
+    100% {
+        transform: scaleY(0.7);
+    }
+}
+.bar:nth-child(11) {
+    left: 634px;
+    animation: grow-11 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-11 {
+    0%,
+    68.75% {
+        transform: scaleY(0);
+    }
+    81.25%,
+    100% {
+        transform: scaleY(0.69);
+    }
+}
+.bar:nth-child(12) {
+    left: 678px;
+    animation: grow-12 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
+}
+@keyframes grow-12 {
+    0%,
+    75% {
+        transform: scaleY(0);
+    }
+    87.5%,
+    100% {
+        transform: scaleY(0.8);
+    }
+}

@@ -13,8 +13,10 @@ import type { IBrief } from 'types/brief';
 import Image from './image';
 import Investing from './investing';
 import Description from './description';
+import Tag from 'components/profile/invest-card/tag';
 
 const Item = styled(Stack)`
+    position: relative;
     background: #f6f7f8;
     border-radius: 15px;
     height: 100%;
@@ -62,11 +64,13 @@ const InvestCard = ({ card, hideStats }: Prop) => {
         companyType,
         briefcaseImage,
         amountMin,
+        briefcaseStatus,
     } = card;
 
     return (
         <Item>
             <Image image={briefcaseImage} />
+            <Tag status={briefcaseStatus} />
             <Stack
                 sx={{
                     padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },

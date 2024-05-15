@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import Logo from 'assets/pages/home/banner-logo.svg?react';
-import Schedule from 'assets/pages/home/banner-schedule.svg?react';
 
 import Form from './form';
 import Image from './image';
@@ -57,21 +56,6 @@ const LogoIcon = styled(Logo)`
     }
 `;
 
-const ScheduleIcon = styled(Schedule)`
-    height: auto;
-    margin-top: auto;
-    width: 100%;
-
-    @media (min-width: 768px) {
-        width: 600px;
-    }
-
-    @media (min-width: 1024px) {
-        width: 712px;
-        height: 227px;
-    }
-`;
-
 const MainBanner: FC = () => {
     const isDesktop = useMediaQuery('(min-width:1280px)');
 
@@ -93,9 +77,32 @@ const MainBanner: FC = () => {
                     <Stack sx={{ height: '100%' }}>
                         <LogoIcon />
                         <Paragraph>{t('bannerTitle')}</Paragraph>
-                        <Stack sx={{ flex: '1' }}>
+                        <Stack sx={{ flex: '1', overflow: 'hidden' }}>
                             <Form />
-                            <ScheduleIcon />
+                            <div className="chart">
+                                <div className="labels">
+                                    <span>10%</span>
+                                    <span>17%</span>
+                                    <span>28%</span>
+                                    <span>45%</span>
+                                    <span>71%</span>
+                                    <span>99%</span>
+                                </div>
+                                <div className="bars">
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                    <div className="bar" />
+                                </div>
+                            </div>
                         </Stack>
                     </Stack>
                 </Content>

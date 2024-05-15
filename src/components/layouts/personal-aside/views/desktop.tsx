@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
+import Box from '@mui/material/Box';
 
 import Navigation from '../navigation';
 import Profile from '../profile';
 import Laggout from '../laggout';
-import { Box } from '@mui/material';
+import SlideToTop from '../slide-to-top';
 
 interface Prop {
     slide: boolean;
@@ -14,20 +15,20 @@ const Aside = styled.aside<Prop>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: calc(100% - 100px);
+    height: 100%;
     background: #fff;
     width: 80px;
-    padding: 64px 10px 48px 10px;
+    padding: 115px 10px 48px 10px;
     border-radius: 10px;
     position: fixed;
     left: 0;
-    top: 100px;
+    top: 0;
     bottom: 0;
     z-index: 10;
 
     @media (min-width: 1668px) {
         width: 110px;
-        padding: 64px 17px 48px 15px;
+        padding: 115px 17px 48px 15px;
     }
 
     ${({ slide }) =>
@@ -53,9 +54,11 @@ const Overlay = styled.div<Prop>`
 
 const Desktop = () => {
     const [slide] = useState(false);
+
     return (
         <>
             <Aside slide={slide}>
+                <SlideToTop />
                 <Navigation />
                 <Box sx={{ marginTop: 'auto' }} />
                 {/* <Expander onClick={() => setSlide(!slide)} /> */}

@@ -13,7 +13,7 @@ import { fCurrency } from 'helpers/number-format';
 import { renderCurrency } from 'helpers/renderCurrency';
 
 import Replenish from 'components/profile/balance/all-assets/replenish';
-import { fDate } from 'helpers/format-time';
+import { fDate, fTime } from 'helpers/format-time';
 
 const Cell = styled(TableCell)`
     padding: 20px 30px;
@@ -135,6 +135,14 @@ const ListRow = ({ row }: { row: IHistory }) => {
         }
     };
 
+    const splitDate = transactionDate.split(',')[0].split('-');
+    const splitTime = transactionDate.split(',')[1].split(':');
+
+    // @ts-ignore
+    const date = [splitDate[0], Number(splitDate[1] - 1), Number(splitDate[2])];
+    // @ts-ignore
+    const utcData = new Date(Date.UTC(date[0], date[1], date[2], splitTime[0], splitTime[1], splitTime[2]));
+
     return (
         <TableRow
             sx={{
@@ -184,10 +192,10 @@ const ListRow = ({ row }: { row: IHistory }) => {
                 )}
             </Cell>
             <Cell>
-                <Item value={fDate(transactionDate.split(',')[0])} label={t('Дата транзакции')} />
+                <Item value={fDate(String(utcData))} label={t('Дата транзакции')} />
             </Cell>
             <Cell>
-                <Item value={transactionDate.split(',')[1].slice(0, 6)} label={t('Время транзакции')} />
+                <Item value={fTime(String(utcData), 'HH:mm')} label={t('Время транзакции')} />
             </Cell>
             <Cell>
                 <Replenish content={row} transactionType={row.transactionType}>

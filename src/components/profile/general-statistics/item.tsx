@@ -54,6 +54,11 @@ const Item: FC<Prop> = ({ label, value }) => {
                 padding: { sm: '31px 42px 30px 42px', xs: '20px' },
                 background: '#F6F7F8',
                 borderRadius: '20px',
+                transition: 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+
+                '&:hover': {
+                    transform: `scale(1.02)`,
+                },
             }}
         >
             <Label>{label}</Label>

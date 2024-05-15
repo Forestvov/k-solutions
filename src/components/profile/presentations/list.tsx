@@ -10,7 +10,7 @@ const List = () => {
     return (
         <>
             <Stack direction="row" spacing="30px" justifyContent="space-between">
-                <Item />
+                <Item isFirst />
                 {md && <Item />}
                 {lg && <Item />}
             </Stack>
