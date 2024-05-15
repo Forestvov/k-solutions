@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Form from './form';
 import Image from './image';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -65,10 +66,12 @@ const Title = styled.h2`
 const MainBanner: FC = () => {
     const isDesktop = useMediaQuery('(min-width:1280px)');
 
+    const { t } = useTranslation('investor-page');
+
     return (
         <Box
             sx={{
-                height: { lg: 'min(100vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
+                height: { lg: 'min(110vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
                 minHeight: { lg: '787px' },
                 background: 'transparent',
                 paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
@@ -79,14 +82,11 @@ const MainBanner: FC = () => {
             <Inner fixed>
                 <Content>
                     <Title>
-                        Инвестиции
+                        {t('Инвестиции')}
                         <br />
-                        <Span>в бизнес</Span>
+                        <Span>{t('в бизнес')}</Span>
                     </Title>
-                    <Paragraph>
-                        Начните инвестировать деньги в компании малого и среднего бизнеса. Получайте доходность
-                        инвестиций значительно выше депозита в банке, акций и облигаций.
-                    </Paragraph>
+                    <Paragraph>{t('Начните инвестировать')}</Paragraph>
                     <Form />
                 </Content>
                 {isDesktop && <Image />}

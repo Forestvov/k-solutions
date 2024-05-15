@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { BorrowerCard } from 'components/buisnrss/conditions-borrower/borrower-card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     width: 100%;
@@ -69,6 +70,10 @@ const Title = styled.h2`
     user-select: none;
     font-weight: 600;
     margin: 0;
+
+    @media (max-width: 770px) {
+        font-size: 2rem;
+    }
 `;
 
 const BottomCardTitle = styled.p`
@@ -94,60 +99,62 @@ const Paragraph = styled.p`
     }
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'Кому можем выдать',
-        text: 'Индивидуальному предпринимателю, ООО и АО.',
-        size: '150px',
-    },
-    {
-        id: '2',
-        title: 'Срок с даты регистрации компании',
-        text: 'От 12 месяцев.',
-        size: '150px',
-    },
-    {
-        id: '3',
-        title: 'Минимальный размер выручки',
-        text: 'Среднемесячная выручка от $600 k.',
-        size: '150px',
-    },
-];
-
-const cardsTwo = [
-    {
-        id: '4',
-        title: 'Наличие текущих исполнительных производств на юридическом лице либо бенефициарных владельцах',
-        text: 'Не допускается.',
-        size: '230px',
-    },
-    {
-        id: '5',
-        title: 'Наличие текущих арбитражных дел в качестве ответчика',
-        text: 'Не более 1% от суммы выручки за последние 12 месяцев.',
-        size: '230px',
-    },
-    {
-        id: '6',
-        title: 'Наличие текущих просрочек по юридическому лицу или бенефициарным владельцам',
-        text: 'Наличие текущих просрочек по юридическому лицу или бенефициарным владельцам',
-        size: '230px',
-    },
-];
-
 const BorrowerBusiness: FC = () => {
+    const { t } = useTranslation('business-page');
+
+    const cards = [
+        {
+            id: '1',
+            title: t('condCardTitle'),
+            text: t('condCardText'),
+            size: '150px',
+        },
+        {
+            id: '2',
+            title: t('condCardTitle1'),
+            text: t('condCardText1'),
+            size: '150px',
+        },
+        {
+            id: '3',
+            title: t('condCardTitle2'),
+            text: t('condCardText2'),
+            size: '150px',
+        },
+    ];
+
+    const cardsTwo = [
+        {
+            id: '4',
+            title: t('condCardTitle3'),
+            text: t('condCardText3'),
+            size: '230px',
+        },
+        {
+            id: '5',
+            title: t('condCardTitle4'),
+            text: t('condCardText4'),
+            size: '230px',
+        },
+        {
+            id: '6',
+            title: t('condCardTitle5'),
+            text: t('condCardText5'),
+            size: '230px',
+        },
+    ];
+
     return (
         <Box
             sx={{
-                height: { lg: '900px', xl: '900px', sm: '1000px', xs: '1500px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
+                paddingBottom: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',
             }}
         >
             <Inner fixed>
-                <Title>Условия и требования к заемщику</Title>
+                <Title>{t('condTitle')}</Title>
                 <Content>
                     <TopContent>
                         {cards.map((row: any) => (
@@ -160,11 +167,8 @@ const BorrowerBusiness: FC = () => {
                         ))}
                     </CenterContent>
                     <BottomContent>
-                        <BottomCardTitle>Резидентство</BottomCardTitle>
-                        <Paragraph>
-                            Для ИП — гражданство России. Для ООО — не менее половины уставного капитала принадлежит
-                            гражданам России.
-                        </Paragraph>
+                        <BottomCardTitle>{t('condBottomCardTitle')}</BottomCardTitle>
+                        <Paragraph>{t('condBottomCardText')}</Paragraph>
                     </BottomContent>
                 </Content>
             </Inner>

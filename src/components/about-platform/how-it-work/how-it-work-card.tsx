@@ -32,7 +32,7 @@ const Paragraph = styled.p`
 `;
 
 const Title = styled.h2`
-    font-size: 26px;
+    font-size: 24px;
     color: #373737;
     line-height: 30px;
     user-select: none;
@@ -41,7 +41,7 @@ const Title = styled.h2`
     margin-bottom: 10px;
 
     @media (max-width: 770px) {
-        font-size: 24px;
+        font-size: 20px;
     }
 `;
 

@@ -1,25 +1,11 @@
 import styled from '@emotion/styled';
-
-const CondCard = styled.div`
-    width: 470px;
-    min-height: 280px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 75px;
-    margin-bottom: 50px;
-
-    background: #f6f7f8;
-    padding: 25px;
-    border-radius: 25px;
-`;
+import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
     font-size: 18px;
     color: #747474;
-    max-width: 405px;
+    max-width: 300px;
     margin: 7px 0 0 0;
 `;
 
@@ -30,7 +16,7 @@ const Title = styled.h2`
     user-select: none;
     font-weight: 500;
     margin: 0;
-    max-width: 500px;
+    max-width: 300px;
 
     @media (max-width: 400px) {
         font-size: 2.375rem;
@@ -49,9 +35,28 @@ interface Props {
 export const GetLoanCard = ({ row }: Props) => {
     const { title, text } = row;
     return (
-        <CondCard>
-            <Title>{title}</Title>
-            <Paragraph>{text}</Paragraph>
-        </CondCard>
+        <Stack
+            sx={{
+                padding: { xs: '20px', sm: '25px' },
+                width: { xs: '400px', sm: '350px' },
+                height: { xs: '280px', sm: '280px' },
+                background: '#f6f7f8',
+                marginBottom: '50px',
+                borderRadius: { xs: '25px', sm: '35px' },
+                transition: 'background 400ms',
+
+                '&:hover': {
+                    background: '#006838',
+                    color: '#fff',
+
+                    '.stat-item-text': {
+                        color: '#fff !important',
+                    },
+                },
+            }}
+        >
+            <Title className="stat-item-text">{title}</Title>
+            <Paragraph className="stat-item-text">{text}</Paragraph>
+        </Stack>
     );
 };

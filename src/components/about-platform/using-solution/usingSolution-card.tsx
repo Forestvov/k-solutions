@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 const CondCard = styled.div`
     width: 48%;
@@ -33,11 +34,12 @@ const Paragraph = styled.p`
     margin: 7px 0 0 0;
 `;
 
-const Label = styled.p`
+const Label = styled(NavLink)`
     font-weight: 400;
     font-size: 1.125rem;
     color: #006838;
     margin: 0;
+    text-decoration: none;
 `;
 
 const Title = styled.h2`
@@ -74,7 +76,7 @@ export const UsingSolutionCard = ({ row }: Props) => {
                 <Line />
                 <Paragraph>{text}</Paragraph>
             </div>
-            <Label>{label}</Label>
+            <Label to="/register">{label}</Label>
         </CondCard>
     );
 };

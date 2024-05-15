@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 
 import Image from './image';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -64,6 +65,8 @@ const Title = styled.h2`
 const BusinessMainBanner: FC = () => {
     const isDesktop = useMediaQuery('(min-width:1280px)');
 
+    const { t } = useTranslation('business-page');
+
     return (
         <Box
             sx={{
@@ -77,11 +80,9 @@ const BusinessMainBanner: FC = () => {
         >
             <Inner fixed>
                 <Content>
-                    <Title>Финансирование для развития вашего бизнеса</Title>
-                    <Span>Займы компаниям и ИП</Span>
-                    <Paragraph>
-                        Решение за 3 минуты по 2-м документам онлайн. На счет в любом банке. Проверьте лимит сегодня.
-                    </Paragraph>
+                    <Title>{t('Финансирование для развития вашего бизнеса')}</Title>
+                    <Span>{t('Займы компаниям и ИП')}</Span>
+                    <Paragraph>{t('Решение за 3 минуты')}</Paragraph>
                 </Content>
                 {isDesktop && <Image />}
             </Inner>

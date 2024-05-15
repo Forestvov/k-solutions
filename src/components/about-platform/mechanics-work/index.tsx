@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { MechanicsWorkCard } from 'components/about-platform/mechanics-work/mechanics-work-card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -34,30 +35,31 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 34px;
+        font-size: 32px;
         line-height: 50px;
     }
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'p2p',
-        text: 'person to person, когда заемщик и инвесторы — физические лица',
-    },
-    {
-        id: '2',
-        title: 'p2b',
-        text: 'person to business, когда юридическое лицо привлекает средства физических лиц',
-    },
-    {
-        id: '3',
-        title: 'b2b',
-        text: 'business to business, когда заемщик и инвесторы — юридические лица',
-    },
-];
-
 const MechanicsWorkSection: FC = () => {
+    const { t } = useTranslation('about-platform');
+
+    const cards = [
+        {
+            id: '1',
+            title: 'p2p',
+            text: t('mehWorkCardTitle'),
+        },
+        {
+            id: '2',
+            title: 'p2b',
+            text: t('mehWorkCardTitle1'),
+        },
+        {
+            id: '3',
+            title: 'b2b',
+            text: t('mehWorkCardTitle2'),
+        },
+    ];
     return (
         <Box
             sx={{
@@ -69,7 +71,7 @@ const MechanicsWorkSection: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Механика работы и разновидности краудлендинга </Title>
+                <Title>{t('mehWorkTitle')}</Title>
                 <Content>
                     {cards.map((row: any) => (
                         <MechanicsWorkCard key={row.id} row={row} />

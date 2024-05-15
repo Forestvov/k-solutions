@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { HowItWorkCard } from 'components/about-platform/how-it-work/how-it-work-card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -46,40 +47,42 @@ const Paragraph = styled.p`
     margin: 7px 0 0 0;
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'Подать заявку на повышение',
-        text: 'Расскажите нам о своем бизнесе и стратегии сбора средств. Мы поможем вам решить, является ли краудлендинг подходящим вариантом для вашего бизнеса.',
-    },
-    {
-        id: '2',
-        title: 'Подготовка кампании',
-        text: 'Мы работаем вместе с вами над созданием привлекательной и соответствующей требованиям рекламной акции.',
-    },
-    {
-        id: '3',
-        title: 'Регистрация раннего доступа',
-        text: 'Мы приглашаем ваше сообщество и нашу аудиторию предварительно зарегистрироваться для получения раннего доступа к вашему представлению, прежде чем оно станет общедоступным.',
-    },
-    {
-        id: '1',
-        title: 'Запуск кампании',
-        text: 'Вот тут-то и начинается веселье! Мы нажимаем на курок, ваша презентация становится реальностью, и начинают поступать инвестиции!',
-    },
-    {
-        id: '2',
-        title: 'Сбор средств',
-        text: 'Мы собираем средства, рассылаем сертификаты акций и выполняем всю юридическую работу, связанную с закрытием вашего раунда.',
-    },
-    {
-        id: '3',
-        title: 'Постфинансовая поддержка',
-        text: 'Получив финансирование, вы присоединитесь к нашему финансируемому сообществу — группе совместных предприятий, ориентированных на миссию.',
-    },
-];
-
 const HowItWorkSection: FC = () => {
+    const { t } = useTranslation('about-platform');
+
+    const cards = [
+        {
+            id: '1',
+            title: t('HowItWorkCardTitle'),
+            text: t('HowItWorkCardText'),
+        },
+        {
+            id: '2',
+            title: t('HowItWorkCardTitle1'),
+            text: t('HowItWorkCardText1'),
+        },
+        {
+            id: '3',
+            title: t('HowItWorkCardTitle2'),
+            text: t('HowItWorkCardText2'),
+        },
+        {
+            id: '1',
+            title: t('HowItWorkCardTitle3'),
+            text: t('HowItWorkCardText3'),
+        },
+        {
+            id: '2',
+            title: t('HowItWorkCardTitle4'),
+            text: t('HowItWorkCardText4'),
+        },
+        {
+            id: '3',
+            title: t('HowItWorkCardTitle5'),
+            text: t('HowItWorkCardText5'),
+        },
+    ];
+
     return (
         <Box
             sx={{
@@ -100,11 +103,8 @@ const HowItWorkSection: FC = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Title>Как это работает?</Title>
-                    <Paragraph>
-                        Мы знаем, что проведение краудлендинговой кампании — непростая задача, поэтому давайте разберем
-                        ее:
-                    </Paragraph>
+                    <Title>{t('HowItWorkTitle')}</Title>
+                    <Paragraph>{t('HowItWorkText')}</Paragraph>
                 </div>
                 <Content>
                     {cards.map((row: any) => (

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { UsingSolutionCard } from 'components/about-platform/using-solution/usingSolution-card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -44,22 +45,24 @@ const Span = styled.span`
     }
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'Инвесторы',
-        text: 'Смогут получить привлекательную доходность на свой капитал',
-        label: 'Стать инвестором',
-    },
-    {
-        id: '2',
-        title: 'Бизнес',
-        text: 'Получает доступ к быстрому, удобному и прозрачному финансированию',
-        label: 'Подать заявку',
-    },
-];
-
 const UsingSolution: FC = () => {
+    const { t } = useTranslation('about-platform');
+
+    const cards = [
+        {
+            id: '1',
+            title: t('usingSolutionCardTitle'),
+            text: t('usingSolutionCardtext'),
+            label: t('usingSolutionCardlabel'),
+        },
+        {
+            id: '2',
+            title: t('usingSolutionCardTitle1'),
+            text: t('usingSolutionCardtext1'),
+            label: t('usingSolutionCardlabel1'),
+        },
+    ];
+
     return (
         <Box
             sx={{
@@ -72,7 +75,7 @@ const UsingSolution: FC = () => {
         >
             <Inner fixed>
                 <Title>
-                    Используя <Span>KSOLUTIONS</Span> как платформу
+                    {t('usingSolutionTitle')} <Span>{t('usingSolutionTitle1')}</Span> {t('usingSolutionTitle2')}
                 </Title>
                 <Content>
                     {cards.map((row: any) => (

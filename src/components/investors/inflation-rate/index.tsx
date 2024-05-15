@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 
 import inflationTarget from 'assets/pages/investors/inflationTarget.png';
 import inflationMap from 'assets/pages/investors/inflationMap.png';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     height: 100%;
@@ -91,6 +92,7 @@ const InflationMap = styled.img`
 `;
 
 const InflationRate: FC = () => {
+    const { t } = useTranslation('investor-page');
     return (
         <Box
             sx={{
@@ -103,10 +105,11 @@ const InflationRate: FC = () => {
             <Inner fixed>
                 <Content>
                     <div>
-                        <Title>Уровень инфляции</Title>
+                        <Title>{t('Уровень инфляции')}</Title>
                         <Paragraph>
-                            <Span>97%</Span> инвесторов <Span>получают</Span> доходность инвестиций <Span>выше</Span>{' '}
-                            инфляции
+                            <Span>97%</Span>
+                            {t('инвесторов')} <Span>{t('получают')} </Span>
+                            {t('доходность инвестиций выше инфляции')}
                         </Paragraph>
                     </div>
                     <Img className="inflationTarget" src={inflationTarget} />

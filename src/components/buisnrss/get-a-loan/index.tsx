@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { GetLoanCard } from 'components/buisnrss/get-a-loan/get-loan-card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -33,35 +34,37 @@ const Title = styled.h2`
     }
 `;
 
-const cards = [
-    {
-        id: '1',
-        title: 'ШАГ 1',
-        text: 'Зарегистрируйтесь на платформе и оформите заявку',
-    },
-    {
-        id: '2',
-        title: 'ШАГ 2',
-        text: 'После одобрения заявки начните сбор средств',
-    },
-    {
-        id: '3',
-        title: 'ШАГ 3',
-        text: 'Получите займ на свой банковский счёт по окончании сбора',
-    },
-    {
-        id: '4',
-        title: 'ШАГ 4',
-        text: 'Договор займа и график платежей будут оформлены онлайн и станут доступны в личном кабинете',
-    },
-    {
-        id: '5',
-        title: 'ШАГ 5',
-        text: 'Рассчитайтесь с инвесторами и продолжайте развивать ваш бизнес',
-    },
-];
-
 const GetLoanBusiness: FC = () => {
+    const { t } = useTranslation('business-page');
+
+    const cards = [
+        {
+            id: '1',
+            title: t('getAloanCardTitle'),
+            text: t('getAloanCardText'),
+        },
+        {
+            id: '2',
+            title: t('getAloanCardTitle1'),
+            text: t('getAloanCardText1'),
+        },
+        {
+            id: '3',
+            title: t('getAloanCardTitle2'),
+            text: t('getAloanCardText2'),
+        },
+        {
+            id: '4',
+            title: t('getAloanCardTitle3'),
+            text: t('getAloanCardText3'),
+        },
+        {
+            id: '5',
+            title: t('getAloanCardTitle4'),
+            text: t('getAloanCardText4'),
+        },
+    ];
+
     return (
         <Box
             sx={{
@@ -73,7 +76,7 @@ const GetLoanBusiness: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Как получить займ?</Title>
+                <Title>{t('getAloanTitle')}</Title>
                 <Content>
                     {cards.map((row: any) => (
                         <GetLoanCard key={row.id} row={row} />

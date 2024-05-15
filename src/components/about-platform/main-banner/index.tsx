@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 
 import Image from './image';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     position: relative;
@@ -64,6 +65,8 @@ const Title = styled.h2`
 const AboutPlatformMainBanner: FC = () => {
     const isDesktop = useMediaQuery('(min-width:1280px)');
 
+    const { t } = useTranslation('about-platform');
+
     return (
         <Box
             sx={{
@@ -78,13 +81,10 @@ const AboutPlatformMainBanner: FC = () => {
             <Inner fixed>
                 <Content>
                     <Span>
-                        О платформе
-                        <Title>K SOLUTIONS -</Title>
+                        {t('aboutPlatformTitle')}
+                        <Title>{t('aboutPlatformTitle1')}</Title>
                     </Span>
-                    <Paragraph>
-                        Краудинвестинг — метод прямого онлайн-финансирования бизнеса физическими лицами и
-                        институциональными инвесторами.
-                    </Paragraph>
+                    <Paragraph>{t('aboutPlatformText')}</Paragraph>
                 </Content>
                 {isDesktop && <Image />}
             </Inner>

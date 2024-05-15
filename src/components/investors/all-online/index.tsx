@@ -9,6 +9,7 @@ import line from 'assets/pages/investors/line.png';
 import ManagerIconImg from 'assets/pages/investors/ManagerIcon.png';
 
 import OnCard from 'components/investors/all-online/card';
+import { useTranslation } from 'react-i18next';
 
 const Inner = styled(Container)`
     height: 100%;
@@ -87,6 +88,8 @@ const Manager = styled.div`
 `;
 
 const OnlineSection: FC = () => {
+    const { t } = useTranslation('investor-page');
+
     return (
         <Box
             sx={{
@@ -97,19 +100,23 @@ const OnlineSection: FC = () => {
             }}
         >
             <Inner fixed>
-                <Title>Всё онлайн и прозрачно</Title>
+                <Title>{t('Всё онлайн и прозрачно')}</Title>
                 <TopPart>
-                    <OnCard img={OnCard_1} title="Договор онлайн" label="Присоединяйтесь к договору-оферте-онлайн" />
+                    <OnCard
+                        img={OnCard_1}
+                        title={t('Договор онлайн')}
+                        label={t('Присоединяйтесь к договору-оферте-онлайн')}
+                    />
                     <OnCard
                         img={OnCard_2}
-                        title="Подключение за день"
-                        label="Подайте заявку утром, и уже вечером можно начать работу"
+                        title={t('Подключение за день')}
+                        label={t('Подайте заявку утром, и уже вечером можно начать работу')}
                     />
                 </TopPart>
                 <BottomPart>
                     <OnCard
-                        title="Персональный менеджер"
-                        label="Помогает настроить работу, обучить сотрудников, разобраться с заявками"
+                        title={t('Персональный менеджер')}
+                        label={t('Помогает настроить работу, обучить сотрудников, разобраться с заявками')}
                     />
                     <Img src={line} />
                     <Manager>
@@ -117,10 +124,10 @@ const OnlineSection: FC = () => {
                             <ManagerIcon src={ManagerIconImg} />
                             <div>
                                 <span style={{ color: 'white', fontSize: '18px', fontWeight: '500' }}>
-                                    Мария Яблонева
+                                    {t('Мария Яблонева')}
                                 </span>
                                 <p style={{ color: 'white', fontSize: '16px', fontWeight: '300', margin: '0' }}>
-                                    Персональный менеджер
+                                    {t('Персональный менеджер')}
                                 </p>
                             </div>
                         </div>
