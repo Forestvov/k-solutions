@@ -38,8 +38,7 @@ export const tokenExpired = (exp: number) => {
 
     // Test token expires after 10s
     // const timeLeft = currentTime + 10000 - currentTime; // ~10s
-    const timeLeft = exp * 100000 - currentTime;
-
+    const timeLeft = exp * 10000 - currentTime;
     clearTimeout(expiredTimer);
 
     expiredTimer = setTimeout(() => {

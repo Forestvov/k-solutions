@@ -1,26 +1,63 @@
 {
-  "bannerTitle": "INTERNET SERVICES THAT ALLOWS YOU TO USE SERVICES IN BUSINESS OR USE FINANCING FOR BUSINESS!",
-  "Цифры говорят за нас лучше всего": "The ciphers will be sent the next day",
-  "Средневзвешенная ставка за 30 дней": "Short-term stay of 30 days",
+  "bannerTitle": "An online service where you can invest money in a business or get financing for a company!",
+  "Цифры говорят за нас лучше всего": "The numbers speak for us best",
+  "Средневзвешенная ставка за 30 дней": "Weighted average rate for 30 days",
   "МЛРД": "BILLION",
-  "Выдано займов бизнесу": "Provide business loans",
-  "Инвесторов на платформе": "Investors on platforms",
-  "Дефолтность по поколению 2022 года": "Expiry date: 2022",
-  "Уникальных компаний профинансировано": "Unique, professional company",
-  "Объём торгов на вторичном рынке за последние 30 дней": "The deadline is 30 days",
+  "Выдано займов бизнесу": "Business loans issued",
+  "Инвесторов на платформе": "Investors on the platform",
+  "Дефолтность по поколению 2022 года": "Default rate by generation 2022",
+  "Уникальных компаний профинансировано": "Unique companies financed",
+  "Объём торгов на вторичном рынке за последние 30 дней": "Trading volume on the secondary market over the last 30 days",
   "МЛН": "MILLION",
   "Как это работает": "How it works",
-  "Именно поэтому, получить финансирование через": "Funding is important at the moment",
-  "Намного проще, чем в банке": "My name is that it is a bank",
-  "Решение о финансировании по двум документам за 3 минуты в любое время 24/7": "The decision on financing is made within 3 minutes, 24 hours a day, in two documents",
-  "Решение за 3 минуты": "Reply within 3 minutes",
-  "Гораздо дешевле, чем в микрозаймах": "My first child who was in the microwave",
-  "Ставка 18,1% доступна для компаний с рейтингом 1": "Discount of 18.1% for companies with Invoice 1",
+  "Именно поэтому, получить финансирование через": "That is why, obtain financing through",
+  "Намного проще, чем в банке": "Much easier than in a bank",
+  "Решение о финансировании по двум документам за 3 минуты в любое время 24/7": "Financing decision based on two documents in 3 minutes at any time 24/7",
+  "Решение за 3 минуты": "Solution in 3 minutes",
+  "Гораздо дешевле, чем в микрозаймах": "Much cheaper than microloans",
+  "Ставка 18,1% доступна для компаний с рейтингом 1": "A rate of 18.1% is available for companies with a rating of 1",
   "Ставка от": "Rate from",
-  "Преимущества для клиентов": "Rewards for customers",
-  "Прозрачность": "transparency",
-  "Прозрачность-text": "For more information, consult experts who agree with the commander. ",
-  "Возможность получить долю в компании": "It is important that you make more money in companies",
-  "Некоторые-модели": "Some models offer the company more money, which can support potential customers in the process of promoting business.",
-  "Наши партнёры": "No partners"
+  "Преимущества для клиентов": "Benefits for clients",
+  "Прозрачность": "Transparency",
+  "Прозрачность-text": "We provide full support from experts and interaction with the team. ",
+  "Возможность получить долю в компании": "Opportunity to get a share in the company",
+  "Некоторые-модели": "Some models provide investors with a stake in the company, which can lead to potentially high returns if the business is successful.",
+  "Наши партнёры": "Our partners",
+  "Доступность": "Availability",
+  "K SOLUTIONS делает инвестирование доступным для широкого круга людей, поскольку минимальные суммы вложений обычно невысоки, что позволяет даже малым инвесторам участвовать в проектах": {
+    "": "K SOLUTIONS makes investing accessible to a wide range of people, since the minimum investment amounts are usually low, which allows even small investors to participate in projects."
+  },
+  "Диверсификация портфеля": "Portfolio diversification",
+  "Сотрудничество с K SOLUTIONS помогает диверсифицировать портфель инвестора, снижая риски путем распределения средств между различными видами активов и проектами": {
+    "": "Cooperation with K SOLUTIONS helps to diversify an investor’s portfolio, reducing risks by distributing funds between different types of assets and projects."
+  },
+  "Доступ к новым рынкам": "Access to new markets",
+  "K SOLUTIONS открывает доступ к инвестиционным возможностям, которые ранее были недоступны для широкой публики, таким как стартапы и инновационные проекты": {
+    "": "K SOLUTIONS opens up access to investment opportunities that were previously unavailable to the general public, such as start-ups and innovative projects."
+  },
+  "Поддержка предпринимательства": "Entrepreneurship support",
+  "Некоторые модели предоставляют инвесторам долю в компании, что может привести к потенциально высоким доходам в случае успеха бизнеса": {
+    "": "Some models provide investors with a stake in the company, which can lead to potentially high returns if the business is successful."
+  },
+  "Обеспечиваем полное сопровождение со стороны экспертов, взаимодействие с командой": {
+    " Помимо базового анализа, эксперты проводят дополнительные исследования по различным аспектам компании, включая ее репутацию, клиентские отзывы, индустриальные стандарты и законодательство": {
+      "": "We provide full support from experts and interaction with the team. "
+    }
+  },
+  "Оценка рисков": "Risk assessment",
+  "Эксперты идентифицируют и анализируют различные виды рисков, связанных с бизнесом компании, такие как операционные риски, финансовые риски, риски рынка и юридические риски, и разрабатывают стратегии их управления": {
+    "": "Experts identify and analyze various types of risks associated with a company's business, such as operational risks, financial risks, market risks and legal risks, and develop strategies to manage them."
+  },
+  "Оценка бизнес-модели": "Business model assessment",
+  "Эксперты проводят тщательный анализ бизнес-модели компании, оценивая ее конкурентные преимущества, потенциал роста и устойчивость к рискам и изменениям на рынке": {
+    "": "Experts conduct a thorough analysis of the company's business model, assessing its competitive advantages, growth potential and resistance to risks and changes in the market."
+  },
+  "Социальная и экологическая ценность": "Social and environmental value",
+  "Мы исследуем социальную и экологическую направленность, что позволяет инвесторам вкладывать в компании, которые приносят общественную пользу": {
+    "": "We explore social and environmental focus, which allows investors to invest in companies that provide social benefit."
+  },
+  "Возможность раннего доступа": "Early access option",
+  " K SOLUTIONS может предоставить инвесторам ранний доступ к перспективным проектам или продуктам, которые могут стать популярными в будущем": {
+    "": " K SOLUTIONS can provide investors with early access to promising projects or products that may become popular in the future."
+  }
 }

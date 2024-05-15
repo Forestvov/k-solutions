@@ -67,7 +67,7 @@ const Item: FC<ItemProp> = ({ title, icon, text }) => {
             }}
         >
             <Stack direction={{ xs: 'column', md: 'row' }} justifyContent="space-between">
-                <Title>{title}</Title>
+                <Title>{title}:</Title>
                 <Image src={icon} alt={title} />
             </Stack>
             <Typography
