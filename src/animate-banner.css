@@ -40,7 +40,7 @@
         left: 531px;
     }
     & span:nth-child(6) {
-        left: 648px;
+        left: 640px;
     }
 }
 .chart * {
@@ -209,7 +209,7 @@
     }
 }
 .bar:nth-child(11) {
-    left: 634px;
+    left: 625px;
     animation: grow-11 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
 }
 @keyframes grow-11 {
@@ -223,7 +223,7 @@
     }
 }
 .bar:nth-child(12) {
-    left: 678px;
+    left: 667px;
     animation: grow-12 5s cubic-bezier(0.17, 0.89, 0.32, 1.27) infinite;
 }
 @keyframes grow-12 {
