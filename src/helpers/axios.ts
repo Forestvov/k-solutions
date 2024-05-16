@@ -22,10 +22,7 @@ axiosInstance.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (
-            error.response.data.message === 'JWT strings must contain exactly 2 period characters. Found: 0' &&
-            error.config
-        ) {
+        if (error.response.status === 403 && error.config) {
             originalRequest._isRetry = true;
             try {
                 const config = {
@@ -53,6 +50,7 @@ export default axiosInstance;
 
 export const fetcher = async (args: string) => {
     const [url, payload, method = 'get', headers = {}] = Array.isArray(args) ? args : [args];
+
     if (method.toLowerCase() === 'post') {
         const res = await axiosInstance.post(url, payload, { headers });
         return res.data;
