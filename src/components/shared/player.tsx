@@ -3,9 +3,6 @@ import styled from '@emotion/styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import VideoDesktop from 'assets/desktop-video.mp4';
-import VideoMobile from 'assets/mobile-video.mp4';
-
 const VideoBlock = styled.video`
     width: 100%;
     height: auto;
@@ -16,7 +13,12 @@ const VideoBlock = styled.video`
     }
 `;
 
-const Player = () => {
+interface Props {
+    desktop: string;
+    mobile: string;
+}
+
+const Player = ({ desktop, mobile }: Props) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -52,9 +54,7 @@ const Player = () => {
         };
     }, [videoRef]);
 
-    return (
-        <VideoBlock ref={videoRef} src={isMobile ? VideoMobile : VideoDesktop} playsInline preload="auto" loop muted />
-    );
+    return <VideoBlock ref={videoRef} src={isMobile ? mobile : desktop} playsInline preload="auto" loop muted />;
 };
 
 export default Player;
