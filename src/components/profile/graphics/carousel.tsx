@@ -70,6 +70,7 @@ const Wrapepr = styled.div`
     }
     a {
         color: #000;
+        text-decoration: none;
     }
     p {
         text-align: center;
@@ -115,6 +116,8 @@ const Slide = styled(SwiperSlide)`
     }
 `;
 
+const HEIGHT_CHART = 200;
+
 const Carousel = () => {
     const { t } = useTranslation('personal');
 
@@ -137,7 +140,7 @@ const Carousel = () => {
                                 },
                             ]}
                             type="area"
-                            height={400}
+                            height={HEIGHT_CHART}
                         />
                         <p>{t('Акции Genetico взлетели на 40% в первый день торгов после IPO')}</p>
                     </a>
@@ -160,7 +163,7 @@ const Carousel = () => {
                                 },
                             ]}
                             type="area"
-                            height={400}
+                            height={HEIGHT_CHART}
                         />
                         <p>{t('Акции Reddit выросли почти на 48% в первый день торгов')}</p>
                     </a>
@@ -185,7 +188,7 @@ const Carousel = () => {
                                 },
                             ]}
                             type="area"
-                            height={400}
+                            height={HEIGHT_CHART}
                         />
                         <p>{t('Astera Labs подскочили более чем на 70% во время звездного дебюта на Nasdaq')}</p>
                     </a>
@@ -217,7 +220,7 @@ const Carousel = () => {
                                 },
                             ]}
                             type="area"
-                            height={400}
+                            height={HEIGHT_CHART}
                         />
                         <p>{t('Акционеры казахстанского банка Kaspi.kz привлекли более $1 млрд в ходе IPO в США')}</p>
                     </a>
