@@ -218,7 +218,7 @@ const ShowcasesItem = () => {
                                 }
                             />
                             <Info list={company.companyInvestDetailDtoList} />
-                            <Awards />
+                            {company.companyType === 'Company' && <Awards />}
                         </Stack>
                         {matchesDesktop && (
                             <Box
