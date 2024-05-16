@@ -22,7 +22,10 @@ axiosInstance.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 403 && error.config) {
+        if (
+            error.response.data.message === 'JWT strings must contain exactly 2 period characters. Found: 0' &&
+            error.config
+        ) {
             originalRequest._isRetry = true;
             try {
                 const config = {
