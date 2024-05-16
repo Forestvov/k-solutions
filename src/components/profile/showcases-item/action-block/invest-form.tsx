@@ -14,7 +14,7 @@ import type { CompanyType } from 'types/company';
 import { closeBrief, investBrief } from 'api/brief';
 import { useCurrencyContext } from 'context/currency';
 import { generatePrefixCurrency } from 'components/profile/balance/all-assets/replenish/step/currency-form';
-import { returnCurrencyForm } from 'helpers/renderCurrency';
+import { renderCurrency, returnCurrencyForm } from 'helpers/renderCurrency';
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const Wrapper = styled.div`
@@ -167,7 +167,16 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false, amountMin =
                             <Input
                                 {...methods.register('amount')}
                                 onChange={onChange}
-                                className={amountMin > Number(value) ? 'error-amount' : ''}
+                                className={
+                                    renderCurrency({
+                                        usd: Number(amountMin),
+                                        rub: currency.USD,
+                                        eur: currency.EUR,
+                                        currency: selected,
+                                    }) > Number(value)
+                                        ? 'error-amount'
+                                        : ''
+                                }
                                 value={value}
                                 type="number"
                                 placeholder={
