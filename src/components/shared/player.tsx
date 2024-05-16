@@ -52,7 +52,7 @@ const Player = ({ desktop, mobile }: Props) => {
                 observer.unobserve(videoRef.current);
             }
         };
-    }, [videoRef]);
+    }, [videoRef, desktop, mobile]);
 
     return <VideoBlock ref={videoRef} src={isMobile ? mobile : desktop} playsInline preload="auto" loop muted />;
 };
