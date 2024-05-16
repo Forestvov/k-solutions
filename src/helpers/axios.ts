@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 500 && error.config && !error.config._isRetry) {
+        if (error.response.status === 403 && error.config && !error.config._isRetry) {
             originalRequest._isRetry = true;
             try {
                 const config = {
@@ -50,7 +50,6 @@ export default axiosInstance;
 
 export const fetcher = async (args: string) => {
     const [url, payload, method = 'get', headers = {}] = Array.isArray(args) ? args : [args];
-
     if (method.toLowerCase() === 'post') {
         const res = await axiosInstance.post(url, payload, { headers });
         return res.data;

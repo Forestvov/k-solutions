@@ -36,6 +36,14 @@ const Input = styled.input`
 
     outline-color: #20836d;
 
+    &.error-amount {
+        color: #ff5630;
+
+        & + .amount-prefix {
+            color: #ff5630;
+        }
+    }
+
     &::placeholder {
         color: #838383;
     }
@@ -49,6 +57,7 @@ const Prefix = styled.span`
     position: absolute;
     left: 20px;
     top: 50%;
+    transition: color 400ms ease;
     transform: translateY(-50%);
 `;
 
@@ -60,9 +69,10 @@ interface Props {
     companyType: CompanyType;
     updateBrief?: VoidFunction;
     closeInvest?: boolean;
+    amountMin?: number;
 }
 
-const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) => {
+const InvestForm = ({ companyType, updateBrief, closeInvest = false, amountMin = 0 }: Props) => {
     const { t } = useTranslation('personal');
 
     const { selected, currency } = useCurrencyContext();
@@ -126,15 +136,16 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
             methods.reset();
         } catch (e) {
             // @ts-ignore
-            if (e?.message === 'Amount less or more then rang of current briefcase') {
+            const message = e.response.data.message;
+            if (message === 'Amount less or more then rang of current briefcase') {
                 setError(t('Указанная сумма меньше минимального взноса'));
             }
             // @ts-ignore
-            if (e?.message === 'Balance is not enough for invest') {
+            if (message === 'Balance is not enough for invest') {
                 setError(t('Указанная сумма больше вашего баланса'));
             }
             // @ts-ignore
-            if (e?.message === 'Amount bigger then invested') {
+            if (message === 'Amount bigger then invested') {
                 setError(t('Сумма превышает ваши инвестиции'));
             }
         }
@@ -156,6 +167,7 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
                             <Input
                                 {...methods.register('amount')}
                                 onChange={onChange}
+                                className={amountMin > Number(value) ? 'error-amount' : ''}
                                 value={value}
                                 type="number"
                                 placeholder={
@@ -164,7 +176,7 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
                                         : `${t('Введите сумму кредитования')} (${generatePrefixCurrency(selected)})`
                                 }
                             />
-                            {value && <Prefix>{generatePrefixCurrency(selected)}</Prefix>}
+                            {value && <Prefix className="amount-prefix">{generatePrefixCurrency(selected)}</Prefix>}
                         </Wrapper>
                     )}
                     control={methods.control}

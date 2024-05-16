@@ -50,7 +50,7 @@ const ActionBlockCompany = ({
             />
             <Notification sx={{ marginBottom: '110px' }} />
             {briefcaseStatus !== 'Collection completed' && briefcaseStatus !== 'Loan payed' && (
-                <CompanyCreditForm updateBrief={updateBrief} />
+                <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />
             )}
         </Wrapper>
     );

@@ -30,8 +30,7 @@ const ActionBlockFranchise = ({ percents, amountFinish, amount, accountCount, am
                 ranges={9999}
                 sx={{ marginBottom: '110px' }}
             />
-
-            <InvestForm updateBrief={updateBrief} companyType="Franchise" />
+            <InvestForm updateBrief={updateBrief} amountMin={amountMin} companyType="Franchise" />
         </Wrapper>
     );
 };
