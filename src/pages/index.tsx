@@ -1,31 +1,42 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
+// Layouts
 import AuthLayout from 'layouts/auth-layout';
 import MainLayout from 'layouts/main-layout';
 import ProfileLayout from 'layouts/profile-layout';
 
+// Contexts
 import AuthGuard from 'context/auth/guard/auth-guard';
-
-import HomePage from './ui/home-page';
-import InvestorsPage from './ui/investors-page';
-import PersonalPage from './ui/personal-page';
-import LoginPage from './ui/login-page';
-import RegisterPage from './ui/register-page';
-import ShowcasesPage from './ui/showcases-page';
-import ShowcasesItemPage from './ui/showcases-item-page';
-import FinancePage from './ui/finance-page';
-import BalancePage from './ui/balance-page';
-import SettingsPage from './ui/settings-page';
 import GuestGuard from 'context/auth/guard/guest-guard';
-import VerifyPage from './ui/verify-page';
-import VerifyByIdPage from './ui/verify-by-id-page';
-import GraphicsPage from './ui/graphics-page';
-import BusinessPage from './ui/business-page';
-import AboutPlatformPage from './ui/about-platfom-page';
-import BlogPage from './ui/blog-page';
-import SingleBlogPage from 'components/blog/singleBlogPage';
-import { PrivacyPolicyPage } from './ui/privacy-policy-page';
-import { AmlPolicyPage } from './ui/aml-policy-page';
+
+// Guest Pages
+import HomePage from './ui/home-page';
+
+const GraphicsPage = lazy(() => import('./ui/graphics-page'));
+const BusinessPage = lazy(() => import('./ui/business-page'));
+const AboutPlatformPage = lazy(() => import('./ui/about-platfom-page'));
+const BlogPage = lazy(() => import('./ui/blog-page'));
+const SingleBlogPage = lazy(() => import('./ui/single-blog-page'));
+
+// Profile Pages
+const InvestorsPage = lazy(() => import('./ui/investors-page'));
+const PersonalPage = lazy(() => import('./ui/personal-page'));
+const ShowcasesPage = lazy(() => import('./ui/showcases-page'));
+const ShowcasesItemPage = lazy(() => import('./ui/showcases-item-page'));
+const FinancePage = lazy(() => import('./ui/finance-page'));
+const BalancePage = lazy(() => import('./ui/balance-page'));
+const SettingsPage = lazy(() => import('./ui/settings-page'));
+
+// Auth Pages
+const LoginPage = lazy(() => import('./ui/login-page'));
+const RegisterPage = lazy(() => import('./ui/register-page'));
+const VerifyPage = lazy(() => import('./ui/verify-page'));
+const VerifyByIdPage = lazy(() => import('./ui/verify-by-id-page'));
+
+// Policy Pages
+const PrivacyPolicyPage = lazy(() => import('./ui/privacy-policy-page'));
+const AmlPolicyPage = lazy(() => import('./ui/aml-policy-page'));
 
 export const appRouter = createBrowserRouter([
     {
@@ -130,7 +141,6 @@ export const appRouter = createBrowserRouter([
             },
         ],
     },
-    // todo это админка
     {
         element: (
             <AuthGuard>

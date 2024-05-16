@@ -1,10 +1,11 @@
 import type { FC } from 'react';
+import { useParams } from 'react-router';
+
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import { news } from 'components/blog/singleBlogPage/news';
-import { useParams } from 'react-router';
+import { news } from './news';
 
 const Inner = styled(Container)`
     position: relative;
@@ -76,7 +77,7 @@ const Paragraph = styled.p`
     }
 `;
 
-const SingleBlogPage: FC = () => {
+const SingleBlogPageView: FC = () => {
     const params = useParams();
     const { id } = params;
 
@@ -115,4 +116,4 @@ const SingleBlogPage: FC = () => {
     );
 };
 
-export default SingleBlogPage;
+export default SingleBlogPageView;
