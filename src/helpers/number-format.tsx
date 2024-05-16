@@ -3,10 +3,10 @@ import { getCookie } from 'context/settings/cookie';
 function getLocaleCurrency() {
     const currency = getCookie('currency');
 
-    if (currency === 'USD') {
+    if (currency === 'RUB') {
         return {
-            code: 'en-US',
-            currency: 'USD',
+            code: 'ru-RU',
+            currency: 'RUB',
         };
     } else if (currency === 'EUR') {
         return {
@@ -15,8 +15,8 @@ function getLocaleCurrency() {
         };
     } else {
         return {
-            code: 'ru-RU',
-            currency: 'RUB',
+            code: 'en-US',
+            currency: 'USD',
         };
     }
 }

@@ -42,7 +42,6 @@ const Balance = () => {
     const { userId } = useParams();
 
     const { selected, currency } = useCurrencyContext();
-
     if (userId) {
         return (
             <Wrapper to={`/${userId}/balance`}>
@@ -72,7 +71,7 @@ const Balance = () => {
                 <Price>
                     {fCurrency(
                         renderCurrency({
-                            usd: user.balance.balance,
+                            usd: user.balance.briefcaseBalance,
                             rub: currency.USD,
                             eur: currency.EUR,
                             currency: selected,
