@@ -40,10 +40,15 @@ const List = () => {
             <Box
                 sx={{
                     display: 'grid',
-                    gridGap: '35px',
+                    gridGap: {
+                        lg: '35px',
+                        xs: '20px',
+                    },
                     gridTemplateColumns: {
                         xs: '1fr',
-                        md: 'repeat(2, 1fr)',
+                        sm: '540px',
+                        md: 'repeat(2, 454px)',
+                        xl: 'repeat(2, 530px)',
                         lg: 'repeat(3, 1fr)',
                     },
                     marginBottom: { lg: '60px', xs: '20px' },

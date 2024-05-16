@@ -48,7 +48,7 @@ interface Props {
 }
 
 const MyInvestCard = ({ card }: Props) => {
-    if (!card) return null;
+    if (!card || !card.briefcaseAccountCommonView) return null;
 
     const {
         briefcaseAccountCommonView: {
@@ -63,13 +63,14 @@ const MyInvestCard = ({ card }: Props) => {
             companyInvestId,
             companyType,
             logo,
+            briefcaseImage,
         },
         briefcaseAccountCommonInvestView: { count, sum },
     } = card;
 
     return (
         <Item>
-            <Image image="image" />
+            <Image image={briefcaseImage} />
             <Stack
                 sx={{
                     padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },
