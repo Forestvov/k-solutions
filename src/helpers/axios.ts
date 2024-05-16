@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 403 && error.config) {
+        if (error.response.message.includes('JWT expired') && error.config) {
             originalRequest._isRetry = true;
             try {
                 const config = {
