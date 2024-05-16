@@ -24,7 +24,7 @@ const Assets = () => {
     };
 
     // @ts-ignore
-    if (!dataLoading && !data.analiticActiveView.length && !data.analiticActiveGainView.length) return null;
+    if (!dataLoading && !data?.analiticActiveView.length && !data?.analiticActiveGainView.length) return null;
 
     return (
         <Stack

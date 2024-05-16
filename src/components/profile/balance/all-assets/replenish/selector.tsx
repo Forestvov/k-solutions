@@ -118,7 +118,7 @@ const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
                                     }}
                                 >
                                     <BoxImage>
-                                        <img src={item.image} alt={item.value} />
+                                        <img src={item.image} />
                                     </BoxImage>
                                     {item.currentName}
                                 </Item>
@@ -193,7 +193,7 @@ const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
                                 }}
                             >
                                 <BoxImage>
-                                    <img src={item.image} alt={item.value} />
+                                    <img src={item.image} />
                                 </BoxImage>
                                 {item.currentName}
                             </Item>
