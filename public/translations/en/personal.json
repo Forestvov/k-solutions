@@ -272,5 +272,7 @@
   "Вы успшено подписали договор": "You successfully signed the agreement",
   "Данный договор заключается между инвестором и компанией": "This agreement is concluded between the investor and the company",
   "Идет сбор": "Collection in progress",
-  "Загруженно": "Загруженно"
+  "Загруженно": "Loaded",
+  "Ваши инвестиции": "Your investment",
+  "Условия кредитования": "Lending terms"
 }

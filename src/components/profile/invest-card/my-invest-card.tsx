@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
@@ -48,6 +50,8 @@ interface Props {
 }
 
 const MyInvestCard = ({ card }: Props) => {
+    const { t } = useTranslation('personal');
+
     if (!card || !card.briefcaseAccountCommonView) return null;
 
     const {
@@ -81,10 +85,10 @@ const MyInvestCard = ({ card }: Props) => {
                 <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
                 <Description name={companyName} status={true} text={descriptions} />
                 <Stack spacing="15px" sx={{ marginBottom: 'auto' }}>
-                    <Label>Ваши инвестиции</Label>
+                    <Label>{t('Ваши инвестиции')}</Label>
                     <InvestStats companyType={companyType} countTransaction={count} myTotal={sum} />
                     <Divider />
-                    <Label>Условия кредитования</Label>
+                    <Label>{t('Условия кредитования')}</Label>
                     <InvestStats
                         amountFinish={amountFinish}
                         finishDay={finishDay}
@@ -94,7 +98,7 @@ const MyInvestCard = ({ card }: Props) => {
                 </Stack>
                 <Link to={`/showcases/${briefcaseId}?companyId=${companyInvestId}`}>
                     <Button variant="green" fullWidth>
-                        Подробнее
+                        {t('Подробнее')}
                     </Button>
                 </Link>
             </Stack>

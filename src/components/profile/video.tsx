@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import WhiteWrapper from 'components/profile/white-wrapper';
 import Player from 'components/shared/player';
 
-import VideoDesktop from 'assets/desktop-video.mp4';
-import VideoMobile from 'assets/mobile-video.mp4';
+import VideoDesktop from '../../../public/desktop-video.mp4';
+import VideoMobile from '../../../public/mobile-video.mp4';
 
 const Wrapper = styled(WhiteWrapper)`
     margin-bottom: 30px;
