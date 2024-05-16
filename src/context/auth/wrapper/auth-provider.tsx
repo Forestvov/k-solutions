@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
 
 import { AuthContext } from './auth-context';
-import { isValidToken, setSession } from '../utils';
+import { setSession } from '../utils';
 import type { ActionMapType, AuthStateType, AuthUserType } from '../types';
 import axios, { endpoints } from 'helpers/axios';
 
@@ -65,7 +65,8 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
 
 // ----------------------------------------------------------------------
 
-const STORAGE_KEY = 'acceptToken';
+const STORAGE_ACCEPT_KEY = 'acceptToken';
+const STORAGE_REFRESH_KEY = 'refreshToken';
 
 interface Props {
     children: ReactNode;
@@ -76,10 +77,11 @@ export function AuthProvider({ children }: Props) {
 
     const initialize = useCallback(async () => {
         try {
-            const acceptToken = localStorage.getItem(STORAGE_KEY);
+            const acceptToken = localStorage.getItem(STORAGE_ACCEPT_KEY);
+            const refreshToken = localStorage.getItem(STORAGE_REFRESH_KEY);
 
-            if (acceptToken && isValidToken(acceptToken)) {
-                setSession(acceptToken);
+            if (acceptToken && refreshToken) {
+                setSession(acceptToken, refreshToken);
 
                 const resUser = await axios.get(endpoints.auth.me);
                 const resBalance = await axios.get(endpoints.auth.balance);
@@ -128,9 +130,9 @@ export function AuthProvider({ children }: Props) {
         };
 
         const res = await axios.post(endpoints.auth.login, data);
-        const { acceptToken } = res.data;
+        const { acceptToken, refreshToken } = res.data;
 
-        setSession(acceptToken);
+        setSession(acceptToken, refreshToken);
 
         const resUser = await axios.get(endpoints.auth.me);
         const resBalance = await axios.get(endpoints.auth.balance);
@@ -157,7 +159,7 @@ export function AuthProvider({ children }: Props) {
 
     // LOGOUT
     const logout = useCallback(async () => {
-        setSession(null);
+        setSession(null, null);
         dispatch({
             type: Types.LOGOUT,
         });

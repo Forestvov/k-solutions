@@ -11,7 +11,7 @@ import Title from '../title';
 import type { FormStateAccount } from './types';
 import Input from './input';
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
-import { upadteAccount } from 'api/user';
+import { updateAccount } from 'api/user';
 
 const AccountForm = () => {
     const { t } = useTranslation('personal');
@@ -47,7 +47,7 @@ const AccountForm = () => {
 
         if (user.id) {
             // @ts-ignore
-            await upadteAccount(newData);
+            await updateAccount(newData);
             await update();
         }
     };

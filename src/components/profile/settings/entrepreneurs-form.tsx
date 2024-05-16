@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
-import { upadteAccount } from 'api/user';
+import { updateAccount } from 'api/user';
 
 import Title from '../title';
 import type { FormStateCompany } from './types';
@@ -36,7 +36,7 @@ const EntrepreneursForm = () => {
 
     const onSubmit = async (data: FormStateCompany) => {
         // @ts-ignore
-        await upadteAccount(data);
+        await updateAccount(data);
         await update();
     };
 
