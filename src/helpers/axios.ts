@@ -16,6 +16,11 @@ const axiosInstance = axios.create({
         : {},
 });
 
+axiosInstance.interceptors.request.use((config) => {
+    config.headers.Authorization = `${localStorage.getItem('acceptToken')}`;
+    return config;
+});
+
 axiosInstance.interceptors.response.use(
     (config) => {
         return config;
@@ -38,7 +43,7 @@ axiosInstance.interceptors.response.use(
                 const response = await axios.request<any>(config);
                 localStorage.setItem('acceptToken', response.data.acceptToken);
                 localStorage.setItem('refreshToken', response.data.refreshToken);
-                return axiosInstance.request(originalRequest);
+                return await axiosInstance.request(originalRequest);
             } catch (e) {
                 console.log('НЕ АВТОРИЗОВАН');
             }
@@ -46,6 +51,7 @@ axiosInstance.interceptors.response.use(
         throw error;
     }
 );
+
 export default axiosInstance;
 
 export const fetcher = async (args: string) => {
