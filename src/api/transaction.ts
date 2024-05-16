@@ -146,6 +146,10 @@ export const addTransaction = async (data: any) => {
     return await axios.post(endpoints.transaction.add, data);
 };
 
+export const getTransaction = async (id: number) => {
+    return await axios.get(`${endpoints.transaction.get}/${id}`);
+};
+
 export const setMarkAsTransaction = async (id: string) => {
     return await axios.put(`${endpoints.transaction.setMarkAs}/${id}`);
 };

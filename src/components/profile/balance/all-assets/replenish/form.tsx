@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 import Steep from './step';
 import type { FormState } from './types';
-import { addTransaction, setMarkAsTransaction } from 'api/transaction';
+import { addTransaction, getTransaction, setMarkAsTransaction } from 'api/transaction';
 import type { IHistory } from 'types/transaction';
 import Button from '@mui/material/Button';
 
@@ -58,12 +58,16 @@ const TitleContent = styled.div`
 
 interface Props {
     onClose: VoidFunction;
-    content?: IHistory;
+    contentRow?: IHistory;
     transactionType?: 'In' | 'Out';
 }
 
-export const Form = ({ onClose, content, transactionType }: Props) => {
+export const Form = ({ onClose, contentRow, transactionType }: Props) => {
     const { t } = useTranslation('personal');
+
+    const [content, setContent] = useState(contentRow);
+    const [currentId, setCurrentId] = useState<null | number>(null);
+
     const steps = [`${t('ШАГ')} 1`, `${t('ШАГ')} 2`, `${t('ШАГ')} 3`];
 
     const [activeStep, setActiveStep] = useState(0);
@@ -139,7 +143,17 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                 }
             }
         }
-    }, [content]);
+    }, [content, methods, transactionType]);
+
+    useEffect(() => {
+        if (currentId) {
+            const interval = setInterval(() => {
+                getTransaction(currentId).then(({ data }) => setContent(data));
+            }, 5000);
+
+            return () => clearInterval(interval);
+        }
+    }, [currentId]);
 
     const onSubmit = async (data: FormState) => {
         if (
@@ -163,6 +177,7 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     methods.setValue('transactionDate', data.transactionDate);
                     methods.setValue('transactionStatus', data.transactionStatus);
                     methods.setValue('transactionId', data.transactionId);
+                    setCurrentId(data.transactionId);
                 });
 
                 setActiveStep(3);
@@ -185,6 +200,7 @@ export const Form = ({ onClose, content, transactionType }: Props) => {
                     methods.setValue('transactionDate', data.transactionDate);
                     methods.setValue('transactionStatus', data.transactionStatus);
                     methods.setValue('transactionId', data.transactionId);
+                    setCurrentId(data.transactionId);
                 });
                 if (transactionType === 'Out') {
                     setActiveStep(3);
