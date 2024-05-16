@@ -24,34 +24,36 @@ const Player = ({ desktop, mobile }: Props) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
-        let options = {
-            rootMargin: '0px',
-            threshold: [0.25, 0.75],
-        };
+        if (videoRef) {
+            let options = {
+                rootMargin: '0px',
+                threshold: [0.25, 0.75],
+            };
 
-        let handlePlay = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    videoRef.current?.play();
-                } else {
-                    videoRef.current?.pause();
-                }
-            });
-        };
+            let handlePlay = (entries: IntersectionObserverEntry[]) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        videoRef.current?.play();
+                    } else {
+                        videoRef.current?.pause();
+                    }
+                });
+            };
 
-        let observer = new IntersectionObserver(handlePlay, options);
+            let observer = new IntersectionObserver(handlePlay, options);
 
-        if (videoRef.current) {
-            observer.observe(videoRef.current);
-        }
-
-        return () => {
             if (videoRef.current) {
-                // in if scope
-                // eslint-disable-next-line react-hooks/exhaustive-deps
-                observer.unobserve(videoRef.current);
+                observer.observe(videoRef.current);
             }
-        };
+
+            return () => {
+                if (videoRef.current) {
+                    // in if scope
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
+                    observer.unobserve(videoRef.current);
+                }
+            };
+        }
     }, [videoRef, desktop, mobile]);
 
     return <VideoBlock ref={videoRef} src={isMobile ? mobile : desktop} playsInline preload="auto" loop muted />;

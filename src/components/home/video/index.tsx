@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import VideoDesktop from 'assets/desktop-home-video.mp4';
-import VideoMobile from 'assets/mobile-video.mp4';
+import VideoDesktop from 'assets/desktop-home-video.mp4?react';
+import VideoMobile from 'assets/mobile-video.mp4?react';
 
 import Player from 'components/shared/player';
 
