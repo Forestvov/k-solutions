@@ -15,6 +15,7 @@ import { closeBrief, investBrief } from 'api/brief';
 import { useCurrencyContext } from 'context/currency';
 import { generatePrefixCurrency } from 'components/profile/balance/all-assets/replenish/step/currency-form';
 import { returnCurrencyForm } from 'helpers/renderCurrency';
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const Wrapper = styled.div`
     position: relative;
@@ -65,6 +66,8 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
     const { t } = useTranslation('personal');
 
     const { selected, currency } = useCurrencyContext();
+    // @ts-ignore
+    const { update } = useAuthContext();
 
     const [error, setError] = useState<boolean | string>(false);
     const [loader, setLoader] = useState(false);
@@ -113,6 +116,7 @@ const InvestForm = ({ companyType, updateBrief, closeInvest = false }: Props) =>
                     briefcaseId: String(id),
                 });
             }
+            await update();
 
             if (updateBrief) {
                 await updateBrief();
