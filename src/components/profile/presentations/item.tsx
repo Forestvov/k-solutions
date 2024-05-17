@@ -109,7 +109,7 @@ const Item = ({ isFirst }: Props) => {
                     <img
                         className="image-prev"
                         style={{ display: 'none' }}
-                        src={`http://image-default.ru?${localStorage.getItem('acceptToken')}`}
+                        src={`http://image-default.ru?${btoa(localStorage.getItem('acceptToken') ?? '')}`}
                         alt=""
                     />
                 )}

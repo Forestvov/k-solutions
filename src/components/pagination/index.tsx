@@ -31,6 +31,15 @@ const PaginationWrapper = styled.div`
     }
 
     @media (min-width: 768px) {
+        height: 13.5px;
+        button {
+            &.active {
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    @media (min-width: 1668px) {
         height: 17px;
         button {
             &.active {

@@ -16,10 +16,6 @@ const Label = styled.span`
         font-size: 1.2rem;
     }
 
-    @media (min-width: 1280px) {
-        font-size: 1.3rem;
-    }
-
     @media (min-width: 1668px) {
         font-size: 1.375rem;
     }
@@ -28,15 +24,11 @@ const Label = styled.span`
 const Value = styled.span`
     color: #006838;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 51px;
 
     @media (min-width: 768px) {
-        font-size: 2.1rem;
-    }
-
-    @media (min-width: 1280px) {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     @media (min-width: 1668px) {
@@ -51,7 +43,7 @@ const Item: FC<Prop> = ({ label, value }) => {
             alignItems={{ sm: 'center' }}
             justifyContent="space-between"
             sx={{
-                padding: { sm: '31px 42px 30px 42px', xs: '20px' },
+                padding: { lg: '31px 42px 30px 42px', xs: '20px' },
                 background: '#F6F7F8',
                 borderRadius: '20px',
                 transition: 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',

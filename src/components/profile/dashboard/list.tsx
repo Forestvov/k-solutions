@@ -46,9 +46,9 @@ const List = () => {
                     },
                     gridTemplateColumns: {
                         xs: '1fr',
-                        sm: '540px',
+                        sm: '450px',
                         md: 'repeat(2, 454px)',
-                        xl: 'repeat(2, 530px)',
+                        xl: 'repeat(2, 450px)',
                         lg: 'repeat(3, 1fr)',
                     },
                     marginBottom: { lg: '60px', xs: '20px' },

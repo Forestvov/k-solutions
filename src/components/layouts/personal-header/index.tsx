@@ -16,12 +16,21 @@ import Box from '@mui/material/Box';
 const HomeLink = styled(NavLink)`
     position: relative;
     z-index: 11;
+
     svg {
         height: auto;
         width: 200px;
         display: block;
     }
+
     @media (min-width: 1024px) {
+        svg {
+            width: 240px;
+            height: 30px;
+        }
+    }
+
+    @media (min-width: 1668px) {
         svg {
             width: 287px;
             height: 36px;

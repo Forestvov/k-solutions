@@ -12,14 +12,22 @@ import Filters from './filters';
 import List from './list';
 
 const Wrapper = styled.div`
-    padding: 30px 30px 60px;
+    padding: 20px;
     border-radius: 35px;
     background: #fff;
     margin: 0 0 30px !important;
+
+    @media (min-width: 1668px) {
+        padding: 30px 30px 60px;
+    }
 `;
 
 const TitleStyled = styled(Title)`
-    margin: 0 0 30px;
+    margin: 0 0 20px;
+
+    @media (min-width: 1668px) {
+        margin: 0 0 30px;
+    }
 `;
 
 const Showcases = () => {

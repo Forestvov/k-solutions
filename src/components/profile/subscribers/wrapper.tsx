@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     border-radius: 15px;
     padding: 20px;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         border-radius: 35px;
         padding: 26px 45px 20px 30px;
     }

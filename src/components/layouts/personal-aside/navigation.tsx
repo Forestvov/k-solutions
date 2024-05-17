@@ -11,8 +11,8 @@ import UserIcon from 'assets/pages/personal/navigation/user.svg?react';
 import GraphicsIcon from 'assets/pages/personal/navigation/graphics.svg?react';
 
 const Link = styled(NavLink)`
-    width: 36px;
-    height: 36px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,9 +22,16 @@ const Link = styled(NavLink)`
         color 225ms ease-in-out,
         background 225ms ease-in-out;
 
-    @media (min-width: 768px) {
+    svg {
+        transform: scale(0.8);
+    }
+
+    @media (min-width: 1668px) {
         width: 48px;
         height: 48px;
+        svg {
+            transform: scale(1);
+        }
     }
 
     &.active {

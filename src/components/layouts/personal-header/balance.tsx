@@ -22,12 +22,15 @@ const Wrapper = styled(NavLink)`
 
     @media (min-width: 768px) {
         margin-left: 30px;
-        font-size: 1rem;
         padding: 16px 22px 15px;
     }
 
     @media (min-width: 1280px) {
         margin-left: 50px;
+    }
+
+    @media (min-width: 1668px) {
+        font-size: 1rem;
     }
 `;
 

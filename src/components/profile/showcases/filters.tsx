@@ -12,13 +12,14 @@ const ButtonStyled = styled(Button)<{ active?: boolean }>`
     color: #494949;
     background: rgba(32, 131, 109, 0.2);
     border-radius: 7px;
-    padding: 10px 25px;
+    padding: 8px 20px;
     margin-left: 0;
     margin-right: 20px;
     margin-bottom: 20px;
 
     @media (min-width: 1668px) {
         margin-right: 30px;
+        padding: 10px 25px;
     }
 
     svg {

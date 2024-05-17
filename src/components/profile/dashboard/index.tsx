@@ -21,7 +21,7 @@ const Dashboard = () => {
     return (
         <Box
             sx={{
-                padding: { xl: '30px 30px 42px', xs: '20px' },
+                padding: { lg: '30px 30px 42px', xs: '20px' },
                 background: '#fff',
                 borderRadius: '35px',
                 marginBottom: '30px',

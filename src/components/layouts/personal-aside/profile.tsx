@@ -10,7 +10,16 @@ const Profile = () => {
 
     return (
         <Stack spacing="15px" alignItems="center" marginBottom="28px">
-            <Typography variant="body2" fontWeight={500}>
+            <Typography
+                variant="body2"
+                fontWeight={500}
+                sx={{
+                    fontSize: {
+                        xs: '13px',
+                        lg: '16px',
+                    },
+                }}
+            >
                 {t('Профиль')}
             </Typography>
             <UserNameCircle />

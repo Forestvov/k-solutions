@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.data.message.includes('JWT') || error.response.data.status === 403) {
+        if (error.response.data.message.toLowerCase().includes('jwt') || error.response.data.status === 403) {
             originalRequest._isRetry = true;
             try {
                 const config = {
