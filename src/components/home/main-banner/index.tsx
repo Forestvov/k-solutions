@@ -70,7 +70,7 @@ const MainBanner: FC = () => {
                 height: { lg: 'min(100vh - 110px, 970px);', xs: 'auto' },
                 minHeight: { lg: '787px' },
                 background: '#F6F7F8',
-                paddingTop: { lg: '229px', xl: '200px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '229px', xl: '150px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '100px', sm: '130px', md: '150px' },
             }}
