@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-import Phone from 'assets/pages/home/iphone.png';
-
 const ImageWrapper = styled.div`
     position: absolute;
     right: 41px;
@@ -36,7 +34,7 @@ const Img = styled.img`
 const Image = () => {
     return (
         <ImageWrapper>
-            <Img src={Phone} alt="phone" />
+            <Img src="/images/iphone.png" loading="lazy" alt="phone" />
         </ImageWrapper>
     );
 };
