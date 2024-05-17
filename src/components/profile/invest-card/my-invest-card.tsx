@@ -18,8 +18,13 @@ const Item = styled(Stack)`
     border-radius: 15px;
     height: 100%;
     flex: 1;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
-    @media (min-width: 768px) {
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    @media (min-width: 1668px) {
         border-radius: 35px;
     }
 `;
@@ -77,7 +82,7 @@ const MyInvestCard = ({ card }: Props) => {
             <Image image={briefcaseImage} />
             <Stack
                 sx={{
-                    padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },
+                    padding: { lg: '60px 30px 30px', xl: '60px 20px 20px', xs: '15px' },
                     position: 'relative',
                     flex: '1',
                 }}

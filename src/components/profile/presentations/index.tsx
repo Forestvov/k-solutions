@@ -12,7 +12,7 @@ const Wrapper = styled(WhiteWrapper)`
 const TitleComponent = styled(Title)`
     margin: 0 0 25px 0;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         margin: 0 0 47px 0;
     }
 `;

@@ -40,7 +40,7 @@
   "Еще": "Noch",
   "Презентация финансовой аналитики платформы": "Präsentation der Plattform-Finanzanalyse",
   "В данной презентации Вы можете подробно посмотреть полную финансовую аналитику нашей платформы": {
-    "": "In dieser Präsentation können Sie die vollständigen Finanzanalysen unserer Plattform im Detail sehen."
+    "": "In dieser Präsentation können Sie die vollständige Finanzanalyse unserer Plattform im Detail sehen."
   },
   "Скачать Презентацию": "Präsentation herunterladen",
   "Компания": "Unternehmen",
@@ -225,8 +225,8 @@
   "Указанная сумма меньше минимального взноса": "Der angegebene Betrag liegt unter dem Mindestbeitrag",
   "Указанная сумма больше вашего баланса": "Der angezeigte Betrag ist größer als Ihr Guthaben",
   "Сумма превышает ваши инвестиции": "Der Betrag übersteigt Ihre Investition",
-  "Введите сумму инвестиции": "Geben Sie den Investitionsbetrag",
-  "Введите сумму кредитования": "Geben Sie den Kreditbetrag",
+  "Введите сумму инвестиции": "Geben Sie den Investitionsbetrag ein",
+  "Введите сумму кредитования": "Geben Sie den Kreditbetrag ein",
   "Вы успешно проинвестировали": "Sie haben erfolgreich investiert",
   "Вы успешно прокредитовали": "Sie haben Ihren Kredit erfolgreich abgeschlossen",
   "Запрос на закрытие отправлен": "Schließungsanfrage gesendet",
@@ -275,5 +275,20 @@
   "Загруженно": "Geladen",
   "Ваши инвестиции": "Ihre Investition",
   "Условия кредитования": "Kreditkonditionen",
-  "Горячее предложение": "Heißes Angebot"
+  "Горячее предложение": "Heißes Angebot",
+  "Финтех - распределение": "Fintech - Vertrieb",
+  "В данной презентации, вы узнаете, о способе получения займов через онлайн-платформы, связывающий заемщиков с инвесторами": {
+    "": "In dieser Präsentation erfahren Sie, wie Sie Kredite über Online-Plattformen erhalten, die Kreditnehmer mit Investoren verbinden."
+  },
+  "Апрель 13, 2023": "13. April 2023",
+  "Дорожная карта KSOLUTIONS": "KSOLUTIONS-Roadmap",
+  "Дорожная карта — это стратегический план, который определяет цели, задачи и ключевые этапы проекта, а также сроки их выполнения": {
+    "": "Eine Roadmap ist ein strategischer Plan, der die Ziele, Ziele und wichtigsten Meilensteine ​​eines Projekts sowie den Zeitrahmen für deren Fertigstellung definiert."
+  },
+  "Май 10, 2023": "10. Mai 2023",
+  "Краудленлинг KSOLUTIONS": "Überfüllte KSOLUTIONS",
+  "Финтех-распределение — это применение финтех-технологий для оптимизации управления финансами, повышая эффективность и прозрачность транзакций": {
+    "": "Unter Fintech-Vertrieb versteht man die Anwendung von Fintech-Technologien zur Optimierung des Finanzmanagements und zur Steigerung der Effizienz und Transparenz von Transaktionen."
+  },
+  "Март 21, 2024": "21. März 2024"
 }

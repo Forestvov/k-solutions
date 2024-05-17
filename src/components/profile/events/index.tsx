@@ -46,7 +46,17 @@ export const Events = () => {
             {newsLoading ? (
                 <EvetSkelenot />
             ) : (
-                <Stack spacing="30px" sx={{ marginBottom: '30px' }}>
+                <Stack
+                    direction={{
+                        lg: 'column',
+                        xl: 'row',
+                    }}
+                    spacing={{
+                        lg: '30px',
+                        xs: '20px',
+                    }}
+                    sx={{ marginBottom: '30px' }}
+                >
                     {news.map((item) => (
                         <Event key={item.id} {...item} />
                     ))}

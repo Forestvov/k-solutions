@@ -12,7 +12,7 @@ const Image = styled.div<{ bgSrc: string }>`
     background-size: contain;
     display: block;
     width: 100%;
-    height: 310px;
+    height: 280px;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -29,8 +29,13 @@ const Image = styled.div<{ bgSrc: string }>`
     }
 
     @media (min-width: 768px) {
-        width: 230px;
+        width: 200px;
         border-radius: 20px 0 0 20px;
+    }
+
+    @media (min-width: 1668px) {
+        height: 310px;
+        width: 230px;
     }
 `;
 
@@ -126,7 +131,7 @@ const Link = styled.a`
 const Event = ({ createdDate, descriptions, newsType, photo, title, url, type }: INewPost) => {
     const { t } = useTranslation('personal');
     return (
-        <Stack direction={{ sm: 'row' }}>
+        <Stack direction={{ sm: 'row' }} sx={{ width: '100%' }}>
             <Image bgSrc={photo} />
             <Content>
                 {url && type === 'News' ? (

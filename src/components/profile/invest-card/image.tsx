@@ -5,14 +5,15 @@ const ImageBox = styled.img`
     width: 100%;
     border-radius: 15px 15px 0 0;
     pointer-events: none;
-    height: 200px;
+    height: 150px;
 
-    @media (min-width: 768px) {
-        border-radius: 35px 35px 0 0;
+    @media (min-width: 1280px) {
+        height: 200px;
     }
 
     @media (min-width: 1668px) {
         height: 225px;
+        border-radius: 35px 35px 0 0;
     }
 `;
 

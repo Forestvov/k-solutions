@@ -20,7 +20,7 @@ const GeneralStatistics = () => {
     return (
         <WhiteWrapper>
             <TitleComponent>{t('Общая статистика платформы')}</TitleComponent>
-            <Stack spacing={{ xs: '15px', sm: '31px' }}>
+            <Stack spacing={{ xs: '15px', lg: '31px' }}>
                 <Item label={t('Средневзвешенная ставка на рынке')} value="25,5 %" />
                 <Item label={t('Инвесторов на платформе')} value="28 681" />
                 <Item label={t('Среднее время выдачи займа')} value={`1 ${t('день')}`} />

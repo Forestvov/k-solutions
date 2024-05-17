@@ -27,7 +27,7 @@ const Item = styled(Stack)`
         transform: scale(1.05);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         border-radius: 35px;
     }
 `;
@@ -74,7 +74,7 @@ const InvestCard = ({ card, hideStats, isHot }: Prop) => {
             <Tag isHot={isHot} status={companyType === 'Franchise' ? 'Franchise' : briefcaseStatus} />
             <Stack
                 sx={{
-                    padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },
+                    padding: { lg: '60px 30px 30px', xl: '60px 20px 20px', xs: '15px' },
                     position: 'relative',
                     flex: '1',
                 }}

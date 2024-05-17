@@ -13,7 +13,7 @@ const Label = styled.span`
     letter-spacing: 0.015em;
     color: #000000;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         font-size: 1rem;
     }
 `;
@@ -24,7 +24,7 @@ const Value = styled.span`
     letter-spacing: 0.015em;
     color: #006838;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         text-align: right;
         font-size: 1.125rem;
     }

@@ -10,6 +10,11 @@ const Name = styled(Title)`
     letter-spacing: 0;
     display: flex;
     align-items: center;
+
+    @media (max-width: 1280px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `;
 
 const StatusTag = styled.span`
@@ -22,6 +27,12 @@ const StatusTag = styled.span`
     border-radius: 4px;
     background: #00b227;
     margin-left: 10px;
+
+    @media (max-width: 1280px) {
+        margin-left: 0;
+        margin-bottom: 10px;
+        order: -1;
+    }
 `;
 
 const Text = styled.p`

@@ -92,7 +92,7 @@ const Filters = ({ onChange }: Props) => {
     ];
 
     return (
-        <Stack direction="row" flexWrap="wrap" marginBottom={{ xs: '20px', md: '40px' }}>
+        <Stack direction="row" flexWrap="wrap" marginBottom={{ xs: '20px', lg: '40px' }}>
             {BUTTONS.map((btn, idx) => (
                 <ButtonStyled
                     key={idx}

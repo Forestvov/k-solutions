@@ -25,7 +25,7 @@
   "Кол-во транзакций": "Number of transactions",
   "Активный": "Active",
   "Хотите получать уведомления о новых сборах?": "Would you like to be notified of new fees?",
-  "Подпишитесь на наш телеграм канал и будьте всегда вкурсе выгодных предложений!": "Subscribe to our Telegram channel and always be aware of profitable offers!",
+  "Подпишитесь на наш телеграм канал и будьте всегда вкурсе выгодных предложений!": "Subscribe to our telegram channel and always be aware of profitable offers!",
   "Подписаться": "Subscribe",
   "Нужна консультация ?": "Need advice?",
   "Оставьте заявку и наш специалист свяжется с вами!": "Leave a request and our specialist will contact you!",
@@ -164,7 +164,7 @@
   "Безопасность": "Safety",
   "Вы не верифицировали свой профиль!": "You have not verified your profile!",
   "Пожалуйста, пройдите верификацию!": "Please get verified!",
-  "Личная информация": "Personal information",
+  "Личная информация": "personal information",
   "Имя": "Name",
   "Фамилия": "Surname",
   "Логин": "Login",
@@ -269,11 +269,26 @@
   "Банковский перевод": "Bank transfer",
   "Информация о компании": "Information about the company",
   "Отправить": "Send",
-  "Вы успшено подписали договор": "You successfully signed the agreement",
+  "Вы успшено подписали договор": "You have successfully signed the contract",
   "Данный договор заключается между инвестором и компанией": "This agreement is concluded between the investor and the company",
   "Идет сбор": "Collection in progress",
   "Загруженно": "Loaded",
   "Ваши инвестиции": "Your investment",
   "Условия кредитования": "Lending terms",
-  "Горячее предложение": "Hot offer"
+  "Горячее предложение": "Hot offer",
+  "Финтех - распределение": "Fintech - distribution",
+  "В данной презентации, вы узнаете, о способе получения займов через онлайн-платформы, связывающий заемщиков с инвесторами": {
+    "": "In this presentation, you will learn about a way to obtain loans through online platforms that connect borrowers with investors."
+  },
+  "Апрель 13, 2023": "April 13, 2023",
+  "Дорожная карта KSOLUTIONS": "KSOLUTIONS Roadmap",
+  "Дорожная карта — это стратегический план, который определяет цели, задачи и ключевые этапы проекта, а также сроки их выполнения": {
+    "": "A roadmap is a strategic plan that defines the goals, objectives and key milestones of a project, as well as the time frame for their completion."
+  },
+  "Май 10, 2023": "May 10, 2023",
+  "Краудленлинг KSOLUTIONS": "Crowdling KSOLUTIONS",
+  "Финтех-распределение — это применение финтех-технологий для оптимизации управления финансами, повышая эффективность и прозрачность транзакций": {
+    "": "Fintech distribution is the application of fintech technologies to optimize financial management, increasing the efficiency and transparency of transactions."
+  },
+  "Март 21, 2024": "March 21, 2024"
 }

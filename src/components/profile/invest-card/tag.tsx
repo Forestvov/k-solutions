@@ -14,14 +14,21 @@ const Wrapper = styled.div`
     background: rgba(0, 104, 56, 0.6);
     backdrop-filter: blur(3.55px);
     border-radius: 5px;
-    padding: 0 15px;
-    line-height: 31px;
+    padding: 0 10px;
+    line-height: 28px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 11px;
     color: #fff;
-    height: 31px;
+    height: 28px;
     display: flex;
     align-items: center;
+
+    @media (min-width: 1668px) {
+        line-height: 31px;
+        height: 31px;
+        font-size: 13px;
+        padding: 0 15px;
+    }
 
     svg {
         margin-right: 5px;

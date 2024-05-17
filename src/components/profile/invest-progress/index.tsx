@@ -34,12 +34,12 @@ const Label = styled.span`
 
 const InvestInfo = styled.span`
     color: #616161;
-    font-size: 0.7rem;
     line-height: 17px;
     letter-spacing: 0.015em;
+    font-size: 12px;
 
-    @media (min-width: 768px) {
-        font-size: 0.875rem;
+    @media (min-width: 1668px) {
+        font-size: 17px;
     }
 `;
 
