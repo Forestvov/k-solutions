@@ -17,6 +17,10 @@ interface Props {
     transactionType?: 'In' | 'Out';
 }
 
+const formateCurrency = (num: number) => {
+    return num % 1 === 0 ? num.toFixed(0) : num.toFixed(2);
+};
+
 const P2PForm = ({ transactionType }: Props) => {
     const { t } = useTranslation('personal');
 
@@ -70,7 +74,7 @@ const P2PForm = ({ transactionType }: Props) => {
                 prefix="₽"
                 type="number"
                 name="amountIn"
-                handleChange={(e) => setValue('amountOut', Number(e) / watch().staticCurse)}
+                handleChange={(e) => setValue('amountOut', formateCurrency(Number(e) / watch().staticCurse))}
             />
             {transactionType !== 'Out' && <GetterInput />}
             <Input
@@ -79,7 +83,7 @@ const P2PForm = ({ transactionType }: Props) => {
                 prefix="$"
                 type="number"
                 name="amountOut"
-                handleChange={(e) => setValue('amountIn', Number(e) * watch().staticCurse)}
+                handleChange={(e) => setValue('amountIn', formateCurrency(Number(e) * watch().staticCurse))}
             />
             <div>
                 <Button variant="dark-green" type="submit" fullWidth>
