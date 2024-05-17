@@ -99,6 +99,9 @@ const ShowcasesItem = () => {
                         }}
                     >
                         <Stack
+                            sx={{
+                                overflow: 'hidden',
+                            }}
                             spacing={{
                                 lg: '60px',
                                 xs: '30px',

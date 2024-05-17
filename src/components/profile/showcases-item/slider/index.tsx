@@ -17,23 +17,28 @@ const paramsSlider: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 30,
     modules: [Navigation, Thumbs],
-};
-
-const paramsThumbSlider: SwiperOptions = {
-    slidesPerView: 3,
-    spaceBetween: 20,
-
     breakpoints: {
         1668: {
-            slidesPerView: 5,
             spaceBetween: 30,
+        },
+        320: {
+            spaceBetween: 20,
         },
     },
 };
 
-const Wrapper = styled.div`
-    display: grid;
-`;
+const paramsThumbSlider: SwiperOptions = {
+    spaceBetween: 20,
+    slidesPerView: 'auto',
+    breakpoints: {
+        1280: {
+            spaceBetween: 20,
+        },
+        1668: {
+            spaceBetween: 30,
+        },
+    },
+};
 
 const BigSliderWrapper = styled.div`
     position: relative;
@@ -48,8 +53,8 @@ const MainSlide = styled(SwiperSlide)`
 `;
 
 const ThumbSlide = styled(SwiperSlide)`
-    width: 150px !important;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    max-width: 150px;
 
     &.swiper-slide-thumb-active {
         opacity: 0.6;
@@ -74,11 +79,15 @@ const MainImage = styled.img`
 
 const ThumbImage = styled.img`
     display: block;
-    height: 98px;
     width: 100%;
+    height: 90px;
     object-fit: cover;
     border-radius: 7px;
     cursor: pointer;
+
+    @media (min-width: 1668px) {
+        height: 100px;
+    }
 `;
 
 const Background = styled.div`
@@ -152,7 +161,7 @@ const Slider = () => {
     if ((!slides && slidesEmpty) || slides.length === 0) return null;
 
     return (
-        <Wrapper>
+        <>
             <BigSliderWrapper>
                 <Button navigate="prev" onClick={() => swiperInstance?.slidePrev()}>
                     <IconArrowLeft />
@@ -183,7 +192,7 @@ const Slider = () => {
                     </Swiper>
                 </Background>
             )}
-        </Wrapper>
+        </>
     );
 };
 
