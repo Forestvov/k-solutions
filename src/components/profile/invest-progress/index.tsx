@@ -60,12 +60,13 @@ interface Prop {
     sx?: SxProps;
     close?: boolean;
     stoped?: boolean;
+    hidePercent: boolean;
     amountFinish: number;
     amount: number;
     accountCount: number;
 }
 
-const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFinish, accountCount }) => {
+const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFinish, accountCount, hidePercent }) => {
     const { t } = useTranslation('personal');
     const { selected, currency } = useCurrencyContext();
 
@@ -101,7 +102,7 @@ const InvestProgress: FC<Prop> = ({ sx, stoped = false, close, amount, amountFin
                 <InvestInfo>
                     {accountCount} {declensionNum(accountCount, [t('инвестор'), t('инвестора'), t('инвесторов')])}
                 </InvestInfo>
-                {!stoped && (
+                {!stoped && !hidePercent && (
                     <InvestInfo>
                         {fPercent(percent)} {t('от цели')}
                     </InvestInfo>

@@ -78,14 +78,20 @@ const InvestCard = ({ card, hideStats }: Prop) => {
                     flex: '1',
                 }}
             >
-                <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
+                <Investing
+                    logo={logo}
+                    amountFinish={amountFinish}
+                    accountCount={accountCount}
+                    hidePercent={companyType === 'Franchise'}
+                    amount={amount}
+                />
                 <Description name={companyName} status={isActive} text={descriptions} />
                 <Box sx={{ marginBottom: 'auto' }}>
                     {!hideStats &&
                         (companyType === 'Company' ? (
                             <InvestStats
                                 amountFinish={amountFinish}
-                                finishDay={finishDay}
+                                finishDay={briefcaseStatus === 'Collection completed' ? undefined : finishDay}
                                 companyType={companyType}
                                 percents={percents}
                             />

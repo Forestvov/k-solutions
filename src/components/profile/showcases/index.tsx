@@ -34,10 +34,7 @@ const Showcases = () => {
     const { t, i18n } = useTranslation('personal');
 
     const [pageSize, setPageSize] = useState(6);
-    const [filter, setFilter] = useState({
-        key: '',
-        value: '',
-    });
+    const [filter, setFilter] = useState<Record<string, string>[]>([]);
 
     const {
         briefs,
@@ -56,7 +53,7 @@ const Showcases = () => {
                 {t('Витрина')}
                 {!briefsLoading && <Counter>({totalElements})</Counter>}
             </TitleStyled>
-            <Filters current={filter} onChange={setFilter} />
+            <Filters onChange={setFilter} />
             <List loading={briefsLoading} list={briefs} />
             <PaginatorPage showMore currentSize={pageSize} onChangeSize={setPageSize} isLast={isLast} />
         </Wrapper>

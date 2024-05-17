@@ -82,7 +82,13 @@ const MyInvestCard = ({ card }: Props) => {
                     flex: '1',
                 }}
             >
-                <Investing logo={logo} amountFinish={amountFinish} accountCount={accountCount} amount={amount} />
+                <Investing
+                    logo={logo}
+                    amountFinish={amountFinish}
+                    hidePercent={companyType === 'Franchise'}
+                    accountCount={accountCount}
+                    amount={amount}
+                />
                 <Description name={companyName} status={true} text={descriptions} />
                 <Stack spacing="15px" sx={{ marginBottom: 'auto' }}>
                     <Label>{t('Ваши инвестиции')}</Label>

@@ -56,9 +56,10 @@ interface Props {
     amountFinish: number;
     amount: number;
     accountCount: number;
+    hidePercent: boolean;
 }
 
-const Investing = ({ logo, amount, amountFinish, accountCount }: Props) => {
+const Investing = ({ logo, amount, amountFinish, accountCount, hidePercent }: Props) => {
     return (
         <Wrapper direction={{ sm: 'row' }} spacing="30px">
             <LogoWrapper>
@@ -77,7 +78,12 @@ const Investing = ({ logo, amount, amountFinish, accountCount }: Props) => {
                 </LogoBox>
             </LogoWrapper>
             <Box sx={{ width: '100%', padding: { sm: '23px 30px 0 0', xs: '20px' } }}>
-                <InvestProgress accountCount={accountCount} amountFinish={amountFinish} amount={amount} />
+                <InvestProgress
+                    accountCount={accountCount}
+                    amountFinish={amountFinish}
+                    hidePercent={hidePercent}
+                    amount={amount}
+                />
             </Box>
         </Wrapper>
     );

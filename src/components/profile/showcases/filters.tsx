@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import IconHot from 'assets/pages/personal/hot-filter.svg?react';
 import { useSettingsContext } from 'context/settings/hooks/useSettingsContext';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 const ButtonStyled = styled(Button)<{ active?: boolean }>`
     display: flex;
@@ -41,27 +42,53 @@ const ButtonStyled = styled(Button)<{ active?: boolean }>`
 `;
 
 interface Props {
-    current: Record<string, string>;
-    onChange: (status: { key: string; operation?: string; value: string }) => void;
+    onChange: (status: Record<string, any>[]) => void;
 }
 
-const Filters = ({ current, onChange }: Props) => {
+const Filters = ({ onChange }: Props) => {
     const { t } = useTranslation('personal');
+
+    const [current, setCurrent] = useState(0);
 
     const { settings } = useSettingsContext();
 
     const BUTTONS = [
-        { label: t('Все'), value: '', type: '' },
+        {
+            label: t('Все'),
+            query: [],
+        },
         {
             label: t('Горячие предложения'),
-            value: settings.briefcaseHot ?? '70',
-            operation: '>',
-            type: 'percentFinish',
+            query: [
+                {
+                    value: settings.briefcaseHot ?? '70',
+                    operation: '>',
+                    key: 'percentFinish',
+                },
+                {
+                    value: 'In progress',
+                    key: 'briefcaseStatus',
+                },
+            ],
         },
-        { label: t('Франшизы'), value: 'Franchise', type: 'companyType' },
-        { label: t('Идет сбор займа'), value: 'In progress', type: 'briefcaseStatus' },
-        { label: t('Сбор завершен'), value: 'Collection completed', type: 'briefcaseStatus' },
-        { label: t('Займ погашен'), value: 'Loan payed', type: 'briefcaseStatus' },
+        {
+            label: t('Франшизы'),
+            query: [
+                {
+                    value: 'Franchise',
+                    key: 'companyType',
+                },
+            ],
+        },
+        {
+            label: t('Идет сбор займа'),
+            query: [
+                { value: 'In progress', key: 'briefcaseStatus' },
+                { value: 'Company', key: 'companyType' },
+            ],
+        },
+        { label: t('Сбор завершен'), query: [{ value: 'Collection completed', key: 'briefcaseStatus' }] },
+        { label: t('Займ погашен'), query: [{ value: 'Loan payed', key: 'briefcaseStatus' }] },
     ];
 
     return (
@@ -69,21 +96,13 @@ const Filters = ({ current, onChange }: Props) => {
             {BUTTONS.map((btn, idx) => (
                 <ButtonStyled
                     key={idx}
-                    active={current.value === btn.value}
+                    active={current === idx}
                     onClick={() => {
-                        btn.operation
-                            ? onChange({
-                                  key: btn.type,
-                                  value: btn.value,
-                                  operation: btn.operation,
-                              })
-                            : onChange({
-                                  key: btn.type,
-                                  value: btn.value,
-                              });
+                        onChange(btn.query);
+                        setCurrent(idx);
                     }}
                 >
-                    {btn.type === 'percentFinish' && <IconHot />}
+                    {btn.query[0]?.key === 'percentFinish' && <IconHot />}
                     {btn.label}
                 </ButtonStyled>
             ))}

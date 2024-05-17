@@ -64,7 +64,7 @@ export function useGetHotBrief({ page, pageSize, percentFinish, lang }: PropList
 }
 
 interface GetListProp extends IPagination {
-    filter: Record<string, string>;
+    filter: Record<string, string>[];
     lang: string;
 }
 
@@ -79,7 +79,7 @@ export function useGetListBrief({ page, pageSize, filter, lang }: GetListProp) {
                 size: pageSize,
                 sortDir: 'DESC',
                 sortField: 'createdDate',
-                criteria: filter.value ? [filter] : [],
+                criteria: filter.length > 0 ? filter : [],
             },
             'post',
             {
@@ -124,11 +124,11 @@ export function useGetListBrief({ page, pageSize, filter, lang }: GetListProp) {
     return memoizedValue;
 }
 
-interface GetListProp extends IPagination {
+interface GetMyListProp extends IPagination {
     filter: Record<string, string>;
     lang: string;
 }
-export function useGetMyBriefs({ page, pageSize, filter, lang }: GetListProp) {
+export function useGetMyBriefs({ page, pageSize, filter, lang }: GetMyListProp) {
     const URL = endpoints.briefs.myInvest;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IResponseMyBrief>(
