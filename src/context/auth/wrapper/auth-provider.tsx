@@ -157,7 +157,7 @@ export function AuthProvider({ children }: Props) {
 
     // REGISTER
     const register = useCallback(async (data: any) => {
-        await axios.post(endpoints.auth.register, data);
+        await axiosDefault.post(`${HOST_API}/${endpoints.auth.register}`, data);
     }, []);
 
     // LOGOUT

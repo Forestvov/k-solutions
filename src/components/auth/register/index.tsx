@@ -148,7 +148,7 @@ const Register = () => {
             await setSuccess(true);
         } catch (e) {
             // @ts-ignore
-            if (e.message === 'Email or username are already existed') {
+            if (e.response.data.message === 'Email or username are already existed') {
                 setIsAllReady(true);
             }
         }
