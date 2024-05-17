@@ -35,6 +35,7 @@
       "assets/*": ["assets/*"],
       "helpers/*": ["helpers/*"],
       "hooks/*": ["hooks/*"],
+      "/*": ["./*", "./public/*"]
     }
   },
   "exclude": ["node_modules"],

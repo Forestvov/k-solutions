@@ -70,7 +70,7 @@ const InvestCard = ({ card, hideStats }: Prop) => {
     return (
         <Item>
             <Image image={briefcaseImage} />
-            <Tag status={briefcaseStatus} />
+            <Tag status={companyType === 'Franchise' ? 'Franchise' : briefcaseStatus} />
             <Stack
                 sx={{
                     padding: { xl: '60px 30px 30px', sm: '60px 20px 20px', xs: '15px' },

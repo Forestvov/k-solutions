@@ -1,8 +1,10 @@
 import type { FC } from 'react';
+import { lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
 import Logo from 'assets/pages/home/banner-logo.svg?react';
@@ -10,7 +12,8 @@ import Logo from 'assets/pages/home/banner-logo.svg?react';
 import Form from './form';
 import Image from './image';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Stack from '@mui/material/Stack';
+
+const Animation = lazy(() => import('./animation'));
 
 const Inner = styled(Container)`
     position: relative;
@@ -79,30 +82,7 @@ const MainBanner: FC = () => {
                         <Paragraph>{t('bannerTitle')}</Paragraph>
                         <Stack sx={{ flex: '1', overflow: 'hidden' }}>
                             <Form />
-                            <div className="chart">
-                                <div className="labels">
-                                    <span>10%</span>
-                                    <span>17%</span>
-                                    <span>28%</span>
-                                    <span>45%</span>
-                                    <span>71%</span>
-                                    <span>99%</span>
-                                </div>
-                                <div className="bars">
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                    <div className="bar" />
-                                </div>
-                            </div>
+                            <Animation />
                         </Stack>
                     </Stack>
                 </Content>

@@ -28,6 +28,7 @@ const Tag = ({ status }: Prop) => {
         'Collection completed': t('Займ погашен'),
         'Loan payed': t('Сбор завершен'),
         'In progress': t('Идет сбор'),
+        Franchise: t('Франшиза'),
     };
 
     // @ts-ignore

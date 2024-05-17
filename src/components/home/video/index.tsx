@@ -4,9 +4,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import VideoDesktop from '/desktop-home-video.mp4';
-import VideoMobile from '/mobile-video.mp4';
-
 import Player from 'components/shared/player';
 
 const Video = () => {
@@ -18,7 +15,7 @@ const Video = () => {
                 <Typography variant="home-h2" component="h2">
                     {t('Как это работает')}
                 </Typography>
-                <Player desktop={VideoDesktop} mobile={VideoMobile} />
+                <Player desktop="/desktop-home-video.mp4" mobile="/mobile-video.mp4" />
             </Container>
         </Box>
     );
