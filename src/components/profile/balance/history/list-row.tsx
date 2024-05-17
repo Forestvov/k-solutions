@@ -86,16 +86,26 @@ const Status = styled.div<{ type: StatusType }>`
 const Value = styled.div`
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 20px;
     color: #18181b;
+
+    @media (min-width: 1668px) {
+        font-size: 16px;
+        line-height: 22px;
+    }
 `;
 
 const Label = styled.div`
     font-weight: 300;
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 14px;
+    line-height: 18px;
     color: #71717a;
+
+    @media (min-width: 1668px) {
+        font-size: 16px;
+        line-height: 21px;
+    }
 `;
 
 interface ItemProps {

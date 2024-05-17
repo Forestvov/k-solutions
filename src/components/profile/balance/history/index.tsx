@@ -7,7 +7,11 @@ import Title from '../../title';
 import List from './list';
 
 const TitleStyled = styled(Title)`
-    margin: 0 0 37px;
+    margin: 0 0 20px;
+
+    @media (min-width: 1668px) {
+        margin: 0 0 37px;
+    }
 `;
 
 const History = () => {

@@ -21,17 +21,22 @@ const TitleStyled = styled(Title)`
 `;
 
 const Image = styled.img`
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+
+    @media (min-width: 1668px) {
+        width: 40px;
+        height: 40px;
+    }
 `;
 
 const Label = styled.div`
     font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: 17px;
+    line-height: 17px;
     color: #373737;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         font-size: 20px;
         line-height: 24px;
     }
@@ -43,7 +48,7 @@ const Type = styled.div`
     line-height: 16px;
     color: #737373;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         font-size: 16px;
         line-height: 19px;
     }

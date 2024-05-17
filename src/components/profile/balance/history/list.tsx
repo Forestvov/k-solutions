@@ -57,7 +57,10 @@ const List = () => {
             <Filters filters={filters} onChangeFilter={onChangeFilter} />
             <Box
                 sx={{
-                    height: 521,
+                    height: {
+                        lg: '521px',
+                        xs: '490px',
+                    },
                     marginBottom: '30px',
                     marginLeft: { xs: '-20px', sm: '' },
                     marginRight: { xs: '-20px', sm: '' },
