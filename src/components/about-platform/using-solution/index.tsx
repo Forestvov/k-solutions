@@ -47,7 +47,6 @@ const Span = styled.span`
 
 const UsingSolution: FC = () => {
     const { t } = useTranslation('about-platform');
-
     const cards = [
         {
             id: '1',
