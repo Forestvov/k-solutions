@@ -20,7 +20,7 @@ const Statistics = () => {
                     gap={{ xs: '30px', md: '40px 45px' }}
                 >
                     <StatItem value="25,2 %" label={t('Средневзвешенная ставка за 30 дней')} />
-                    <StatItem value="18,7" sub={`${t('МЛРД')} $`} label={t('Выдано займов бизнесу')} />
+                    <StatItem value="18,7" sub={`${t('МЛН')} $`} label={t('Выдано займов бизнесу')} />
                     <StatItem value="148 704" label={t('Инвесторов на платформе')} />
                     <StatItem value="2,4 %" label={t('Дефолтность по поколению 2022 года')} />
                     <StatItem value="3 400" label={t('Уникальных компаний профинансировано')} />

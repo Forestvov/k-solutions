@@ -103,7 +103,7 @@ const theme = createTheme({
                         fontSize: '.99rem',
 
                         '@media (min-width: 768px)': {
-                            padding: '17px 45px',
+                            padding: '16px 45px',
                             fontSize: '1rem',
                         },
 
@@ -131,7 +131,7 @@ const theme = createTheme({
                         fontSize: '.99rem',
 
                         '@media (min-width: 768px)': {
-                            padding: '17px 45px',
+                            padding: '16px 45px',
                             fontSize: '1rem',
                         },
 

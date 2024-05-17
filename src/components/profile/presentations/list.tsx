@@ -1,19 +1,29 @@
-import Stack from '@mui/material/Stack';
-import useDeviceSize from 'hooks/useDeviceSize';
+import Box from '@mui/material/Box';
+
+import Scrollbar from 'components/shared/scrollbar';
 
 import Item from './item';
 import ButtonMore from './button-more';
 
 const List = () => {
-    const { lg, md } = useDeviceSize();
-
     return (
         <>
-            <Stack direction="row" spacing="30px" justifyContent="space-between">
-                <Item isFirst />
-                {md && <Item />}
-                {lg && <Item />}
-            </Stack>
+            <Scrollbar>
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gridGap: {
+                            lg: '35px',
+                            xs: '20px',
+                        },
+                        gridTemplateColumns: 'repeat(3, 1fr)',
+                    }}
+                >
+                    <Item isFirst />
+                    <Item />
+                    <Item />
+                </Box>
+            </Scrollbar>
             <ButtonMore />
         </>
     );
