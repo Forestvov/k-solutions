@@ -10,20 +10,12 @@ import { toBase64 } from 'helpers/toBase64';
 
 const Label = styled.div`
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 39px;
     color: #000000;
 
-    @media (min-width: 768px) {
-        font-size: 1.5rem;
-    }
-
     @media (min-width: 1024px) {
-        font-size: 1.8rem;
-    }
-
-    @media (min-width: 1668px) {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 `;
 
