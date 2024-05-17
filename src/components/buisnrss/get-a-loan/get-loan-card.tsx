@@ -38,7 +38,7 @@ export const GetLoanCard = ({ row }: Props) => {
         <Stack
             sx={{
                 padding: { xs: '20px', sm: '25px' },
-                width: { xs: '400px', sm: '350px' },
+                width: { lg: '400px', xl: '350px', sm: '400px', xs: '400px' },
                 height: { xs: '280px', sm: '280px' },
                 background: '#f6f7f8',
                 marginBottom: '50px',

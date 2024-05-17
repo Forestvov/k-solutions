@@ -61,7 +61,7 @@ const GraphContainer = styled.div`
 const CheckBoxContainer = styled.div`
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
@@ -88,17 +88,41 @@ const CheckBoxPart = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
     gap: 15px;
+
+    @media (max-width: 1668px) {
+        width: 100%;
+    }
+
+    @media (max-width: 770px) {
+        width: 80%;
+    }
+
+    @media (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const CheckBoxDiv = styled.div`
+    width: 200px;
+    height: 185px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
+
+    @media (max-width: 1280px) {
+        width: 130px;
+        height: 165px;
+    }
+
     @media (max-width: 1024px) {
-        min-width: 110px;
-        min-height: 165px;
+        width: 120px;
+        height: 155px;
+    }
+
+    @media (max-width: 770px) {
+        width: 100px;
     }
 `;
 
@@ -110,7 +134,7 @@ const Label = styled.p`
     margin: 25px 0 0 0;
 
     @media (max-width: 1280px) {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     @media (max-width: 766px) {
@@ -376,7 +400,7 @@ export const Calculator = () => {
                             />
                             <CheckboxLabel htmlFor="checkbox2" className="checkbox-label2" />
                         </CheckBoxDiv>
-                        <CheckBoxDiv>
+                        <CheckBoxDiv style={{ maxWidth: '253px' }}>
                             <Label>{t('Стабильное поступление выручки каждый месяц')}</Label>
                             <CheckBox
                                 onChange={handleCheckBoxChange3}

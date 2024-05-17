@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import OnCard_1 from 'assets/pages/investors/OnCard_1.png';
-import OnCard_2 from 'assets/pages/investors/OnCard_2.png';
+import OnCard_1 from 'assets/pages/investors/OnCard11.svg';
+import OnCard_2 from 'assets/pages/investors/OnCard22.svg';
 import line from 'assets/pages/investors/line.png';
 import ManagerIconImg from 'assets/pages/investors/ManagerIcon.png';
 

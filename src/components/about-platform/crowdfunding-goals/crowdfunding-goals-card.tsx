@@ -23,6 +23,12 @@ const Title = styled.h2`
     }
 `;
 
+const CardStack = styled(Stack)`
+    @media (max-width: 770px) {
+        width: 100%;
+    }
+`;
+
 export interface TReqCard {
     title: string;
     text: string;
@@ -35,7 +41,7 @@ interface Props {
 export const CrowdfundingGoalsCard = ({ row }: Props) => {
     const { title, text } = row;
     return (
-        <Stack
+        <CardStack
             sx={{
                 padding: { xs: '15px', sm: '25px' },
                 height: { xs: '220px', sm: '230px' },
@@ -55,6 +61,6 @@ export const CrowdfundingGoalsCard = ({ row }: Props) => {
         >
             <Title className="stat-item-text">{title}</Title>
             <Paragraph className="stat-item-text">{text}</Paragraph>
-        </Stack>
+        </CardStack>
     );
 };
