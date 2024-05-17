@@ -25,8 +25,8 @@ const Tag = ({ status }: Prop) => {
     const { t } = useTranslation('personal');
 
     const statuses = {
-        'Collection completed': t('Займ погашен'),
-        'Loan payed': t('Сбор завершен'),
+        'Loan payed': t('Займ погашен'),
+        'Collection completed': t('Сбор завершен'),
         'In progress': t('Идет сбор'),
         Franchise: t('Франшиза'),
     };
