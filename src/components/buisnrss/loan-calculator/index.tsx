@@ -40,14 +40,14 @@ const CalculatorSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '1400px', xl: '1300px', sm: '1300px', xs: '1300px' },
                 background: 'transparent',
                 paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingBottom: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
-            <Inner fixed>
+            <Inner>
                 <Title>{t('Калькулятор займа')}</Title>
                 <Content>
                     <Calculator />
