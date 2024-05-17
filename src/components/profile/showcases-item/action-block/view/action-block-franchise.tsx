@@ -11,9 +11,18 @@ interface Props {
     amount: number;
     accountCount: number;
     updateBrief: VoidFunction;
+    hidePercent: boolean;
 }
 
-const ActionBlockFranchise = ({ percents, amountFinish, amount, accountCount, amountMin, updateBrief }: Props) => {
+const ActionBlockFranchise = ({
+    percents,
+    amountFinish,
+    amount,
+    accountCount,
+    amountMin,
+    updateBrief,
+    hidePercent,
+}: Props) => {
     return (
         <Wrapper>
             <InvestProgress
@@ -21,6 +30,7 @@ const ActionBlockFranchise = ({ percents, amountFinish, amount, accountCount, am
                 amountFinish={amountFinish}
                 amount={amount}
                 accountCount={accountCount}
+                hidePercent={hidePercent}
                 sx={{ marginBottom: '30px' }}
             />
             <InvestStats

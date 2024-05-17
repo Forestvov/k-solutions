@@ -13,7 +13,14 @@ interface Props {
 const ActionBlockFranchiseInvestClose = ({ companyType, myTotal, countTransaction }: Props) => {
     return (
         <Wrapper>
-            <InvestProgress amount={0} amountFinish={0} accountCount={0} close sx={{ marginBottom: '15px' }} />
+            <InvestProgress
+                hidePercent={companyType === 'Franchise'}
+                amount={0}
+                amountFinish={0}
+                accountCount={0}
+                close
+                sx={{ marginBottom: '15px' }}
+            />
             <InvestStats
                 companyType={companyType}
                 myTotal={myTotal}

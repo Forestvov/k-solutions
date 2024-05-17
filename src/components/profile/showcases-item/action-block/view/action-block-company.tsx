@@ -34,6 +34,7 @@ const ActionBlockCompany = ({
     return (
         <Wrapper>
             <InvestProgress
+                hidePercent={companyType === 'Franchise'}
                 amountFinish={amountFinish}
                 amount={amount}
                 accountCount={accountCount}

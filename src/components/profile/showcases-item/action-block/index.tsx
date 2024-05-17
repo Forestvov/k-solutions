@@ -3,7 +3,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import ActionBlockCompany from './view/action-block-company';
 import ActionBlockFranchise from './view/action-block-franchise';
-// import ActionBlockFranchiseInvest from './view/action-block-franchise-invest';
 import ActionBlockFranchiseInvestClose from './view/action-block-franchise-invest-close';
 import type { CompanyType } from 'types/company';
 
@@ -67,6 +66,7 @@ const ActionBlock = ({
             {companyType === 'Franchise' && (
                 <ActionBlockFranchise
                     amount={amount}
+                    hidePercent={companyType === 'Franchise'}
                     accountCount={accountCount}
                     amountFinish={amountFinish}
                     percents={percents}
@@ -74,7 +74,6 @@ const ActionBlock = ({
                     updateBrief={updateBrief}
                 />
             )}
-            {/* <ActionBlockFranchiseInvest /> */}
         </>
     );
 };
