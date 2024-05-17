@@ -61,7 +61,7 @@ const List = () => {
                         {lg && <InvestSkeletonCard />}
                     </>
                 ) : (
-                    hotBriefs.map((brief, idx) => <InvestCard hideStats key={idx} card={brief} />)
+                    hotBriefs.map((brief, idx) => <InvestCard isHot hideStats key={idx} card={brief} />)
                 )}
             </Box>
             <Pagination countPage={pages} currentPage={currentPage} onChangePage={setPage} />

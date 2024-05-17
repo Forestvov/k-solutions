@@ -7,11 +7,12 @@ import InvestSkeletonCard from '../invest-skeleton-card';
 interface Props {
     list: IBrief[];
     loading: boolean;
+    isHot?: boolean;
 }
 
 const mockArr = [1, 2, 3, 4, 5, 6];
 
-const List = ({ list, loading }: Props) => {
+const List = ({ list, loading, isHot }: Props) => {
     return (
         <Box
             sx={{
@@ -32,7 +33,7 @@ const List = ({ list, loading }: Props) => {
         >
             {loading
                 ? mockArr.map((_, index) => <InvestSkeletonCard key={index} />)
-                : list.map((brief, index) => <InvestCard card={brief} key={index} />)}
+                : list.map((brief, index) => <InvestCard isHot={isHot} card={brief} key={index} />)}
         </Box>
     );
 };
