@@ -19,7 +19,7 @@ const List = () => {
                         gridTemplateColumns: 'repeat(3, 1fr)',
                     }}
                 >
-                    <Item isFirst />
+                    <Item />
                     <Item />
                     <Item />
                 </Box>
