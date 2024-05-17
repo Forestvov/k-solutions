@@ -31,7 +31,10 @@ export function useGetHotBrief({ page, pageSize, percentFinish, lang }: PropList
                 size: pageSize,
                 sortDir: 'DESC',
                 sortField: 'createdDate',
-                criteria: [{ key: 'percentFinish', operation: '>', value: percentFinish }],
+                criteria: [
+                    { key: 'percentFinish', operation: '>', value: percentFinish },
+                    { value: 'In progress', key: 'briefcaseStatus' },
+                ],
             },
             'post',
             {
