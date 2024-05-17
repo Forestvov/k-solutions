@@ -10,21 +10,41 @@ import liqImg_4 from 'assets/pages/investors/liqImg_4.png';
 import liqImg_5 from 'assets/pages/investors/liqImg_5.png';
 import liqImg_6 from 'assets/pages/investors/liqImg_6.png';
 import { useTranslation } from 'react-i18next';
+import { BarGraphLiquidity } from 'components/investors/liquidity/bar-chart';
 
 const Inner = styled(Container)`
     height: 100%;
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
 `;
 
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
+    width: 49%;
+    flex-direction: column;
     align-items: center;
+    padding: 25px;
+    border-radius: 30px;
+    background: white;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+    }
 
     @media (max-width: 766px) {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
     }
+`;
+
+const BarContainer = styled.div`
+    width: 100%;
 `;
 
 const Paragraph = styled.p`
@@ -40,7 +60,8 @@ const Paragraph = styled.p`
 `;
 
 const Title = styled.h2`
-    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 0;
     font-size: 48px;
     color: #373737;
     user-select: none;
@@ -54,8 +75,10 @@ const Title = styled.h2`
 const ImageWrapper = styled.div`
     margin-top: 30px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 26px;
     width: 100%;
 
     @media (max-width: 766px) {
@@ -75,18 +98,37 @@ const Img = styled.img`
     }
 `;
 
-const LeftPart = styled.div`
-    max-width: 403px;
+const RightPart = styled.div`
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 
-    @media (max-width: 766px) {
+    @media (max-width: 770px) {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .profitT2 {
+        @media (max-width: 770px) {
+            margin: 0;
+        }
+    }
+`;
+
+const LeftPart = styled.div`
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (max-width: 770px) {
+        width: 100%;
     }
 `;
 
 const Profit = styled.h3`
-    font-size: 96px;
+    font-size: 56px;
     font-weight: 400;
     color: #000000;
     margin: 55px 0;
@@ -98,22 +140,6 @@ const Profit = styled.h3`
 
     @media (max-width: 766px) {
         font-size: 38px;
-    }
-`;
-
-const ProfitLabel = styled.p`
-    margin: 5px 0 5px 0;
-    font-weight: 300;
-    font-size: 20px;
-    max-width: 819px;
-    line-height: 26px;
-
-    @media (max-width: 1024px) {
-        font-size: 18px;
-    }
-
-    @media (max-width: 766px) {
-        display: none;
     }
 `;
 const Liquidity: FC = () => {
@@ -131,14 +157,14 @@ const Liquidity: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '950px', xl: '915px', sm: '800px', xs: '650px' },
                 background: '#F6F7F8',
                 paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
+                paddingBottom: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '100px', sm: '130px', md: '150px' },
             }}
         >
-            <Inner fixed>
+            <Inner>
                 <Content>
                     <div>
                         <Title>{t('Ликвидность')}</Title>
@@ -157,10 +183,24 @@ const Liquidity: FC = () => {
                         <div>
                             <Profit>{t('10 млн')}</Profit>
                             <Paragraph>{t('4 дня')}</Paragraph>
-                            <br />
-                            <ProfitLabel>{t('при выставлении цены')}</ProfitLabel>
                         </div>
                     </LeftPart>
+                </Content>
+                <Content>
+                    <div style={{ width: '100%' }}>
+                        <Title>{t('Надежность')}</Title>
+                    </div>
+                    <BarContainer>
+                        <BarGraphLiquidity />
+                    </BarContainer>
+                    <RightPart>
+                        <Profit className="profitT2" style={{ marginTop: '0' }}>
+                            23,2%
+                        </Profit>
+                        <Paragraph style={{ maxWidth: '300px', marginTop: '20px' }}>
+                            {t('Средняя доходность на JetLend  за последние 3 месяца')}
+                        </Paragraph>
+                    </RightPart>
                 </Content>
             </Inner>
         </Box>

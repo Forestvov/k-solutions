@@ -49,9 +49,13 @@ const ActionBlockCompany = ({
                 sx={{ marginBottom: '20px' }}
             />
             <Notification sx={{ marginBottom: '110px' }} />
-            {briefcaseStatus !== 'Collection completed' && briefcaseStatus !== 'Loan payed' && (
-                <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />
-            )}
+            {companyType === 'Company' &&
+                briefcaseStatus !== 'Collection completed' &&
+                briefcaseStatus !== 'Loan payed' && (
+                    <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />
+                )}
+
+            {companyType === 'Franchise' && <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />}
         </Wrapper>
     );
 };

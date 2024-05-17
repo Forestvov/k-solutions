@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
+import { default as axiosDefault } from 'axios';
+
+import { HOST_API } from '../../../config-global';
+import axios, { endpoints } from 'helpers/axios';
 
 import { AuthContext } from './auth-context';
 import { setSession } from '../utils';
 import type { ActionMapType, AuthStateType, AuthUserType } from '../types';
-import axios, { endpoints } from 'helpers/axios';
 
 enum Types {
     INITIAL = 'INITIAL',
@@ -129,7 +132,7 @@ export function AuthProvider({ children }: Props) {
             password,
         };
 
-        const res = await axios.post(endpoints.auth.login, data);
+        const res = await axiosDefault.post(`${HOST_API}/${endpoints.auth.login}`, data);
         const { acceptToken, refreshToken } = res.data;
 
         setSession(acceptToken, refreshToken);

@@ -16,16 +16,18 @@ const axiosInstance = axios.create({
         : {},
 });
 
+axiosInstance.interceptors.request.use((config) => {
+    config.headers.Authorization = `${localStorage.getItem('acceptToken')}`;
+    return config;
+});
+
 axiosInstance.interceptors.response.use(
     (config) => {
         return config;
     },
     async (error) => {
         const originalRequest = error.config;
-        if (
-            error.response.data.message === 'JWT strings must contain exactly 2 period characters. Found: 0' &&
-            error.config
-        ) {
+        if (error.response.data.message.includes('JWT') || error.response.data.status === 403) {
             originalRequest._isRetry = true;
             try {
                 const config = {
@@ -41,7 +43,7 @@ axiosInstance.interceptors.response.use(
                 const response = await axios.request<any>(config);
                 localStorage.setItem('acceptToken', response.data.acceptToken);
                 localStorage.setItem('refreshToken', response.data.refreshToken);
-                return axiosInstance.request(originalRequest);
+                return await axiosInstance.request(originalRequest);
             } catch (e) {
                 console.log('НЕ АВТОРИЗОВАН');
             }
@@ -49,10 +51,12 @@ axiosInstance.interceptors.response.use(
         throw error;
     }
 );
+
 export default axiosInstance;
 
 export const fetcher = async (args: string) => {
     const [url, payload, method = 'get', headers = {}] = Array.isArray(args) ? args : [args];
+
     if (method.toLowerCase() === 'post') {
         const res = await axiosInstance.post(url, payload, { headers });
         return res.data;
