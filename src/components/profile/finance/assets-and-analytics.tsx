@@ -16,12 +16,12 @@ const Wrapper = styled(Stack)`
     flex-direction: row;
 
     > div + div {
-        margin-top: 40px;
+        //margin-top: 40px;
     }
 
     @media (min-width: 1800px) {
         > div + div {
-            margin-left: 60px;
+            margin-top: -15px;
         }
     }
 `;

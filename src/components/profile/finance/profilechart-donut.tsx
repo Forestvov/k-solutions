@@ -1,24 +1,24 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import Chart, { useChart } from 'components/shared/chart';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+
+import Chart, { useChart } from 'components/shared/chart';
 import { fCurrency } from 'helpers/number-format';
 
 // ----------------------------------------------------------------------
 
-const CHART_HEIGHT = 365;
+const CHART_HEIGHT = 420;
 
-const LEGEND_HEIGHT = 72;
+const LEGEND_HEIGHT = 102;
 
-const StyledChart = styled(Chart)(({ theme }) => ({
+const StyledChart = styled(Chart)(() => ({
     height: CHART_HEIGHT,
     '& .apexcharts-canvas, .apexcharts-inner, svg, foreignObject': {
         height: `100% !important`,
     },
     '& .apexcharts-legend': {
         height: LEGEND_HEIGHT,
-        borderTop: `dashed 1px ${theme.palette.divider}`,
         top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
     },
 }));
@@ -49,8 +49,6 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
     const theme = useTheme();
 
     const { colors, series, options } = chart;
-
-    console.log(series);
 
     const chartSeries = series.map((i) => i.value);
 
@@ -101,7 +99,7 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
     });
 
     return (
-        <Box sx={{ paddingLeft: { md: '25px' } }}>
+        <Box sx={{ paddingLeft: { lg: '25px' } }}>
             <Title>{title}</Title>
 
             <StyledChart
@@ -111,7 +109,8 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
                 options={chartOptions}
                 sx={{
                     width: {
-                        md: '340px',
+                        lg: '340px',
+                        xl: '300px',
                         xs: '100%',
                     },
                 }}

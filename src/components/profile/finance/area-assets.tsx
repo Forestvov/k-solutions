@@ -9,7 +9,9 @@ import type { AnaliticGainView } from 'types/brief';
 import type { CompanyType } from 'types/company';
 
 const Area = styled(ProfilechartArea)`
-    max-width: 100%;
+    max-width: 720px;
+    width: auto;
+    flex: 0 0 auto;
 
     @media (max-width: 768px) {
         > div:first-of-type {
@@ -18,10 +20,6 @@ const Area = styled(ProfilechartArea)`
         > div:nth-of-type(2) {
             margin: 0 -20px !important;
         }
-    }
-
-    @media (min-width: 1800px) {
-        max-width: 720px;
     }
 `;
 
@@ -48,10 +46,6 @@ const AreaAssets = () => {
             setFromDate={setFromDate}
             toDate={toDate}
             setToDate={setToDate}
-            sx={{
-                flex: '0 0 auto',
-                width: '100%',
-            }}
             title={t('Ежемесячные доходы')}
             chart={{
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

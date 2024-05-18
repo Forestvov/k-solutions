@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 
 // Layouts
 import AuthLayout from 'layouts/auth-layout';
@@ -38,7 +38,7 @@ const VerifyByIdPage = lazy(() => import('./ui/verify-by-id-page'));
 const PrivacyPolicyPage = lazy(() => import('./ui/privacy-policy-page'));
 const AmlPolicyPage = lazy(() => import('./ui/aml-policy-page'));
 
-export const appRouter = createBrowserRouter([
+export const appRouter = createHashRouter([
     {
         element: (
             <GuestGuard>

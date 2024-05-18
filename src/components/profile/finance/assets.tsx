@@ -45,8 +45,7 @@ const Assets = () => {
                 width: '100%',
             }}
             spacing={{
-                xs: '30px',
-                md: '60px',
+                lg: '60px',
             }}
         >
             {dataLoading ? (
@@ -77,12 +76,7 @@ const Assets = () => {
                                 chart={{
                                     series: data.analiticActiveGainView.map((item) => ({
                                         label: item.companyType === 'Company' ? t('Компания') : t('Франшиза'),
-                                        value: renderCurrency({
-                                            usd: item.amount,
-                                            rub: currency.USD,
-                                            eur: currency.EUR,
-                                            currency: selected,
-                                        }),
+                                        value: item.amount,
                                     })),
                                 }}
                             />

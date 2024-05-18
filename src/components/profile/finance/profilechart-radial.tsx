@@ -1,12 +1,13 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import Chart, { useChart } from 'components/shared/chart';
 import Box from '@mui/material/Box';
+
+import Chart, { useChart } from 'components/shared/chart';
 import { fCurrency } from 'helpers/number-format';
 
 // ----------------------------------------------------------------------
 
-const CHART_HEIGHT = 377;
+const CHART_HEIGHT = 380;
 
 const LEGEND_HEIGHT = 72;
 
@@ -17,7 +18,7 @@ const StyledChart = styled(Chart)(({ theme }) => ({
     },
     '& .apexcharts-legend': {
         height: LEGEND_HEIGHT,
-        borderTop: `dashed 1px ${theme.palette.divider}`,
+        marginBottom: theme.spacing(3),
         top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
     },
 }));
@@ -66,7 +67,6 @@ const ProfilechartRadial: FC<Props> = ({ title, chart, total }) => {
         },
         labels: series.map((i) => i.label),
         legend: {
-            offsetY: 0,
             floating: true,
             position: 'bottom',
             horizontalAlign: 'center',
@@ -82,7 +82,9 @@ const ProfilechartRadial: FC<Props> = ({ title, chart, total }) => {
         },
         plotOptions: {
             radialBar: {
-                hollow: { size: '65%' },
+                hollow: {
+                    size: '68%',
+                },
                 dataLabels: {
                     name: {
                         offsetY: -10,
@@ -108,7 +110,7 @@ const ProfilechartRadial: FC<Props> = ({ title, chart, total }) => {
     });
 
     return (
-        <Box sx={{ paddingLeft: { md: '25px' } }}>
+        <Box sx={{ paddingLeft: { lg: '25px' } }}>
             <Title>{title}</Title>
 
             <Box sx={{ marginTop: '-12px' }}>
@@ -119,7 +121,8 @@ const ProfilechartRadial: FC<Props> = ({ title, chart, total }) => {
                     options={chartOptions}
                     sx={{
                         width: {
-                            md: '340px',
+                            lg: '340px',
+                            xl: '300px',
                             xs: '100%',
                         },
                     }}
