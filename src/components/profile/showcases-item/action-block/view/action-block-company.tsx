@@ -1,16 +1,18 @@
+import type { CompanyType } from 'types/company';
+import type { BriefcaseStatusType } from 'types/brief';
+
 import InvestStats from 'components/profile/invest-stats';
 import InvestProgress from 'components/profile/invest-progress';
 
 import Wrapper from '../../gray-wrapper';
 import Notification from '../notification';
 import CompanyCreditForm from '../company-credit-form';
-import type { CompanyType } from 'types/company';
 
 interface Props {
     amountFinish: number;
     percents: number;
     finishDay: string;
-    briefcaseStatus: string;
+    briefcaseStatus: BriefcaseStatusType;
     amountMin: number;
     ranges: number;
     amount: number;
@@ -34,14 +36,15 @@ const ActionBlockCompany = ({
     return (
         <Wrapper>
             <InvestProgress
-                hidePercent={companyType === 'Franchise'}
+                hidePercent={false}
                 amountFinish={amountFinish}
                 amount={amount}
                 accountCount={accountCount}
                 sx={{ marginBottom: '30px' }}
             />
+
             <InvestStats
-                finishDay={finishDay}
+                finishDay={briefcaseStatus === 'In progress' ? finishDay : undefined}
                 amountFinish={amountFinish}
                 percents={percents}
                 amountMin={amountMin}
@@ -49,14 +52,10 @@ const ActionBlockCompany = ({
                 companyType={companyType}
                 sx={{ marginBottom: '20px' }}
             />
-            <Notification sx={{ marginBottom: '110px' }} />
-            {companyType === 'Company' &&
-                briefcaseStatus !== 'Collection completed' &&
-                briefcaseStatus !== 'Loan payed' && (
-                    <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />
-                )}
 
-            {companyType === 'Franchise' && <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />}
+            <Notification sx={{ marginBottom: '110px' }} />
+
+            {briefcaseStatus === 'In progress' && <CompanyCreditForm updateBrief={updateBrief} amountMin={amountMin} />}
         </Wrapper>
     );
 };

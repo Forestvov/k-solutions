@@ -66,9 +66,11 @@ const ShowcasesItem = () => {
         return '';
     };
 
-    return briefsLoading && companyLoading ? (
-        <SplashScreen />
-    ) : (
+    if (briefsLoading && companyLoading) {
+        return <SplashScreen />;
+    }
+
+    return (
         <Wrapper>
             {company && brief && (
                 <>
@@ -205,7 +207,11 @@ const ShowcasesItem = () => {
                                                         )
                                                       : '$0',
                                               },
-                                              { label: `${t('До конца сбора')}:`, value: getFinishDay() },
+                                              {
+                                                  label: `${t('До конца сбора')}:`,
+                                                  value: getFinishDay(),
+                                                  hide: brief.briefcaseStatus !== 'In progress',
+                                              },
                                               { label: t('Количество инвесторов'), value: brief.pampInvestors },
                                               { label: '', value: '' },
                                           ]

@@ -33,7 +33,7 @@ const Input = styled(InputMask)`
         color: rgba(89, 89, 89, 0.4);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1668px) {
         height: 59px;
         line-height: 59px;
         max-width: 477px;
@@ -68,7 +68,7 @@ const SubscribeForm = () => {
             setSuccess(true);
         } catch (e) {
             // @ts-ignore
-            if (e?.message === 'This number is existed') {
+            if (e.response.data.message === 'This number is existed') {
                 setError(t('Заявка уже отправлена'));
             }
         }
@@ -79,9 +79,9 @@ const SubscribeForm = () => {
     return (
         <Stack spacing="20px">
             <Stack
-                direction={{ sm: 'row' }}
-                spacing={{ sm: '30px', xs: '20px' }}
-                alignItems={{ sm: 'center' }}
+                direction={{ xl: 'row', md: 'column', sm: 'row' }}
+                spacing={{ xl: '30px', md: '20px', xs: '20px' }}
+                alignItems={{ xl: 'center' }}
                 component="form"
                 onSubmit={handleSubmit(onSubmit)}
             >
@@ -99,7 +99,19 @@ const SubscribeForm = () => {
                         />
                     )}
                 />
-                <Button variant="green" type="submit" disabled={load} sx={{ width: { sm: '278px' }, flex: '0 0 auto' }}>
+                <Button
+                    variant="green"
+                    type="submit"
+                    disabled={load}
+                    sx={{
+                        width: { lg: '278px' },
+                        flex: '0 0 auto',
+                        padding: {
+                            lg: '20px 45px',
+                            md: '16px 20px',
+                        },
+                    }}
+                >
                     {t('Заказать Консультацию')}
                 </Button>
             </Stack>

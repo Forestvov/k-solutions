@@ -17,7 +17,7 @@ const Title = styled.h3`
     }
 
     @media (min-width: 1668px) {
-        font-size: 2rem;
+        font-size: 1.8rem;
         line-height: 39px;
     }
 `;

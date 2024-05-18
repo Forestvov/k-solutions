@@ -11,6 +11,7 @@ import List from './list';
 interface Row {
     label: string;
     value: string | number;
+    hide?: boolean;
 }
 
 interface Props {

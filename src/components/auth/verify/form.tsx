@@ -57,7 +57,7 @@ const Form = () => {
             await setSuccess(true);
         } catch (e) {
             // @ts-ignore
-            if (e?.message === 'Access Denied') {
+            if (e.response.data.message === 'Access Denied') {
                 setNonFound(true);
             }
         }

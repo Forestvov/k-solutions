@@ -32,11 +32,15 @@ const Label = styled.div`
 interface Prop {
     value: string | number;
     label: string;
+    hide?: boolean;
 }
 
-const Item = ({ label, value }: Prop) => {
+const Item = ({ label, value, hide }: Prop) => {
     return (
         <Stack
+            sx={{
+                display: hide ? 'none' : 'flex',
+            }}
             spacing={{
                 lg: '7px',
                 xs: '2px',

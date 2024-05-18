@@ -39,7 +39,7 @@ const InvestInfo = styled.span`
     font-size: 12px;
 
     @media (min-width: 1668px) {
-        font-size: 17px;
+        font-size: 15px;
     }
 `;
 

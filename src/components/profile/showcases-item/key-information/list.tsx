@@ -6,6 +6,7 @@ import Item from './item';
 interface Row {
     label: string;
     value: string | number;
+    hide?: boolean;
 }
 
 interface Props {
@@ -32,7 +33,7 @@ const List = ({ secondRow, firstRow }: Props) => {
                 }}
             >
                 {firstRow.map((row, idx) => (
-                    <Item label={row.label} value={row.value} key={idx} />
+                    <Item label={row.label} hide={row.hide} value={row.value} key={idx} />
                 ))}
             </Box>
             <Box
@@ -43,7 +44,7 @@ const List = ({ secondRow, firstRow }: Props) => {
                 }}
             >
                 {secondRow.map((row, idx) => (
-                    <Item label={row.label} value={row.value} key={idx} />
+                    <Item label={row.label} hide={row.hide} value={row.value} key={idx} />
                 ))}
             </Box>
         </Stack>

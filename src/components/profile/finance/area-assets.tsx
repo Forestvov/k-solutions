@@ -36,10 +36,10 @@ const AreaAssets = () => {
         toDate,
     });
 
-    const generateFranchise = (data: AnaliticGainView[] | undefined, companyType: CompanyType) => {
+    const generateFranchise = (data: AnaliticGainView[] | undefined, companyType: CompanyType): number[] => {
         if (!data || data.length === 0) return [];
 
-        return data.filter((item) => item.companyType === companyType).map((item) => item.amount);
+        return data.filter((item) => item.companyType === companyType).map((item) => Number(item.amount.toFixed(2)));
     };
 
     return (

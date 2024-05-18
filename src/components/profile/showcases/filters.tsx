@@ -69,6 +69,7 @@ const Filters = ({ onChange }: Props) => {
                     value: 'In progress',
                     key: 'briefcaseStatus',
                 },
+                { value: 'Company', key: 'companyType' },
             ],
         },
         {
@@ -87,8 +88,20 @@ const Filters = ({ onChange }: Props) => {
                 { value: 'Company', key: 'companyType' },
             ],
         },
-        { label: t('Сбор завершен'), query: [{ value: 'Collection completed', key: 'briefcaseStatus' }] },
-        { label: t('Займ погашен'), query: [{ value: 'Loan payed', key: 'briefcaseStatus' }] },
+        {
+            label: t('Сбор завершен'),
+            query: [
+                { value: 'Collection completed', key: 'briefcaseStatus' },
+                { value: 'Company', key: 'companyType' },
+            ],
+        },
+        {
+            label: t('Займ погашен'),
+            query: [
+                { value: 'Loan payed', key: 'briefcaseStatus' },
+                { value: 'Company', key: 'companyType' },
+            ],
+        },
     ];
 
     return (

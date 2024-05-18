@@ -50,6 +50,8 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
 
     const { colors, series, options } = chart;
 
+    console.log(series);
+
     const chartSeries = series.map((i) => i.value);
 
     const chartOptions = useChart({

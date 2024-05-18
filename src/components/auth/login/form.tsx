@@ -56,11 +56,11 @@ const Form = () => {
             await login(data.email, data.password);
         } catch (e) {
             // @ts-ignore
-            if (e?.message === 'Not verified') {
+            if (e.response.data.message === 'Not verified') {
                 setShowError(t('Аккаунт не подтвержден'));
             }
             // @ts-ignore
-            if (e?.message === 'Access Denied') {
+            if (e.response.data.message === 'Access Denied') {
                 setShowError(t('Почта или пароль введены неверно'));
             }
             reset();

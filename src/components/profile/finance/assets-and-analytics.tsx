@@ -13,15 +13,13 @@ const TitleStyled = styled(Title)`
 `;
 
 const Wrapper = styled(Stack)`
-    flex-direction: column;
+    flex-direction: row;
 
     > div + div {
         margin-top: 40px;
     }
 
     @media (min-width: 1800px) {
-        flex-direction: row;
-
         > div + div {
             margin-left: 60px;
         }

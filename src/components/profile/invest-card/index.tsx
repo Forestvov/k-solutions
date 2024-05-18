@@ -71,7 +71,7 @@ const InvestCard = ({ card, hideStats, isHot }: Prop) => {
     return (
         <Item>
             <Image image={briefcaseImage} />
-            <Tag isHot={isHot} status={companyType === 'Franchise' ? 'Franchise' : briefcaseStatus} />
+            <Tag status={companyType === 'Franchise' ? 'Franchise' : briefcaseStatus} />
             <Stack
                 sx={{
                     padding: { lg: '60px 30px 30px', xl: '60px 20px 20px', xs: '15px' },
@@ -85,6 +85,7 @@ const InvestCard = ({ card, hideStats, isHot }: Prop) => {
                     accountCount={accountCount}
                     hidePercent={companyType === 'Franchise'}
                     amount={amount}
+                    isHot={isHot}
                 />
                 <Description name={companyName} status={isActive} text={descriptions} />
                 <Box sx={{ marginBottom: 'auto' }}>

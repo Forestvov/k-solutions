@@ -1,3 +1,4 @@
+import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
@@ -5,7 +6,6 @@ import Dialog from '@mui/material/Dialog';
 import { Form } from './form';
 import StatusPopup from './status-popup';
 import type { IHistory } from 'types/transaction';
-import type { PropsWitchChildren } from '../../../../../global';
 
 const DialogStyled = styled(Dialog)`
     .css-kmnvkl-MuiPaper-root-MuiDialog-paper {
@@ -15,7 +15,7 @@ const DialogStyled = styled(Dialog)`
         background: transparent;
         margin: 20px;
         ::-webkit-scrollbar {
-            width: 0px;
+            width: 0;
             opacity: 0;
         }
         ::-webkit-scrollbar-track {
@@ -35,7 +35,7 @@ interface IProps {
     transactionType?: 'In' | 'Out';
 }
 
-const Replenish = ({ children, content, transactionType }: PropsWitchChildren<IProps>) => {
+const Replenish = ({ children, content, transactionType }: PropsWithChildren<IProps>) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -56,7 +56,13 @@ const Replenish = ({ children, content, transactionType }: PropsWitchChildren<IP
                         xs: '100%',
                     },
                     background: content ? 'transparent !important' : '#373737',
-                    padding: content ? '5px' : '16px 55px 15px',
+                    padding: content
+                        ? '5px'
+                        : {
+                              lg: '16px 55px 15px',
+                              xl: '16px 30px 15px',
+                              xs: '10px 20px',
+                          },
                 }}
             >
                 {children}

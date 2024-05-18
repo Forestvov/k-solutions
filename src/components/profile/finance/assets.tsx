@@ -4,19 +4,29 @@ import Stack from '@mui/material/Stack';
 
 import { useGetAnaliticActive } from 'api/brief';
 
-import ProfilechartDonut from 'components/profile/finance/profilechart-donut';
-import ProfilechartRadial from 'components/profile/finance/profilechart-radial';
-import BlockSkeleton from 'components/profile/finance/block-skeleton';
+import { useCurrencyContext } from 'context/currency';
+
+import ProfilechartDonut from './profilechart-donut';
+import ProfilechartRadial from './profilechart-radial';
+import BlockSkeleton from './block-skeleton';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 const Assets = () => {
     const { t } = useTranslation('personal');
 
     const { data, dataLoading } = useGetAnaliticActive();
 
+    const { selected, currency } = useCurrencyContext();
+
     const getSum = () => {
         if (data) {
             return data.analiticActiveGainView.reduce((sum, current) => {
-                return sum + current.amount;
+                return renderCurrency({
+                    usd: sum + current.amount,
+                    rub: currency.USD,
+                    eur: currency.EUR,
+                    currency: selected,
+                });
             }, 0);
         } else {
             return 0;
@@ -50,7 +60,12 @@ const Assets = () => {
                                 chart={{
                                     series: data.analiticActiveView.map((item) => ({
                                         label: item.companyName,
-                                        value: item.amount,
+                                        value: renderCurrency({
+                                            usd: item.amount,
+                                            rub: currency.USD,
+                                            eur: currency.EUR,
+                                            currency: selected,
+                                        }),
                                     })),
                                 }}
                             />
@@ -62,7 +77,12 @@ const Assets = () => {
                                 chart={{
                                     series: data.analiticActiveGainView.map((item) => ({
                                         label: item.companyType === 'Company' ? t('Компания') : t('Франшиза'),
-                                        value: item.amount,
+                                        value: renderCurrency({
+                                            usd: item.amount,
+                                            rub: currency.USD,
+                                            eur: currency.EUR,
+                                            currency: selected,
+                                        }),
                                     })),
                                 }}
                             />

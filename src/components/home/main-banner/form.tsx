@@ -72,7 +72,7 @@ const Form = () => {
             setSuccess(true);
         } catch (e) {
             // @ts-ignore
-            if (e?.message === 'This number is existed') {
+            if (e.response.data.message === 'This number is existed') {
                 setError(t('Заявка уже отправлена'));
             }
         }

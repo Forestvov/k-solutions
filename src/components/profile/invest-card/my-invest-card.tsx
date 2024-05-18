@@ -89,6 +89,7 @@ const MyInvestCard = ({ card }: Props) => {
             >
                 <Investing
                     logo={logo}
+                    isHot={false}
                     amountFinish={amountFinish}
                     hidePercent={companyType === 'Franchise'}
                     accountCount={accountCount}

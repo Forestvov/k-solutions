@@ -14,6 +14,8 @@ export interface HotBriefResponse {
     empty: boolean;
 }
 
+export type BriefcaseStatusType = 'Loan payed' | 'Collection completed' | 'In progress';
+
 export interface IBrief {
     briefcase_language_id: number;
     briefcaseId: number;
@@ -27,7 +29,7 @@ export interface IBrief {
     companyInvestId: number;
     briefcaseName: string;
     companyName: string;
-    briefcaseStatus: string;
+    briefcaseStatus: BriefcaseStatusType;
     companyType: CompanyType;
     amount: number;
     amountFinish: number;
@@ -46,7 +48,7 @@ export interface IBriefPage {
     commonInvestedAmount: number;
     briefcaseName: string;
     lang: string;
-    briefcaseStatus: string;
+    briefcaseStatus: BriefcaseStatusType;
     amountMin: number;
     amountFinish: number;
     myCountTransaction: number;
@@ -93,7 +95,7 @@ export interface BriefcaseAccountCommonView {
     companyInvestId: number;
     briefcaseName: string;
     companyName: string;
-    briefcaseStatus: string;
+    briefcaseStatus: BriefcaseStatusType;
     companyType: CompanyType;
     amount: number;
     amountFinish: number;
@@ -108,7 +110,7 @@ export interface BriefcaseAccountCommonView {
 export interface BriefcaseAccountCommonInvestView {
     briefcaseId: number;
     briefcaseName: string;
-    briefcaseStatus: string;
+    briefcaseStatus: BriefcaseStatusType;
     percents: number;
     companyInvestId: number;
     companyInvestName: string;

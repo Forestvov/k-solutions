@@ -1,16 +1,18 @@
+import type { CompanyType } from 'types/company';
+import type { BriefcaseStatusType } from 'types/brief';
+
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import ActionBlockCompany from './view/action-block-company';
 import ActionBlockFranchise from './view/action-block-franchise';
 import ActionBlockFranchiseInvestClose from './view/action-block-franchise-invest-close';
-import type { CompanyType } from 'types/company';
 
 interface Props {
     amountFinish: number;
     percents: number;
     finishDay: string;
-    briefcaseStatus: string;
+    briefcaseStatus: BriefcaseStatusType;
     companyType: CompanyType;
     amountMin: number;
     ranges: number;
@@ -66,7 +68,7 @@ const ActionBlock = ({
             {companyType === 'Franchise' && (
                 <ActionBlockFranchise
                     amount={amount}
-                    hidePercent={companyType === 'Franchise'}
+                    hidePercent
                     accountCount={accountCount}
                     amountFinish={amountFinish}
                     percents={percents}

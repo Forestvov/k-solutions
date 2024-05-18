@@ -50,7 +50,7 @@ const SecurityForm = () => {
         } catch (e) {
             console.log(e);
             // @ts-ignore
-            if (e?.message === 'Old password not equal') {
+            if (e.response.data.message === 'Old password not equal') {
                 setError(t('Старый пароль введен неверно'));
             }
         }

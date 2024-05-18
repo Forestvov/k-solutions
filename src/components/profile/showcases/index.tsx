@@ -54,7 +54,7 @@ const Showcases = () => {
                 {!briefsLoading && <Counter>({totalElements})</Counter>}
             </TitleStyled>
             <Filters onChange={setFilter} />
-            <List loading={briefsLoading} isHot={filter[0]?.key === 'percentFinish'} list={briefs} />
+            <List loading={briefsLoading} list={briefs} />
             <PaginatorPage showMore currentSize={pageSize} onChangeSize={setPageSize} isLast={isLast} />
         </Wrapper>
     );

@@ -134,10 +134,11 @@ const AllAssets = () => {
                             />
                             <Stack
                                 direction={{
-                                    lg: 'row',
+                                    md: 'row',
                                 }}
                                 spacing={{
-                                    xs: '20px',
+                                    xl: '20px',
+                                    xs: '10px',
                                 }}
                                 sx={{
                                     marginTop: { md: 'auto !important', xs: '30px !important' },

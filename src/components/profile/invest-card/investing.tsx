@@ -2,12 +2,26 @@ import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
+import HotLogo from 'assets/hot-icon.svg?react';
+
 import InvestProgress from 'components/profile/invest-progress';
 
-const Wrapper = styled(Stack)`
+const Wrapper = styled(Stack)<{ isHot: boolean }>`
     background: #fff;
     border-radius: 15px;
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    border: double 1px transparent;
+
+    ${({ isHot }) =>
+        isHot &&
+        `
+        box-shadow: 0 4px 4px 0 rgba(1, 203, 110, 0.25);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        background-image: linear-gradient(white, white), linear-gradient(to left, #01FE89, #01723D);
+    `};
 
     @media (min-width: 1280px) {
         position: absolute;
@@ -51,18 +65,30 @@ const LogoBox = styled.div`
     }
 `;
 
+const IconHot = styled.div`
+    position: absolute;
+    right: 10px;
+    top: 0;
+
+    @media (min-width: 1280px) {
+        top: 10px;
+    }
+`;
+
 interface Props {
     logo: string;
     amountFinish: number;
     amount: number;
     accountCount: number;
     hidePercent: boolean;
+    isHot: boolean;
 }
 
-const Investing = ({ logo, amount, amountFinish, accountCount, hidePercent }: Props) => {
+const Investing = ({ logo, amount, amountFinish, accountCount, hidePercent, isHot }: Props) => {
     return (
         <Wrapper
             direction={{ xl: 'row' }}
+            isHot={isHot}
             spacing={{
                 lg: '30px',
                 xs: '15px',
@@ -92,6 +118,11 @@ const Investing = ({ logo, amount, amountFinish, accountCount, hidePercent }: Pr
                     amount={amount}
                 />
             </Box>
+            {isHot && (
+                <IconHot>
+                    <HotLogo />
+                </IconHot>
+            )}
         </Wrapper>
     );
 };

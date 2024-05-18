@@ -28,7 +28,9 @@ const Finance = () => {
                     xs: '30px',
                 }}
             >
+                {/* Активы */}
                 <List />
+                {/* Активы и аналитика */}
                 <AssetsAndAnalytics />
                 <div>
                     <FinanceIncome />
