@@ -93,7 +93,7 @@ const InvestCard = ({ card, hideStats, isHot }: Prop) => {
                         (companyType === 'Company' ? (
                             <InvestStats
                                 amountFinish={amountFinish}
-                                finishDay={briefcaseStatus === 'Collection completed' ? undefined : finishDay}
+                                finishDay={briefcaseStatus !== 'In progress' ? undefined : finishDay}
                                 companyType={companyType}
                                 percents={percents}
                             />
