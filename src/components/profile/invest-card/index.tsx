@@ -41,7 +41,7 @@ const Link = styled(NavLink).bind(Button)`
 interface Prop {
     card: IBrief;
     hideStats?: boolean;
-    isHot?: boolean;
+    isHot: boolean;
 }
 
 const InvestCard = ({ card, hideStats, isHot }: Prop) => {
