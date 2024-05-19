@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { RouterProvider } from 'react-router';
 import { AuthProvider } from 'context/auth';
 
@@ -9,6 +9,19 @@ import SplashScreen from 'components/shared/splash-screen';
 import { appRouter } from './pages';
 
 export const App = () => {
+    useEffect(() => {
+        const script = document.createElement('script');
+
+        script.src = '//code.jivo.ru/widget/Sux93C8ukn';
+        script.async = true;
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     return (
         <AuthProvider>
             <CurrencyProvider>
