@@ -13,6 +13,10 @@ const Area = styled(ProfilechartArea)`
     width: auto;
     flex: 0 0 auto;
 
+    @media only screen and (min-width: 1280px) and (max-device-width: 1668px) {
+        min-width: 500px;
+    }
+
     @media (max-width: 768px) {
         > div:first-of-type {
             margin-bottom: 20px;

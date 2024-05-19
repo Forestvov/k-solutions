@@ -111,6 +111,7 @@ const ProfilechartDonut: FC<Props> = ({ title, chart }) => {
                     width: {
                         lg: '340px',
                         xl: '300px',
+                        md: '280px',
                         xs: '100%',
                     },
                 }}

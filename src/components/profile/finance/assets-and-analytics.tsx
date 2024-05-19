@@ -13,15 +13,21 @@ const TitleStyled = styled(Title)`
 `;
 
 const Wrapper = styled(Stack)`
-    flex-direction: row;
-
     > div + div {
-        //margin-top: 40px;
+        margin-top: 20px;
     }
 
     @media (min-width: 1800px) {
         > div + div {
             margin-top: -15px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        flex-direction: row;
+
+        > div + div {
+            margin-top: 0;
         }
     }
 `;

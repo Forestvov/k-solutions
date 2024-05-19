@@ -123,6 +123,7 @@ const ProfilechartRadial: FC<Props> = ({ title, chart, total }) => {
                         width: {
                             lg: '340px',
                             xl: '300px',
+                            md: '250px',
                             xs: '100%',
                         },
                     }}

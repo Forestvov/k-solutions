@@ -88,14 +88,14 @@ export default function ProfilechartArea({ title, chart, toDate, setFromDate, fr
         <Box {...other}>
             <Stack
                 direction={{
-                    sm: 'row',
+                    lg: 'row',
                 }}
                 alignItems={{
-                    sm: 'center',
+                    lg: 'center',
                 }}
                 spacing={{
                     xs: '16px',
-                    sm: 0,
+                    lg: 0,
                 }}
                 justifyContent="space-between"
             >

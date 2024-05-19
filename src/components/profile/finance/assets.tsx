@@ -5,11 +5,11 @@ import Stack from '@mui/material/Stack';
 import { useGetAnaliticActive } from 'api/brief';
 
 import { useCurrencyContext } from 'context/currency';
+import { renderCurrency } from 'helpers/renderCurrency';
 
 import ProfilechartDonut from './profilechart-donut';
 import ProfilechartRadial from './profilechart-radial';
 import BlockSkeleton from './block-skeleton';
-import { renderCurrency } from 'helpers/renderCurrency';
 
 const Assets = () => {
     const { t } = useTranslation('personal');
@@ -21,12 +21,7 @@ const Assets = () => {
     const getSum = () => {
         if (data) {
             return data.analiticActiveGainView.reduce((sum, current) => {
-                return renderCurrency({
-                    usd: sum + current.amount,
-                    rub: currency.USD,
-                    eur: currency.EUR,
-                    currency: selected,
-                });
+                return sum + current.amount;
             }, 0);
         } else {
             return 0;
@@ -36,10 +31,17 @@ const Assets = () => {
     // @ts-ignore
     if (!dataLoading && !data?.analiticActiveView.length && !data?.analiticActiveGainView.length) return null;
 
+    const gainActiveTotal = renderCurrency({
+        usd: getSum(),
+        rub: currency.USD,
+        eur: currency.EUR,
+        currency: selected,
+    });
+
     return (
         <Stack
             direction={{
-                md: 'row',
+                sm: 'row',
             }}
             sx={{
                 width: '100%',
@@ -72,11 +74,21 @@ const Assets = () => {
                         {data.analiticActiveGainView.length > 0 && (
                             <ProfilechartRadial
                                 title={t('Доходы')}
-                                total={getSum()}
+                                total={gainActiveTotal}
                                 chart={{
                                     series: data.analiticActiveGainView.map((item) => ({
                                         label: item.companyType === 'Company' ? t('Компания') : t('Франшиза'),
-                                        value: item.amount,
+                                        value:
+                                            item.amount > 0
+                                                ? (gainActiveTotal /
+                                                      renderCurrency({
+                                                          usd: item.amount,
+                                                          rub: currency.USD,
+                                                          eur: currency.EUR,
+                                                          currency: selected,
+                                                      })) *
+                                                  100
+                                                : 0,
                                     })),
                                 }}
                             />
