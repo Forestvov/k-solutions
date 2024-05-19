@@ -9,9 +9,13 @@ import type { AnaliticGainView } from 'types/brief';
 import type { CompanyType } from 'types/company';
 
 const Area = styled(ProfilechartArea)`
-    max-width: 720px;
     width: auto;
     flex: 0 0 auto;
+
+    @media (min-width: 1668px) {
+        width: 100%;
+        max-width: 650px;
+    }
 
     @media only screen and (min-width: 1280px) and (max-device-width: 1668px) {
         min-width: 500px;
