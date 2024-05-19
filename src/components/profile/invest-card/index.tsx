@@ -85,7 +85,7 @@ const InvestCard = ({ card, hideStats, isHot }: Prop) => {
                     accountCount={accountCount}
                     hidePercent={companyType === 'Franchise'}
                     amount={amount}
-                    isHot={isHot}
+                    isHot={isHot && briefcaseStatus === 'In progress'}
                 />
                 <Description name={companyName} status={isActive} text={descriptions} />
                 <Box sx={{ marginBottom: 'auto' }}>

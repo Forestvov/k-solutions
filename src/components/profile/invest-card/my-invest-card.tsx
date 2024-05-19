@@ -73,6 +73,7 @@ const MyInvestCard = ({ card }: Props) => {
             companyType,
             logo,
             briefcaseImage,
+            briefcaseStatus,
         },
         briefcaseAccountCommonInvestView: { count, sum },
     } = card;
@@ -103,7 +104,7 @@ const MyInvestCard = ({ card }: Props) => {
                     <Label>{t('Условия кредитования')}</Label>
                     <InvestStats
                         amountFinish={amountFinish}
-                        finishDay={finishDay}
+                        finishDay={briefcaseStatus !== 'In progress' ? undefined : finishDay}
                         companyType={companyType}
                         percents={percents}
                     />
