@@ -15,16 +15,16 @@ const Inner = styled(Container)`
 
 const Content = styled.div`
     @media (min-width: 1280px) {
-        padding-right: 450px;
-        width: 75%;
+        padding-right: 100px;
+        width: 65%;
     }
 `;
 
 const Paragraph = styled.p`
     margin: 30px 0 33px;
     font-weight: 300;
-    font-size: 1rem;
-    max-width: 819px;
+    font-size: 14px;
+    max-width: 719px;
     line-height: 26px;
 
     @media (min-width: 768px) {
@@ -74,7 +74,7 @@ const MainBanner: FC = () => {
                 height: { lg: 'min(110vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
                 minHeight: { lg: '787px' },
                 background: 'transparent',
-                paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '80px', xl: '50px', sm: '50px', xs: '50px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}

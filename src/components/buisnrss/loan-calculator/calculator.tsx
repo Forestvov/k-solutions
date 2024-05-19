@@ -326,15 +326,7 @@ export const Calculator = () => {
                     <Label>{t('Желаемая сумма займа')}</Label>
                     {/* <input ref={sumNumberRef} disabled style={{border: "none", userSelect: "none"}} type="number"  value={rangeSumValue.toString()} /> */}
                     <Count ref={sumNumberRef}>{rangeSumValue.toString()} $</Count>
-                    <Input
-                        ref={sumRangeRef}
-                        type="range"
-                        min={5000}
-                        max={100000}
-                        step={5000}
-                        defaultValue={2000}
-                        value={rangeSumValue}
-                    />
+                    <Input ref={sumRangeRef} type="range" min={5000} max={100000} step={5000} value={rangeSumValue} />
                 </InputContainer>
                 <InputContainer>
                     <Label>{t('Желаемый срок займа')}</Label>
@@ -342,15 +334,7 @@ export const Calculator = () => {
                     <Count ref={sumNumberRef}>
                         {rangeMonthsValue.toString()} {t('Месяцы')}
                     </Count>
-                    <Input
-                        ref={sumMonthsRef}
-                        type="range"
-                        min={1}
-                        max={36}
-                        step={1}
-                        defaultValue={3}
-                        value={rangeMonthsValue}
-                    />
+                    <Input ref={sumMonthsRef} type="range" min={1} max={36} step={1} value={rangeMonthsValue} />
                 </InputContainer>
                 <InputContainer>
                     <Label>{t('Среднемесячная выручка за последний год')}</Label>
@@ -362,7 +346,6 @@ export const Calculator = () => {
                         min={1000}
                         max={100000}
                         step={1000}
-                        defaultValue={5000}
                         value={rangeProfitValue}
                     />
                 </InputContainer>
