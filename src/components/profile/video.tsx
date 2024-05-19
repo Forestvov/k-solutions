@@ -10,6 +10,11 @@ const Wrapper = styled(WhiteWrapper)`
 
 const Inner = styled.div`
     width: 100%;
+    margin: 0 auto;
+
+    .video-react {
+        background-color: transparent;
+    }
 
     video {
         border-radius: 15px;
