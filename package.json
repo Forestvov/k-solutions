@@ -25,7 +25,6 @@
     "@mui/x-date-pickers": "^7.3.2",
     "@react-jvectormap/core": "^1.0.4",
     "@react-jvectormap/world": "^1.1.2",
-    "@types/video-react": "^0.15.8",
     "apexcharts": "^3.49.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
