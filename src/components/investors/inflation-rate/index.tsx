@@ -271,7 +271,7 @@ const countries = {
     MZ: 21,
 };
 
-export const colorScale = ['#D3F3DA', '#006838'];
+const colorScale = ['#D3F3DA', '#006838'];
 
 const InflationRate: FC = () => {
     const { t } = useTranslation('investor-page');
