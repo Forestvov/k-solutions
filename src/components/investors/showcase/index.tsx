@@ -3,10 +3,14 @@ import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 // img
-import ShowCasesImg from 'assets/pages/investors/ShowCasesIm.png';
-import ShowCasesImg2 from 'assets/pages/investors/ShowCasesIm2.png';
-import ShowCasesImg3 from 'assets/pages/investors/ShowCasesIm3.png';
-import ShowCasesImg4 from 'assets/pages/investors/ShowCasesIm4.png';
+import ShowCasesImg from 'assets/pages/investors/ShowCaseImge1.png';
+import ShowCasesImg2 from 'assets/pages/investors/ShowCaseImge2.png';
+import ShowCasesImg3 from 'assets/pages/investors/ShowCaseImge3.png';
+import ShowCasesImg4 from 'assets/pages/investors/ShowCaseImge4.png';
+import gravitricityImg from 'assets/pages/investors/gravitricity.png';
+import cellImgcellImg from 'assets/pages/investors/cellImg.png';
+import qptImgqptImg from 'assets/pages/investors/qpt.png';
+import frameframe from 'assets/pages/investors/Frame.png';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -161,6 +165,7 @@ const ShowcasesSection: FC = () => {
             sum3: '748',
             title: 'Gravitricity',
             img: ShowCasesImg,
+            img2: gravitricityImg,
             label: t('Новаторский разработчик'),
         },
         {
@@ -171,6 +176,7 @@ const ShowcasesSection: FC = () => {
             sum3: '667',
             title: 'QPT',
             img: ShowCasesImg2,
+            img2: qptImgqptImg,
             label: t('Электродвигатели потребляют'),
         },
         {
@@ -181,6 +187,7 @@ const ShowcasesSection: FC = () => {
             sum3: '905',
             title: 'Metaview',
             img: ShowCasesImg3,
+            img2: frameframe,
             label: t('ИИ-помощник'),
         },
         {
@@ -191,6 +198,7 @@ const ShowcasesSection: FC = () => {
             sum3: '311',
             title: 'CELL',
             img: ShowCasesImg4,
+            img2: cellImgcellImg,
             label: t('Белковые препараты'),
         },
     ];

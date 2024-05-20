@@ -27,7 +27,7 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 15px;
     margin-top: 70px;
 `;
 

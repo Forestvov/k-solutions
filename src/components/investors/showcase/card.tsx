@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import cardInpImg from 'assets/pages/investors/CardInpImg.png';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -40,13 +39,7 @@ const LineIt = styled.div`
 `;
 
 const CardInputImg = styled.img`
-    width: 73.15px;
-    height: 83px;
-
-    @media (max-width: 770px) {
-        width: 53.15px;
-        height: 63px;
-    }
+    height: 30px;
 `;
 
 const CardInput = styled.div`
@@ -161,13 +154,14 @@ interface TCardProps {
     sum3: string;
     invSum: string;
     img?: string;
+    img2: string;
 }
 
 interface Props {
     row: TCardProps;
 }
 const ShowCasesCard = ({ row }: Props) => {
-    const { title, sum3, invSum, sum2, sum, img, label } = row;
+    const { title, sum3, invSum, sum2, sum, img, img2, label } = row;
     const [showDropdown, setShowDropdown] = useState(false);
     const { t } = useTranslation('investor-page');
 
@@ -179,7 +173,7 @@ const ShowCasesCard = ({ row }: Props) => {
         <Card>
             <Img src={img} />
             <CardInput>
-                <CardInputImg src={cardInpImg} alt="InpImg" />
+                <CardInputImg src={img2} alt="InpImg" />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                     <SumT>
                         ${sum}

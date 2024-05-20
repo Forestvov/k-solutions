@@ -4,7 +4,7 @@ import Hands from 'assets/pages/investors/partners-main.png';
 
 const ImageWrapper = styled.div`
     position: absolute;
-    right: -105px;
+    right: -171px;
     top: -30px;
     width: 50%;
     background: transparent;
