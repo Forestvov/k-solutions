@@ -64,6 +64,21 @@ export function fCurrency(inputValue: number | string, locale?: string, _currenc
 
 // ----------------------------------------------------------------------
 
+export function fCripta(inputValue: number | string, maximumFractionDigits = 2) {
+    if (!inputValue) return '';
+
+    const number = Number(inputValue);
+
+    const fm = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits,
+    }).format(number);
+
+    return fm;
+}
+
+// ----------------------------------------------------------------------
+
 export function fPercent(inputValue: number | string) {
     if (!inputValue) return '';
 

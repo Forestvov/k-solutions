@@ -14,11 +14,12 @@ import type { FormState } from '../types';
 import { useGetTransactions } from 'api/transaction';
 import { getCoinPrice } from 'api/coin';
 import Input from 'components/profile/balance/all-assets/replenish/input';
-import { fCurrency } from 'helpers/number-format';
+import { fCripta, fCurrency } from 'helpers/number-format';
 
 import TitleStep from './title-step';
 
 import { PAYMENT_BANK } from './data';
+import TUSD from './TUSD';
 
 const Notification = styled.div`
     font-weight: 300;
@@ -61,7 +62,12 @@ interface Props {
 const Step2Token = ({ transactionType }: Props) => {
     const { t } = useTranslation('personal');
 
-    const { watch, setValue, getValues } = useFormContext<FormState>();
+    const {
+        watch,
+        setValue,
+        getValues,
+        formState: { isSubmitting },
+    } = useFormContext<FormState>();
     const token = getValues('transactionLinkType');
 
     const { data } = useGetTransactions(token);
@@ -79,8 +85,8 @@ const Step2Token = ({ transactionType }: Props) => {
             if (PAYMENT_BANK[item.currentName]) {
                 setValue('amountIn', watch().amountOut);
             } else {
-                const coin = item.currentName === 'TRC20' ? 'TUSD' : item.currentName;
-                // @ts-ignore
+                const coin = TUSD.includes(item.currentName) ? 'TUSD' : item.currentName;
+                // @ts-ignore ERC20
                 getCoinPrice(coin)
                     .then(({ data }) => setValue('amountIn', data.price))
                     .catch(() => {
@@ -111,23 +117,24 @@ const Step2Token = ({ transactionType }: Props) => {
                         }
                         name="amountOut"
                         type="number"
-                        prefix={watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH' ? '$' : ''}
+                        prefix="$"
                     />
                     {token === 'Token' && Number(watch().amountOut) > 0 && Number(watch().amountIn) > 0 && (
                         <Stack direction="row" alignItems="center" spacing="5px">
                             <Notification>{t('Курс')} :</Notification>
+
                             <Value>
+                                {fCurrency(watch().amountOut, 'en-US', 'USD')} ={' '}
                                 {watch().currencyToken !== 'BTC' && watch().currencyToken !== 'ETH'
-                                    ? fCurrency(watch().amountOut, 'en-US', 'USD')
-                                    : `${watch().amountOut} ${generatePrefix(watch().currencyToken)}`}
-                                = {fCurrency(Number(watch().amountIn) * Number(watch().amountOut), 'en-US', 'USD')}
+                                    ? fCurrency(Number(watch().amountIn) * Number(watch().amountOut), 'en-US', 'USD')
+                                    : `${fCripta(Number(watch().amountOut) / Number(watch().amountIn), 5)} ${generatePrefix(watch().currencyToken)}`}
                             </Value>
                         </Stack>
                     )}
                     <Button
                         type="submit"
                         variant="dark-green"
-                        disabled={watch().amountOut === 0 || watch().amountOut === ''}
+                        disabled={watch().amountOut === 0 || watch().amountOut === '' || isSubmitting}
                     >
                         {t('Подтвердить')}
                     </Button>

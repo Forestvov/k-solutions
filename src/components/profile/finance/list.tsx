@@ -21,7 +21,7 @@ const TitleStyled = styled(Title)`
 
 const List = () => {
     const { t, i18n } = useTranslation('personal');
-    const { lg, md } = useDeviceSize();
+    const { md, sm } = useDeviceSize();
     const [page, setPage] = useState(0);
     const [filter, setFilter] = useState({
         key: '',
@@ -36,7 +36,7 @@ const List = () => {
     } = useGetMyBriefs({
         lang: i18n.language,
         page,
-        pageSize: lg ? 3 : md ? 2 : 1,
+        pageSize: md ? 3 : sm ? 2 : 1,
         filter,
     });
 
@@ -67,8 +67,8 @@ const List = () => {
                 {briefsLoading ? (
                     <>
                         <InvestSkeletonCard />
+                        {sm && <InvestSkeletonCard />}
                         {md && <InvestSkeletonCard />}
-                        {lg && <InvestSkeletonCard />}
                     </>
                 ) : (
                     briefs.map((brief, idx) => <MyInvestCard key={idx} card={brief} />)

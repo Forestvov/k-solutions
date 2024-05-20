@@ -156,11 +156,7 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
     }, [currentId]);
 
     const onSubmit = async (data: FormState) => {
-        if (
-            data.transactionLinkType === 'Token' ||
-            data.transactionLinkType === 'Bank' ||
-            data.transactionLinkType === 'Wallet'
-        ) {
+        if (data.transactionLinkType === 'Bank' || data.transactionLinkType === 'Wallet') {
             try {
                 const newData = {
                     currencyToken: data.currencyToken,
@@ -184,6 +180,27 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
             } catch (e) {
                 console.log(e);
             }
+        } else if (data.transactionLinkType === 'Token') {
+            const newData = {
+                currencyToken: data.currencyToken,
+                contact: data.contact,
+                amountIn: String(Number(data.amountOut) / Number(data.amountIn)),
+                amountOut: data.amountOut,
+                qrCode: data.qrCode,
+                transactionType: transactionType,
+                transactionLinkType: data.transactionLinkType,
+            };
+
+            // @ts-ignore
+            await addTransaction(newData).then(({ data }) => {
+                methods.setValue('transactionDate', data.transactionDate);
+                methods.setValue('transactionStatus', data.transactionStatus);
+                methods.setValue('transactionId', data.transactionId);
+                methods.setValue('amountOut', data.amountIn);
+                setCurrentId(data.transactionId);
+            });
+
+            setActiveStep(3);
         } else if (data.transactionLinkType === 'p2p') {
             try {
                 const newData = {

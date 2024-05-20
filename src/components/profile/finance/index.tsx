@@ -39,7 +39,7 @@ const Finance = () => {
                     <TitleStyled>{t('Аналитика')} KSOLUITONS</TitleStyled>
                     <Stack
                         direction={{
-                            lg: 'row',
+                            md: 'row',
                         }}
                         justifyContent="space-between"
                     >
@@ -58,6 +58,8 @@ const Finance = () => {
                             sx={{
                                 maxWidth: {
                                     lg: '1100px',
+                                    xl: '800px',
+                                    md: '620px',
                                     xs: '100%',
                                 },
                                 flex: '0 0 auto',

@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
@@ -9,10 +7,10 @@ import type { INewPost } from 'types/news';
 const Image = styled.div<{ bgSrc: string }>`
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     display: block;
     width: 100%;
-    height: 280px;
+    height: 200px;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -28,8 +26,10 @@ const Image = styled.div<{ bgSrc: string }>`
         opacity: 0.9;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1280px) {
+        background-size: contain;
         width: 200px;
+        height: 280px;
         border-radius: 20px 0 0 20px;
     }
 
@@ -45,7 +45,7 @@ const Content = styled(Stack)`
     padding: 20px;
     width: 100%;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1280px) {
         border-radius: 0 20px 20px 0;
         padding: 19px 15px 26px 20px;
     }
@@ -86,16 +86,10 @@ const Text = styled.p`
     }
 `;
 
-const Divider = styled.div<{ show: boolean }>`
+const Divider = styled.div`
     height: 1px;
     background: #cccccc;
     margin-bottom: 21px;
-
-    ${({ show }) =>
-        show &&
-        `
-        margin-top: auto;
-    `}
 `;
 
 const Tag = styled.span`
@@ -117,37 +111,14 @@ const Dot = styled.div`
     background: #006838;
 `;
 
-const Link = styled.a`
-    font-size: 14px;
-    color: #006838;
-    text-decoration: none;
-
-    &:last-of-type {
-        margin-top: auto;
-        margin-bottom: 10px;
-    }
-`;
-
-const Event = ({ createdDate, descriptions, newsType, photo, title, url, type }: INewPost) => {
-    const { t } = useTranslation('personal');
+const Event = ({ createdDate, descriptions, newsType, photo, title }: INewPost) => {
     return (
-        <Stack direction={{ sm: 'row' }} sx={{ width: '100%' }}>
+        <Stack direction={{ xl: 'row' }} sx={{ width: '100%' }}>
             <Image bgSrc={photo} />
             <Content>
-                {url && type === 'News' ? (
-                    <Link href={url} target="_blank">
-                        <Title>{title}</Title>
-                    </Link>
-                ) : (
-                    <Title>{title}</Title>
-                )}
+                <Title>{title}</Title>
                 <Text>{descriptions}</Text>
-                {url && type === 'News' && (
-                    <Link href={url} target="_blank">
-                        {t('Подробнее')}
-                    </Link>
-                )}
-                <Divider show={!url} />
+                <Divider />
                 <Stack direction="row" spacing="10px" alignItems="center">
                     <Tag>{newsType} </Tag>
                     <Dot />

@@ -20,7 +20,7 @@ const List = () => {
         settings: { briefcaseHot },
     } = useSettingsContext();
 
-    const { lg, md } = useDeviceSize();
+    const { md, sm } = useDeviceSize();
 
     const [page, setPage] = useState(0);
 
@@ -31,7 +31,7 @@ const List = () => {
     } = useGetHotBrief({
         lang: i18n.language,
         page: page,
-        pageSize: lg ? 3 : md ? 2 : 1,
+        pageSize: md ? 3 : sm ? 2 : 1,
         percentFinish: briefcaseHot,
     });
 
@@ -55,8 +55,8 @@ const List = () => {
                 {hotBriefsLoading ? (
                     <>
                         <InvestSkeletonCard />
+                        {sm && <InvestSkeletonCard />}
                         {md && <InvestSkeletonCard />}
-                        {lg && <InvestSkeletonCard />}
                     </>
                 ) : (
                     hotBriefs.map((brief, idx) => <InvestCard isHot hideStats key={idx} card={brief} />)

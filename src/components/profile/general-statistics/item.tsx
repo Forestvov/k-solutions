@@ -13,7 +13,7 @@ const Label = styled.span`
     line-height: 27px;
 
     @media (min-width: 768px) {
-        font-size: 1.2rem;
+        font-size: 1.05rem;
     }
 
     @media (min-width: 1668px) {
@@ -28,7 +28,7 @@ const Value = styled.span`
     line-height: 51px;
 
     @media (min-width: 768px) {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     @media (min-width: 1668px) {
@@ -39,8 +39,8 @@ const Value = styled.span`
 const Item: FC<Prop> = ({ label, value }) => {
     return (
         <Stack
-            direction={{ sm: 'row' }}
-            alignItems={{ sm: 'center' }}
+            direction={{ xl: 'row' }}
+            alignItems={{ xl: 'center' }}
             justifyContent="space-between"
             sx={{
                 padding: { lg: '31px 42px 30px 42px', xs: '20px' },

@@ -8,31 +8,36 @@ import { useGetNews } from 'api/news';
 
 import Title from 'components/profile/title';
 import EvetSkelenot from 'components/profile/events/evet-skelenot';
-import Event from 'components/profile/events/event';
-import Pagination from 'components/pagination';
+
+import NewPost from './new-post';
+import PaginatorPage from 'components/shared/paginator-page';
 
 const TitleStyled = styled(Title)`
-    margin: 40px 0 30px;
+    margin: 40px 0;
 `;
 
 const News = () => {
     const { t, i18n } = useTranslation('personal');
 
-    const [page, setPage] = useState(0);
+    const [pageSize, setPageSize] = useState<number>(6);
 
     const {
         news,
         newsLoading,
-        pageInfo: { currentPage, pages },
+        pageInfo: { isLast },
     } = useGetNews({
         lang: i18n.language,
         type: 'News',
-        page: page,
-        pageSize: 2,
+        page: 0,
+        pageSize,
     });
 
     return (
-        <Box>
+        <Box
+            sx={{
+                marginBottom: '40px',
+            }}
+        >
             <TitleStyled>{t('Аналитика')}</TitleStyled>
             {newsLoading ? (
                 <EvetSkelenot />
@@ -43,16 +48,16 @@ const News = () => {
                         display: 'grid',
                         gridGap: '30px',
                         gridTemplateColumns: {
-                            lg: 'repeat(2, 1fr)',
+                            lg: '1fr',
                         },
                     }}
                 >
                     {news.map((item) => (
-                        <Event key={item.id} {...item} />
+                        <NewPost {...item} key={item.id} />
                     ))}
                 </Box>
             )}
-            <Pagination countPage={pages} currentPage={currentPage} onChangePage={setPage} />
+            <PaginatorPage showMore currentSize={pageSize} onChangeSize={setPageSize} isLast={isLast} />
         </Box>
     );
 };

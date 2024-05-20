@@ -40,6 +40,7 @@ export function useGetNews({ lang = 'ru', page, pageSize, type }: PropList) {
             pageInfo: {
                 currentPage: data?.pageable.pageNumber || 0,
                 pages: data?.totalPages || 0,
+                isLast: data ? data.last : true,
             },
             newsLoading: isLoading,
             newsError: error,

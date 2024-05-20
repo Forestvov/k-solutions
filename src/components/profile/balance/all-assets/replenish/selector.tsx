@@ -6,6 +6,8 @@ import Select from '@mui/material/Select';
 import styled from '@emotion/styled';
 import { getCoinPrice } from 'api/coin';
 
+import TUSD from './step/TUSD';
+
 const Item = styled(MenuItem)`
     display: flex;
     align-items: center;
@@ -45,8 +47,7 @@ const Selector = ({ items = [], name, label, isFirstStep }: Props) => {
     const { control, setValue, getValues } = useFormContext();
 
     const setCurrencyCoin = (currentName: string) => {
-        const currentAmount = getValues('amountIn');
-        const coin = currentName === 'TRC20' ? 'TUSD' : currentName;
+        const coin = TUSD.includes(currentName) ? 'TUSD' : currentName;
         setValue('amountIn', 0);
         // @ts-ignore
         getCoinPrice(coin)

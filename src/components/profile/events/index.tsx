@@ -48,11 +48,12 @@ export const Events = () => {
             ) : (
                 <Stack
                     direction={{
-                        lg: 'column',
-                        xl: 'row',
+                        md: 'column',
+                        sm: 'row',
                     }}
                     spacing={{
                         lg: '30px',
+                        sm: '20px',
                         xs: '20px',
                     }}
                     sx={{ marginBottom: '30px' }}
