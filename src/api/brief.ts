@@ -141,7 +141,9 @@ export function useGetMyBriefs({ page, pageSize, filter, lang }: GetMyListProp) 
                 page,
                 size: pageSize,
                 sortDir: 'ASC',
-                criteria: filter.value ? [filter] : [],
+                criteria: filter.value
+                    ? [{ key: 'briefcaseStatus', value: 'Loan payed', operation: '!=' }, filter]
+                    : [{ key: 'briefcaseStatus', value: 'Loan payed', operation: '!=' }],
             },
             'post',
             {

@@ -15,13 +15,14 @@ import Investing from './investing';
 import Description from './description';
 import Tag from 'components/profile/invest-card/tag';
 
-const Item = styled(Stack)`
+const Item = styled(Stack)<{ opacity: string }>`
     position: relative;
     background: #f6f7f8;
     border-radius: 15px;
     height: 100%;
     flex: 1;
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    opacity: ${({ opacity }) => opacity};
 
     &:hover {
         transform: scale(1.05);
@@ -69,7 +70,7 @@ const InvestCard = ({ card, hideStats, isHot }: Prop) => {
     } = card;
 
     return (
-        <Item>
+        <Item opacity={companyType === 'Company' && briefcaseStatus === 'Loan payed' ? '0.6' : '1'}>
             <Image image={briefcaseImage} />
             <Tag status={companyType === 'Franchise' ? 'Franchise' : briefcaseStatus} />
             <Stack

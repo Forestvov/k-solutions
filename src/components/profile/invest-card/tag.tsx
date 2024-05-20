@@ -8,8 +8,8 @@ interface Prop {
 
 const Wrapper = styled.div`
     position: absolute;
-    left: 30px;
-    top: 30px;
+    left: 20px;
+    top: 20px;
     z-index: 1;
     background: rgba(0, 104, 56, 0.6);
     backdrop-filter: blur(3.55px);
@@ -26,6 +26,8 @@ const Wrapper = styled.div`
         height: 31px;
         font-size: 13px;
         padding: 0 15px;
+        left: 30px;
+        top: 30px;
     }
 
     svg {

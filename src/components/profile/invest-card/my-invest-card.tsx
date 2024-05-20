@@ -13,12 +13,13 @@ import Investing from './investing';
 import Description from './description';
 import type { IMyBrief } from 'types/brief';
 
-const Item = styled(Stack)`
+const Item = styled(Stack)<{ opacity: string }>`
     background: #f6f7f8;
     border-radius: 15px;
     height: 100%;
     flex: 1;
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    opacity: ${({ opacity }) => opacity};
 
     &:hover {
         transform: scale(1.05);
@@ -79,7 +80,7 @@ const MyInvestCard = ({ card }: Props) => {
     } = card;
 
     return (
-        <Item>
+        <Item opacity={companyType === 'Company' && briefcaseStatus === 'Loan payed' ? '0.6' : '1'}>
             <Image image={briefcaseImage} />
             <Stack
                 sx={{
