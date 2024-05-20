@@ -309,7 +309,7 @@ const InflationRate: FC = () => {
                             ],
                         }}
                         //         onRegionTipShow={function reginalTip(event, el, code  ) {
-                        //             // @ts-ignore
+                        //
                         //             return el.html(`
                         // <div style="background-color: transparent; border-radius: 6px; min-height: 50px; width: 125px; padding-left: 10px; color: white">
                         //   <p>
