@@ -17,8 +17,8 @@ const CondCard = styled.div`
     border-radius: 25px;
     transition: all 0.7s;
 
-    @media (max-width: 1570px) {
-        width: 400px;
+    @media (max-width: 1670px) {
+        width: 355px;
     }
 
     @media (max-width: 420px) {
@@ -44,6 +44,11 @@ const Paragraph = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 5;
+
+    @media (max-width: 1670px) {
+        width: 350px;
+        max-width: 310px;
+    }
 `;
 
 const BlogSingleLink = styled(NavLink)`

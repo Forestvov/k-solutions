@@ -318,6 +318,11 @@ const SingleBlogPageView: FC = () => {
         },
     ];
 
+    // const Imaaage = styled.img`
+    //     width: 50%;
+    //   margin-bottom: 20px;
+    // `;
+
     const singleNews = news.find((news) => news.id === id);
 
     return (
@@ -332,7 +337,8 @@ const SingleBlogPageView: FC = () => {
             <Inner>
                 {singleNews && (
                     <Content>
-                        <Title>{singleNews.title}</Title>
+                        {/* <Imaaage src={singleNews.img} alt=""/> */}
+                        <Title>{singleNews.title} </Title>
                         <Paragraph>{singleNews.text}</Paragraph>
                         <Label>{singleNews.label}</Label>
                         {singleNews.texts?.map((text: any) => (

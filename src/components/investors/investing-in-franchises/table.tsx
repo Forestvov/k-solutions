@@ -79,7 +79,7 @@ const FranchiseTable: FC = () => {
                     </TableHead>
                     <TableBody>
                         {list.map((row: any) => (
-                            <FranchisesTableRow key={row.name} row={row} />
+                            <FranchisesTableRow key={row.title} row={row} />
                         ))}
                     </TableBody>
                 </Table>
