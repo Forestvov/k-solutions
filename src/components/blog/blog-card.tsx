@@ -18,7 +18,7 @@ const CondCard = styled.div`
     transition: all 0.7s;
 
     @media (max-width: 1670px) {
-        width: 355px;
+        width: 370px;
     }
 
     @media (max-width: 420px) {
@@ -46,8 +46,7 @@ const Paragraph = styled.p`
     -webkit-line-clamp: 5;
 
     @media (max-width: 1670px) {
-        width: 350px;
-        max-width: 310px;
+        max-width: 340px;
     }
 `;
 

@@ -1,12 +1,12 @@
 import type { FC } from 'react';
+import * as React from 'react';
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import WorldMap from 'react-svg-worldmap';
 
 import inflationTarget from 'assets/pages/investors/inflationTarget.png';
 import { useTranslation } from 'react-i18next';
-import { worldMill } from '@react-jvectormap/world';
-import { VectorMap } from '@react-jvectormap/core';
 
 const Inner = styled(Container)`
     height: 100%;
@@ -72,216 +72,182 @@ const Img = styled.img`
     }
 `;
 
-const ImageWrapper = styled.div`
+const Map = styled.div`
     width: 100%;
-    height: 700px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+    transition: all 0.5s;
 
     @media (max-width: 766px) {
-        height: 500px;
+        overflow: scroll;
     }
 `;
-
-const MapV = styled(VectorMap)`
-    width: 100%;
-    height: 700px;
-
-    @media (max-width: 766px) {
-        height: 500px;
-    }
-`;
-
-const countries = {
-    BD: 23,
-    BE: 27,
-    BF: 28,
-    BG: 28,
-    BA: 26,
-    BN: 86,
-    BO: 96,
-    JP: 86,
-    BI: 75,
-    BJ: 95,
-    BT: 85,
-    JM: 95,
-    BW: 25,
-    BR: 15,
-    BS: 25,
-    BY: 15,
-    BZ: 15,
-    RU: 25,
-    RW: 15,
-    RS: 15,
-    TL: 5,
-    TM: 5,
-    TJ: 5,
-    RO: 25,
-    GW: 25,
-    GT: 25,
-    GR: 25,
-    GQ: 25,
-    GY: 25,
-    GE: 25,
-    GB: 25,
-    GA: 25,
-    GN: 25,
-    GM: 25,
-    GL: 25,
-    GH: 25,
-    OM: 25,
-    TN: 24,
-    JO: 25,
-    HR: 23,
-    HT: 25,
-    HU: 2,
-    HN: 2,
-    PR: 3,
-    PS: 3,
-    PT: 13,
-    PY: 6,
-    PA: 55,
-    PG: 9,
-    PE: 25,
-    PK: 25,
-    PH: 25,
-    PL: 25,
-    ZM: 29,
-    EH: 25,
-    EE: 25,
-    EG: 27,
-    ZA: 23,
-    EC: 23,
-    IT: 24,
-    VN: 24,
-    SB: 25,
-    ET: 25,
-    SO: 26,
-    ES: 26,
-    ER: 25,
-    ME: 25,
-    MD: 34,
-    MG: 25,
-    MA: 25,
-    UZ: 23,
-    MM: 23,
-    ML: 22,
-    MN: 21,
-    MK: 23,
-    MW: 24,
-    MR: 25,
-    UG: 26,
-    MY: 27,
-    MX: 26,
-    IL: 85,
-    FR: 95,
-    XS: 25,
-    FI: 85,
-    FJ: 95,
-    F: 5,
-    NI: 55,
-    NL: 11,
-    NO: 22,
-    NA: 63,
-    VU: 43,
-    NC: 84,
-    NE: 26,
-    NG: 26,
-    NZ: 5,
-    NP: 5,
-    XK: 5,
-    CI: 5,
-    CH: 5,
-    CO: 14,
-    CN: 15,
-    CM: 13,
-    CL: 23,
-    XC: 12,
-    CA: 5,
-    CG: 5,
-    CF: 5,
-    CD: 5,
-    CZ: 5,
-    CY: 5,
-    CR: 5,
-    CU: 25,
-    SZ: 5,
-    SY: 5,
-    KG: 15,
-    KE: 13,
-    SS: 23,
-    SR: 18,
-    SV: 16,
-    SK: 24,
-    KR: 23,
-    SI: 24,
-    KP: 15,
-    KW: 15,
-    SN: 34,
-    SL: 13,
-    KZ: 15,
-    SA: 15,
-    SE: 34,
-    SD: 14,
-    DO: 34,
-    DJ: 16,
-    DK: 17,
-    DE: 34,
-    YE: 34,
-    DZ: 23,
-    US: 20,
-    UY: 12,
-    LB: 15,
-    LA: 15,
-    TW: 15,
-    TT: 15,
-    TR: 15,
-    LK: 15,
-    LV: 15,
-    LT: 15,
-    LU: 15,
-    LR: 15,
-    LS: 15,
-    TH: 25,
-    TF: 25,
-    TG: 25,
-    TD: 25,
-    LY: 25,
-    AE: 25,
-    VE: 25,
-    AF: 25,
-    IQ: 25,
-    IS: 24,
-    IR: 25,
-    AM: 25,
-    AL: 25,
-    AO: 25,
-    AR: 25,
-    AU: 25,
-    AT: 24,
-    IN: 43,
-    TZ: 32,
-    AZ: 12,
-    IE: 25,
-    ID: 26,
-    UA: 24,
-    QA: 33,
-    MZ: 21,
-};
-
-const colorScale = ['#D3F3DA', '#006838'];
 
 const InflationRate: FC = () => {
     const { t } = useTranslation('investor-page');
+
+    const data = [
+        { country: 'af', value: 12 }, // Afghanistan
+        { country: 'ru', value: 12 }, // russia
+        { country: 'ro', value: 12 },
+        { country: 'us', value: 9 },
+        { country: 'no', value: 7 },
+        { country: 'se', value: 5 },
+        { country: 'uz', value: 25 },
+        { country: 'tm', value: 27 },
+        { country: 'tj', value: 23 },
+        { country: 'sa', value: 21 },
+        { country: 'tr', value: 11 },
+        { country: 'es', value: 14 },
+        { country: 've', value: 19 },
+        { country: 'ph', value: 23 },
+        { country: 'pg', value: 17 },
+        { country: 'nz', value: 21 },
+        { country: 'pe', value: 21 },
+        { country: 'sy', value: 28 },
+        { country: 'ua', value: 12 },
+        { country: 'pt', value: 12 },
+        { country: 'pl', value: 12 },
+        { country: 'al', value: 25 }, // Albania
+        { country: 'dz', value: 7 },
+        { country: 'gb', value: 7 },
+        { country: 'as', value: 19 }, // American Samoa
+        { country: 'ad', value: 3 }, // Andorra
+        { country: 'ao', value: 28 }, // Angola
+        { country: 'ai', value: 14 }, // Anguilla
+        { country: 'aq', value: 6 }, // Antarctica
+        { country: 'ag', value: 22 }, // Antigua and Barbuda
+        { country: 'ar', value: 30 }, // Argentina
+        { country: 'am', value: 9 }, // Armenia
+        { country: 'aw', value: 18 }, // Aruba
+        { country: 'au', value: 27 }, // Australia
+        { country: 'at', value: 10 }, // Austria
+        { country: 'az', value: 5 }, // Azerbaijan
+        { country: 'bs', value: 23 }, // Bahamas
+        { country: 'bh', value: 11 }, // Bahrain
+        { country: 'bd', value: 15 }, // Bangladesh
+        { country: 'bb', value: 8 }, // Barbados
+        { country: 'by', value: 26 }, // Belarus
+        { country: 'be', value: 4 }, // Belgium
+        { country: 'bz', value: 21 }, // Belize
+        { country: 'bj', value: 2 }, // Benin
+        { country: 'bm', value: 29 }, // Bermuda
+        { country: 'bt', value: 17 }, // Bhutan
+        { country: 'bo', value: 20 }, // Bolivia
+        { country: 'ba', value: 1 }, // Bosnia and Herzegovina
+        { country: 'bw', value: 13 }, // Botswana
+        { country: 'br', value: 24 }, // Brazil
+        { country: 'bn', value: 16 }, // Brunei
+        { country: 'bg', value: 30 }, // Bulgaria
+        { country: 'bf', value: 0 }, // Burkina Faso
+        { country: 'bi', value: 7 }, // Burundi
+        { country: 'cv', value: 6 }, // Cabo Verde
+        { country: 'kh', value: 25 }, // Cambodia
+        { country: 'cm', value: 4 }, // Cameroon
+        { country: 'ca', value: 11 }, // Canada
+        { country: 'ky', value: 9 }, // Cayman Islands
+        { country: 'cf', value: 13 }, // Central African Republic
+        { country: 'td', value: 8 }, // Chad
+        { country: 'cl', value: 22 }, // Chile
+        { country: 'cn', value: 30 }, // China
+        { country: 'co', value: 17 }, // Colombia
+        { country: 'km', value: 26 }, // Comoros
+        { country: 'cg', value: 5 }, // Congo
+        { country: 'cd', value: 24 }, // Congo (DRC)
+        { country: 'cr', value: 20 }, // Costa Rica
+        { country: 'ci', value: 2 }, // Côte d'Ivoire
+        { country: 'hr', value: 27 }, // Croatia
+        { country: 'cu', value: 19 }, // Cuba
+        { country: 'cy', value: 14 }, // Cyprus
+        { country: 'cz', value: 1 }, // Czechia
+        { country: 'dk', value: 3 }, // Denmark
+        { country: 'dj', value: 12 }, // Djibouti
+        { country: 'dm', value: 23 }, // Dominica
+        { country: 'do', value: 16 }, // Dominican Republic
+        { country: 'ec', value: 6 }, // Ecuador
+        { country: 'eg', value: 28 }, // Egypt
+        { country: 'sv', value: 0 }, // El Salvador
+        { country: 'gq', value: 21 }, // Equatorial Guinea
+        { country: 'er', value: 29 }, // Eritrea
+        { country: 'ee', value: 5 }, // Estonia
+        { country: 'sz', value: 15 }, // Eswatini
+        { country: 'et', value: 10 }, // Ethiopia
+        { country: 'fj', value: 18 }, // Fiji
+        { country: 'fi', value: 7 }, // Finland
+        { country: 'fr', value: 20 }, // France
+        { country: 'ga', value: 8 }, // Gabon
+        { country: 'gm', value: 13 }, // Gambia
+        { country: 'ge', value: 30 }, // Georgia
+        { country: 'de', value: 2 }, // Germany
+        { country: 'gh', value: 27 }, // Ghana
+        { country: 'gr', value: 9 }, // Greece
+        { country: 'gd', value: 26 }, // Grenada
+        { country: 'gu', value: 4 }, // Guam
+        { country: 'gt', value: 17 }, // Guatemala
+        { country: 'gn', value: 1 }, // Guinea
+        { country: 'gw', value: 28 }, // Guinea-Bissau
+        { country: 'gy', value: 19 }, // Guyana
+        { country: 'ht', value: 3 }, // Haiti
+        { country: 'hn', value: 22 }, // Honduras
+        { country: 'hk', value: 16 }, // Hong Kong
+        { country: 'hu', value: 14 }, // Hungary
+        { country: 'is', value: 0 }, // Iceland
+        { country: 'in', value: 25 }, // India
+        { country: 'id', value: 24 }, // Indonesia
+        { country: 'ir', value: 10 }, // Iran
+        { country: 'iq', value: 15 }, // Iraq
+        { country: 'ie', value: 6 }, // Ireland
+        { country: 'il', value: 13 }, // Israel
+        { country: 'it', value: 12 }, // Italy
+        { country: 'jm', value: 11 }, // Jamaica
+        { country: 'jp', value: 7 }, // Japan
+        { country: 'jo', value: 20 }, // Jordan
+        { country: 'kz', value: 29 }, // Kazakhstan
+        { country: 'ke', value: 9 }, // Kenya
+        { country: 'ki', value: 3 }, // Kiribati
+        { country: 'kp', value: 8 }, // Korea (North)
+        { country: 'kr', value: 23 }, // Korea (South)
+        { country: 'kw', value: 5 }, // Kuwait
+        { country: 'kg', value: 18 }, // Kyrgyzstan
+        { country: 'la', value: 26 }, // Laos
+        { country: 'lv', value: 21 }, // Latvia
+        { country: 'lb', value: 1 }, // Lebanon
+        { country: 'ls', value: 14 }, // Lesotho
+        { country: 'lr', value: 27 }, // Liberia
+        { country: 'ly', value: 4 }, // Libya
+        { country: 'li', value: 22 }, // Liechtenstein
+        { country: 'lt', value: 13 }, // Lithuania
+        { country: 'lu', value: 17 }, // Luxembourg
+        { country: 'mo', value: 10 }, // Macau
+        { country: 'mg', value: 30 }, // Madagascar
+        { country: 'mw', value: 6 }, // Malawi
+        { country: 'my', value: 28 }, // Malaysia
+        { country: 'mv', value: 2 }, // Maldives
+        { country: 'ml', value: 11 }, // Mali
+        { country: 'mt', value: 16 }, // Malta
+        { country: 'mh', value: 7 }, // Marshall Islands
+        { country: 'mr', value: 9 }, // Mauritania
+        { country: 'mu', value: 5 }, // Mauritius
+        { country: 'mx', value: 20 }, // Mexico
+        { country: 'fm', value: 15 }, // Micronesia
+        { country: 'md', value: 24 }, // Moldova
+        { country: 'mc', value: 12 }, // Monaco
+        { country: 'mn', value: 3 }, // Mongolia
+        { country: 'me', value: 19 }, // Montenegro
+        { country: 'ma', value: 0 }, // Morocco
+        { country: 'mz', value: 26 }, // Mozambique
+        { country: 'mm', value: 13 }, // Myanmar
+        { country: 'na', value: 8 }, // Namibia
+    ];
 
     return (
         <Box
             sx={{
                 background: 'transparent',
-                paddingTop: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
-                paddingBottom: { lg: '100px', xl: '80px', sm: '50px', xs: '30px' },
+                paddingTop: { lg: '70px', xl: '70px', sm: '70px', xs: '50px' },
+                paddingBottom: { lg: '70px', xl: '70px', sm: '70px', xs: '50px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '100px', sm: '130px', md: '150px' },
             }}
@@ -298,33 +264,9 @@ const InflationRate: FC = () => {
                     </div>
                     <Img className="inflationTarget" src={inflationTarget} />
                 </Content>
-                <ImageWrapper>
-                    <MapV
-                        series={{
-                            regions: [
-                                {
-                                    scale: colorScale,
-                                    values: countries,
-                                },
-                            ],
-                        }}
-                        //         onRegionTipShow={function reginalTip(event, el, code  ) {
-                        //
-                        //             return el.html(`
-                        // <div style="background-color: transparent; border-radius: 6px; min-height: 50px; width: 125px; padding-left: 10px; color: white">
-                        //   <p>
-                        //       <b>Инфляция <br/>${el.html()}</b>
-                        //   </p>
-                        //   <p>
-                        //       ${countries[code]}%
-                        //   </p>
-                        //   </div>`);
-                        regionStyle={{ initial: { fill: '#F6F7F8' } }}
-                        zoomOnScroll={false}
-                        backgroundColor="transparent"
-                        map={worldMill}
-                    />
-                </ImageWrapper>
+                <Map>
+                    <WorldMap color="green" valueSuffix="%" valuePrefix=", уровень инфляции:" size="xxl" data={data} />
+                </Map>
             </Inner>
         </Box>
     );

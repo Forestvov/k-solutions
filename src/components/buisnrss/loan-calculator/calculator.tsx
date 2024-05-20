@@ -416,7 +416,7 @@ export const Calculator = () => {
                     </div>
                     <div style={{ paddingRight: '10px', borderRight: '1px solid #CFCFCF' }}>
                         <Label>{t('Процентная ставка')}</Label>
-                        <TotalCount>{!isChecked1 ? '40,8 % — 44,1 %' : '18,1 % — 18,1 %'}</TotalCount>
+                        <TotalCount>{!isChecked1 ? '44,1 %' : '18,1 %'}</TotalCount>
                     </div>
                     <div>
                         <Label>{t('Вероятность одобрения')}</Label>

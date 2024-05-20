@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import BusinessMainImg from 'assets/pages/businessPage/businessMainBannerImage.png';
+import BusinessMainImg from 'assets/pages/businessPage/mainBannerImg.png';
 
 const ImageWrapper = styled.div`
     position: absolute;
