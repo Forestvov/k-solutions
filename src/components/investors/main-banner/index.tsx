@@ -15,7 +15,7 @@ const Inner = styled(Container)`
 
 const Content = styled.div`
     @media (min-width: 1280px) {
-        padding-right: 450px;
+        padding-right: 250px;
         width: 75%;
     }
 `;
@@ -74,7 +74,7 @@ const MainBanner: FC = () => {
                 height: { lg: 'min(110vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
                 minHeight: { lg: '787px' },
                 background: 'transparent',
-                paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '120px', xl: '90px', sm: '90px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
