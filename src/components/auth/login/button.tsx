@@ -6,7 +6,7 @@ import type { ButtonProp } from './types';
 
 const ButtonStyle = styled(Button)<Pick<ButtonProp, 'variation'>>`
     flex: 1;
-    line-height: 60px;
+    line-height: 50px;
     padding: 0 10px;
     font-weight: 300;
     font-size: 1.25rem;

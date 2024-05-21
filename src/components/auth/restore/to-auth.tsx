@@ -13,9 +13,9 @@ const Link = styled(NavLink)`
     text-decoration: none;
 `;
 
-const ToRestorePassword = () => {
+const ToAuth = () => {
     const { t } = useTranslation('auth');
-    return <Link to="/recovery">{t('Восстановить пароль')}</Link>;
+    return <Link to="/login">{t('Войти')}</Link>;
 };
 
-export default ToRestorePassword;
+export default ToAuth;
