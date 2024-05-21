@@ -12,6 +12,7 @@ import Selector from '../selector';
 import Input from '../input';
 import GetterInput from './getter-input';
 import { PAYMENT_BANK } from './data';
+import Stack from '@mui/material/Stack';
 
 interface Props {
     transactionType?: 'In' | 'Out';
@@ -55,7 +56,7 @@ const P2PForm = ({ transactionType }: Props) => {
     }, [curse]);
 
     return (
-        <>
+        <Stack spacing="30px">
             <Selector
                 name="currencyToken"
                 label={transactionType === 'Out' ? t('Получаете') : t('Отдаете')}
@@ -93,7 +94,7 @@ const P2PForm = ({ transactionType }: Props) => {
                     {t('Выплата производится в автоматическом режиме по регламенту пользовательского соглашения.')}
                 </Description>
             </div>
-        </>
+        </Stack>
     );
 };
 

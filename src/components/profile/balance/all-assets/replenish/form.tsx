@@ -9,6 +9,8 @@ import type { FormState } from './types';
 import { addTransaction, getTransaction, setMarkAsTransaction } from 'api/transaction';
 import type { IHistory } from 'types/transaction';
 import Button from '@mui/material/Button';
+import { validationSchemaPhp } from 'components/profile/balance/all-assets/replenish/validation-schema';
+import errorCatcher from 'components/profile/balance/all-assets/replenish/error-catcher';
 
 const Wrapper = styled.div`
     padding: 40px 20px;
@@ -203,6 +205,8 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
             setActiveStep(3);
         } else if (data.transactionLinkType === 'p2p') {
             try {
+                await validationSchemaPhp.validate(data, { abortEarly: false });
+
                 const newData = {
                     currencyToken: data.currencyToken,
                     amountIn: transactionType === 'Out' ? data.amountOut : data.amountIn,
@@ -225,7 +229,9 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
                     setActiveStep(2);
                 }
             } catch (e) {
+                errorCatcher(e, methods.setError);
                 console.log(e);
+                return;
             }
         } else {
             try {

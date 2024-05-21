@@ -16,7 +16,6 @@ import type { FormState } from '../types';
 
 import TitleStep from './title-step';
 import DefaultForm from './default-form';
-import P2PForm from './p2p-form';
 import { TypeTransaction } from './data';
 
 interface Props {
@@ -128,11 +127,7 @@ const Step1: FC<Props> = ({ onNext, transactionType }) => {
                         name="transactionLinkType"
                         control={control}
                     />
-                    {values.transactionLinkType === 'p2p' ? (
-                        <P2PForm transactionType={transactionType} />
-                    ) : (
-                        <DefaultForm onNext={onNext} />
-                    )}
+                    <DefaultForm onNext={onNext} />
                 </Stack>
             </Box>
         </Box>
