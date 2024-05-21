@@ -1,18 +1,16 @@
 import { lazy } from 'react';
 import { createHashRouter } from 'react-router-dom';
-
-// Layouts
-import AuthLayout from 'layouts/auth-layout';
-import MainLayout from 'layouts/main-layout';
-import ProfileLayout from 'layouts/profile-layout';
-
 // Contexts
 import AuthGuard from 'context/auth/guard/auth-guard';
 import GuestGuard from 'context/auth/guard/guest-guard';
 
-// Guest Pages
-import HomePage from './ui/home-page';
+// Layouts
+const AuthLayout = lazy(() => import('layouts/auth-layout'));
+const MainLayout = lazy(() => import('layouts/main-layout'));
+const ProfileLayout = lazy(() => import('layouts/profile-layout'));
 
+// Guest Pages
+const HomePage = lazy(() => import('./ui/home-page'));
 const GraphicsPage = lazy(() => import('./ui/graphics-page'));
 const BusinessPage = lazy(() => import('./ui/business-page'));
 const AboutPlatformPage = lazy(() => import('./ui/about-platfom-page'));
