@@ -21,7 +21,7 @@ const InputContainer = styled.div`
     width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 
     @media (max-width: 1280px) {
         width: 100%;
@@ -33,7 +33,7 @@ const InputContainer = styled.div`
 const InputWrapper = styled.div`
     width: 50%;
     background: #f6f7f8;
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
 
     @media (max-width: 766px) {
@@ -64,10 +64,10 @@ const CheckBoxContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 
     background: #f6f7f8;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
     margin-top: 10px;
 
@@ -106,7 +106,7 @@ const CheckBoxPart = styled.div`
 
 const CheckBoxDiv = styled.div`
     width: 200px;
-    height: 185px;
+    height: 140px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -129,9 +129,9 @@ const CheckBoxDiv = styled.div`
 const Label = styled.p`
     max-width: 350px;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     color: #747474;
-    margin: 25px 0 0 0;
+    margin: 10px 0 0 0;
 
     @media (max-width: 1280px) {
         font-size: 12px;

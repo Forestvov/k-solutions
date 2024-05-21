@@ -3,14 +3,14 @@ import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     color: #747474;
     max-width: 300px;
     margin: 7px 0 0 0;
 `;
 
 const Title = styled.h2`
-    font-size: 2.625rem;
+    font-size: 24px;
     color: #006838;
     line-height: 50px;
     user-select: none;
@@ -19,7 +19,7 @@ const Title = styled.h2`
     max-width: 300px;
 
     @media (max-width: 400px) {
-        font-size: 2.375rem;
+        font-size: 24px;
     }
 `;
 
@@ -38,10 +38,9 @@ export const GetLoanCard = ({ row }: Props) => {
         <Stack
             sx={{
                 padding: { xs: '20px', sm: '25px' },
-                width: { lg: '400px', xl: '350px', sm: '400px', xs: '400px' },
-                height: { xs: '280px', sm: '280px' },
+                width: { lg: '380px', xl: '320px', sm: '400px', xs: '400px' },
+                height: { xs: '180px', sm: '220px' },
                 background: '#f6f7f8',
-                marginBottom: '50px',
                 borderRadius: { xs: '25px', sm: '35px' },
                 transition: 'background 400ms',
 

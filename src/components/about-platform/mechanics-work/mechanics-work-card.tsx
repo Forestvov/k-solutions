@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
@@ -37,8 +37,9 @@ export const MechanicsWorkCard = ({ row }: Props) => {
     return (
         <Stack
             sx={{
-                padding: { xs: '25px', sm: '35px' },
-                height: { xs: '250px', sm: '280px' },
+                padding: { xs: '15px', sm: '25px' },
+                height: { xs: '220px', sm: '250px' },
+                width: { xs: '320px', sm: '32%' },
                 background: 'white',
                 borderRadius: { xs: '25px', sm: '35px' },
                 transition: 'background 400ms',

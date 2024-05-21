@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const CondCard = styled.div`
     width: 100%;
-    min-height: 325px;
+    min-height: 295px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,7 +19,7 @@ const CondCard = styled.div`
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     color: #747474;
     width: 100%;
     margin: 7px 0 0 0;
@@ -33,7 +33,7 @@ const Label = styled.p`
 `;
 
 const Title = styled.h2`
-    font-size: 38px;
+    font-size: 32px;
     color: #373737;
     line-height: 50px;
     user-select: none;

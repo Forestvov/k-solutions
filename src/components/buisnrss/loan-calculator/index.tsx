@@ -18,11 +18,11 @@ const Content = styled.div`
     align-items: center;
     flex-wrap: wrap;
     gap: 30px;
-    margin-top: 70px;
+    margin-top: 30px;
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -30,7 +30,7 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2rem;
+        font-size: 28px;
     }
 `;
 
@@ -41,8 +41,8 @@ const CalculatorSection: FC = () => {
         <Box
             sx={{
                 background: 'transparent',
-                paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
-                paddingBottom: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
+                paddingBottom: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}

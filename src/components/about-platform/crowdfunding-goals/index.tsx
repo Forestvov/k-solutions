@@ -17,7 +17,7 @@ const Inner = styled(Container)`
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -25,7 +25,7 @@ const Title = styled.h2`
     margin-bottom: 50px;
 
     @media (max-width: 770px) {
-        font-size: 2.375rem;
+        font-size: 28px;
     }
 `;
 
@@ -185,7 +185,6 @@ const CrowdfundingGoals: FC = () => {
                 paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
                 paddingBottom: { lg: '140px', xl: '120px', sm: '90px', xs: '70px' },
                 overflow: 'hidden',
-                marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
             <Inner fixed>

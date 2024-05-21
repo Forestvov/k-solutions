@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 
 const CondCard = styled.div`
     width: 49%;
-    min-height: 325px;
+    min-height: 230px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 25px 30px;
+    padding: 15px 30px;
     border-radius: 20px;
     background: white;
     gap: 10px;
@@ -40,7 +40,7 @@ const Label = styled.p`
 `;
 
 const Title = styled.h2`
-    font-size: 2rem;
+    font-size: 28px;
     color: #373737;
     line-height: 50px;
     user-select: none;
@@ -49,7 +49,7 @@ const Title = styled.h2`
     max-width: 250px;
 
     @media (max-width: 1280px) {
-        font-size: 1.75rem;
+        font-size: 24px;
     }
 `;
 

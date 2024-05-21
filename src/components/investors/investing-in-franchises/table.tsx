@@ -69,7 +69,12 @@ const FranchiseTable: FC = () => {
                         <TableRow>
                             {columns.map((column) => (
                                 <TableCell
-                                    style={{ background: '#006838', color: 'white', textAlign: 'center' }}
+                                    style={{
+                                        padding: '7px',
+                                        background: '#006838',
+                                        color: 'white',
+                                        textAlign: 'center',
+                                    }}
                                     key={column.name}
                                 >
                                     {column.name}

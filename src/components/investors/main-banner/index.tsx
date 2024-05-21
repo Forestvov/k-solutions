@@ -21,7 +21,7 @@ const Content = styled.div`
 `;
 
 const Paragraph = styled.p`
-    margin: 30px 0 33px;
+    margin: 0;
     font-weight: 300;
     font-size: 1rem;
     max-width: 819px;
@@ -40,7 +40,7 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 96px;
+    font-size: 68px;
     color: #373737;
     user-select: none;
     font-weight: 500;
@@ -51,9 +51,10 @@ const Span = styled.span`
 `;
 
 const Title = styled.h2`
-    font-size: 96px;
+    margin: 0;
+    font-size: 68px;
     color: #006838;
-    line-height: 90px;
+    line-height: 80px;
     user-select: none;
     font-weight: 500;
 
@@ -74,7 +75,7 @@ const MainBanner: FC = () => {
                 height: { lg: 'min(110vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
                 minHeight: { lg: '787px' },
                 background: 'transparent',
-                paddingTop: { lg: '120px', xl: '90px', sm: '90px', xs: '80px' },
+                paddingTop: { lg: '100px', xl: '90px', sm: '90px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}

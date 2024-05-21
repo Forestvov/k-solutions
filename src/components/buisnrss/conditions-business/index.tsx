@@ -14,15 +14,15 @@ const Inner = styled(Container)`
 const Content = styled.div`
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 70px;
+    gap: 15px;
+    margin-top: 40px;
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #373737;
     line-height: 60px;
     user-select: none;

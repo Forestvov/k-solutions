@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
@@ -13,26 +13,32 @@ const Paragraph = styled.p`
     }
 `;
 
+const CondStack = styled(Stack)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
 const Label = styled.p`
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     color: #747474;
     margin: 0;
 `;
 
 const Span = styled.span`
-    font-size: 5.25rem;
+    font-size: 58px;
     color: #20836d;
     user-select: none;
     font-weight: 500;
 
     @media (max-width: 1280px) {
-        font-size: 3.125rem;
+        font-size: 48px;
     }
 `;
 
 const Title = styled.h2`
-    font-size: 42px;
+    font-size: 34px;
     color: #373737;
     line-height: 50px;
     user-select: none;
@@ -41,7 +47,7 @@ const Title = styled.h2`
     max-width: 500px;
 
     @media (max-width: 1024px) {
-        font-size: 34px;
+        font-size: 32px;
     }
 
     @media (max-width: 770px) {
@@ -63,13 +69,12 @@ interface Props {
 export const ConditionCard = ({ row }: Props) => {
     const { title, text, count, label } = row;
     return (
-        <Stack
+        <CondStack
             sx={{
-                padding: { xs: '25px', sm: '35px' },
-                width: { xs: '100%', sm: '48%' },
-                height: { xs: '410', sm: '450px' },
+                padding: { xs: '15px', sm: '25px' },
+                width: { xs: '100%', sm: '45%' },
+                height: { xs: '410', sm: '320px' },
                 background: 'white',
-                marginBottom: '50px',
                 borderRadius: { xs: '25px', sm: '35px' },
                 transition: 'background 400ms',
 
@@ -92,6 +97,6 @@ export const ConditionCard = ({ row }: Props) => {
                 <Label className="stat-item-text">{label}</Label>
                 <Span className="stat-item-text">{count}</Span>
             </div>
-        </Stack>
+        </CondStack>
     );
 };

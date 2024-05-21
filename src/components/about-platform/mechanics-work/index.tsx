@@ -17,8 +17,8 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 70px;
+    gap: 15px;
+    margin-top: 40px;
 
     @media (max-width: 1280px) {
         width: 100%;
@@ -27,7 +27,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 48px;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -63,11 +63,10 @@ const MechanicsWorkSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '720px', xl: '920px', md: '1070px', sm: '1350px', xs: '1300px' },
                 background: '#F6F7F8',
-                paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '120px', xl: '90px', sm: '90px', xs: '70px' },
+                paddingBottom: { lg: '120px', xl: '90px', sm: '90px', xs: '70px' },
                 overflow: 'hidden',
-                marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
             <Inner fixed>

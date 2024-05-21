@@ -21,7 +21,7 @@ const Content = styled.div`
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 70px;
+    margin-top: 30px;
 `;
 
 const BottomCard = styled.div`
@@ -29,12 +29,12 @@ const BottomCard = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
-    padding: 25px 30px;
-    border-radius: 20px;
+    padding: 15px 30px;
+    border-radius: 25px;
     background: white;
     align-items: center;
     gap: 10px;
-    margin-top: 50px;
+    margin-top: 25px;
 
     @media (max-width: 1024px) {
         display: none;
@@ -42,7 +42,7 @@ const BottomCard = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -50,37 +50,38 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 1.5rem;
+        font-size: 28px;
     }
 `;
 
 const BottomCardTitle = styled.p`
-    font-size: 2.375rem;
+    font-size: 28px;
     color: #373737;
     line-height: 50px;
     user-select: none;
     font-weight: 500;
-    margin: 0;
+    margin: 15px 0 0 0;
 
     @media (max-width: 1280px) {
-        font-size: 1.75rem;
+        font-size: 24px;
     }
 `;
 
 const Paragraph = styled.p`
     font-weight: 400;
-    font-size: 1.125rem;
+    font-size: 14px;
     color: #747474;
     max-width: 405px;
     margin: 7px 0 0 0;
 `;
 
 const Label = styled.p`
-    font-size: 2.5rem;
+    font-size: 30px;
     color: #006838;
     user-select: none;
     font-weight: 500;
-    margin-bottom: 220px;
+    margin-bottom: 140px;
+    margin-top: 15px;
 
     @media (max-width: 770px) {
         display: none;
@@ -88,6 +89,7 @@ const Label = styled.p`
 `;
 
 const Image = styled.img`
+    width: 25%;
     position: absolute;
     left: 39%;
     bottom: 0;
@@ -122,9 +124,9 @@ const RequirementsBusiness: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '1200px', xl: '1200px', md: '1500px', sm: '1000px', xs: '1000px' },
                 background: '#F6F7F8',
-                paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
+                paddingBottom: { lg: '120px', xl: '100px', sm: '100px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
@@ -140,7 +142,8 @@ const RequirementsBusiness: FC = () => {
                             style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                width: '450px',
+                                width: '350px',
+                                height: '200px',
                                 flexDirection: 'column',
                             }}
                         >
