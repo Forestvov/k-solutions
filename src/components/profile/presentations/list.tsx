@@ -1,9 +1,11 @@
-import Item from './item';
 import type { SwiperOptions } from 'swiper/types';
-import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styled from '@emotion/styled';
+import { Navigation, Pagination } from 'swiper';
 import { useTranslation } from 'react-i18next';
+
+import styled from '@emotion/styled';
+
+import Item from './item';
 
 const paramsSlider: SwiperOptions = {
     slidesPerView: 1,

@@ -38,3 +38,9 @@ input[type='number'] {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+jdiv {
+    .wrap_e3ce {
+        bottom: 80px !important;
+    }
+}

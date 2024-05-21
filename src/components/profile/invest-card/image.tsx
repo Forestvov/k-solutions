@@ -22,7 +22,7 @@ interface Image {
 }
 
 const Image = ({ image }: Image) => {
-    return <ImageBox src={image} />;
+    return <ImageBox loading="lazy" src={image} />;
 };
 
 export default Image;
