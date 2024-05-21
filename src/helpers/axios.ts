@@ -79,6 +79,8 @@ export const endpoints = {
         register: 'auth/register',
         send_verify: 'auth/send-verify',
         verify: 'auth/verify',
+        restore: 'auth/restore/send',
+        restorePassword: 'auth/restore',
     },
     account: {
         update: 'account/me',

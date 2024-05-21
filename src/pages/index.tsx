@@ -29,8 +29,9 @@ const SettingsPage = lazy(() => import('./ui/settings-page'));
 // Auth Pages
 const LoginPage = lazy(() => import('./ui/login-page'));
 const RegisterPage = lazy(() => import('./ui/register-page'));
-const VerifyPage = lazy(() => import('./ui/verify-page'));
-const VerifyByIdPage = lazy(() => import('./ui/verify-by-id-page'));
+// const VerifyPage = lazy(() => import('./ui/verify-page'));
+// const VerifyByIdPage = lazy(() => import('./ui/verify-by-id-page'));
+const RestorePage = lazy(() => import('./ui/restore-page'));
 
 // Policy Pages
 const PrivacyPolicyPage = lazy(() => import('./ui/privacy-policy-page'));
@@ -54,13 +55,21 @@ export const appRouter = createHashRouter([
                 element: <RegisterPage />,
             },
             {
-                path: '/verify',
-                element: <VerifyPage />,
+                path: '/recovery',
+                element: <RestorePage />,
             },
             {
-                path: '/verify/:id',
-                element: <VerifyByIdPage />,
+                path: '/recovery/:token',
+                element: <RestorePage />,
             },
+            // {
+            //     path: '/verify',
+            //     element: <VerifyPage />,
+            // },
+            // {
+            //     path: '/verify/:id',
+            //     element: <VerifyByIdPage />,
+            // },
         ],
     },
     {
