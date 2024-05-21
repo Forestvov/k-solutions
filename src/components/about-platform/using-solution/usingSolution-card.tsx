@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const CondCard = styled.div`
     width: 48%;
-    min-height: 325px;
+    min-height: 275px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -14,7 +14,7 @@ const Inner = styled(Container)`
 
 const Content = styled.div`
     @media (min-width: 1280px) {
-        padding-right: 250px;
+        padding-right: 220px;
         width: 75%;
     }
 `;
@@ -39,7 +39,7 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: #006838;
     user-select: none;
     font-weight: 400;
@@ -50,9 +50,9 @@ const Span = styled.span`
 `;
 
 const Title = styled.h2`
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: #373737;
-    line-height: 90px;
+    line-height: 70px;
     user-select: none;
     font-weight: 400;
     margin: 0;

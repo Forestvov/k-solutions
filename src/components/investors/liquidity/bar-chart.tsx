@@ -9,6 +9,11 @@ const BarContainer = styled.div`
     border-radius: 20px;
     border: 15px solid #f6f7f8;
     margin: 0 0 10px 0;
+
+    @media (max-width: 400px) {
+        border: 7px solid #f6f7f8;
+        padding: 10px;
+    }
 `;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);

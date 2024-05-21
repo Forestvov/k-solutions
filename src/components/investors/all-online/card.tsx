@@ -9,7 +9,7 @@ const Card = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 48%;
-    height: 250px;
+    height: 210px;
 
     @media (max-width: 770px) {
         width: 100%;
@@ -18,9 +18,10 @@ const Card = styled.div`
 
 const Title = styled.h3`
     max-width: 394px;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 500;
     color: #373737;
+    margin: 0 0 10px 0;
 
     @media (max-width: 1280px) {
         font-size: 26px;
@@ -33,20 +34,25 @@ const Title = styled.h3`
 
 const Label = styled.p`
     max-width: 334px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     color: #747474;
+    margin: 20px 0 0 0;
 
     @media (max-width: 1280px) {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     @media (max-width: 770px) {
-        font-size: 14px;
+        font-size: 12px;
     }
 `;
 
-const Img = styled.img``;
+const Img = styled.img`
+    @media (max-width: 770px) {
+        width: 95%;
+    }
+`;
 
 export interface CardProps {
     title: string;

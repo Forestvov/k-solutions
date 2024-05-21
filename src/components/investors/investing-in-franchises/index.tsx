@@ -23,21 +23,21 @@ const Content = styled.div`
 const Paragraph = styled.p`
     margin: 5px 0 5px 0;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 14px;
     max-width: 819px;
     line-height: 26px;
 
     @media (max-width: 1024px) {
-        font-size: 18px;
+        font-size: 14px;
     }
     @media (max-width: 766px) {
-        font-size: 14px;
+        display: none;
     }
 `;
 
 const Title = styled.h2`
     margin: 0;
-    font-size: 48px;
+    font-size: 38px;
     color: #373737;
     user-select: none;
     font-weight: 600;
@@ -47,6 +47,8 @@ const Title = styled.h2`
     }
     @media (max-width: 766px) {
         font-size: 28px;
+        text-align: center;
+        margin: 0 0 15px 0;
     }
 `;
 const InvestInFranchise: FC = () => {

@@ -22,8 +22,8 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 70px;
+    gap: 25px;
+    margin-top: 30px;
 
     @media (max-width: 770px) {
         display: none;
@@ -31,7 +31,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -39,7 +39,7 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2.375rem;
+        font-size: 28px;
     }
 `;
 
@@ -175,8 +175,8 @@ const GetLoanBusiness: FC = () => {
         <Box
             sx={{
                 background: 'transparent',
-                paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
-                paddingBottom: { lg: '140px', xl: '120px', sm: '90px', xs: '70px' },
+                paddingTop: { lg: '100px', xl: '100px', sm: '80px', xs: '50px' },
+                paddingBottom: { lg: '100px', xl: '100px', sm: '80px', xs: '50px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}

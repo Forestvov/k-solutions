@@ -22,7 +22,7 @@ const Content = styled.div`
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 70px;
+    margin-top: 40px;
 `;
 
 const ButtonsContainer = styled.div`
@@ -30,11 +30,11 @@ const ButtonsContainer = styled.div`
     width: 100%;
     align-items: center;
     flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 70px;
+    gap: 15px;
+    margin-top: 40px;
 
     @media (max-width: 770px) {
-        margin-top: 40px;
+        margin-top: 20px;
         gap: 15px;
     }
 `;
@@ -64,7 +64,7 @@ const TabButton = styled(Button)<{ active: boolean }>`
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -72,7 +72,7 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2rem;
+        font-size: 28px;
     }
 `;
 

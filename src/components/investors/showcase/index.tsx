@@ -127,7 +127,7 @@ const paramsSlider: SwiperOptions = {
             slidesPerView: 2,
             spaceBetween: 30,
         },
-        1670: {
+        1470: {
             slidesPerView: 3,
             spaceBetween: 40,
         },

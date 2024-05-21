@@ -27,7 +27,7 @@ const Content = styled.div`
 const Paragraph = styled.p`
     margin: 5px 0 5px 0;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 18px;
     max-width: 819px;
     line-height: 26px;
 
@@ -37,7 +37,7 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 20px;
+    font-size: 18px;
     color: #006838;
     user-select: none;
     font-weight: 500;
@@ -49,13 +49,13 @@ const Span = styled.span`
 
 const Title = styled.h2`
     margin: 0 auto;
-    font-size: 48px;
+    font-size: 40px;
     color: #373737;
     user-select: none;
     font-weight: 600;
 
     @media (max-width: 1024px) {
-        font-size: 38px;
+        font-size: 32px;
     }
 `;
 
@@ -249,7 +249,7 @@ const InflationRate: FC = () => {
                 paddingTop: { lg: '70px', xl: '70px', sm: '70px', xs: '50px' },
                 paddingBottom: { lg: '70px', xl: '70px', sm: '70px', xs: '50px' },
                 overflow: 'hidden',
-                marginBottom: { xs: '100px', sm: '130px', md: '150px' },
+                marginBottom: { xs: '20px', sm: '20px', md: '20px' },
             }}
         >
             <Inner>
@@ -265,7 +265,13 @@ const InflationRate: FC = () => {
                     <Img className="inflationTarget" src={inflationTarget} />
                 </Content>
                 <Map>
-                    <WorldMap color="green" valueSuffix="%" valuePrefix=", уровень инфляции:" size="xxl" data={data} />
+                    <WorldMap
+                        color="green"
+                        valueSuffix="%"
+                        valuePrefix=", уровень инфляции:"
+                        size={window.innerWidth >= 1600 ? 'xxl' : 'xl'}
+                        data={data}
+                    />
                 </Map>
             </Inner>
         </Box>

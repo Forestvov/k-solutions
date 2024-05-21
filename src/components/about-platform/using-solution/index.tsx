@@ -22,7 +22,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -30,18 +30,18 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2.375rem;
+        font-size: 28px;
     }
 `;
 
 const Span = styled.span`
-    font-size: 3rem;
+    font-size: 38px;
     color: #006838;
     user-select: none;
     font-weight: 600;
 
     @media (max-width: 770px) {
-        font-size: 2.625rem;
+        font-size: 28px;
     }
 `;
 
@@ -65,9 +65,9 @@ const UsingSolution: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '720px', xl: '720px', md: '1000px', sm: '1050px', xs: '1050px' },
                 background: '#F6F7F8',
-                paddingTop: { lg: '140px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '120px', xl: '90px', sm: '90px', xs: '70px' },
+                paddingBottom: { lg: '120px', xl: '90px', sm: '90px', xs: '70px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}

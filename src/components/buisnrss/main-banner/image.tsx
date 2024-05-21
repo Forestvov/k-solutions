@@ -5,7 +5,7 @@ import BusinessMainImg from 'assets/pages/businessPage/mainBannerImg.png';
 const ImageWrapper = styled.div`
     position: absolute;
     right: 75px;
-    top: 10px;
+    top: -10px;
     width: 380px;
 `;
 

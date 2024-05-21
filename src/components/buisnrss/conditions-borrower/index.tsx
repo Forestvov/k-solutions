@@ -17,8 +17,8 @@ const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 70px;
+    gap: 15px;
+    margin-top: 30px;
 `;
 
 const TopContent = styled.div`
@@ -26,7 +26,7 @@ const TopContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 170px;
+    height: 150px;
     gap: 10px;
 
     @media (max-width: 770px) {
@@ -40,7 +40,7 @@ const CenterContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 250px;
+    height: 230px;
     gap: 10px;
 
     @media (max-width: 770px) {
@@ -64,7 +64,7 @@ const BottomContent = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 3rem;
+    font-size: 38px;
     color: #373737;
     line-height: 60px;
     user-select: none;
@@ -72,7 +72,7 @@ const Title = styled.h2`
     margin: 0;
 
     @media (max-width: 770px) {
-        font-size: 2rem;
+        font-size: 28px;
     }
 `;
 

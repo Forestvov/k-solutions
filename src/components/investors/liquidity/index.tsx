@@ -15,7 +15,8 @@ import { BarGraphLiquidity } from 'components/investors/liquidity/bar-chart';
 const Inner = styled(Container)`
     height: 100%;
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    gap: 10px;
 
     @media (max-width: 1024px) {
         flex-direction: column;
@@ -25,10 +26,10 @@ const Inner = styled(Container)`
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 49%;
+    width: 48%;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
+    padding: 18px;
     border-radius: 30px;
     background: white;
 
@@ -50,19 +51,20 @@ const BarContainer = styled.div`
 const Paragraph = styled.p`
     margin: 5px 0 5px 0;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 16px;
     max-width: 819px;
     line-height: 26px;
 
     @media (max-width: 1024px) {
-        font-size: 18px;
+        font-size: 14px;
     }
 `;
 
 const Title = styled.h2`
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    margin-left: 10px;
     margin-top: 0;
-    font-size: 48px;
+    font-size: 40px;
     color: #373737;
     user-select: none;
     font-weight: 600;
@@ -128,18 +130,18 @@ const LeftPart = styled.div`
 `;
 
 const Profit = styled.h3`
-    font-size: 56px;
+    font-size: 46px;
     font-weight: 400;
     color: #000000;
-    margin: 55px 0;
+    margin: 25px 0;
     user-select: none;
 
     @media (max-width: 1024px) {
-        font-size: 48px;
+        font-size: 44px;
     }
 
     @media (max-width: 766px) {
-        font-size: 38px;
+        font-size: 34px;
     }
 `;
 const Liquidity: FC = () => {
@@ -197,7 +199,7 @@ const Liquidity: FC = () => {
                         <Profit className="profitT2" style={{ marginTop: '0' }}>
                             23,2%
                         </Profit>
-                        <Paragraph style={{ maxWidth: '300px', marginTop: '20px' }}>
+                        <Paragraph style={{ maxWidth: '300px', marginTop: '10px' }}>
                             {t('Средняя доходность на JetLend  за последние 3 месяца')}
                         </Paragraph>
                     </RightPart>

@@ -75,7 +75,8 @@ const CrowdlendingSection: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: '900px', xl: '920px', md: '1020px', sm: '1200px', xs: '0px' },
+                paddingTop: { lg: '120px', xl: '90px', sm: '90px', xs: '70px' },
+                paddingBottom: { lg: '120px', xl: '90px', sm: '90px', xs: '70px' },
                 background: 'transparent',
                 overflow: 'hidden',
             }}

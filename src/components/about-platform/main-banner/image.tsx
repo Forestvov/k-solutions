@@ -4,8 +4,8 @@ import Hands from 'assets/pages/aboutPlatformPage/about-page-mainBanner.png';
 
 const ImageWrapper = styled.div`
     position: absolute;
-    right: -120px;
-    top: -220px;
+    right: -150px;
+    top: -240px;
     width: 50%;
     background: transparent;
 `;

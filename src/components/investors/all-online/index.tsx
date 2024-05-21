@@ -62,13 +62,13 @@ const ManagerContainer = styled.div`
 
 const Title = styled.h2`
     margin: 0 auto;
-    font-size: 48px;
+    font-size: 40px;
     color: #373737;
     user-select: none;
     font-weight: 600;
 
     @media (max-width: 1024px) {
-        font-size: 38px;
+        font-size: 30px;
     }
 `;
 
@@ -108,30 +108,30 @@ const BottomCard = styled.div`
     max-width: 350px;
 
     .BottomCardTitle {
-        font-size: 32px;
+        font-size: 24px;
         font-weight: 500;
         color: #373737;
 
         @media (max-width: 1280px) {
-            font-size: 26px;
+            font-size: 22px;
         }
 
         @media (max-width: 770px) {
-            font-size: 22px;
+            font-size: 20px;
         }
     }
 
     .BottomCardText {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 400;
         color: #747474;
 
         @media (max-width: 1280px) {
-            font-size: 16px;
+            font-size: 14px;
         }
 
         @media (max-width: 770px) {
-            font-size: 14px;
+            font-size: 12px;
         }
     }
 `;
@@ -191,10 +191,10 @@ const OnlineSection: FC = () => {
                             <div style={{ display: 'flex', gap: '10px' }}>
                                 <ManagerIcon src={ManagerIconImg} />
                                 <div>
-                                    <span style={{ color: 'white', fontSize: '18px', fontWeight: '500' }}>
+                                    <span style={{ color: 'white', fontSize: '14px', fontWeight: '500' }}>
                                         {t('Мария Яблонева')}
                                     </span>
-                                    <p style={{ color: 'white', fontSize: '16px', fontWeight: '300', margin: '0' }}>
+                                    <p style={{ color: 'white', fontSize: '12px', fontWeight: '300', margin: '0' }}>
                                         {t('Персональный менеджер')}
                                     </p>
                                 </div>

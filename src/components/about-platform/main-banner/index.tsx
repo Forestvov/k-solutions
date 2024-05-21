@@ -14,7 +14,7 @@ const Inner = styled(Container)`
 
 const Content = styled.div`
     @media (min-width: 1280px) {
-        padding-right: 450px;
+        padding-right: 350px;
         width: 85%;
     }
 `;
@@ -38,7 +38,7 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-    font-size: 76px;
+    font-size: 56px;
     color: #373737;
     user-select: none;
     font-weight: 500;
@@ -49,7 +49,7 @@ const Span = styled.span`
 `;
 
 const Title = styled.h2`
-    font-size: 76px;
+    font-size: 56px;
     color: #006838;
     line-height: 30px;
     user-select: none;
@@ -73,7 +73,7 @@ const AboutPlatformMainBanner: FC = () => {
                 height: { lg: 'min(100vh - 110px, 970px);', xl: '755px', sm: '600px', xs: '450px' },
                 minHeight: { lg: '787px' },
                 background: 'transparent',
-                paddingTop: { lg: '180px', xl: '120px', sm: '120px', xs: '80px' },
+                paddingTop: { lg: '120px', xl: '120px', sm: '120px', xs: '80px' },
                 overflow: 'hidden',
                 marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
