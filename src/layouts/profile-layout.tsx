@@ -34,7 +34,7 @@ const ProfileLayout = () => {
                         spacing="30px"
                         sx={{
                             flex: 1,
-                            overflow: location.pathname.includes('/showcases') ? 'visible' : 'hidden',
+                            overflow: location.pathname.includes('/showcases/') ? 'visible' : 'hidden',
                             padding: { xl: '0 30px 0 0', xs: '0 20px 80px' },
                         }}
                     >

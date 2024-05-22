@@ -1,3 +1,4 @@
+import 'swiper/css';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';

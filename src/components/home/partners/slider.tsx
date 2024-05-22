@@ -40,7 +40,7 @@ const SliderWrapper = styled(Swiper)`
 `;
 
 const Slide = styled(SwiperSlide)`
-    width: fit-content;
+    width: fit-content !important;
 `;
 
 const Slider = () => {
