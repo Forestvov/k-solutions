@@ -1,24 +1,16 @@
-import type { INewPost } from 'types/news';
-import Stack from '@mui/material/Stack';
-import styled from '@emotion/styled';
-import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
+import type { INewPost } from 'types/news';
+import styled from '@emotion/styled';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 const Image = styled.img`
-    width: 200px;
+    width: 100px;
     height: auto;
     display: block;
     object-fit: cover;
     transition: opacity 400ms ease;
     border-radius: 15px;
-
-    @media (min-width: 768px) {
-        width: 150px;
-    }
-
-    @media (min-width: 1024px) {
-        width: 200px;
-    }
 
     &:hover {
         opacity: 0.9;
@@ -40,11 +32,12 @@ const Title = styled.a`
 
 const More = styled.a`
     display: inline-block;
-    margin-top: 40px !important;
+    margin-top: 20px !important;
     text-decoration: none;
     color: #006838;
     width: fit-content;
     transition: color 400ms ease;
+    font-size: 15px;
 
     &:hover {
         color: #000;
@@ -60,6 +53,10 @@ const NewPost = ({ photo, title, url, descriptions }: INewPost) => {
                 xs: 'column',
             }}
             spacing="20px"
+            sx={{
+                paddingBottom: '20px',
+                borderBottom: '1px solid rgba(116, 116, 116, .4)',
+            }}
         >
             <a href={url} target="_blank">
                 <Image src={photo} />
@@ -76,6 +73,7 @@ const NewPost = ({ photo, title, url, descriptions }: INewPost) => {
                 <Typography
                     variant="body1"
                     sx={{
+                        fontSize: '15px !important',
                         maxWidth: '1100px',
                     }}
                 >

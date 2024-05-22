@@ -5,6 +5,7 @@ import axios, { endpoints, fetcher } from 'helpers/axios';
 
 import type { IPagination } from 'types/pagination';
 import type {
+    AnaliticForecastResponse,
     AnaliticGainView,
     HotBriefResponse,
     IBriefPage,
@@ -279,6 +280,28 @@ export function useGetAnaliticGain({ fromDate, toDate }: IGainRequest) {
             revalidateOnFocus: false,
         }
     );
+
+    const memoizedValue = useMemo(
+        () => ({
+            data,
+            dataLoading: isLoading,
+            dataError: error,
+            dataValidating: isValidating,
+            dataEmpty: !isLoading && !data,
+            mutate,
+        }),
+        [error, isLoading, isValidating, mutate, data]
+    );
+
+    return memoizedValue;
+}
+
+export function useGetForecast() {
+    const URL = endpoints.briefs.analiticForecastGain;
+
+    const { data, isLoading, error, isValidating, mutate } = useSWR<AnaliticForecastResponse>([URL, 'get'], fetcher, {
+        revalidateOnFocus: false,
+    });
 
     const memoizedValue = useMemo(
         () => ({

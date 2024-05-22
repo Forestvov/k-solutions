@@ -106,6 +106,7 @@ export const endpoints = {
         myInvest: 'briefcase-account/page/my',
         analiticActiveByUser: 'briefcase-account/analitic-active-by-user',
         analiticGainByUser: 'briefcase-account/analitic-gain-by-date',
+        analiticForecastGain: 'briefcase-account/forecast-gain',
         gainHistory: 'briefcase-account/gain-history',
     },
     company: {

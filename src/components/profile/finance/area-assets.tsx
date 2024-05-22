@@ -1,12 +1,10 @@
+import type { AnaliticForecastItem } from 'types/brief';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import type { Dayjs } from 'dayjs';
 
 import styled from '@emotion/styled';
-import ProfilechartArea from 'components/profile/finance/profilechart-area';
-import { useGetAnaliticGain } from 'api/brief';
-import type { AnaliticGainView } from 'types/brief';
-import type { CompanyType } from 'types/company';
+import { useGetForecast } from 'api/brief';
+
+import ProfilechartArea from './profilechart-area';
 
 const Area = styled(ProfilechartArea)`
     width: auto;
@@ -34,39 +32,29 @@ const Area = styled(ProfilechartArea)`
 const AreaAssets = () => {
     const { t } = useTranslation('personal');
 
-    const [fromDate, setFromDate] = useState<Dayjs | null>(null);
-    const [toDate, setToDate] = useState<Dayjs | null>(null);
+    const { data } = useGetForecast();
 
-    const { data } = useGetAnaliticGain({
-        fromDate,
-        toDate,
-    });
-
-    const generateFranchise = (data: AnaliticGainView[] | undefined, companyType: CompanyType): number[] => {
+    const generateData = (data: AnaliticForecastItem[] | undefined): number[] => {
         if (!data || data.length === 0) return [];
 
-        return data.filter((item) => item.companyType === companyType).map((item) => Number(item.amount.toFixed(2)));
+        return data.map((item) => Number(item.amount.toFixed(2)));
     };
 
     return (
         <Area
-            fromDate={fromDate}
-            setFromDate={setFromDate}
-            toDate={toDate}
-            setToDate={setToDate}
-            title={t('Ежемесячные доходы')}
+            title={t('Прогнозируемый доход')}
             chart={{
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                categories: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 series: [
                     {
                         data: [
                             {
                                 name: t('Компании'),
-                                data: generateFranchise(data, 'Company'),
+                                data: generateData(data?.companyForecastList),
                             },
                             {
                                 name: t('Франшизы'),
-                                data: generateFranchise(data, 'Franchise'),
+                                data: generateData(data?.franchiseForecastList),
                             },
                         ],
                     },

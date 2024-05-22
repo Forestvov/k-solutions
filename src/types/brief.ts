@@ -149,7 +149,16 @@ export interface AnaliticGainView {
     amount: number;
 }
 
-//
+export interface AnaliticForecastResponse {
+    companyForecastList: AnaliticForecastItem[];
+    franchiseForecastList: AnaliticForecastItem[];
+}
+
+export interface AnaliticForecastItem {
+    amount: number;
+    date: string;
+}
+
 export interface IResponseHistory {
     page: Page;
     gainSum: any;
