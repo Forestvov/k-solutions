@@ -7,7 +7,7 @@ import type { CompanyType } from 'types/company';
 
 import { useCurrencyContext } from 'context/currency';
 
-import { fCurrency, fPercent } from 'helpers/number-format';
+import { fCurrency } from 'helpers/number-format';
 import { getRemainDays } from 'helpers/format-time';
 import { declensionNum } from 'helpers/declension-num';
 
@@ -67,7 +67,7 @@ const InvestStats: FC<Prop> = ({
                     title={
                         companyType === 'Company' ? `${t('Ставка, % ежемясчный')}:` : `${t('Ставка, % ежедневный')}:`
                     }
-                    value={fPercent(percents)}
+                    value={`${percents}%`}
                 />
             )}
             {amountMin && (
