@@ -8,7 +8,7 @@ import StatusPopup from './status-popup';
 import type { IHistory } from 'types/transaction';
 
 const DialogStyled = styled(Dialog)`
-    .css-kmnvkl-MuiPaper-root-MuiDialog-paper {
+    .MuiDialog-paperWidthSm {
         max-width: 100%;
         border-radius: 18px;
         box-shadow: none;

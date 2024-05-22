@@ -122,7 +122,7 @@ const Register = () => {
         // @ts-ignore
         formData.userName = data.userName;
         // @ts-ignore
-        formData.phoneNumber = data.phoneNumber;
+        formData.numberPhone = data.phoneNumber;
         // @ts-ignore
         formData.password = data.password;
         // @ts-ignore
