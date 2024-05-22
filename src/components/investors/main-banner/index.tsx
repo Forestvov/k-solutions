@@ -72,12 +72,11 @@ const MainBanner: FC = () => {
     return (
         <Box
             sx={{
-                height: { lg: 'min(110vh - 110px, 970px);', xl: '915px', sm: '800px', xs: '650px' },
+                height: { lg: 'min(110vh - 110px, 970px);', xl: '715px', sm: '800px', xs: '650px' },
                 minHeight: { lg: '787px' },
                 background: 'transparent',
                 paddingTop: { lg: '100px', xl: '90px', sm: '90px', xs: '80px' },
                 overflow: 'hidden',
-                marginBottom: { xs: '50px', sm: '10px', md: '10px' },
             }}
         >
             <Inner fixed>
