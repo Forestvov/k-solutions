@@ -70,6 +70,8 @@ const ShowcasesItem = () => {
         return <SplashScreen />;
     }
 
+    console.log(brief);
+
     return (
         <Wrapper>
             {company && brief && (
@@ -212,7 +214,7 @@ const ShowcasesItem = () => {
                                                   value: getFinishDay(),
                                                   hide: brief.briefcaseStatus !== 'In progress',
                                               },
-                                              { label: t('Количество инвесторов'), value: brief.pampInvestors },
+                                              { label: t('Количество инвесторов'), value: brief.accountCount },
                                               { label: '', value: '' },
                                           ]
                                         : [

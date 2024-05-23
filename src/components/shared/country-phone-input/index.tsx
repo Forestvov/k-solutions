@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import 'intl-tel-input/build/css/intlTelInput.min.css';
-import 'assets/intl-tel-input.js';
+import 'https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.4/build/js/utils.js';
 import IntlTelInput from 'intl-tel-input/react';
 import styled from '@emotion/styled';
 

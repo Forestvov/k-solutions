@@ -36,7 +36,7 @@ const Finance = () => {
                     <FinanceIncome />
                 </div>
                 <div>
-                    <TitleStyled>{t('Аналитика')} KSOLUITONS</TitleStyled>
+                    <TitleStyled>{t('Аналитика')} KSOLUTIONS</TitleStyled>
                     <Stack
                         direction={{
                             md: 'row',
