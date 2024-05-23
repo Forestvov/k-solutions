@@ -3,3 +3,4 @@ out
 README.md
 /dist
 .prettierrc
+!/src/assets/intl-tel-input.js
