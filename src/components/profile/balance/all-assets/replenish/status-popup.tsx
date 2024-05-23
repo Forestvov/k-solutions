@@ -206,7 +206,7 @@ const StatusPopup = ({ onClose, content, transactionType }: Props) => {
                     >
                         <Label>{t('Платежная система')}</Label>
                         <Value>
-                            {content.transactionLinkType === 'Token' ? 'Crypto' : content.transactionLinkType}/
+                            {content.transactionLinkType === 'Token' ? 'Crypto' : content.transactionLinkType} /{' '}
                             {content.currentName}
                         </Value>
                     </Stack>

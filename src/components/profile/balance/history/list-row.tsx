@@ -126,7 +126,15 @@ const ListRow = ({ row }: { row: IHistory }) => {
     const { t } = useTranslation('personal');
     const { selected, currency } = useCurrencyContext();
 
-    const { transactionType, transactionLinkType, transactionDate, transactionStatus, amountOut, amountIn } = row;
+    const {
+        transactionType,
+        transactionLinkType,
+        transactionDate,
+        transactionStatus,
+        amountOut,
+        amountIn,
+        currentName,
+    } = row;
 
     const generateStatus = (type: StatusType) => {
         switch (type) {
@@ -170,7 +178,11 @@ const ListRow = ({ row }: { row: IHistory }) => {
             </Cell>
             <Cell>
                 <Item
-                    value={transactionLinkType === 'Token' ? 'Crypto' : transactionLinkType}
+                    value={
+                        transactionLinkType === 'Token'
+                            ? `Crypto / ${currentName}`
+                            : `${transactionLinkType} / ${currentName}`
+                    }
                     label={t('Платежная система')}
                 />
             </Cell>
