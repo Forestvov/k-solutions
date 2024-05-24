@@ -23,6 +23,7 @@ interface Prop {
     ranges?: number;
     countTransaction?: number;
     myTotal?: number;
+    remainDaysForNextGain?: number;
     companyType: CompanyType;
 }
 
@@ -36,6 +37,7 @@ const InvestStats: FC<Prop> = ({
     myTotal,
     countTransaction,
     companyType,
+    remainDaysForNextGain,
 }) => {
     const countDay = getRemainDays(finishDay ? finishDay : '');
     const { selected, currency } = useCurrencyContext();
@@ -60,6 +62,12 @@ const InvestStats: FC<Prop> = ({
                 <InvestStat
                     title={`${t('До конца сбора')}:`}
                     value={`${countDay} ${declensionNum(countDay, [t('день'), t('дня'), t('дней')])}`}
+                />
+            )}
+            {remainDaysForNextGain && (
+                <InvestStat
+                    title={`${t('До выплаты')}:`}
+                    value={`${remainDaysForNextGain} ${declensionNum(remainDaysForNextGain, [t('день'), t('дня'), t('дней')])}`}
                 />
             )}
             {percents && (
