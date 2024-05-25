@@ -16,7 +16,9 @@ interface Props {
     amountMin: number;
     ranges: number;
     amount: number;
+    isActive: boolean;
     accountCount: number;
+    remainDaysForNextGain: number;
     updateBrief: VoidFunction;
     companyType: CompanyType;
 }
@@ -32,6 +34,8 @@ const ActionBlockCompany = ({
     updateBrief,
     companyType,
     briefcaseStatus,
+    remainDaysForNextGain,
+    isActive,
 }: Props) => {
     return (
         <Wrapper>
@@ -50,6 +54,11 @@ const ActionBlockCompany = ({
                 amountMin={amountMin}
                 ranges={ranges}
                 companyType={companyType}
+                remainDaysForNextGain={
+                    briefcaseStatus === 'Collection completed' && isActive && remainDaysForNextGain !== null
+                        ? remainDaysForNextGain
+                        : undefined
+                }
                 sx={{ marginBottom: '20px' }}
             />
 

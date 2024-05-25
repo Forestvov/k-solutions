@@ -22,6 +22,7 @@ interface Props {
     isActive: boolean;
     myTotal: number;
     countTransaction: number;
+    remainDaysForNextGain: number;
 }
 
 const ActionBlock = ({
@@ -38,6 +39,7 @@ const ActionBlock = ({
     myTotal,
     countTransaction,
     briefcaseStatus,
+    remainDaysForNextGain,
 }: Props) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('xl'));
@@ -63,6 +65,8 @@ const ActionBlock = ({
                     ranges={ranges}
                     updateBrief={updateBrief}
                     briefcaseStatus={briefcaseStatus}
+                    remainDaysForNextGain={remainDaysForNextGain}
+                    isActive={isActive}
                 />
             )}
             {companyType === 'Franchise' && (

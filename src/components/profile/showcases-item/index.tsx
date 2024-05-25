@@ -70,8 +70,6 @@ const ShowcasesItem = () => {
         return <SplashScreen />;
     }
 
-    console.log(brief);
-
     return (
         <Wrapper>
             {company && brief && (
@@ -127,6 +125,7 @@ const ShowcasesItem = () => {
                                     accountCount={brief.accountCount ?? 0}
                                     updateBrief={mutate}
                                     briefcaseStatus={brief.briefcaseStatus}
+                                    remainDaysForNextGain={brief.remainDaysForNextGain}
                                 />
                             )}
                             <KeyInformation
@@ -215,7 +214,14 @@ const ShowcasesItem = () => {
                                                   hide: brief.briefcaseStatus !== 'In progress',
                                               },
                                               { label: t('Количество инвесторов'), value: brief.accountCount },
-                                              { label: '', value: '' },
+                                              {
+                                                  label: t('До выплаты'),
+                                                  hide:
+                                                      !brief.isActive ||
+                                                      brief.briefcaseStatus !== 'Collection completed' ||
+                                                      brief.remainDaysForNextGain === null,
+                                                  value: `${brief.remainDaysForNextGain} ${declensionNum(brief.remainDaysForNextGain, [t('день'), t('дня'), t('дней')])}`,
+                                              },
                                           ]
                                         : [
                                               {
@@ -255,6 +261,7 @@ const ShowcasesItem = () => {
                                     accountCount={brief.accountCount ?? 0}
                                     updateBrief={mutate}
                                     briefcaseStatus={brief.briefcaseStatus}
+                                    remainDaysForNextGain={brief.remainDaysForNextGain}
                                 />
                             </Box>
                         )}

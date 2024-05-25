@@ -45,6 +45,7 @@ export interface IBrief {
 export interface IBriefPage {
     accountCount: number;
     briefcaseId: number;
+    remainDaysForNextGain: number;
     commonInvestedAmount: number;
     briefcaseName: string;
     lang: string;
