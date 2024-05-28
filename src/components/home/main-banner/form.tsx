@@ -1,5 +1,5 @@
 import { Controller, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { type ComponentType, type ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputMask from 'react-input-mask';
@@ -7,7 +7,11 @@ import InputMask from 'react-input-mask';
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import type { SlideProps } from '@mui/material/Slide';
+import Slide from '@mui/material/Slide';
+import Fade from '@mui/material/Fade';
+import type { TransitionProps } from '@mui/material/transitions';
+import Snackbar from '@mui/material/Snackbar';
 
 import { addContact } from 'api/order-contact';
 
@@ -45,13 +49,34 @@ const Input = styled(InputMask)`
     }
 `;
 
+function SlideTransition(props: SlideProps) {
+    return <Slide {...props} direction="left" />;
+}
+
+type TransitionType = ComponentType<TransitionProps & { children: ReactElement<any, any> }>;
+
 const Form = () => {
-    const [success, setSuccess] = useState(false);
+    const { t } = useTranslation('form');
+
     const [error, setError] = useState<boolean | string>(false);
     const [load, setLoad] = useState(false);
-    const resolver = yupResolver(validateSubscribe);
 
-    const { t } = useTranslation('form');
+    const [state, setState] = useState<{
+        open: boolean;
+        Transition: TransitionType;
+    }>({
+        open: false,
+        Transition: Fade,
+    });
+
+    const handleClose = () => {
+        setState({
+            ...state,
+            open: false,
+        });
+    };
+
+    const resolver = yupResolver(validateSubscribe);
 
     const { control, handleSubmit, reset } = useForm<Inputs>({
         mode: 'onChange',
@@ -63,13 +88,11 @@ const Form = () => {
     });
 
     const onSubmit = async (data: Inputs) => {
-        setSuccess(false);
         setError(false);
         setLoad(true);
 
         try {
             await addContact(data);
-            setSuccess(true);
         } catch (e) {
             // @ts-ignore
             if (e.response.data.message === 'This number is existed') {
@@ -77,39 +100,53 @@ const Form = () => {
             }
         }
 
+        setState({
+            open: true,
+            Transition: SlideTransition,
+        });
+
         await setLoad(false);
         await reset();
     };
 
     return (
-        <Stack spacing="25px" sx={{ marginBottom: '40px' }}>
-            <Stack
-                component="form"
-                spacing={{ sm: '50px', xs: '25px' }}
-                direction={{ sm: 'row', xs: 'column' }}
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <Controller
-                    name="phoneNumber"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { ref, onChange, value } }) => (
-                        <Input
-                            ref={ref}
-                            mask="+9 (999) 999-99-99"
-                            value={value}
-                            onChange={onChange}
-                            placeholder={t('Введите номер телефона')}
-                        />
-                    )}
-                />
-                <Button variant="green" type="submit" disabled={load} sx={{ padding: { xs: '12px 40px' } }}>
-                    {t('Заказать Звонок')}
-                </Button>
+        <>
+            <Stack spacing="25px" sx={{ marginBottom: '40px' }}>
+                <Stack
+                    component="form"
+                    spacing={{ sm: '50px', xs: '25px' }}
+                    direction={{ sm: 'row', xs: 'column' }}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <Controller
+                        name="phoneNumber"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field: { ref, onChange, value } }) => (
+                            <Input
+                                ref={ref}
+                                mask="+9 (999) 999-99-99"
+                                value={value}
+                                onChange={onChange}
+                                placeholder={t('Введите номер телефона')}
+                            />
+                        )}
+                    />
+                    <Button variant="green" type="submit" disabled={load} sx={{ padding: { xs: '12px 40px' } }}>
+                        {t('Заказать Звонок')}
+                    </Button>
+                </Stack>
             </Stack>
-            {success && <Typography variant="body1">{t('Заявка успешно отправлена')}</Typography>}
-            {error && <Typography variant="body1">{error}</Typography>}
-        </Stack>
+            <Snackbar
+                open={state.open}
+                onClose={handleClose}
+                TransitionComponent={state.Transition}
+                message={error ? t('Заявка уже отправлена') : t('Ожидайте с вами свяжется специалист')}
+                key={state.Transition.name}
+                autoHideDuration={3000}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            />
+        </>
     );
 };
 
