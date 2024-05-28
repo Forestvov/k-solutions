@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, Navigate } from 'react-router-dom';
 // Contexts
 import AuthGuard from 'context/auth/guard/auth-guard';
 import GuestGuard from 'context/auth/guard/guest-guard';
@@ -186,4 +186,5 @@ export const appRouter = createHashRouter([
             },
         ],
     },
+    { path: '*', element: <Navigate to="/#" replace /> },
 ]);
