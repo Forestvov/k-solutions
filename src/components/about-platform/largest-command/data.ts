@@ -38,6 +38,7 @@ import avatar37 from 'assets/pages/aboutPlatformPage/avatar37.png';
 import avatar38 from 'assets/pages/aboutPlatformPage/avatar38.png';
 import avatar39 from 'assets/pages/aboutPlatformPage/avatar39.png';
 import avatar40 from 'assets/pages/aboutPlatformPage/avatar40.png';
+import image1 from 'assets/pages/aboutPlatformPage/image1.png';
 
 export const avatars = [
     {
@@ -45,6 +46,9 @@ export const avatars = [
     },
     {
         img: avatar2,
+    },
+    {
+        img: image1,
     },
     {
         img: avatar3,
