@@ -83,7 +83,7 @@ const List = () => {
                 'Дорожная карта — это стратегический план, который определяет цели, задачи и ключевые этапы проекта, а также сроки их выполнения.'
             ),
             date: t('Май 10, 2023'),
-            file: '/presentations/ДОРОЖНАЯ КАРТА K SOLUTIONS.pptx',
+            file: '/presentations/Дорожная карта KSOLUTIONS.pdf',
             image: '/presentations/rot.jpg',
         },
         {
