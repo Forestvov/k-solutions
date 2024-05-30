@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
 
 import { getCookie, setCookie } from 'context/settings/cookie';
 
 import { CurrencyContext } from './currency-context';
-import axios from 'helpers/axios';
 
 // ----------------------------------------------------------------------
 
