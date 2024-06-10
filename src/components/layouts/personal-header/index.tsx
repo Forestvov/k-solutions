@@ -1,17 +1,20 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import styled from '@emotion/styled';
 
 import Logo from 'assets/header/logo-personal.svg?react';
+
 import HeaderLocalization from 'components/layouts/header/header-localization';
+import Mobile from 'components/layouts/personal-aside/views/mobile';
 
 import useDeviceSize from 'hooks/useDeviceSize';
 
 import User from './user';
 import Balance from './balance';
 import Laggout from './laggout';
-import React from 'react';
-import Box from '@mui/material/Box';
 
 const HomeLink = styled(NavLink)`
     position: relative;
@@ -39,7 +42,7 @@ const HomeLink = styled(NavLink)`
 `;
 
 const PersonalHeader = () => {
-    const { xl } = useDeviceSize();
+    const { xl, xs, sm } = useDeviceSize();
 
     return (
         <Stack
@@ -52,9 +55,12 @@ const PersonalHeader = () => {
                 padding: { xl: '27px 30px 37px', xs: '27px 20px 37px' },
             }}
         >
-            <HomeLink to="/">
-                <Logo />
-            </HomeLink>
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <HomeLink to="/">
+                    <Logo />
+                </HomeLink>
+                {xs && !sm ? <Mobile /> : null}
+            </Stack>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
                 <User />
                 <Balance />
