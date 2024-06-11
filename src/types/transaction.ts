@@ -24,7 +24,7 @@ export interface IHistoryResponse {
     empty: boolean;
 }
 
-export type StatusType = 'Success' | 'Process' | 'Canceled' | 'Marked as paid' | 'Wait requisites';
+export type StatusType = 'Success' | 'Process' | 'Canceled' | 'Marked as paid' | 'Wait requisites' | 'Support';
 
 export interface IHistory {
     transactionId: number;

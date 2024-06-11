@@ -68,7 +68,9 @@ const Replenish = ({ children, content, transactionType }: PropsWithChildren<IPr
                 {children}
             </Button>
             <DialogStyled open={open} onClose={handleClose}>
-                {content?.transactionStatus === 'Canceled' || content?.transactionStatus === 'Success' ? (
+                {content?.transactionStatus === 'Canceled' ||
+                content?.transactionStatus === 'Success' ||
+                content?.transactionStatus === 'Support' ? (
                     <StatusPopup onClose={handleClose} transactionType={transactionType} content={content} />
                 ) : (
                     <Form contentRow={content} transactionType={transactionType} onClose={handleClose} />
