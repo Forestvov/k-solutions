@@ -80,14 +80,18 @@ const Assets = () => {
                                         label: item.companyType === 'Company' ? t('Компания') : t('Франшиза'),
                                         value:
                                             item.amount > 0
-                                                ? (gainActiveTotal /
-                                                      renderCurrency({
-                                                          usd: item.amount,
-                                                          rub: currency.USD,
-                                                          eur: currency.EUR,
-                                                          currency: selected,
-                                                      })) *
-                                                  100
+                                                ? Number(
+                                                      (
+                                                          (renderCurrency({
+                                                              usd: item.amount,
+                                                              rub: currency.USD,
+                                                              eur: currency.EUR,
+                                                              currency: selected,
+                                                          }) /
+                                                              gainActiveTotal) *
+                                                          100
+                                                      ).toFixed(2)
+                                                  )
                                                 : 0,
                                     })),
                                 }}
