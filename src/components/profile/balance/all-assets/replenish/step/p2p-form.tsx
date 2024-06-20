@@ -13,6 +13,7 @@ import Input from '../input';
 import GetterInput from './getter-input';
 import { PAYMENT_BANK } from './data';
 import Stack from '@mui/material/Stack';
+import { useCurrencyContext } from 'context/currency';
 
 interface Props {
     transactionType?: 'In' | 'Out';
@@ -23,6 +24,7 @@ const formateCurrency = (num: number) => {
 };
 
 const P2PForm = ({ transactionType }: Props) => {
+    const { currency } = useCurrencyContext();
     const { t } = useTranslation('personal');
 
     const { setValue, watch } = useFormContext();
@@ -69,23 +71,47 @@ const P2PForm = ({ transactionType }: Props) => {
                 name="numberCart"
             />
             <Input placeholder="Name Surname" label={t('Имя владельца карты')} name="nameCart" />
-            <Input
-                placeholder="00.00"
-                label={t('Сумма ₽')}
-                prefix="₽"
-                type="number"
-                name="amountIn"
-                handleChange={(e) => setValue('amountOut', formateCurrency(Number(e) / watch().staticCurse))}
-            />
-            {transactionType !== 'Out' && <GetterInput />}
-            <Input
-                placeholder="00.00"
-                label={t('Сумма $')}
-                prefix="$"
-                type="number"
-                name="amountOut"
-                handleChange={(e) => setValue('amountIn', formateCurrency(Number(e) * watch().staticCurse))}
-            />
+
+            {transactionType === 'In' ? (
+                <>
+                    <Input
+                        placeholder="00.00"
+                        label={t('Сумма ₽')}
+                        prefix="₽"
+                        type="number"
+                        name="amountIn"
+                        handleChange={(e) => setValue('amountOut', formateCurrency(Number(e) / watch().staticCurse))}
+                    />
+                    <GetterInput />
+                    <Input
+                        placeholder="00.00"
+                        label={t('Сумма $')}
+                        prefix="$"
+                        type="number"
+                        name="amountOut"
+                        handleChange={(e) => setValue('amountIn', formateCurrency(Number(e) * watch().staticCurse))}
+                    />
+                </>
+            ) : (
+                <>
+                    <Input
+                        placeholder="00.00"
+                        label={t('Сумма ₽')}
+                        prefix="₽"
+                        type="number"
+                        name="amountIn"
+                        handleChange={(e) => setValue('amountOut', formateCurrency(Number(e) / currency.USD))}
+                    />
+                    <Input
+                        placeholder="00.00"
+                        label={t('Сумма $')}
+                        prefix="$"
+                        type="number"
+                        name="amountOut"
+                        handleChange={(e) => setValue('amountIn', formateCurrency(Number(e) * currency.USD))}
+                    />
+                </>
+            )}
             <div>
                 <Button variant="dark-green" type="submit" fullWidth>
                     {transactionType === 'Out' ? t('Перейти к выводу') : t('Перейти к оплате')}

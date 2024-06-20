@@ -85,7 +85,8 @@ export const endpoints = {
     account: {
         update: 'account/me',
         changePassword: 'auth/change-password',
-        addFile: 'account/file',
+        addPhoto: 'account/file',
+        addFile: 'account/bussines-file',
         settingSet: 'account/setting/set',
     },
     order: {

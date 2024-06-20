@@ -6,9 +6,7 @@ import Stack from '@mui/material/Stack';
 
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
-import { addPhotoForAccount, addSettingAccount } from 'api/user';
-
-import { toBase64 } from 'helpers/toBase64';
+import { addFileForAccount, addSettingAccount } from 'api/user';
 
 import LoadedIcon from 'assets/load/loaded-icon.svg?react';
 
@@ -50,11 +48,11 @@ const EntrepreneursFiles = () => {
 
     const onChangeFile = async (file: File, name: string) => {
         try {
-            const fileBase64 = await toBase64(file);
-            await addPhotoForAccount({
-                file: fileBase64,
-                typeFile: file.name.split('.').pop() ?? 'doc',
-            });
+            const formDate = new FormData();
+            formDate.append('file', file);
+            formDate.append('type', name);
+            // @ts-ignore
+            await addFileForAccount(formDate);
             await addSettingAccount({ profileSettingsCode: name, value: 'true' });
             await update();
         } catch (e) {

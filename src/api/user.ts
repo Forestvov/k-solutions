@@ -8,12 +8,21 @@ export const updatePasswordAccount = async (data: any) => {
     await axios.put(endpoints.account.changePassword, data);
 };
 
-interface RequestFile {
+interface RequestPhoto {
     file: string;
     typeFile: string;
 }
 
-export const addPhotoForAccount = async (data: RequestFile) => {
+export const addPhotoForAccount = async (data: RequestPhoto) => {
+    await axios.post(endpoints.account.addPhoto, data);
+};
+
+export interface RequestFile {
+    file: File;
+    type: string;
+}
+
+export const addFileForAccount = async (data: RequestFile) => {
     await axios.post(endpoints.account.addFile, data);
 };
 
