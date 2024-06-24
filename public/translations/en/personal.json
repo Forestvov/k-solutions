@@ -296,5 +296,6 @@
   "Ожидайте с вами свяжется специалист": "Wait for a specialist to contact you",
   "Выйти": "Out",
   "Поддержка": "Support",
-  "Обратитесь в поддержку по вашей заявке с контакт менеджером !": "Please contact our contact manager for support regarding your request!"
+  "Обратитесь в поддержку по вашей заявке с контакт менеджером !": "Please contact our contact manager for support regarding your request!",
+  "amountOutError": "The withdrawal amount exceeds your available balance"
 }

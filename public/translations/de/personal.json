@@ -296,5 +296,6 @@
   "Ожидайте с вами свяжется специалист": "Warten Sie, bis sich ein Spezialist mit Ihnen in Verbindung setzt",
   "Выйти": "Hinausgehen",
   "Поддержка": "Unterstützung",
-  "Обратитесь в поддержку по вашей заявке с контакт менеджером !": "Bitte wenden Sie sich für Unterstützung bezüglich Ihres Anliegens an unseren Kontaktmanager!"
+  "Обратитесь в поддержку по вашей заявке с контакт менеджером !": "Bitte wenden Sie sich für Unterstützung bezüglich Ihres Anliegens an unseren Kontaktmanager!",
+  "amountOutError": "Der Auszahlungsbetrag übersteigt Ihr verfügbares Guthaben"
 }

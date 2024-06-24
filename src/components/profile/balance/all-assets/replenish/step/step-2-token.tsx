@@ -116,6 +116,7 @@ const Step2Token = ({ transactionType }: Props) => {
                             transactionType === 'In' ? t('Укажите сумму пополнения') : t('Укажите сумму вывода')
                         }
                         name="amountOut"
+                        showError
                         type="number"
                         prefix="$"
                     />

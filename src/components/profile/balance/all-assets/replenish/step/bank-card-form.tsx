@@ -33,6 +33,7 @@ const BankCardForm = ({ transactionType }: Props) => {
                     <Box>
                         <Input
                             isBankCard
+                            showError
                             placeholder="00.00"
                             label={transactionType === 'Out' ? t('Сумма вывода') : t('Сумма пополнения')}
                             prefix="$"

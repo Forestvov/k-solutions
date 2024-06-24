@@ -11,6 +11,7 @@ import type { IHistory } from 'types/transaction';
 import Button from '@mui/material/Button';
 import { validationSchemaPhp } from 'components/profile/balance/all-assets/replenish/validation-schema';
 import errorCatcher from 'components/profile/balance/all-assets/replenish/error-catcher';
+import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const Wrapper = styled.div`
     padding: 40px 20px;
@@ -66,6 +67,9 @@ interface Props {
 
 export const Form = ({ onClose, contentRow, transactionType }: Props) => {
     const { t } = useTranslation('personal');
+
+    // @ts-ignore
+    const { user } = useAuthContext();
 
     const [content, setContent] = useState(contentRow);
     const [currentId, setCurrentId] = useState<null | number>(null);
@@ -159,6 +163,11 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
 
     const onSubmit = async (data: FormState) => {
         if (data.transactionLinkType === 'Bank' || data.transactionLinkType === 'Wallet') {
+            if (transactionType === 'Out' && user.balance.activeBalance < data.amountOut) {
+                methods.setError('amountOut', { message: t('amountOutError') });
+                return null;
+            }
+
             try {
                 const newData = {
                     currencyToken: data.currencyToken,
@@ -183,6 +192,11 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
                 console.log(e);
             }
         } else if (data.transactionLinkType === 'Token') {
+            if (transactionType === 'Out' && user.balance.activeBalance < data.amountOut) {
+                methods.setError('amountOut', { message: t('amountOutError') });
+                return null;
+            }
+
             const newData = {
                 currencyToken: data.currencyToken,
                 contact: data.contact,
@@ -206,6 +220,11 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
         } else if (data.transactionLinkType === 'p2p') {
             try {
                 await validationSchemaPhp.validate(data, { abortEarly: false });
+
+                if (transactionType === 'Out' && user.balance.activeBalance < data.amountOut) {
+                    methods.setError('amountOut', { message: t('amountOutError') });
+                    return null;
+                }
 
                 const newData = {
                     currencyToken: data.currencyToken,
@@ -234,6 +253,10 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
                 return;
             }
         } else {
+            if (transactionType === 'Out' && user.balance.activeBalance < data.amountIn) {
+                methods.setError('amountIn', { message: t('amountOutError') });
+                return null;
+            }
             try {
                 const newData = {
                     currencyToken: 'Visa',

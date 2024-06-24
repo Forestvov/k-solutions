@@ -108,6 +108,7 @@ const P2PForm = ({ transactionType }: Props) => {
                         prefix="$"
                         type="number"
                         name="amountOut"
+                        showError
                         handleChange={(e) => setValue('amountIn', formateCurrency(Number(e) * currency.USD))}
                     />
                 </>
