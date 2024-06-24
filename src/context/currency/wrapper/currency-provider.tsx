@@ -70,19 +70,5 @@ export function CurrencyProvider({ children }: Props) {
         [currency, selected, setSelect]
     );
 
-    return (
-        <CurrencyContext.Provider value={memoizedValue}>
-            {children}
-            <a
-                style={{
-                    position: 'absolute',
-                    left: '-1000%',
-                    opacity: '0',
-                }}
-                href="https://www.cbr-xml-daily.ru/"
-            >
-                Курсы валют, API
-            </a>
-        </CurrencyContext.Provider>
-    );
+    return <CurrencyContext.Provider value={memoizedValue}>{children}</CurrencyContext.Provider>;
 }
