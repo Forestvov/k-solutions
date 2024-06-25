@@ -37,7 +37,7 @@ export function useGetHistoryTransaction({ page, pageSize, transactionType, tran
                 size: pageSize,
                 sortDir: 'DESC',
                 sortField: 'transactionDate',
-                criteria: [...criteria, ...[{ key: 'transactionStatus', operation: '!=', value: 'hidden' }]],
+                criteria: [...criteria, ...[{ key: 'transactionStatus', operation: '!=', value: 'Hidden' }]],
             },
             'POST',
             {
