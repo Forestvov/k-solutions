@@ -19,6 +19,10 @@ const MainLayout: FC = () => {
                     content="The activities of are conducted within the obtained permits and are in full compliance with the obtained certificates."
                 />
             </Helmet>
+            <meta
+                name="description"
+                content="The activities of are conducted within the obtained permits and are in full compliance with the obtained certificates."
+            />
             <Stack
                 component="main"
                 sx={{
