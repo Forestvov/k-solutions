@@ -1,16 +1,11 @@
-import { useState } from 'react';
-import { FileUploader } from 'react-drag-drop-files';
 import { useTranslation } from 'react-i18next';
 
 import styled from '@emotion/styled';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { addSettingAccount } from 'api/user';
 
 import Title from '../title';
-import OutlineBtn from './outline-btn';
-import DefaultButton, { DefaultLink } from './default-button';
-import FileLoaded from './file-loaded';
+import { DefaultLink } from './default-button';
 import { useAuthContext } from 'context/auth/hooks/useAuthContext';
 
 const GreenButton = styled(DefaultLink)`
@@ -18,48 +13,14 @@ const GreenButton = styled(DefaultLink)`
     color: #fff;
 `;
 
-const GreenDefaultButton = styled(DefaultButton)`
-    background: #20836d;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 500;
-`;
-
-const FileLoadedStyled = styled(FileLoaded)`
-    height: 65px;
-    display: flex;
-    width: auto;
-    align-items: center;
-`;
-
 const Agreement = () => {
     const { t } = useTranslation('personal');
 
     // @ts-ignore
-    const { user, update } = useAuthContext();
-
-    const [fileMain, setFileMain] = useState<File | null>(null);
-
-    const onSubmitDoc = async () => {
-        if (fileMain) {
-            try {
-                await addSettingAccount({ profileSettingsCode: 'verify.agreenmment', value: 'true' });
-                await update();
-            } catch (e) {
-                console.log(e);
-            }
-        }
-    };
+    const { user } = useAuthContext();
 
     // @ts-ignore
     const isAgreement = user?.profileSetting?.find((item) => item?.profileSettingCode === 'verify.agreenmment');
-
-    const onChangeFile = (event: File | null) => {
-        // 10mb > bite = 10 * 1024 * 1024 = 10485760
-        if (event && event.size <= 10485760) {
-            setFileMain(event);
-        }
-    };
 
     return (
         <Stack
@@ -150,37 +111,37 @@ const Agreement = () => {
                             {t('Скачать')} Eng
                         </GreenButton>
                     </Stack>
-                    <Stack
-                        direction={{
-                            md: 'row',
-                        }}
-                        spacing={{
-                            xs: '20px',
-                            sm: '30px',
-                        }}
-                    >
-                        {fileMain ? (
-                            <FileLoadedStyled>
-                                <span>
-                                    {fileMain.name}
-                                    <button onClick={() => setFileMain(null)}>x</button>
-                                </span>
-                            </FileLoadedStyled>
-                        ) : (
-                            <FileUploader
-                                multiple={false}
-                                handleChange={(file: File) => onChangeFile(file)}
-                                name="MAIN"
-                            >
-                                <OutlineBtn text={t('Загрузить Подписанный')} />
-                            </FileUploader>
-                        )}
-                        <div>
-                            {fileMain ? (
-                                <GreenDefaultButton onClick={onSubmitDoc}>{t('Отправить')}</GreenDefaultButton>
-                            ) : null}
-                        </div>
-                    </Stack>
+                    {/* <Stack */}
+                    {/*     direction={{ */}
+                    {/*         md: 'row', */}
+                    {/*     }} */}
+                    {/*     spacing={{ */}
+                    {/*         xs: '20px', */}
+                    {/*         sm: '30px', */}
+                    {/*     }} */}
+                    {/* > */}
+                    {/*     {fileMain ? ( */}
+                    {/*         <FileLoadedStyled> */}
+                    {/*             <span> */}
+                    {/*                 {fileMain.name} */}
+                    {/*                 <button onClick={() => setFileMain(null)}>x</button> */}
+                    {/*             </span> */}
+                    {/*         </FileLoadedStyled> */}
+                    {/*     ) : ( */}
+                    {/*         <FileUploader */}
+                    {/*             multiple={false} */}
+                    {/*             handleChange={(file: File) => onChangeFile(file)} */}
+                    {/*             name="MAIN" */}
+                    {/*         > */}
+                    {/*             <OutlineBtn text={t('Загрузить Подписанный')} /> */}
+                    {/*         </FileUploader> */}
+                    {/*     )} */}
+                    {/*     <div> */}
+                    {/*         {fileMain ? ( */}
+                    {/*             <GreenDefaultButton onClick={onSubmitDoc}>{t('Отправить')}</GreenDefaultButton> */}
+                    {/*         ) : null} */}
+                    {/*     </div> */}
+                    {/* </Stack> */}
                 </Stack>
             )}
         </Stack>
