@@ -135,7 +135,7 @@ const Step2Token = ({ transactionType }: Props) => {
                     <Button
                         type="submit"
                         variant="dark-green"
-                        disabled={watch().amountOut === 0 || watch().amountOut === '' || isSubmitting}
+                        disabled={watch().amountOut === 0 || watch().contact === '' || isSubmitting}
                     >
                         {t('Подтвердить')}
                     </Button>
