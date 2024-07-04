@@ -1,12 +1,12 @@
 {
-    "investoram": "Investor",
-    "entrepreneurs": "Vorab",
-    "about": "Über Plattform",
-    "media": "Medien",
-    "enter": "Willkommen",
-    "begin": "Jetzt",
-    "home": "heim",
-    "lc": "Persönliches Büro",
-    "address": "Adresse",
-    "regNumber": "Handelsregisternummer"
+    "investoram": "Инвесторам",
+    "entrepreneurs": "Предпринимателям",
+    "about": "О платформе",
+    "media": "Медиа",
+    "enter": "Войти",
+    "begin": "Начать",
+    "home": "Главная",
+    "lc": "Личный кабинет",
+    "address": "Адрес",
+    "regNumber": "Регистрационный номер компании"
 }
