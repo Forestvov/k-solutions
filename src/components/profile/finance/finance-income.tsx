@@ -132,6 +132,7 @@ function EcommerceBestSalesmanRow({
     percents,
     gainAmount,
     image,
+    companyType,
 }: IHistoryRow) {
     const { t } = useTranslation('personal');
 
@@ -160,7 +161,7 @@ function EcommerceBestSalesmanRow({
             <TableCell>{briefcaseAccountAmount ? fCurrency(briefcaseAccountAmount) : '$0'}</TableCell>
 
             <TableCell>
-                {fPercent(percents)}/ {t('ежедневно')}
+                {fPercent(percents)}/ {t(companyType === 'Franchise' ? 'ежедневно' : 'Ежемесячно')}
             </TableCell>
 
             <TableCell>

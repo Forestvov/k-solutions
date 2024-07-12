@@ -297,5 +297,6 @@
   "Выйти": "Hinausgehen",
   "Поддержка": "Unterstützung",
   "Обратитесь в поддержку по вашей заявке с контакт менеджером !": "Bitte wenden Sie sich für Unterstützung bezüglich Ihres Anliegens an unseren Kontaktmanager!",
-  "amountOutError": "Der Auszahlungsbetrag übersteigt Ihr verfügbares Guthaben"
+  "amountOutError": "Der Auszahlungsbetrag übersteigt Ihr verfügbares Guthaben",
+  "Ежемесячно": "monatlich"
 }
