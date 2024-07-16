@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { fCurrency, fPercent } from 'helpers/number-format';
 import Typography from '@mui/material/Typography';
+import { fDate } from 'helpers/format-time';
 
 const SizeLabe = '11.5px';
 
@@ -12,13 +13,14 @@ const EcommerceBestSalesmanBlock = ({
     briefcaseAccountAmount,
     percents,
     gainAmount,
+    createdDate,
     image,
     companyType,
 }: IHistoryRow) => {
     const { t } = useTranslation('personal');
 
     return (
-        <Stack spacing="10px" sx={{ borderTop: '1px solid', paddingTop: '15px' }}>
+        <Stack spacing="10px" sx={{ borderTop: '1px dashed #c7c7c7', paddingTop: '15px' }}>
             <Typography variant="body1" color="black" sx={{ textAlign: 'center' }}>
                 {companyName}
             </Typography>
@@ -27,8 +29,8 @@ const EcommerceBestSalesmanBlock = ({
                     sx={{
                         flex: '0 0 auto',
                         background: '#EDEDED',
-                        width: '64px',
-                        height: '64px',
+                        width: '78px',
+                        height: '78px',
                         borderRadius: '12px',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -43,7 +45,7 @@ const EcommerceBestSalesmanBlock = ({
                     <Typography variant="body1" color="black">
                         {briefcaseAccountAmount ? fCurrency(briefcaseAccountAmount) : '$0'}
                     </Typography>
-                    <Typography variant="body2" sx={{ fontSize: SizeLabe }}>
+                    <Typography variant="body2" sx={{ fontSize: SizeLabe }} color="black">
                         {fPercent(percents)}/ {t(companyType === 'Franchise' ? 'ежедневно' : 'Ежемесячно')}
                     </Typography>
                 </Stack>
@@ -67,6 +69,9 @@ const EcommerceBestSalesmanBlock = ({
                                 />
                             </svg>
                         </Stack>
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontSize: SizeLabe }} color="black">
+                        {fDate(createdDate)}
                     </Typography>
                 </Stack>
             </Stack>
