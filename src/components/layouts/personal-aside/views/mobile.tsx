@@ -58,7 +58,11 @@ const Close = styled.button`
     top: 15px;
 `;
 
-const Mobile = () => {
+interface Props {
+    showBurger?: boolean;
+}
+
+const Mobile = ({ showBurger }: Props) => {
     const [toggle, setToggle] = useState(false);
     const { xs, sm } = useDeviceSize();
     const { pathname } = useLocation();
@@ -71,7 +75,7 @@ const Mobile = () => {
 
     return (
         <>
-            {xs && !sm && (
+            {xs && !sm && showBurger && (
                 <Button onClick={() => setToggle(true)}>
                     <BurgerIcon />
                 </Button>

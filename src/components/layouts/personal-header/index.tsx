@@ -59,7 +59,7 @@ const PersonalHeader = () => {
                 <HomeLink to="/">
                     <Logo />
                 </HomeLink>
-                {xs && !sm ? <Mobile /> : null}
+                {xs && !sm ? <Mobile showBurger /> : null}
             </Stack>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
                 <User />
