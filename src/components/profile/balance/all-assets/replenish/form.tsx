@@ -173,7 +173,7 @@ export const Form = ({ onClose, contentRow, transactionType }: Props) => {
                     currencyToken: data.currencyToken,
                     contact: data.contact,
                     amountIn: data.amountOut,
-                    amountOut: String(Number(data.amountOut) * Number(data.amountIn)),
+                    amountOut: data.amountOut,
                     qrCode: data.qrCode,
                     transactionType: transactionType,
                     transactionLinkType: data.transactionLinkType,
