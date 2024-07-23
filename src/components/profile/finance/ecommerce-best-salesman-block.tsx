@@ -10,6 +10,7 @@ const SizeLabe = '11.5px';
 
 const EcommerceBestSalesmanBlock = ({
     companyName,
+    investedAmount,
     briefcaseAccountAmount,
     percents,
     gainAmount,
@@ -43,7 +44,7 @@ const EcommerceBestSalesmanBlock = ({
                         Сумма инвестиций
                     </Typography>
                     <Typography variant="body1" color="black">
-                        {briefcaseAccountAmount ? fCurrency(briefcaseAccountAmount) : '$0'}
+                        {fCurrency(investedAmount ?? briefcaseAccountAmount)}
                     </Typography>
                     <Typography variant="body2" sx={{ fontSize: SizeLabe }} color="black">
                         {fPercent(percents)}/ {t(companyType === 'Franchise' ? 'ежедневно' : 'Ежемесячно')}

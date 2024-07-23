@@ -192,6 +192,7 @@ export interface IHistoryRow {
     image: string;
     briefcaseAmount: number;
     percents: number;
+    investedAmount: number | null;
     briefcaseAccountAmount: number;
     gainAmount: number;
     lang: string;

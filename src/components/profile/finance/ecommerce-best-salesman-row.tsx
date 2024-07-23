@@ -11,6 +11,7 @@ const EcommerceBestSalesmanRow = ({
     companyName,
     createdDate,
     briefcaseAccountAmount,
+    investedAmount,
     percents,
     gainAmount,
     image,
@@ -40,7 +41,7 @@ const EcommerceBestSalesmanRow = ({
 
             <TableCell>{fDate(createdDate)}</TableCell>
 
-            <TableCell>{briefcaseAccountAmount ? fCurrency(briefcaseAccountAmount) : '$0'}</TableCell>
+            <TableCell>{fCurrency(investedAmount ?? briefcaseAccountAmount)}</TableCell>
 
             <TableCell>
                 {fPercent(percents)}/ {t(companyType === 'Franchise' ? 'ежедневно' : 'Ежемесячно')}
