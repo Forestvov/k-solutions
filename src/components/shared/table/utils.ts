@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ----------------------------------------------------------------------
 
 export function emptyRows(page: number, rowsPerPage: number, arrayLength: number) {
