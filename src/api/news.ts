@@ -11,7 +11,7 @@ interface PropList extends IPagination {
     type: 'Event' | 'News';
 }
 
-export function useGetNews({ lang = 'ru', page, pageSize, type }: PropList) {
+export function useGetNews({ page, pageSize, type }: PropList) {
     const URL = endpoints.news.list;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IResponseNews>(
@@ -22,7 +22,7 @@ export function useGetNews({ lang = 'ru', page, pageSize, type }: PropList) {
                 size: pageSize,
                 sortDir: 'ASC',
                 criteria: [
-                    { key: 'lang', value: lang },
+                    { key: 'lang', value: 'ru' },
                     { key: 'type', value: type },
                 ],
             },

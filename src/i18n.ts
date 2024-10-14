@@ -10,7 +10,7 @@ i18n.use(Backend)
     .init({
         fallbackLng: 'ru',
         debug: false,
-        supportedLngs: ['ru', 'en', 'de'],
+        supportedLngs: ['ru'],
         interpolation: {
             escapeValue: false,
         },

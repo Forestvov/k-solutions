@@ -21,7 +21,7 @@ interface PropList extends IPagination {
     lang: string;
 }
 
-export function useGetHotBrief({ page, pageSize, percentFinish, lang }: PropList) {
+export function useGetHotBrief({ page, pageSize, percentFinish }: PropList) {
     const URL = endpoints.briefs.hot;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<HotBriefResponse>(
@@ -39,7 +39,7 @@ export function useGetHotBrief({ page, pageSize, percentFinish, lang }: PropList
             },
             'post',
             {
-                lang,
+                lang: 'ru',
             },
         ],
         fetcher,
@@ -72,7 +72,7 @@ interface GetListProp extends IPagination {
     lang: string;
 }
 
-export function useGetListBrief({ page, pageSize, filter, lang }: GetListProp) {
+export function useGetListBrief({ page, pageSize, filter }: GetListProp) {
     const URL = endpoints.briefs.hot;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<HotBriefResponse>(
@@ -87,7 +87,7 @@ export function useGetListBrief({ page, pageSize, filter, lang }: GetListProp) {
             },
             'post',
             {
-                lang,
+                lang: 'ru',
             },
         ],
         fetcher,
@@ -132,7 +132,7 @@ interface GetMyListProp extends IPagination {
     filter: Record<string, string>;
     lang: string;
 }
-export function useGetMyBriefs({ page, pageSize, filter, lang }: GetMyListProp) {
+export function useGetMyBriefs({ page, pageSize, filter }: GetMyListProp) {
     const URL = endpoints.briefs.myInvest;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IResponseMyBrief>(
@@ -149,7 +149,7 @@ export function useGetMyBriefs({ page, pageSize, filter, lang }: GetMyListProp) 
             },
             'post',
             {
-                lang,
+                lang: 'ru',
             },
         ],
         fetcher,
@@ -190,7 +190,7 @@ export function useGetMyBriefs({ page, pageSize, filter, lang }: GetMyListProp) 
     return memoizedValue;
 }
 
-export function useGetBrief(id: string, lang: string) {
+export function useGetBrief(id: string) {
     const URL = `${endpoints.briefs.page}/${id}`;
 
     const { data, isLoading, error, isValidating, mutate } = useSWR<IBriefPage>(
@@ -199,7 +199,7 @@ export function useGetBrief(id: string, lang: string) {
             {},
             'get',
             {
-                lang,
+                lang: 'ru',
             },
         ],
         fetcher,
