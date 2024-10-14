@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 `;
 
 const ShowcasesItem = () => {
-    const { t, i18n } = useTranslation('personal');
+    const { t } = useTranslation('personal');
     const { selected, currency } = useCurrencyContext();
 
     const theme = useTheme();
@@ -55,8 +55,8 @@ const ShowcasesItem = () => {
     const { id } = useParams();
     const searchParams = useSearchParams();
 
-    const { brief, briefsLoading, mutate } = useGetBrief(String(id), i18n.language);
-    const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')), i18n.language);
+    const { brief, briefsLoading, mutate } = useGetBrief(String(id));
+    const { company, companyLoading } = useGetCompany(String(searchParams.get('companyId')));
 
     const getFinishDay = () => {
         if (brief && brief.finishDay) {
