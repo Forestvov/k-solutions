@@ -5,7 +5,6 @@ import axios from 'axios';
 import { getCookie, setCookie } from 'context/settings/cookie';
 
 import { CurrencyContext } from './currency-context';
-import { HOST_API } from '../../../config-global';
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +24,7 @@ export function CurrencyProvider({ children }: Props) {
 
     const initialize = useCallback(async () => {
         try {
-            const res = await axios(`${HOST_API}/curs/list`);
+            const res = await axios('http://92.114.194.159:32022/api/v1/curs/list');
             const resJson = res.data.Valute;
 
             setCurrency({
